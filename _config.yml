@@ -1,12 +1,15 @@
 ### Site Settings ###
 title               : 🐪Hae02y
 description         : >-
-                      안녕하세요. 백엔드 개발자 정해영입니다.
-                      클린한 코드를 추구합니다.
-                      thanks come to my site.
+                      My name is Haeyoung Jeong, Backend Developer.👨‍💻
+                      Thank you very much for visiting my site.
+                      
+                    
+      
+                  
 baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
 repository          : hae02y     # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
-remote_theme        : YoussefRaafatNasry/portfolYOU
+remote_theme        : 
 open_new_tab        : true                             # Opens external URLs in new tab (works for posts, projects and navbar only)
 
 
@@ -25,17 +28,18 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : 정해영
-  image             : https://images.unsplash.com/photo-1698871538294-8dfbcbeb1f8a?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
-  # behance           : your_username
+  image             : https://cdn.discordapp.com/attachments/1164806103738093583/1169756408212897822/12683822578_20220320112256559.jpg?ex=65568f8c&is=65441a8c&hm=70e279ddf658881cef3595cd56ec8fa6b0494eff78cc8ab00311991f98d61fb3&
+  resume            : https://hae02y.notion.site/Jeong-Haeyoung-Resume-26b07d5748ac4a219cd965d5962f295d?pvs=4
+# behance           : your_username
 # dribbble          : your_username
   email             : godud1118@gmail.com
-  # facebook          : your_username
+# facebook          : your_username
   github            : hae02y
 # gitlab            : your_username
 # instagram         : your_username
 # kaggle            : your_username
-  # linkedin          : your_username
-  # medium            : your_username
+# linkedin          : your_username
+# medium            : your_username
 # soundcloud        : your_username
 # spotify           : your_username
 # stackoverflow     : your_user_id
