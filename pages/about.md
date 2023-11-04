@@ -5,28 +5,28 @@ permalink: /about/
 weight: 0
 ---
 
-### 안녕하세요. <br> 백엔드 개발자 **{{ site.author.name }}** 입니다. :wave:
+### 안녕하세요.:wave: <br> 백엔드 개발자 **{{ site.author.name }}** 입니다. <a href="{{ site.author.resume }}" type="button" class="btn btn-success">Show Resume</a>
 <br> 
 
 
-#### 꾸준히 성장하는 개발자입니다.
+#### *꾸준히 성장하는* 개발자입니다.
 프로젝트와 스터디 진행 과정을 기술 블로그에 기록하는 게 습관화 되어 있습니다.운영 중인 기술 블로그에 200여 개의 글을 쓰며 자연스럽게 회고하는 습관이 생겼고, 기록을 통해 성장하는 경험을 했습니다.또한 정보처리기사, SQLD 등 IT분야에 관련된 자격증을 다수 취득하며 성장해 나가고 있습니다. 늘 새로운 학습이 필요한 IT영역에서 지치지 않고 안정적으로 맡은 역할을 수행하는 개발자가 되고자 합니다.
 
-#### 나무와 숲 모두를 보는 개발자입니다.
+#### *나무와 숲 모두를 보는* 개발자입니다.
 코드를 바라보는 것만큼, 전반적인 시스템 아키텍처와 개발 과정의 큰 그림을 파악하는 능력은 매우 중요합니다. 저는 컴퓨터 공학을 전공하고 네트워크 엔지니어로 일하며 IT 분야를 넓게 바라보는 시각을 익혀 프로젝트 과정에 적용하였습니다. 이러한 경험을 바탕으로 최근 진행한 2회의 프로젝트에서 팀장 역할을 도맡아 설계부터 구현까지 성공적으로 이끌어 냈습니다.
 
-#### 우선순위를 아는 개발자입니다.
+#### *우선순위를 아는* 개발자입니다.
 업무 과정에 있어 어떤 것이 먼저인지, 어떤 것을 후 순위로 두어도 되는 지에 대해 유연한 판단이 가능합니다. 최근 진행한 프로젝트에서 서버에 문제 상황이 발생하였고, 팀원 모두 당황한 상황에서 저는 우선순위 따라 복구를 진행하였습니다. 이렇게 다양한 상황에서 유연하고 순발력 있게 우선순위를 파악하고 대처할 수 있는 준비가 되어있습니다.
 
-#### 소통에 거리낌 없는 개발자입니다.
+#### *소통에 거리낌 없는* 개발자입니다.
 개발 직무 뿐만 아니라 모든 직무의 협업 과정에서 원활한 소통은 프로젝트의 핵심이라고 생각합니다. 전 회사의 업무 과정에서 고객이나 타 업체와 소통하고 협업 할 기회가 많았고, 성공적으로 업무를 수행했으며 좋은 평가를 받았습니다. 이를 바탕으로 최근 진행한 프로젝트에서 팀원들에게 강점 키워드로 소통, 대화, 커뮤니케이션 등을 피드백 받았습니다.
 
-<a href="{{ site.author.resume }}" type="button" class="btn btn-success">이력서 보기</a>
+
 
 
 <div class="row">
-{% include about/skills.html title="Programming Skills" source=site.data.programming-skills %}
-{% include about/skills.html title="Other Skills" source=site.data.other-skills %}
+{% include about/skills.html title="Hard Skills" source=site.data.programming-skills %}
+{% include about/skills.html title="Soft Skills" source=site.data.other-skills %}
 </div>
 
 <div class="row">

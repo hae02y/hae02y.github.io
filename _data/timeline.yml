@@ -1,26 +1,23 @@
-- title: Student, Harvard CS
-  from: 2014
-  to: 2018
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Software Engineering Backend Bootcamp 수료
+  from: 2023.04
+  to: 2023.10
+  description:  Java, Spring 기반의 객체지향 프로그래밍을 학습하고 회고를 작성하였습니다. 
 
-- title: Software Engineer, Google, UK
-  from: 2018
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: 주식회사 조은기술(네트워크 엔지니어)
+  from: 2020.08
+  to: 2023.04
+  description:  논산관제센터 충남도청 통합 플랫폼 서비스 연계 및 구축 사업 등 다수에 사업 엔지니어 참여하였습니다.
+                또한 서버 관리 및 네트워크 구축, L3 스위치 라우팅 등 네트워크 전반적인 유지 보수 업무를 담당하였으며,
+                센터 내부 장비 및 외부 카메라 등 보안 관련 설정 적용, 네트워크 실시간 모니터링과
+                이노뎁 VMS 설치 및 유지보수 업무 담당, 가상화 서버 설치 및 운용 업무를 하였습니다. 그리고
+                1인 상주로 해당 고객사 및 타 업체와 소통 및 협업 경험이 많습니다.
 
-- title: Software Engineer, Google, UK
-  from: 2018
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: 방송통신대학교 컴퓨터과학과 졸업
+  from: 2021.03
+  to: 2023.08
+  description: 방송통신대학교 컴퓨터과학과를 졸업했습니다.
+
+- title: 대전대덕대학교 컴퓨터공학과 졸업
+  from: 2019.03
+  to: 2021.02
+  description: 대덕대학교 컴퓨터공학과를 졸업했습니다.

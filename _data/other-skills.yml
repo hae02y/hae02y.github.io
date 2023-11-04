@@ -1,7 +1,19 @@
-- name: Adobe Photoshop
-  percentage: 95
-  color: info
-
-- name: Adobe Illustrator
+- name: Communication
   percentage: 90
   color: success
+
+- name: Collaboration
+  percentage: 90
+  color: danger
+
+- name: Problem solving 
+  percentage: 80
+  color: dark
+
+- name: Report writing
+  percentage: 80
+  color: primary
+
+- name: Potential
+  percentage: 100
+  color: warning
