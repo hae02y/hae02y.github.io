@@ -1,8 +1,9 @@
 ### Site Settings ###
-title               : 🐪Hae02y
+title               : Hae02y
 description         : >-
-                      My name is Haeyoung Jeong, Backend Developer.👨‍💻
-                      Thank you very much for visiting my site.
+                      안녕하세요. 
+                      열심히 성장하는 백엔드개발자 정해영입니다.👨‍💻
+                    
                       
                     
       
@@ -28,7 +29,7 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : 정해영
-  image             : https://cdn.discordapp.com/attachments/1164806103738093583/1169756408212897822/12683822578_20220320112256559.jpg?ex=65568f8c&is=65441a8c&hm=70e279ddf658881cef3595cd56ec8fa6b0494eff78cc8ab00311991f98d61fb3&
+  image             : https://cdn.discordapp.com/attachments/1164806103738093583/1187293886654201856/000ab263e5eae6c9.jpg?ex=65965c99&is=6583e799&hm=4deb8cabebb103cb89eb505e36870c890a3e6fed9a973a68412c6e04a6d9ea55&
   resume            : https://hae02y.notion.site/Jeong-Haeyoung-Resume-26b07d5748ac4a219cd965d5962f295d?pvs=4
 # behance           : your_username
 # dribbble          : your_username
@@ -36,7 +37,7 @@ author:
 # facebook          : your_username
   github            : hae02y
 # gitlab            : your_username
-# instagram         : your_username
+  instagram         : hae02yy
 # kaggle            : your_username
 # linkedin          : your_username
 # medium            : your_username
