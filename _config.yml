@@ -1,7 +1,7 @@
 ### Site Settings ###
 title               : Hae02y
 description         : >-
-                      안녕하세요. 
+                      안녕하세요. <br>
                       열심히 성장하는 백엔드개발자 정해영입니다.👨‍💻
                     
                       
@@ -31,6 +31,7 @@ author:
   name              : 정해영
   image             : https://cdn.discordapp.com/attachments/1164806103738093583/1187293886654201856/000ab263e5eae6c9.jpg?ex=65965c99&is=6583e799&hm=4deb8cabebb103cb89eb505e36870c890a3e6fed9a973a68412c6e04a6d9ea55&
   resume            : https://hae02y.notion.site/Jeong-Haeyoung-Resume-26b07d5748ac4a219cd965d5962f295d?pvs=4
+  indeximage        : https://cdn.discordapp.com/attachments/1164806103738093583/1166977483787206726/IMG_2508.jpg?ex=65964779&is=6583d279&hm=40cb826fdaa7e56053174f0b15de723b8943066c9b8b10d5287541e5b9f685e3&
 # behance           : your_username
 # dribbble          : your_username
   email             : godud1118@gmail.com

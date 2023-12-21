@@ -2,7 +2,7 @@
 title: StudyGround 포트폴리오
 tags: [StudyGround]
 style: fill
-color: primary
+color: warning
 comments: false
 description: 스터디그라운드 포트폴리오입니다.
 ---
