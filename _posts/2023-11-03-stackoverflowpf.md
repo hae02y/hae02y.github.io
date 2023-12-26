@@ -9,11 +9,10 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 ---
 
 
-![](https://wac-cdn.atlassian.com/dam/jcr:34e935dd-3108-40ef-bb3d-9ed01d977d6d/hero.svg?cdnVersion=la)
+![image](https://github.com/hae02y/hae02y/assets/59853998/5b2a88c4-53a4-4cb5-88ed-fcc2ddac3f7a)
 
-# StackOverFlow Clone
 
-## 🎉 프로젝트 소개
+### 🎉 프로젝트 소개
 
 **프로젝트 이름 : [StackOverFlow Clone](http://pre016client.s3-website.ap-northeast-2.amazonaws.com/)**
 
@@ -34,7 +33,7 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 
 ---
 
-## 🛠 내가 사용한 스택
+### 🛠 내가 사용한 스택
 
 - **Java**
 - **Spring Boot**
@@ -47,7 +46,7 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 
 ---
 
-## 📂 내 역할
+### 📂 내 역할
 
 ⚙ Frontend 3명, Backend 3명이서 함께 진행한 프로젝트에서 **팀장** 역할을 맡았습니다. 
 처음 진행한 협업 프로젝트여서 많이 걱정되었지만 걱정과 다르게 모두 열심히 **협동**하여 프로젝트를 기간 내로 잘 끝낼 수 있었습니다.
@@ -64,7 +63,7 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 
 ---
 
-## 🔊 구현 설명
+### 🔊 구현 설명
 
  제가 사용한 **Java version**은 **11.0.2**를 사용하였고, **Spring Boot** 는 **2.7.14** 를 사용하였습니다. 자바 11의 경우 **LTS 버전**이고, 자바 8보다 많은 기능을 지원하여 11버전을 선택하였습니다.
 
@@ -72,7 +71,9 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 
 <br>
 
-### **DB 설계 및 API 문서 작성**
+#### **DB 설계 및 API 문서 작성**
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/7c32cf5b-4f3e-4cbe-bbe8-b8a417c62664)
 
 - **DB 설계**
     
@@ -93,7 +94,7 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 <br>
 <br>    
 
-### **질문, 답변, 태그 CRUD 구현**
+#### **질문, 답변, 태그 CRUD 구현**
 
 - **질문 조회수 기능**
     - 질문 게시글에 조회수 기능을 추가하였습니다. **Get 요청**으로 findQuestion에 접근시 viewCountUp 메서드에서 **조회수의 증가를 구현**하였습니다. 하지만 findQuestion에서 레포지토리에 save가 일어나는 방식으로 구현을 하여서 추후에 방식을 변경해보려고 합니다.
@@ -153,7 +154,9 @@ description: 스택오버플로우 클론 코딩 포트폴리오
 <br>
 <br>    
 
-### **CI/CD (AWS EC2 + Github Action)**
+#### **CI/CD (AWS EC2 + Github Action)**
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/c2eddcae-a810-477d-957b-7ea91c31564f)
 
 CI/CD는 처음 진행하다 보니 어려운 점이 많았습니다. 아래와 같은 방식으로 구현을 하였습니다. Jenkins의 사용을 고려했었는데 **프로젝트의 규모나 시간 등을 고려** 했을 때 **Github Action**이 프로젝트에 적합하다고 판단하여 진행하였습니다. 
 
@@ -243,23 +246,25 @@ jobs:
 **[[XML / JSon / YAML](https://togll.tistory.com/216)]**
 <br>
 <br>
-### **MySQL DB서버 연동(AWS RDS 사용)**
 
+#### **MySQL DB서버 연동(AWS RDS 사용)**
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/a7e45198-dc85-41b2-9ba9-bee94bfa504e)
 
 개발단계에서 **H2 DB를 사용**하다보니, 서버가 재기동 되면 **데이터가 초기화** 되었습니다. 이를 위해 **MySQL**을 고려하였습니다. 이때 저희에게 선택할 수 있는 방법은 **RDS**를 사용하는 방법과 **EC2에 직접 MySQL을 설치**하여 운영하는 방법이 있었습니다. 저는 RDS를 한번 **경험**해보고 싶었습니다. 그래서 RDS를 선택하였고, RDS를 사용시에 얻게 되는 장점에 대해 공부할 수 있었습니다. 하지만 RDS사용하게 되니 비용에 대한 부담이 생겼습니다. 그래서 현재는 RDS DB를 내려놓은 상태이고, EC2에 직접 설치하여 리팩토링 작업에 사용 할 계획을 세우고 있습니다.
 
 ---
 
-## 💡 **어려웠던 점 / 배운 점**
+### 💡 **어려웠던 점 / 배운 점**
 <br>
 
-### **MappedBy 에러**
+#### **MappedBy 에러**
 
 **Spring Data JPA**의 **mappedBy**를 작성하는 것에 어려움이 있었습니다. 이를 해결하기 위해서 **테이블의 연관관계**에 대한 공부를 하였고, **양방향 매핑**시에 둘중 하나가 **외래키를 관리**해야하고 이는 연관관계의 **주인**(Owner)이 해야한다는 것을 알았습니다. 이때 Owner는 mappedBy 속성을 사용하지 않고, **Owner가 아니면 mappedBy속성을 사용**합니다.
 <br>
 <br>
 
-### **순환참조 에러**
+#### **순환참조 에러**
 
 ```java
 @Entity
@@ -284,7 +289,7 @@ OneToMany 관계에서 Get요청으로 조회시에 **순환참조에러**가 �
 <br>
 <br>
 
-### **H2 DB 예약어 에러**
+#### **H2 DB 예약어 에러**
 
 최초의 테이블설계시에 회원을 User로 설계하였습니다. 이때, 개발과정에서 사용했던 H2 DB의 예약어와 충돌하는 문제가 발생하였습니다. 
 
@@ -301,7 +306,7 @@ insert into user (id, created_at, deleted_at, last_modified_at, password, role, 
 <br>
 <br>
 
-### **Validation 에러 [[블로그 정리 보기]](https://togll.tistory.com/205)**
+#### **Validation 에러 [[블로그 정리 보기]](https://togll.tistory.com/205)**
 
 ```java
 @NotBlank
@@ -311,14 +316,17 @@ private long password;
 위와 같이 작성했더니 에러가 발생하였습니다. 이유는 **long타입, int타입**등의 **원시타입**에 대해서는 **@NotBlank** 애너테이션을 사용할수없고 만약 유효성검사가 필요하다면 **@Min, @Max**등의 최소, 최대값을 지정하는 방식으로 사용이 가능합니다. 이를 통해 **사소한 부분에서도 문제가 발생**할 수 있다는 것을 알았습니다. Dto를 작성할때 붙여넣기를 하였는데 좀 더 신경을 써야겠다고 생각하였습니다.
 <br>
 <br>
-### **CORS 에러**
+
+#### **CORS 에러**
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/20df5d84-9b9c-4132-855e-b11f4180a376)
 
 프론트와 연동하여 테스트를 진행하는 과정에서 정말 많은 **cors에러**가 발생하였습니다. 
 setAllowedOrigins 와 setcredential 함께 사용 못 하는 것을 알았고, 이를 적용하여 corsFilter 넣어서 test는 성공하였습니다. 이외에도 거의 모든 테스트 진행 시에 Cors에러가 발생하였는데, 백엔드도 **처음 협업을 진행**하는 상황이었고, 프론트도 처음 협업을 진행 하다 보니 어디가 문제인지 정확히 파악할 수가 없어서 일어나는 문제가 대부분 이였습니다. 이를 해결하기 위해서 프론트와 거의 날이 새도록 하나씩 테스트를 진행 하였고 결국 문제를 해결할수있었습니다. 이를 통해서 초보 개발자들이 가장 애를 먹는다는 **Cors**에 대해서 한번 더 알게 되었고, 어떤 식으로 해결해야 하는지, 그리고 어느 부분을 집중해서 확인 해야 하는지 알 수 있었습니다. 특히 **preflight 요청**에 대해서 자세히 공부할 수 있었습니다.
 
 ---
 
-## 📃 **기록**
+#### 📃 **기록**
 
 1. [프로젝트 회고 블로깅](https://togll.tistory.com/235)
 2. [시스템 구현 블로깅](https://togll.tistory.com/234)
