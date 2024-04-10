@@ -1,3 +1,100 @@
 ---
 ---
+
 @import "portfolYOU";
+
+
+/* 기본 바디 스타일 */
+body {
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* 헤더 스타일 */
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  h3 {
+    font-size: 20px;
+  }
+  
+  /* 링크 스타일 */
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 버튼 스타일 */
+  button {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  p {
+    font-size: 16px; /* 적당한 텍스트 크기 */
+    line-height: 1.6; /* 적당한 줄 간격으로 가독성 향상 */
+    margin-top: 0; /* 첫 번째 문단과 상단 요소 사이의 공간 제거 */
+    margin-bottom: 16px; /* 문단 간 구분을 위한 하단 마진 */
+  }
+
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px; /* 조정된 글씨 크기 */
+    border-radius: 16px;
+  }
+  
+  table, th, td {
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 12px 15px;
+  }
+  
+  thead th {
+    font-weight: 500; /* 노션 스타일의 제목 글씨 두께 */
+  }
+  
+  tbody td {
+  }
+  
+  tbody td a {
+    color: #065f46; /* 노션 링크 색상 */
+    text-decoration: none;
+  }
+  
+  tbody td a:hover {
+    text-decoration: underline; /* 호버 시 밑줄 */
+  }
+  
+  tbody tr:hover {
+    background-color: #f0efed;
+  }
+  
+  tr:nth-child(even) tbody td {
+    background-color: #f7f7f7;
+  }
+  
+  tfoot td {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }

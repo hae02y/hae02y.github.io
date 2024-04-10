@@ -21,7 +21,7 @@ plugins:
 
 ### Navbar Settings ###
 nav_exclude:                                            # The following paths are excluded from navbar
-  # - pages/tags.html
+  - pages/tags.html
   - pages/404.html
   - pages/index.md
 
@@ -29,9 +29,9 @@ nav_exclude:                                            # The following paths ar
 ### Author Info ###
 author:
   name              : 정해영
-  image             : https://github.com/hae02y/obsidian/assets/59853998/0c95adaa-880b-4e94-805f-606bd9739175
+  image             : /assets/images/profile.jpg
   resume            : https://hae02y.notion.site/Jeong-Haeyoung-Resume-26b07d5748ac4a219cd965d5962f295d?pvs=4
-  indeximage        : https://github.com/hae02y/obsidian/assets/59853998/f3e65a8e-9ea0-4021-ac79-21123edb1c7c
+  indeximage        : /assets/images/resumeprofile.jpg
 # behance           : your_username
 # dribbble          : your_username
   email             : godud1118@gmail.com
