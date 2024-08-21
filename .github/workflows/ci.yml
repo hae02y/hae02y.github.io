@@ -20,14 +20,11 @@ jobs:
     - name: Install pnpm
       run: npm install -g pnpm
 
-    - name: Clear pnpm cache
-      run: pnpm store prune
-
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
 
     - name: Build website
-      run: pnpm build
+      run: pnpm run build
 
     - name: Upload Build Artifact
       uses: actions/upload-pages-artifact@v3
