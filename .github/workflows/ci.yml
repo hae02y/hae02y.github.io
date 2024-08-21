@@ -9,26 +9,29 @@ on:
 
 jobs:
   build:
-    name: Build Docusaurus
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
+    - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-      - name: Build website
-        run: pnpm run build
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.16.0'
 
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: build
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build website
+      run: pnpm run build
+
+    - name: Upload Build Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: build # or your actual build output directory
 
   deploy:
     name: Deploy to GitHub Pages
