@@ -1,23 +1,8 @@
-yangshun:
-  name: Yangshun Tay
-  title: Front End Engineer @ Facebook
-  url: https://github.com/yangshun
-  image_url: https://github.com/yangshun.png
+hae02y:
+  name: Hea02y
+  title: developer @vestellalab
+  url: https://github.com/hea02y
+  image_url: https://www.istockphoto.com/photo/camel-wadi-darbat-salalah-dhofar-oman-gm1499041397-520896088?utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fko%2Fimages%2Fsearch%2F%25EB%2582%2599%25ED%2583%2580%2F&utm_term=%EB%82%99%ED%83%80
   page: true
   socials:
-    x: yangshunz
-    github: yangshun
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-  page:
-    # customize the url of the author page at /blog/authors/<permalink>
-    permalink: '/all-sebastien-lorber-articles'
-  socials:
-    x: sebastienlorber
-    linkedin: sebastienlorber
-    github: slorber
-    newsletter: https://thisweekinreact.com
+    github: hae02y
