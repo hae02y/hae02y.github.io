@@ -17,3 +17,8 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+portfolio:
+  label: Portfolio
+  permalink: /portfolio
+  description: Portfolio tag description
