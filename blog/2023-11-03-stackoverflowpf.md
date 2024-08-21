@@ -1,7 +1,7 @@
 ---
 slug: stack
 title: 스택오버플로우 포트폴리오
-authors: [hae02y]
+authors: [haeyoung]
 tags: [portfolio]
 ---
 

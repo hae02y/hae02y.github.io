@@ -1,7 +1,7 @@
 ---
 slug: study
 title: 스터디그라운드
-authors: [hae02y]
+authors: [haeyoung]
 tags: [portfolio]
 ---
 
