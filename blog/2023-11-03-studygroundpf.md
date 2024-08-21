@@ -1,5 +1,5 @@
 ---
-slug: port
+slug: study
 title: 스터디그라운드
 authors: [hae02y]
 tags: [portfolio]
