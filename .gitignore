@@ -13,3 +13,20 @@ Gemfile.lock
 
 #obsidian files
 .obsidian/
+node_modules
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
