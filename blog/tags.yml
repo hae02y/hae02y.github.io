@@ -22,3 +22,8 @@ portfolio:
   label: Portfolio
   permalink: /portfolio
   description: Portfolio tag description
+
+blog:
+  label: making-blog
+  permalink: /making-blog
+  description: making blog tag description
