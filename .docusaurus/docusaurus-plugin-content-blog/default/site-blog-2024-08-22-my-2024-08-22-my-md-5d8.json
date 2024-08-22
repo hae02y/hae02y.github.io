@@ -1,0 +1,48 @@
+{
+  "permalink": "/blog/docusaurusblog",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2024-08-22-my/2024-08-22-my.md",
+  "source": "@site/blog/2024-08-22-my/2024-08-22-my.md",
+  "title": "플랫폼 변경",
+  "description": "최근 블로그 플랫폼을 옮기는 작업을 진행했습니다. 이 과정에서 문제를 마주할 때마다 우아한 해결방법은 없을 지 고민하며 몇 자 적어두었는데, 나름 수요가 있을지도 모른다는 생각에 글로 발행해보았습니다.",
+  "date": "2024-08-22T00:00:00.000Z",
+  "tags": [
+    {
+      "inline": false,
+      "label": "making-blog",
+      "permalink": "/blog/tags/making-blog",
+      "description": "making blog tag description"
+    }
+  ],
+  "readingTime": 21.825,
+  "hasTruncateMarker": false,
+  "authors": [
+    {
+      "name": "Hea02y",
+      "title": "developer @vestellalab",
+      "url": "https://github.com/hea02y",
+      "page": {
+        "permalink": "/blog/authors/haeyoung"
+      },
+      "socials": {
+        "github": "https://github.com/hae02y"
+      },
+      "imageURL": "https://avatars.githubusercontent.com/u/37237200?v=4",
+      "key": "haeyoung"
+    }
+  ],
+  "frontMatter": {
+    "slug": "docusaurusblog",
+    "title": "플랫폼 변경",
+    "authors": [
+      "haeyoung"
+    ],
+    "tags": [
+      "blog"
+    ]
+  },
+  "unlisted": false,
+  "nextItem": {
+    "title": "블로그 구축기",
+    "permalink": "/blog/makeblog"
+  }
+}

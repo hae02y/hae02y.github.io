@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Hae02y',
-  tagline: 'Dinosaurs are cool',
+  tagline: '호호호',
   favicon: 'img/favicon.ico',
   // Set the production url of your site here
   url: 'https://hae02y.github.io',
