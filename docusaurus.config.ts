@@ -105,15 +105,15 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'LinkedIn',
+              href: 'https://twitter.com/docusaurus',
             },
             {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
             },
             {
-              label: 'Twitter',
+              label: 'Instagram',
               href: 'https://twitter.com/docusaurus',
             },
           ],
@@ -127,7 +127,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/hae02y',
             },
           ],
         },
