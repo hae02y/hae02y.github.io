@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'df1'),
+    component: ComponentCreator('/blog', '4e0'),
     exact: true
   },
   {
@@ -54,17 +54,22 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '6c8'),
+    component: ComponentCreator('/blog/authors/haeyoung', 'aab'),
+    exact: true
+  },
+  {
+    path: '/blog/database1',
+    component: ComponentCreator('/blog/database1', '4f4'),
     exact: true
   },
   {
     path: '/blog/makeblog',
-    component: ComponentCreator('/blog/makeblog', '318'),
+    component: ComponentCreator('/blog/makeblog', '6f8'),
     exact: true
   },
   {
     path: '/blog/makeblog2',
-    component: ComponentCreator('/blog/makeblog2', '15a'),
+    component: ComponentCreator('/blog/makeblog2', 'fbb'),
     exact: true
   },
   {
@@ -88,23 +93,28 @@ export default [
     exact: true
   },
   {
+    path: '/blog/tags/database',
+    component: ComponentCreator('/blog/tags/database', '6de'),
+    exact: true
+  },
+  {
     path: '/blog/tags/docusaurus',
-    component: ComponentCreator('/blog/tags/docusaurus', 'bec'),
+    component: ComponentCreator('/blog/tags/docusaurus', '596'),
     exact: true
   },
   {
     path: '/blog/tags/facebook',
-    component: ComponentCreator('/blog/tags/facebook', '858'),
+    component: ComponentCreator('/blog/tags/facebook', '076'),
     exact: true
   },
   {
     path: '/blog/tags/hello',
-    component: ComponentCreator('/blog/tags/hello', '4ad'),
+    component: ComponentCreator('/blog/tags/hello', '249'),
     exact: true
   },
   {
     path: '/blog/tags/making-blog',
-    component: ComponentCreator('/blog/tags/making-blog', 'fd7'),
+    component: ComponentCreator('/blog/tags/making-blog', '1c1'),
     exact: true
   },
   {
@@ -119,7 +129,7 @@ export default [
   },
   {
     path: '/blog/welcome',
-    component: ComponentCreator('/blog/welcome', 'd2b'),
+    component: ComponentCreator('/blog/welcome', 'b38'),
     exact: true
   },
   {
