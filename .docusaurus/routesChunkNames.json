@@ -324,6 +324,13 @@
     },
     "content": "content---markdown-page-393-028"
   },
+  "/me/-dd3": {
+    "__comp": "__comp---site-src-pages-me-index-tsx-1-c-4-47c",
+    "__context": {
+      "plugin": "plugin---markdown-pagea-74-7b5"
+    },
+    "config": "config---me-5-e-9-8cf"
+  },
   "/docs-733": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
@@ -386,6 +393,6 @@
     "__context": {
       "plugin": "plugin---markdown-pagea-74-7b5"
     },
-    "config": "config---5-e-9-4f3"
+    "config": "config---me-5-e-9-8cf"
   }
 }

@@ -138,6 +138,11 @@ export default [
     exact: true
   },
   {
+    path: '/me/',
+    component: ComponentCreator('/me/', 'dd3'),
+    exact: true
+  },
+  {
     path: '/docs',
     component: ComponentCreator('/docs', '733'),
     routes: [
