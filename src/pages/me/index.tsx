@@ -13,7 +13,7 @@ export default function Me() {
           fontSize: '20px',
         }}>
         <p>
-          Edit <code>pages/helloReact.js</code> and save to reload.
+          안녕하세요 저입니다.
         </p>
       </div>
     </Layout>
