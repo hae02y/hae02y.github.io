@@ -82,22 +82,25 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
-        // 튜토리얼 메뉴 만들기
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'About',
-        // },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Series',
+        },
+        {
+          to: '/books',
+          position: 'left',
+          label: 'Books',
+        },
       ],
     },
     footer: {
       style: 'dark',
       links: [
 
-        // 튜토리얼 메뉴로 이동
         // {
-        //   title: 'Docs',
+        //   title: 'Series',
         //   items: [
         //     {
         //       label: 'Tutorial',

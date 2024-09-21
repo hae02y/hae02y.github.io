@@ -87,6 +87,17 @@ export default {
           "href": "https://github.com/hae02y",
           "label": "GitHub",
           "position": "right"
+        },
+        {
+          "type": "docSidebar",
+          "sidebarId": "tutorialSidebar",
+          "position": "left",
+          "label": "Series"
+        },
+        {
+          "to": "/books",
+          "position": "left",
+          "label": "Books"
         }
       ],
       "hideOnScroll": false
