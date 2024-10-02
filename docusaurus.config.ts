@@ -16,7 +16,7 @@ const config: Config = {
   organizationName: 'hae02y', // Usually your GitHub org/user name.
   projectName: 'hae02y', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -87,11 +87,6 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Series',
-        },
-        {
-          to: '/books',
-          position: 'left',
-          label: 'Books',
         },
       ],
     },
