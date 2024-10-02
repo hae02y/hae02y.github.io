@@ -1,8 +1,10 @@
 ---
 slug: makeblog2
 title: 블로그 구축기-2
-authors: [haeyoung]
-tags: [blog]
+authors:
+  - haeyoung
+tags:
+  - blog
 ---
 
 블로그 플랫폼을 옮기면서 여러 문제를 마주했다. 
