@@ -1,6 +1,5 @@
 {
   "permalink": "/blog/study",
-  "editUrl": "https://github.com/hae02y/blog/2023-11-03-studygroundpf.md",
   "source": "@site/blog/2023-11-03-studygroundpf.md",
   "title": "스터디그라운드",
   "description": "🎉프로젝트 소개",
@@ -46,7 +45,7 @@
     "permalink": "/blog/stack"
   },
   "nextItem": {
-    "title": "Welcome",
-    "permalink": "/blog/welcome"
+    "title": "MDX Blog Post",
+    "permalink": "/blog/mdx-blog-post"
   }
 }

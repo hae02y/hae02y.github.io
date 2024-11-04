@@ -1,18 +1,23 @@
 {
-  "permalink": "/blog/makeblog2",
-  "source": "@site/blog/2024-08-20-blog2/index.md",
-  "title": "블로그 구축기-2",
-  "description": "블로그 플랫폼을 옮기면서 여러 문제를 마주했다.",
-  "date": "2024-08-20T00:00:00.000Z",
+  "permalink": "/blog/test",
+  "source": "@site/blog/2024-10-02-test/index.md",
+  "title": "테스트 입니다.",
+  "description": "Test",
+  "date": "2024-10-02T00:00:00.000Z",
   "tags": [
     {
       "inline": false,
       "label": "making-blog",
       "permalink": "/blog/tags/making-blog",
       "description": "making blog tag description"
+    },
+    {
+      "inline": true,
+      "label": "test",
+      "permalink": "/blog/tags/test"
     }
   ],
-  "readingTime": 5.215,
+  "readingTime": 0.02,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -30,22 +35,23 @@
     }
   ],
   "frontMatter": {
-    "slug": "makeblog2",
-    "title": "블로그 구축기-2",
+    "slug": "test",
+    "title": "테스트 입니다.",
     "authors": [
       "haeyoung"
     ],
     "tags": [
-      "blog"
+      "blog",
+      "test"
     ]
   },
   "unlisted": false,
   "prevItem": {
-    "title": "UUID에 대해서",
-    "permalink": "/blog/database1"
+    "title": "title",
+    "permalink": "/blog/url"
   },
   "nextItem": {
-    "title": "블로그 구축기",
-    "permalink": "/blog/makeblog"
+    "title": "UUID에 대해서",
+    "permalink": "/blog/database1"
   }
 }

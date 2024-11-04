@@ -1,17 +1,18 @@
 {
-  "permalink": "/blog/database1",
-  "source": "@site/blog/2024-08-27-uuid/index.mdx",
-  "title": "UUID에 대해서",
-  "description": "UUID 란?",
-  "date": "2024-08-27T00:00:00.000Z",
+  "permalink": "/blog/url",
+  "source": "@site/blog/templates/Properties Templates.md",
+  "title": "title",
+  "description": "",
+  "date": "2024-10-02T09:19:47.000Z",
   "tags": [
     {
-      "inline": true,
-      "label": "database",
-      "permalink": "/blog/tags/database"
+      "inline": false,
+      "label": "making-blog",
+      "permalink": "/blog/tags/making-blog",
+      "description": "making blog tag description"
     }
   ],
-  "readingTime": 4.6,
+  "readingTime": 0,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -29,22 +30,18 @@
     }
   ],
   "frontMatter": {
-    "slug": "database1",
-    "title": "UUID에 대해서",
+    "slug": "url",
+    "title": "title",
     "authors": [
       "haeyoung"
     ],
     "tags": [
-      "database"
+      "blog"
     ]
   },
   "unlisted": false,
-  "prevItem": {
+  "nextItem": {
     "title": "테스트 입니다.",
     "permalink": "/blog/test"
-  },
-  "nextItem": {
-    "title": "블로그 구축기-2",
-    "permalink": "/blog/makeblog2"
   }
 }

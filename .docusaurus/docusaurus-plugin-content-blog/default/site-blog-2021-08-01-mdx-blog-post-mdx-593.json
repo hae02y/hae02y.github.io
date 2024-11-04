@@ -1,6 +1,5 @@
 {
   "permalink": "/blog/mdx-blog-post",
-  "editUrl": "https://github.com/hae02y/blog/2021-08-01-mdx-blog-post.mdx",
   "source": "@site/blog/2021-08-01-mdx-blog-post.mdx",
   "title": "MDX Blog Post",
   "description": "Blog posts support Docusaurus Markdown features, such as MDX.",
@@ -42,7 +41,7 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "Welcome",
-    "permalink": "/blog/welcome"
+    "title": "스터디그라운드",
+    "permalink": "/blog/study"
   }
 }

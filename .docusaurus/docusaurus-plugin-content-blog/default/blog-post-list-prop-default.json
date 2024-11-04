@@ -2,6 +2,18 @@
   "title": "Recent posts",
   "items": [
     {
+      "title": "title",
+      "permalink": "/blog/url",
+      "unlisted": false,
+      "date": "2024-10-02T09:19:47.000Z"
+    },
+    {
+      "title": "테스트 입니다.",
+      "permalink": "/blog/test",
+      "unlisted": false,
+      "date": "2024-10-02T00:00:00.000Z"
+    },
+    {
       "title": "UUID에 대해서",
       "permalink": "/blog/database1",
       "unlisted": false,
@@ -18,18 +30,6 @@
       "permalink": "/blog/makeblog",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
-    },
-    {
-      "title": "투게독",
-      "permalink": "/blog/togedog",
-      "unlisted": false,
-      "date": "2023-11-05T00:00:00.000Z"
-    },
-    {
-      "title": "스택오버플로우 포트폴리오",
-      "permalink": "/blog/stack",
-      "unlisted": false,
-      "date": "2023-11-03T00:00:00.000Z"
     }
   ]
 }

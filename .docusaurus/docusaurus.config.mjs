@@ -11,12 +11,12 @@ export default {
   "baseUrl": "/",
   "organizationName": "hae02y",
   "projectName": "hae02y",
-  "onBrokenLinks": "throw",
+  "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
-    "defaultLocale": "kr",
+    "defaultLocale": "ko",
     "locales": [
-      "kr"
+      "ko"
     ],
     "path": "i18n",
     "localeConfigs": {}
@@ -38,7 +38,7 @@ export default {
   ],
   "presets": [
     [
-      "classic",
+      "@docusaurus/preset-classic",
       {
         "docs": {
           "sidebarPath": "./sidebars.ts",
@@ -53,7 +53,6 @@ export default {
             ],
             "xslt": true
           },
-          "editUrl": "https://github.com/hae02y",
           "onInlineTags": "warn",
           "onInlineAuthors": "warn",
           "onUntruncatedBlogPosts": "warn"
@@ -93,11 +92,6 @@ export default {
           "sidebarId": "tutorialSidebar",
           "position": "left",
           "label": "Series"
-        },
-        {
-          "to": "/books",
-          "position": "left",
-          "label": "Books"
         }
       ],
       "hideOnScroll": false
@@ -332,13 +326,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -360,6 +347,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
