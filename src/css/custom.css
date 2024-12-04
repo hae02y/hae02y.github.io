@@ -1,31 +1,123 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+/* Global Variables */
+@layer base {
+  :root {
+    --primary: #2d3748; /* 기본 텍스트 색상 */
+    --secondary: #718096; /* 보조 텍스트 색상 */
+    --accent: #3182ce; /* 강조 색상 */
+    --accent-rgb: 49, 130, 206; /* RGB 정의 */
+    --background: #ffffff; /* 기본 배경 색상 */
+    --background-dark: #1a202c; /* 다크 모드 배경 색상 */
+  }
+
+  [data-theme="dark"] {
+    --primary: #e2e8f0; /* 라이트 텍스트 색상 */
+    --secondary: #a0aec0; /* 보조 텍스트 색상 */
+    --accent: #63b3ed; /* 강조 색상 */
+    --accent-rgb: 99, 179, 237; /* RGB 정의 */
+    --background: #1a202c; /* 다크 모드 배경 */
+    --background-dark: #2d3748; /* 더 어두운 배경 */
+  }
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+/* Custom Utilities */
+@layer utilities {
+  .text-accent {
+    color: var(--accent);
+  }
+
+  .hover\:text-accent-opacity:hover {
+    color: rgba(var(--accent-rgb), 0.8); /* 투명도 처리 */
+  }
+
+  .bg-accent {
+    background-color: var(--accent);
+  }
+
+  .hover\:bg-accent-opacity:hover {
+    background-color: rgba(var(--accent-rgb), 0.9); /* 투명도 처리 */
+  }
 }
 
+/* Global Typography */
+h1 {
+  @apply text-4xl font-bold text-[var(--primary)] leading-snug mb-6;
+}
+
+h2 {
+  @apply text-3xl font-semibold text-[var(--primary)] leading-snug mb-5;
+}
+
+h3 {
+  @apply text-2xl font-medium text-[var(--primary)] leading-normal mb-4;
+}
+
+h4 {
+  @apply text-xl font-medium text-[var(--secondary)] leading-snug mb-3;
+}
+
+h5 {
+  @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-2;
+}
+
+h6 {
+  @apply text-base font-medium text-[var(--secondary)] leading-snug mb-1;
+}
+
+p {
+  @apply text-base leading-relaxed text-[var(--primary)] mb-4;
+}
+
+ul, ol {
+  @apply pl-5 mb-4 text-[var(--primary)];
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: rgba(var(--accent-rgb), 0.8);
+  text-decoration: none;
+}
+
+/*!* Blockquote *!*/
+/*blockquote {*/
+/*  @apply border-l-4 border-[var(--accent)] pl-4 text-[var(--secondary)] italic mb-6;*/
+/*}*/
+
+/* Code Block */
+code {
+  @apply bg-gray-100 dark:bg-gray-800 text-[var(--primary)] px-1 py-0.5 rounded font-mono;
+}
+
+/* Tables */
+table {
+  @apply w-full table-auto border-collapse border border-gray-200 dark:border-gray-700;
+}
+
+th, td {
+  @apply border border-gray-200 dark:border-gray-700 px-4 py-2 text-left;
+}
+
+th {
+  @apply bg-gray-100 dark:bg-gray-800 font-semibold;
+}
+
+tr:nth-child(even) {
+  @apply bg-gray-50 dark:bg-gray-900;
+}

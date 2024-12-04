@@ -4,8 +4,11 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
+  "plugins": [
+    null
+  ],
   "title": "Hae02y",
-  "tagline": "호호호",
+  "tagline": "Ver 0.0.1",
   "favicon": "img/favicon.ico",
   "url": "https://hae02y.github.io",
   "baseUrl": "/",
@@ -45,6 +48,8 @@ export default {
           "editUrl": "https://github.com/hae02y"
         },
         "blog": {
+          "blogSidebarTitle": "모든 포스트",
+          "blogSidebarCount": "ALL",
           "showReadingTime": true,
           "feedOptions": {
             "type": [
@@ -55,7 +60,7 @@ export default {
           },
           "onInlineTags": "warn",
           "onInlineAuthors": "warn",
-          "onUntruncatedBlogPosts": "warn"
+          "onUntruncatedBlogPosts": "ignore"
         },
         "theme": {
           "customCss": "./src/css/custom.css"
@@ -326,6 +331,13 @@ export default {
         }
       ]
     },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
+    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -347,13 +359,6 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
-    },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
@@ -370,7 +375,6 @@ export default {
     "static"
   ],
   "customFields": {},
-  "plugins": [],
   "scripts": [],
   "headTags": [],
   "stylesheets": [],

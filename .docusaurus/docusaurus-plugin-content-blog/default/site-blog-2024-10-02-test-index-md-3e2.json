@@ -2,7 +2,7 @@
   "permalink": "/blog/test",
   "source": "@site/blog/2024-10-02-test/index.md",
   "title": "테스트 입니다.",
-  "description": "Test",
+  "description": "fsdf",
   "date": "2024-10-02T00:00:00.000Z",
   "tags": [
     {
@@ -17,7 +17,7 @@
       "permalink": "/blog/tags/test"
     }
   ],
-  "readingTime": 0.02,
+  "readingTime": 0.005,
   "hasTruncateMarker": false,
   "authors": [
     {

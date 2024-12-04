@@ -27,6 +27,9 @@
       "name": "@docusaurus/theme-classic",
       "version": "3.5.2"
     },
+    "docusaurus-tailwindcss": {
+      "type": "local"
+    },
     "docusaurus-theme-mermaid": {
       "type": "package",
       "name": "@docusaurus/theme-mermaid",

@@ -6,12 +6,13 @@ type FeatureItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
+  link?: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Test1',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: '정해영',
+    Svg: require('@site/static/img/image.svg').default,
     description: (
       <>
         테스트1
@@ -20,7 +21,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Test2',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/image.svg').default,
     description: (
       <>
         테스트2
@@ -29,7 +30,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Test3',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/image.svg').default,
     description: (
       <>
         테스트3
