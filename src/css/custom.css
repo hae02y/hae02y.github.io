@@ -84,6 +84,13 @@ ol {
 }
 
 /* Links */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;

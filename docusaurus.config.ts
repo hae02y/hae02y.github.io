@@ -61,6 +61,7 @@ const config: Config = {
         blog: {
           blogSidebarTitle: '모든 포스트',
           blogSidebarCount: 'ALL',
+          postsPerPage: 10, // 페이지당 포스트 수 설정
           showReadingTime: true,
           feedOptions: {
             type: ['rss', 'atom'],
@@ -115,23 +116,7 @@ const config: Config = {
         //     },
         //   ],
         // },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'LinkedIn',
-              href: 'https://www.linkedin.com/in/hae02y',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/hae02y',
-            },
-            {
-              label: 'Instagram',
-              href: 'https://instagram.com/hae02yy',
-            },
-          ],
-        },
+
         // {
         //   title: 'Menu',
         //   items: [
@@ -146,7 +131,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Hae02y`,
     },
     prism: {
       theme: prismThemes.github,

@@ -49,7 +49,7 @@ function EmojiAvatarSection() {
             <div className="container">
                 <div className="inline-block">
                     <img
-                        src="/assets/ideal-img/congratulatory.70f02c8.421.png"
+                        src="/img/docusaurus.png"
                         alt="환호하는 이모지"
                         className="w-32 h-32 mx-auto animate-bounce"
                     />

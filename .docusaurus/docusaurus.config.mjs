@@ -50,6 +50,7 @@ export default {
         "blog": {
           "blogSidebarTitle": "모든 포스트",
           "blogSidebarCount": "ALL",
+          "postsPerPage": 10,
           "showReadingTime": true,
           "feedOptions": {
             "type": [
@@ -103,26 +104,8 @@ export default {
     },
     "footer": {
       "style": "dark",
-      "links": [
-        {
-          "title": "Community",
-          "items": [
-            {
-              "label": "LinkedIn",
-              "href": "https://www.linkedin.com/in/hae02y"
-            },
-            {
-              "label": "Discord",
-              "href": "https://discordapp.com/invite/hae02y"
-            },
-            {
-              "label": "Instagram",
-              "href": "https://instagram.com/hae02yy"
-            }
-          ]
-        }
-      ],
-      "copyright": "Copyright © 2024 My Project, Inc. Built with Docusaurus."
+      "links": [],
+      "copyright": "Copyright © 2024 Hae02y"
     },
     "prism": {
       "theme": {
@@ -331,13 +314,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -359,10 +335,25 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
   "future": {
+    "experimental_faster": {
+      "swcJsLoader": false,
+      "swcJsMinimizer": false,
+      "swcHtmlMinimizer": false,
+      "lightningCssMinimizer": false,
+      "mdxCrossCompilerCache": false,
+      "rspackBundler": false
+    },
     "experimental_storage": {
       "type": "localStorage",
       "namespace": false
