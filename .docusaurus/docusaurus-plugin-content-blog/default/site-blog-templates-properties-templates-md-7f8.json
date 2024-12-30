@@ -40,6 +40,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "블로그 구축기22",
+    "permalink": "/blog/slog22"
+  },
   "nextItem": {
     "title": "테스트 입니다.",
     "permalink": "/blog/test"

@@ -2,10 +2,10 @@
   "title": "모든 포스트",
   "items": [
     {
-      "title": "title",
-      "permalink": "/blog/url",
+      "title": "ㅇㄹㄴㅇㄹ",
+      "permalink": "/blog/slog22",
       "unlisted": false,
-      "date": "2024-10-02T09:19:47.000Z"
+      "date": "2024-12-17T00:00:00.000Z"
     },
     {
       "title": "테스트 입니다.",
@@ -21,7 +21,7 @@
     },
     {
       "title": "블로그 구축기-2",
-      "permalink": "/blog/makeblog2",
+      "permalink": "/blog/makeblogdff",
       "unlisted": false,
       "date": "2024-08-20T00:00:00.000Z"
     },

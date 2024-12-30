@@ -82,14 +82,21 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'HAE02Y',
+      title: '해영블Lo그',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
         {to: '/me', label: 'Me', position: 'left'},
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          label: 'Blog',
+          position: 'left',
+          items: [
+            {label: 'Blog', to: '/blog/'},
+            {label: 'Tags', to: '/blog/tags'},
+          ]
+        },
         {
           href: 'https://github.com/hae02y',
           label: 'GitHub',
@@ -140,7 +147,6 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
 };
-
 
 export default config;
 

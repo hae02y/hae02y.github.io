@@ -3,17 +3,16 @@ import Layout from '@theme/Layout';
 
 export default function Me() {
     return (
-        <Layout title="PDF Viewer" description="Simple PDF Viewer without library">
+        <Layout>
             <div
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '100vh',
+                    height: '80vh',
                 }}
             >
-                <h1>PDF Viewer</h1>
                 <object
                     data="/ff.pdf" // PDF 파일 경로
                     type="application/pdf"

@@ -1,5 +1,5 @@
 ---
-slug: makeblog2
+slug: makeblogdff
 title: 블로그 구축기-2
 authors:
   - haeyoung

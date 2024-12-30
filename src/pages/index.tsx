@@ -5,12 +5,13 @@ import Layout from '@theme/Layout';
 import MacTerminal from "@site/src/components/MacTerminal";
 
 function HomepageHeader() {
-    const { siteConfig } = useDocusaurusContext();
     return (
-        <header className={`h-screen`}>
+        <header className={`h-screen bg-main`}>
             <div className="container text-center py-12 h-full w-full">
                 <div className="flex justify-center h-[50%] lg:h-[70%]">
-                    <MacTerminal version={`${siteConfig.tagline}`} title={`${siteConfig.title}`} />
+                    <h2 className={`inline-block text-3xl md:text-4xl xl:text-5xl leading-tight tracking-normal font-semibold grad-text-black whitespace-no-wrap text-balance`}>
+                        안녕하세요 백엔드 개발자 정해영입니다.
+                    </h2>
                 </div>
                 <div className="flex justify-center h-[50%]">
                     <div className="mt-6">
@@ -44,8 +45,10 @@ function HomepageHeader() {
 }
 
 function EmojiAvatarSection() {
+    const { siteConfig } = useDocusaurusContext();
     return (
         <section className="bg-gray-900 text-white text-center py-12">
+            <MacTerminal version={`${siteConfig.tagline}`} title={`${siteConfig.title}`} />
             <div className="container">
                 <div className="inline-block">
                     <img

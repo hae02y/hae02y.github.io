@@ -72,7 +72,7 @@ export default {
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
-      "title": "HAE02Y",
+      "title": "해영블Lo그",
       "logo": {
         "alt": "My Site Logo",
         "src": "img/logo.svg"
@@ -84,9 +84,18 @@ export default {
           "position": "left"
         },
         {
-          "to": "/blog",
           "label": "Blog",
-          "position": "left"
+          "position": "left",
+          "items": [
+            {
+              "label": "Blog",
+              "to": "/blog/"
+            },
+            {
+              "label": "Tags",
+              "to": "/blog/tags"
+            }
+          ]
         },
         {
           "href": "https://github.com/hae02y",

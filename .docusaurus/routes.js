@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '878'),
+    component: ComponentCreator('/blog', '82f'),
     exact: true
   },
   {
@@ -54,7 +54,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '254'),
+    component: ComponentCreator('/blog/authors/haeyoung', '7f7'),
     exact: true
   },
   {
@@ -68,13 +68,18 @@ export default [
     exact: true
   },
   {
-    path: '/blog/makeblog2',
-    component: ComponentCreator('/blog/makeblog2', 'fbb'),
+    path: '/blog/makeblogdff',
+    component: ComponentCreator('/blog/makeblogdff', 'b3e'),
     exact: true
   },
   {
     path: '/blog/mdx-blog-post',
     component: ComponentCreator('/blog/mdx-blog-post', 'e9f'),
+    exact: true
+  },
+  {
+    path: '/blog/slog22',
+    component: ComponentCreator('/blog/slog22', 'd45'),
     exact: true
   },
   {
@@ -104,7 +109,7 @@ export default [
   },
   {
     path: '/blog/tags/making-blog',
-    component: ComponentCreator('/blog/tags/making-blog', 'c1f'),
+    component: ComponentCreator('/blog/tags/making-blog', '908'),
     exact: true
   },
   {
@@ -125,11 +130,6 @@ export default [
   {
     path: '/blog/togedog',
     component: ComponentCreator('/blog/togedog', 'fae'),
-    exact: true
-  },
-  {
-    path: '/blog/url',
-    component: ComponentCreator('/blog/url', '5d1'),
     exact: true
   },
   {

@@ -9,36 +9,6 @@ type FeatureItem = {
   link?: string;
 };
 
-const FeatureList: FeatureItem[] = [
-  {
-    title: '정해영',
-    Svg: require('@site/static/img/image.svg').default,
-    description: (
-      <>
-        테스트1
-      </>
-    ),
-  },
-  {
-    title: 'Test2',
-    Svg: require('@site/static/img/image.svg').default,
-    description: (
-      <>
-        테스트2
-      </>
-    ),
-  },
-  {
-    title: 'Test3',
-    Svg: require('@site/static/img/image.svg').default,
-    description: (
-      <>
-        테스트3
-      </>
-    ),
-  },
-];
-
 function Feature({title, Svg, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
@@ -58,9 +28,7 @@ export default function HomepageFeatures(): JSX.Element {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
+
         </div>
       </div>
     </section>
