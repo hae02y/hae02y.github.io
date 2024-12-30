@@ -5,13 +5,12 @@
 
 import React, {useState, Fragment, useEffect} from 'react';
 import Layout from '@theme/Layout';
-import BlogSidebar from '@theme/BlogSidebar';
 import type {Props} from '@theme/BlogLayout';
-import {Popover, Transition} from "@headlessui/react";
+import {Popover, PopoverButton, PopoverPanel, Transition} from "@headlessui/react";
+import {list} from "postcss";
 
 export default function BlogLayout(props: Props): JSX.Element {
     const {toc, children, ...layoutProps} = props;
-    const [showToc, setShowToc] = useState(typeof toc !== null ? toc : undefined);
 
     return (
         <Layout {...layoutProps}>
@@ -23,10 +22,10 @@ export default function BlogLayout(props: Props): JSX.Element {
                 <div
                     className={`mx-auto px-4 w-full`}
                 >
-                    <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="">
                         <main
                             className={
-                                `mx-auto max-w-[800px] px-4 ${showToc ? 'xl:w-9/12' : 'lg:w-full'} prose prose-lg`
+                                `mx-auto max-w-[900px] px-4 w-full prose prose-lg`
                             }
                         >
                             {children}
@@ -34,7 +33,7 @@ export default function BlogLayout(props: Props): JSX.Element {
 
                         {/* TOC(목차) - 데스크톱에서만 보이도록 */}
                         {toc && (
-                            <div className="block xl:hidden">
+                            <div className="">
                                 <TocPopover toc={toc} />
                             </div>
                         )}
@@ -45,35 +44,38 @@ export default function BlogLayout(props: Props): JSX.Element {
     );
 }
 
-function TocPopover({toc}: { toc: React.ReactNode }) {
-    return (
-        <Popover className="relative inline-block">
-            {/* Popover 버튼 */}
-            <Popover.Button
-                className="px-4 py-2 bg-blue-500 text-white font-semibold rounded shadow
-                   hover:bg-blue-600 transition-colors"
-            >
-                TOC 열기
-            </Popover.Button>
 
-            {/* Popover.Panel (Transition으로 애니메이션) */}
-            <Transition
-                as={Fragment}
-                enter="transition ease-out duration-200"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
+const TocPopover = ({toc}: { toc: any }) => {
+
+    console.log(toc)
+
+    return (
+        <Popover className="relative block">
+            {/* Popover 버튼 */}
+            <PopoverButton
+                className="fixed bottom-4 right-4"
             >
-                <Popover.Panel
-                    className="absolute z-10 mt-2 w-[200px] p-4 bg-white border border-gray-200
-                     rounded shadow-md"
+                <div className={`w-16 h-16`}>
+                    <img src="/img/logo.svg" alt=""/>
+                </div>
+            </PopoverButton>
+            <PopoverPanel
+                    transition
+                    anchor="top"
+                    className="z-10 right-0 w-[200px] h-auto max-w-none p-4 bg-white whitespace-pre-line border border-gray-200 rounded-lg shadow-lg"
                 >
                     {/* 실제 TOC 내용 */}
-                    {toc}
-                </Popover.Panel>
-            </Transition>
+                    <div className="text-left text-xs">
+                        {toc?.props?.toc
+                            ?.filter((item) => item?.level <= 3) // level이 3 이상인 항목만 필터링
+                            .map((item) => (
+                                <a key={item.id} href={`#${item.id}`} className="block mb-2 text-gray-500 hover:text-opacity-60 dark:text-white dark:hover:text-opacity-80 transition-colors">
+                                    {item.value.replace(/<\/?[^>]+(>|$)/g, "")}
+                                </a>
+                            ))}
+                    </div>
+                </PopoverPanel>
         </Popover>
     );
 }
+

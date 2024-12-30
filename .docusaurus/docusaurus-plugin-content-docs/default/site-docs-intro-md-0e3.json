@@ -1,7 +1,7 @@
 {
   "id": "intro",
-  "title": "Tutorial Intro",
-  "description": "인트로 입니다!",
+  "title": "프로젝트 정리",
+  "description": "진행했던 프로젝트를 정리합니다.",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",
@@ -17,7 +17,7 @@
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Tutorial - Basics",
-    "permalink": "/docs/category/tutorial---basics"
+    "title": "Tutorial - Extras",
+    "permalink": "/docs/category/tutorial---extras"
   }
 }

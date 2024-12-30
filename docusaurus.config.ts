@@ -88,9 +88,9 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
-        {to: '/me', label: 'Me', position: 'left'},
+        {to: '/me', label: '이력', position: 'left'},
         {
-          label: 'Blog',
+          label: '블로그',
           position: 'left',
           items: [
             {label: 'Blog', to: '/blog/'},
@@ -106,7 +106,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Series',
+          label: '프로젝트',
         },
       ],
     },

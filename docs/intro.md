@@ -2,6 +2,6 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# 프로젝트 정리
 
-인트로 입니다!
+진행했던 프로젝트를 정리합니다.

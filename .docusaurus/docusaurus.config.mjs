@@ -80,11 +80,11 @@ export default {
       "items": [
         {
           "to": "/me",
-          "label": "Me",
+          "label": "이력",
           "position": "left"
         },
         {
-          "label": "Blog",
+          "label": "블로그",
           "position": "left",
           "items": [
             {
@@ -106,7 +106,7 @@ export default {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "Series"
+          "label": "프로젝트"
         }
       ],
       "hideOnScroll": false
