@@ -1,0 +1,27 @@
+{
+  "id": "solo-project/스택오버플로우클론코딩",
+  "title": "Create a Page",
+  "description": "Add Markdown or React files to src/pages to create a standalone page:",
+  "source": "@site/docs/solo-project/스택오버플로우클론코딩.md",
+  "sourceDirName": "solo-project",
+  "slug": "/solo-project/스택오버플로우클론코딩",
+  "permalink": "/docs/solo-project/스택오버플로우클론코딩",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/hae02y/docs/solo-project/스택오버플로우클론코딩.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "개인프로젝트",
+    "permalink": "/docs/category/개인프로젝트"
+  },
+  "next": {
+    "title": "Create a Document",
+    "permalink": "/docs/solo-project/create-a-document"
+  }
+}

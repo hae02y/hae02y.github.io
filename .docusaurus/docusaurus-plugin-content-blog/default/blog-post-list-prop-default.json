@@ -2,16 +2,40 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "블로그 정착기 - 3",
+      "permalink": "/blog/blog3",
+      "unlisted": false,
+      "date": "2025-01-28T00:00:00.000Z"
+    },
+    {
+      "title": "벤치마크",
+      "permalink": "/blog/benchmark",
+      "unlisted": false,
+      "date": "2025-01-13T00:00:00.000Z"
+    },
+    {
+      "title": "스프링 IOC / DI란 무엇인가?",
+      "permalink": "/blog/iocdi",
+      "unlisted": false,
+      "date": "2025-01-02T00:00:00.000Z"
+    },
+    {
+      "title": "마이바티스 이해하기-1",
+      "permalink": "/blog/mybatis",
+      "unlisted": false,
+      "date": "2024-12-30T00:00:00.000Z"
+    },
+    {
       "title": "ㅇㄹㄴㅇㄹ",
       "permalink": "/blog/slog22",
       "unlisted": false,
       "date": "2024-12-17T00:00:00.000Z"
     },
     {
-      "title": "테스트 입니다.",
-      "permalink": "/blog/test",
+      "title": "스터디그라운드",
+      "permalink": "/blog/study",
       "unlisted": false,
-      "date": "2024-10-02T00:00:00.000Z"
+      "date": "2024-12-03T00:00:00.000Z"
     },
     {
       "title": "UUID에 대해서",
@@ -42,18 +66,6 @@
       "permalink": "/blog/stack",
       "unlisted": false,
       "date": "2023-11-03T00:00:00.000Z"
-    },
-    {
-      "title": "스터디그라운드",
-      "permalink": "/blog/study",
-      "unlisted": false,
-      "date": "2023-11-03T00:00:00.000Z"
-    },
-    {
-      "title": "MDX Blog Post",
-      "permalink": "/blog/mdx-blog-post",
-      "unlisted": false,
-      "date": "2021-08-01T00:00:00.000Z"
     }
   ]
 }

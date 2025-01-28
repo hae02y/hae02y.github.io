@@ -8,7 +8,6 @@
   "permalink": "/docs/intro",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/hae02y/docs/intro.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 1,
@@ -17,7 +16,7 @@
   },
   "sidebar": "tutorialSidebar",
   "next": {
-    "title": "Tutorial - Extras",
-    "permalink": "/docs/category/tutorial---extras"
+    "title": "베스텔라랩",
+    "permalink": "/docs/category/베스텔라랩"
   }
 }

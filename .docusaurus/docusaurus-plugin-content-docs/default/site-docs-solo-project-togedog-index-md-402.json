@@ -1,0 +1,26 @@
+{
+  "id": "solo-project/togedog/index",
+  "title": "투게독",
+  "description": "Docusaurus creates a page for each blog post, but also a blog index page, a tag system, an RSS feed...",
+  "source": "@site/docs/solo-project/togedog/index.md",
+  "sourceDirName": "solo-project/togedog",
+  "slug": "/solo-project/togedog/",
+  "permalink": "/docs/solo-project/togedog/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "여수로",
+    "permalink": "/docs/solo-project/yeosuro/"
+  },
+  "next": {
+    "title": "스터디그라운드",
+    "permalink": "/docs/solo-project/studyground/"
+  }
+}

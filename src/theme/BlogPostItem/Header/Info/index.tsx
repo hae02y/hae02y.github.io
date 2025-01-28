@@ -64,7 +64,7 @@ export default function BlogPostItemHeaderInfo({
     dateTimeFormat.format(new Date(blogDate));
 
   return (
-    <div className={`margin-vert--md ${className}`}>
+    <div className={`margin-vert--md text-gray-600 dark:text-gray-300 font-light`}>
       <DateTime date={date} formattedDate={formatDate(date)} />
       {typeof readingTime !== 'undefined' && (
         <>

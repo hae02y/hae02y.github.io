@@ -130,12 +130,13 @@ hr {
 }
 
 b,strong {
-  font-weight: bolder
+  font-weight: bolder;
+  color: var(--primary);
 }
 
 code,kbd,pre,samp {
   font-family: ui-monospace,SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-  font-size: 1em
+  font-size: 5px;
 }
 
 small {
@@ -309,7 +310,8 @@ button,input,optgroup,select,textarea {
 }
 
 code,kbd,pre,samp {
-  font-family: var(--font-family-mono)
+  font-family: var(--font-family-mono);
+  font-size: 13px;
 }
 
 audio,canvas,embed,iframe,img,object,svg,video {

@@ -55,8 +55,6 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/hae02y',
         },
         blog: {
           blogSidebarTitle: '모든 포스트',
@@ -85,7 +83,7 @@ const config: Config = {
       title: '해영블Lo그',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/sitelogo.png',
       },
       items: [
         {to: '/me', label: '이력', position: 'left'},

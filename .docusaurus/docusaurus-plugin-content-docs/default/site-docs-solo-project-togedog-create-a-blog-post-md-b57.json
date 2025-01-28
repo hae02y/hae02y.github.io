@@ -1,0 +1,23 @@
+{
+  "id": "solo-project/togedog/create-a-blog-post",
+  "title": "Create a Blog Post",
+  "description": "Docusaurus creates a page for each blog post, but also a blog index page, a tag system, an RSS feed...",
+  "source": "@site/docs/solo-project/togedog/create-a-blog-post.md",
+  "sourceDirName": "solo-project/togedog",
+  "slug": "/solo-project/togedog/create-a-blog-post",
+  "permalink": "/docs/solo-project/togedog/create-a-blog-post",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/hae02y/docs/solo-project/togedog/create-a-blog-post.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "스터디그라운드",
+    "permalink": "/docs/solo-project/studyground/"
+  }
+}

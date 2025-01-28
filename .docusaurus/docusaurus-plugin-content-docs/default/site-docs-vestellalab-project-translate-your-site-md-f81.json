@@ -1,0 +1,27 @@
+{
+  "id": "vestellalab-project/translate-your-site",
+  "title": "호반워치마일",
+  "description": "Let's translate docs/intro.md to French.",
+  "source": "@site/docs/vestellalab-project/translate-your-site.md",
+  "sourceDirName": "vestellalab-project",
+  "slug": "/vestellalab-project/translate-your-site",
+  "permalink": "/docs/vestellalab-project/translate-your-site",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/hae02y/docs/vestellalab-project/translate-your-site.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "ParkOps",
+    "permalink": "/docs/vestellalab-project/parkops"
+  },
+  "next": {
+    "title": "개인프로젝트",
+    "permalink": "/docs/category/개인프로젝트"
+  }
+}

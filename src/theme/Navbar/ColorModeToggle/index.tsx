@@ -18,9 +18,6 @@ export default function NavbarColorModeToggle({
   return (
     <ColorModeToggle
       className={className}
-      buttonClassName={
-        navbarStyle === 'dark' ? styles.darkNavbarColorModeToggle : undefined
-      }
       value={colorMode}
       onChange={setColorMode}
     />

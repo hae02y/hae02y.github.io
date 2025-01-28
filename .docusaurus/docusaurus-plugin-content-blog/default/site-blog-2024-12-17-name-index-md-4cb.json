@@ -40,8 +40,12 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "마이바티스 이해하기-1",
+    "permalink": "/blog/mybatis"
+  },
   "nextItem": {
-    "title": "테스트 입니다.",
-    "permalink": "/blog/test"
+    "title": "스터디그라운드",
+    "permalink": "/blog/study"
   }
 }

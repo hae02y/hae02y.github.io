@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/**/*.{js,jsx,ts,tsx,mdx,css}',
+    './src/**/*.{js,jsx,ts,tsx,mdx,css,html}',
   ],
-  darkMode: 'class', // 다크 모드 클래스를 사용할 수 있도록 설정
+  darkMode: ['class', '[data-theme="dark"]'], // Docusaurus의 data-theme 속성을 사용
   theme: {
     mode: 'jit', // JIT 모드 활성화
     extend: {
@@ -18,5 +18,9 @@ module.exports = {
     },
   },
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 }
+
 

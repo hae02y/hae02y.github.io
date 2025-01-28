@@ -16,7 +16,7 @@ function BlogListPageContent(props) {
                     <Link
                         key={content.metadata.permalink}
                         to={content.metadata.permalink}
-                        className="flex items-center p-4 rounded-2xl shadow-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-transform hover:-translate-y-1 hover:shadow-lg"
+                        className="flex items-center p-4 rounded-2xl shadow-md dark:bg-gray-950 border border-gray-200 dark:border-gray-700 transition-transform hover:-translate-y-1 hover:shadow-lg"
                     >
                         {/* 아이콘 부분 */}
                         <div className="w-12 h-12 flex-shrink-0 bg-blue-100 dark:bg-blue-700 text-blue-600 dark:text-blue-300 rounded-full flex items-center justify-center mr-4">

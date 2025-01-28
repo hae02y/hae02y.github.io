@@ -44,8 +44,7 @@ export default {
       "@docusaurus/preset-classic",
       {
         "docs": {
-          "sidebarPath": "./sidebars.ts",
-          "editUrl": "https://github.com/hae02y"
+          "sidebarPath": "./sidebars.ts"
         },
         "blog": {
           "blogSidebarTitle": "모든 포스트",
@@ -75,7 +74,7 @@ export default {
       "title": "해영블Lo그",
       "logo": {
         "alt": "My Site Logo",
-        "src": "img/logo.svg"
+        "src": "img/sitelogo.png"
       },
       "items": [
         {
@@ -114,7 +113,7 @@ export default {
     "footer": {
       "style": "dark",
       "links": [],
-      "copyright": "Copyright © 2024 Hae02y"
+      "copyright": "Copyright © 2025 Hae02y"
     },
     "prism": {
       "theme": {

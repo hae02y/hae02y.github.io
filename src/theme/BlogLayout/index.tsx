@@ -22,7 +22,7 @@ export default function BlogLayout(props: Props): JSX.Element {
                 <div
                     className={`mx-auto px-4 w-full`}
                 >
-                    <div className="">
+                    <div className="main-class">
                         <main
                             className={
                                 `mx-auto max-w-[900px] px-4 w-full prose prose-lg`
@@ -56,7 +56,7 @@ const TocPopover = ({toc}: { toc: any }) => {
                 className="fixed bottom-4 right-4"
             >
                 <div className={`w-16 h-16`}>
-                    <img src="/img/logo.svg" alt=""/>
+                    <img src="/img/logo.png" alt=""/>
                 </div>
             </PopoverButton>
             <PopoverPanel

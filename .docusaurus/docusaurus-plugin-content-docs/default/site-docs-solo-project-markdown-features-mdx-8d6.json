@@ -1,0 +1,27 @@
+{
+  "id": "solo-project/markdown-features",
+  "title": "Markdown Features",
+  "description": "Docusaurus supports Markdown and a few additional features.",
+  "source": "@site/docs/solo-project/markdown-features.mdx",
+  "sourceDirName": "solo-project",
+  "slug": "/solo-project/markdown-features",
+  "permalink": "/docs/solo-project/markdown-features",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/hae02y/docs/solo-project/markdown-features.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "투게독",
+    "permalink": "/docs/solo-project/togedog/"
+  },
+  "next": {
+    "title": "스터디그라운드",
+    "permalink": "/docs/solo-project/studyground/"
+  }
+}

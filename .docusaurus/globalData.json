@@ -16,53 +16,58 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/congratulations",
-              "path": "/docs/tutorial-basics/congratulations",
+              "id": "solo-project/stackover/index",
+              "path": "/docs/solo-project/stackover/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-blog-post",
-              "path": "/docs/tutorial-basics/create-a-blog-post",
+              "id": "solo-project/studyground/index",
+              "path": "/docs/solo-project/studyground/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-document",
-              "path": "/docs/tutorial-basics/create-a-document",
+              "id": "solo-project/togedog/index",
+              "path": "/docs/solo-project/togedog/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/create-a-page",
-              "path": "/docs/tutorial-basics/create-a-page",
+              "id": "solo-project/yeosuro/index",
+              "path": "/docs/solo-project/yeosuro/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/deploy-your-site",
-              "path": "/docs/tutorial-basics/deploy-your-site",
+              "id": "vestellalab-project/ansan/ansan",
+              "path": "/docs/vestellalab-project/ansan/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-basics/markdown-features",
-              "path": "/docs/tutorial-basics/markdown-features",
+              "id": "vestellalab-project/gangnam/index",
+              "path": "/docs/vestellalab-project/gangnam/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-extras/manage-docs-versions",
-              "path": "/docs/tutorial-extras/manage-docs-versions",
+              "id": "vestellalab-project/pangyo/index",
+              "path": "/docs/vestellalab-project/pangyo/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "tutorial-extras/translate-your-site",
-              "path": "/docs/tutorial-extras/translate-your-site",
+              "id": "vestellalab-project/parkops/index",
+              "path": "/docs/vestellalab-project/parkops/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/tutorial---extras",
-              "path": "/docs/category/tutorial---extras",
+              "id": "vestellalab-project/thesharpjije-1/index",
+              "path": "/docs/vestellalab-project/thesharpjije-1/",
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "/category/tutorial---basics",
-              "path": "/docs/category/tutorial---basics",
+              "id": "/category/베스텔라랩",
+              "path": "/docs/category/베스텔라랩",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/개인프로젝트",
+              "path": "/docs/category/개인프로젝트",
               "sidebar": "tutorialSidebar"
             }
           ],
