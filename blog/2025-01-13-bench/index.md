@@ -7,7 +7,9 @@ tags:
   - new
 ---
 
-벤치마크하기
+이번프로젝트를 진행하면서 벤치마킹을 해야하는 상황이 발생하였다.
+
+
 
 https://velog.io/@adduci/Java-JMHJava-Microbenchmark-Harness-%EB%A1%9C-%EC%84%B1%EB%8A%A5-%EB%B2%A4%EC%B9%98%EB%A7%88%ED%82%B9
 [Java] JMH(Java Microbenchmark Harness) 로 성능 벤치마킹
