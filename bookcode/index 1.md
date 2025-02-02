@@ -1,0 +1,10 @@
+---
+slug : blog3
+title: 블로그 정착기 - 3
+authors:
+  - haeyoung
+tags:
+  - blog
+---
+
+testfdfd
