@@ -1,17 +1,17 @@
 {
-  "permalink": "/blog/benchmark",
-  "source": "@site/blog/2025-01-13-bench/index.md",
-  "title": "벤치마크",
-  "description": "\b이번프로젝트를 진행하면서 벤치마킹을 해야하는 상황이 발생하였다.",
-  "date": "2025-01-13T00:00:00.000Z",
+  "permalink": "/blog/trouble",
+  "source": "@site/blog/2024-12-12-trouble/index.md",
+  "title": "통합워치마일 운영 DB Connection Pool 초과 이슈",
+  "description": "1. 요약",
+  "date": "2024-12-12T00:00:00.000Z",
   "tags": [
     {
       "inline": true,
-      "label": "new",
-      "permalink": "/blog/tags/new"
+      "label": "troubleshooting",
+      "permalink": "/blog/tags/troubleshooting"
     }
   ],
-  "readingTime": 0.33,
+  "readingTime": 2.67,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -29,22 +29,22 @@
     }
   ],
   "frontMatter": {
-    "slug": "benchmark",
-    "title": "벤치마크",
+    "slug": "trouble",
+    "title": "통합워치마일 운영 DB Connection Pool 초과 이슈",
     "authors": [
       "haeyoung"
     ],
     "tags": [
-      "new"
+      "troubleshooting"
     ]
   },
   "unlisted": false,
   "prevItem": {
-    "title": "블로그 정착기 - 3",
-    "permalink": "/blog/blog3"
+    "title": "ㅇㄹㄴㅇㄹ",
+    "permalink": "/blog/slog22"
   },
   "nextItem": {
-    "title": "스프링 IOC / DI란 무엇인가?",
-    "permalink": "/blog/iocdi"
+    "title": "스터디그라운드",
+    "permalink": "/blog/study"
   }
 }

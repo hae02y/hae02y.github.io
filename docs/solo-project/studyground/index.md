@@ -4,20 +4,593 @@ sidebar_position: 6
 
 # 스터디그라운드
 
-You have just learned the **basics of Docusaurus** and made some changes to the **initial template**.
+![](https://github.com/hae02y/hae02y/assets/59853998/55ea8650-0b62-4522-96e6-aa5763d71588)
 
-Docusaurus has **much more to offer**!
+## 🎉프로젝트 소개
 
-Have **5 more minutes**? Take a look at **[versioning](../vestellalab-project/parkops)** and **[i18n](../vestellalab-project/thesharpjije)**.
+**프로젝트 이름 : [Study Ground](http://newstudyground.s3-website.ap-northeast-2.amazonaws.com/)**
 
-Anything **unclear** or **buggy** in this tutorial? [Please report it!](https://github.com/facebook/docusaurus/discussions/4610)
+**프로젝트 기간 : 2023.08 ~ 2023.09 (4주)**
 
-## What's next?
+**프로젝트 인원** : **Backend 4명, Frontend 3명 (총 7명)**
 
-- Read the [official documentation](https://docusaurus.io/)
-- Modify your site configuration with [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config)
-- Add navbar and footer items with [`themeConfig`](https://docusaurus.io/docs/api/themes/configuration)
-- Add a custom [Design and Layout](https://docusaurus.io/docs/styling-layout)
-- Add a [search bar](https://docusaurus.io/docs/search)
-- Find inspirations in the [Docusaurus showcase](https://docusaurus.io/showcase)
-- Get involved in the [Docusaurus Community](https://docusaurus.io/community/support)
+**프로젝트 설명 : 자격증 정보를 한눈에! 자격증 조회서비스 study ground 입니다.**
+
+---
+
+📜 **Link**
+
+[- 🧷Github](https://github.com/hae02y/seb45_main_016)
+
+[-🧷 API 명세서](https://documenter.getpostman.com/view/14800466/2s9Y5YTNmE)
+
+[- 🧷화면정의서](https://www.figma.com/file/NF7uc1KKci1hk4c0BDhWMm/STUDY-GROUND-%ED%99%94%EB%A9%B4-%EC%A0%95%EC%9D%98%EC%84%9C_%EC%9D%BC%EB%8B%A8-%ED%95%B4-%EB%B3%B4%EC%A3%A0?type=whiteboard)
+
+
+---
+
+### 🛠 내가 사용한 스택
+
+- **Java**
+- **Spring Boot**
+- **Spring data JPA**
+- **Spring Batch**
+- **AWS**
+- **Github Action**
+- **H2 Database**
+- **MySQL**
+- **Postman**
+
+---
+
+
+### 📂 내 역할
+
+⚙ Frontend 3명, Backend 4명이서 함께 진행한 프로젝트에서 **팀장 역할**을 맡았습니다.
+협업 과정에서 소통을 하는 방법을 많이 고민하였습니다. 이를 통해서 성공적인 결과를 이끌어냈으며 팀원들에게 **긍정적인 평가**를 받았습니다.
+
+
+프로젝트를 진행하면서 **제가 구현했던 역할**은 아래와 같습니다.
+
+- 외부 API 연동 및 데이터 처리
+- Q-net 자격증 정보 및 시험관련 날짜 데이터 제공
+- DB 설계 및 API 문서 작성
+- 스프링 배치 스케줄링 구현
+- 게시글 CRUD 구현
+- 댓글 CUD 구현
+- 대댓글 CUD 구현
+- 북마크 기능 구현
+- 메인페이지 기능 구현
+- 게시글 자격증 검색
+
+현재는 해당 프로젝트를 마무리하고, 기존 팀원들 중 **추가로 구현**을 진행 할 인원들을 모아 **버전업을 진행**하고 있습니다. 또한 백엔드를 담당했던 팀원들과 코드 리뷰를 진행하였습니다.
+
+
+---
+
+
+
+### 🔊 구현 설명
+
+제가 사용한 **Java version**은 **11.0.2**를 사용하였고, **Spring Boot** 는 **2.7.14** 를 사용하였습니다. 자바 11의 경우 **LTS 버전**이고, 자바 8보다 많은 기능을 지원하여 11버전을 선택하였습니다.
+
+그리고 DB의 경우에는 개발 과정에서 **H2 DB**를 사용하였고, CI/CD 이후에 AWS RDS의 **MySQL DB**를 사용하였습니다.
+
+팀원들과의 소통을 위해서 [노션페이지](https://www.notion.so/1-dd9805e4ab904ba28aa399367ba28ffe?pvs=21)와 디스코드를 이용하였습니다. 매일 회의 내용과 멘토링 과정 등을 **기록**하고, github의 **Issue**와 **칸반보드** 기능을 이용하여 프로젝트를 진행하였습니다.
+
+#### 외부 API 연동 및 데이터 처리와 시험관련 날짜 데이터 제공
+
+프로젝트에서 사용한 외부 API는 공공데이터 포털의 데이터를 이용하였습니다. **국가 자격증 정보**와 국가 **자격증 시험 날짜 조회 서비스** API 2가지를 이용하여 구성하였습니다. 순서는 아래와 같습니다.
+
+1. 국가 자격증 정보 조회
+2. 국가 자격증 정보를 담은 CSV파일로 추출
+3. CSV 파일을 자격증정보(LicenseInfo) 테이블로 저장 - 스프링배치 사용
+4. 자격증 Code를 자격증 날짜 조회 서비스 API에 매핑 하여 조회
+5. 결과 Json데이터를 파싱하여 자격증 날짜(LicenseDate) 테이블로 저장
+
+📣 **왜 자격증 정보를 CSV로 작성하였는가?**
+
+자격증 정보를 CSV로 작성한 이유는 자격증 정보는 크게 변화가 없다고 생각되었습니다. 공공데이터 포털의 경우에는 일일 데이터 요청 횟수가 1000회로 제한되어있어, 추가로 만들어지는 자격증이 있는 경우에만 1~3의 과정을 하면 된다고 생각되어 CSV로 저장을 해두고 그대로 값을 가져올 수 있게 하였습니다. CSV의 값을 가져오는 로직은 스프링 배치를 이용하여 작성하였습니다.
+
+```java
+@Bean
+    public Step step01(){
+        return stepBuilderFactory.get("step01")
+                //<rader에 넘길 타입, writer에 넘길 타입>
+                .<CsvDto, CsvDto>chunk(500)
+                .reader(csvReader()) //csv파일 읽고 넘기는 로직
+                .writer(items -> csvWriter(items).write(items)) //받은 데이터 DB에 저장 로직
+                .build();
+    }
+```
+
+📣 **공공데이터포털에서 API를 가져오는 로직구성은 어떻게 되는가?**
+
+공공데이터 포털에서 자격증 정보는 상단에 설명한 것처럼 CSV를 통해서 가져옵니다. 다음으로, 자격증 시험 날짜 조회 API를 DB로 저장하기 위한 로직을 설명하겠습니다. 데이터를 받아오기 위해서는 아래와 데이터가 필요하였습니다. 여기서 종목코드 부분을 위해 CSV로 종목 코드값을 매칭시킨것입니다.
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/fcd88759-4622-4439-9bd8-f97f491c9443)
+
+
+```java
+@Bean
+    public Step step02() {
+        return stepBuilderFactory.get("step02")
+                //<rader에 넘길 타입, writer에 넘길 타입>
+                .<LicenseInfo, List<LicenseDate>>chunk(5000)
+                .reader(licenseReader) //DB에서 데이터 읽어오기
+                .processor(licenseProcessor) //데이터값으로 API 호출해서 전달
+                .writer(licenseWriter) //받은 데이터 DB에 저장 로직
+                .build();
+    }
+```
+
+상단 코드와 같이 Step02를 등록하여 **reader**, **proccessor**, **writer**로 구분하였습니다. **reader**에서는 CSV를 통해 저장된 **LicenseInfo**에서 종목 코드를 읽어옵니다. 종목 코드를 **Processor**로 넘겨주고, 데이터 값으로 **API를 호출**해서 전달합니다. 그리고 마지막으로 writer에서 받은 데이터를 DB에 **LicenseDate 테이블로 저장**합니다.
+
+```java
+public class LicenseReader implements ItemReader<LicenseInfo> {
+
+    private final LicenseInfoRepository licenseInfoRepository;
+    private Iterator<LicenseInfo> licenseIterator;
+
+    @Override
+    public LicenseInfo read() {
+        if (licenseIterator == null) {
+            licenseIterator = licenseInfoRepository.findAll().iterator();
+        }
+        return licenseIterator.hasNext() ? licenseIterator.next() : null;
+    }
+}
+```
+
+LicenseReader는 ItemReader를 구현합니다. LicenseInfoRepository에서 전체데이터를 가져와서 **iterator를 돌며 값이 있으면 전달**합니다.
+
+```java
+public class LicenseProcessor implements ItemProcessor<LicenseInfo, List<LicenseDate>>{
+
+    @Override
+    public List<LicenseDate> process(LicenseInfo item) throws Exception {
+        List<LicenseDate> licenses = new ArrayList<>();
+
+        if(item != null){
+            String json = new LicenseApi().callApiToString(item);
+            licenses = new JsonParser().StringToLicense(json, item);
+            return licenses;
+        }
+        return licenses;
+    }
+}
+```
+
+LicenseProcessor는 서비스의 핵심이 되는 로직입니다. **LicenseApi**의 **callApiToString 메서드**를 통해 아래와 같은 로직으로 String(Json)을 return합니다. 이는 Json Data로, 넘겨 받은 데이터를 **JsonParser로 전달**합니다.
+
+```java
+public class LicenseApi {
+
+    /**
+     * API를 호출하고 나온값을 String으로 받아서 넘겨준다.
+     * @param licenseInfo
+     * @return string
+     * @throws IOException
+     */
+    public String callApiToString(LicenseInfo licenseInfo) throws IOException {
+
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B490007/qualExamSchd/getQualExamSchdList");
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "서비스 키"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("dataFormat","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("implYy","UTF-8") + "=" + URLEncoder.encode("2023", "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("qualgbCd","UTF-8") + "=" + URLEncoder.encode("T", "UTF-8"));
+        urlBuilder.append("&" + URLEncoder.encode("jmCd","UTF-8") + "=" + URLEncoder.encode(String.valueOf(licenseInfo.getCode()), "UTF-8")); 
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        log.info("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        return String.valueOf(sb); // string으로 리턴 (json값을 가지고 있음)
+    }
+
+}
+```
+
+**JsonParser의 StringToLicense메서드**에는 상단에서 받은 Json값(API호출결과)와 LicenseInfo를 받아 **LicenseDate를 구성**합니다. 그리고 이를 **List**로 만들어 **반환**합니다.
+
+```java
+public class JsonParser {
+
+    public List<LicenseDate> StringToLicense(String json, LicenseInfo licenseInfo){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<LicenseDate> licenseDateList = new ArrayList<>();
+        try {
+            JsonNode jsonNode = objectMapper.readTree(String.valueOf(json));
+            JsonNode bodyNode = jsonNode.get("body").get("items");
+            String bodyJson = objectMapper.writeValueAsString(bodyNode);
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            LicenseDate[] licens = objectMapper.readValue(bodyJson, LicenseDate[].class);
+            try{
+                for(LicenseDate licenseDate : licens){
+
+                    licenseDate.setLicenseInfo(licenseInfo);
+                    licenseDateList.add(licenseDate);
+                    log.info("작성 완료 : {}", licenseInfo.getCode());
+                }
+                return licenseDateList;
+            }catch (Exception e){
+                log.info("json parser 작성 실패 : {}", e.getMessage());
+            }
+        }catch (Exception e){
+            log.info("json parser 작성 실패 : {}", e.getMessage());
+            return licenseDateList;
+        }
+        return licenseDateList;
+    }
+}
+```
+
+위에서 만들어진 **LicenseDate 리스트**는 writer를 통해서 **LicenseDateRepository로 저장**시킵니다. write를 하기 전에 LicenseDateRepository를 **전체 삭제**한 뒤, 불러온 정보를 넣어주는 것으로 로직을 작성하였습니다. 이 부분도 추후에 개선하고 싶은 부분입니다. 전체를 삭제하는 쿼리를 사용하는 것보다 필요한 부분만 바꿔주는 쿼리가 좀 더 효율적일것같습니다.
+
+```java
+public class LicenseWriter implements ItemWriter<List<LicenseDate>> {
+
+    private final LicenseDateRepository licenseDateRepository;
+
+    @Override
+    public void write(List<? extends List<LicenseDate>> items) throws Exception {
+        licenseDateRepository.deleteAll();
+        for(List<LicenseDate> item : items){
+            licenseDateRepository.saveAll(item);
+        }
+    }
+}
+```
+
+이와 같이 step02가 끝나게 되면, **Job을 작성**하여 **step01**과 **step02**를 할당해주었습니다. 프로그램을 시작하게 되면 step01이 먼저 실행되고 다음(next)으로 step02가 시작됩니다.
+
+```java
+@Bean
+    public Job job() throws IOException {
+        return jobBuilderFactory.get("job")
+                .start(step01())
+                .next(step02())
+                .build();
+    }
+```
+
+이러한 과정을 거쳐 DB에는 **LicenseDate**가 정상적으로 **저장**되게 됩니다. 구현을 하면서 많은 고민이 들었는데, 특히 스프링배치를 처음 접하다 보니 확실히 **제가 알고 사용하고 있는 것이 맞는가**에 대한 의문이 정말 많이 들었습니다. 이를 해결 하기 위해 스프링배치에 관련된 강의를 수강 하며 자료를 계속해서 찾아보았고, 좀 더 자세히 알 수 있게 되었습니다.
+
+📣 **스프링배치 사용 이유는 무엇인가?**
+
+자격증시험날짜 데이터를 일일히 code값에 매칭하여 반복문을 통해 불러오는 로직으로도 구현은 가능 할 수 있었습니다. 하지만 자격증의 갯수만(250 여개)가 되고, API를 통해 조회되는 데이터는 그에 5배 ~ 6배 정도 되는 양이였습니다. 물론 이정도의 양을 대용량 데이터라고 말하기는 어려울 수 있지만, 이를 반복문으로 처리하기보다, 대용량 처리에 최적화 되어있고, 더욱 높은 성능을 낼 수 있는 방법으로 구현해 보고 싶었습니다. 또한, 자격증 날짜의 경우, 변하는 데이터로 스케줄링이 필요하였습니다. 이를 적용하기 위해서는 서비스의 재시작이 필요할텐데, 배치를 사용함으로써, 재시작 없이 작업을 처리할 수 있게 만들고 싶었습니다.
+
+📣 **스프링배치 사용 방식은 어떻게 되는가?**
+
+스프링배치를 구현하는 방식이 step에서 tasklet 방식과 청크로 구성하는방법이 있다는것을 알게 되었습니다. 저는 청크로 구현하는 방법을 사용하였고 그이유는 다음과 같습니다.
+
+tasklet방식은 Reader & Processor & Writer 한 묶음이 같은 레벨로 취급되어,  Reader & Processor & Writer를 나누어서 작성할 수 없었습니다. 저는  Reader & Processor & Writer를 가독성 측면이나, 스배치를 사용하는 이유 등을 생각했을때, 구분짓고 싶었기 때문에 chunk방식을 적용하였습니다.
+
+
+
+#### DB 설계 및 API 문서 작성
+
+- **DB 설계**
+
+  DB설계를 위해 도메인은 크게 **자격증**, **회원**, **커뮤니티**로 나누었습니다. 저는 **ERD 다이어그램**을 아래와 같이 작성하였습니다.
+
+  ![image](https://github.com/hae02y/hae02y/assets/59853998/28788d25-e14a-4013-9e2b-c1c7ea11f969)
+
+  자격증 도메인은 북마크와 자격증 종류, 자격증 날짜로 구성됩니다. 북마크는 회원이 자격증을 선택하여 추가 할 수 있게 구현하였습니다. 한 명의 회원이 여러 개의 자격증을 선택할 수 있으므로 1:N으로 작성을 하였습니다. 그리고 자격증의 종류는 자격증의 코드와 이름, 북마크 수 컬럼을 가집니다. 자격증의 코드 값은 Q-net에서 제공하는 자격증 날짜 조회 API에 요청을 하기 위한 코드 값으로, 구분되는 값이므로 PK로 설계하였습니다. 북마크 수는 북마크의 개수로, 여러 회원이 북마크를 하였을 때 북마크 수가 증가하게 되고, 이를 통해 북마크 TOP 5 자격증을 조회할 수 있게 합니다. 자격증 날짜는 자격증 날짜 조회 API의 Response를 받아와서 저장하는 테이블입니다. 같은 자격증이라도 회 차, 빈자리 접수 등으로 여러 개의 날짜 값이 조회 되어 이를 구분하여 설계하였습니다. 최초 설계에서 자격증의 경우 자격증의 종류와 날짜를 구분하지 않고 설계를 진행하였습니다. 하지만 중간에 문제가 발생하였고 자격증의 종류와 날짜로 구분하여 다시 설계를 진행하여 정상적으로 동작 하였습니다.
+
+- **API 문서**
+
+  API 문서는 **PostMan**으로 작성을 진행하였습니다. 저는 **게시판(Board), 자격증(License), 검색(Search)**에 대한 API명세서 작성을 진행하였습니다. 작성을 위해 **RESTful**한 API 작성 방법을 많이 찾아보았고, 어떤 식으로 작성하는 것이 좋은 API인지 알 수 있었습니다.
+
+  **[[API 명세서]](https://documenter.getpostman.com/view/14800466/2s9Y5YTNmE)**
+
+
+
+
+#### 게시글, 댓글, 대댓글 CRUD 구현
+
+
+- **페이지네이션**
+
+
+    페이지네이션을 구현하여 response를 전달합니다. 페이지네이션 구현 과정에서 페이지네이션을 프론트엔드에서 구현 할 수 있다는 것을 알게 되었습니다. 두가지 방법을 적용해본 결과, 프론트엔드에서 전체 데이터를 받아서 페이지네이션을 하는 것은 데이터 적으로 굉장히 비효율적인 방법이고, 데이터의 양이 많아지게 된다면 에러가 발생할 수 있다는 것도 알게 되었습니다. 결과적으로 백엔드에서 페이지네이션을 구현하였고 이와 관련해서 블로그에 포스팅 하였습니다.
+    
+    ```json
+    {
+        "data": [
+            ...
+            {
+                "boardId": 6,
+                "title": "게시글 제목",
+                "content": "게시글 본문입니다",
+                "views": 0,
+                "modifiedAt": "2023-09-15T15:28:40.792139",
+                "boardCreator": {
+                    "memberId": 1,
+                    "email": "user1@example.com",
+                    "name": "나는회원1",
+                    "profileImage": "http://bit.ly/46a2mSp"
+                }
+            }
+        ],
+        "pageInfo": {
+            "page": 1,
+            "size": 6,
+            "totalElements": 8,
+            "totalPage": 2
+        }
+    }
+    ```
+    
+    데이터는 위의 예시와 같이 구현하였습니다. Spring Data JPA의 페이지네이션을 이용하였으며, PageInfo 는 page, size, totalElements, totalPage를 전달하게 구현하였습니다.
+    
+    **[[블로그 정리 보기]](https://togll.tistory.com/237)**
+
+
+- **API Response**
+
+```json
+{
+    "boardId": 9,
+    "title": "[후기/TMI] 식단 시작한 후기 풉니다..",
+    "content": "당이 뚝뚝 떨어지네요요오기 딱 좋은 컨디션이에요~",
+    "views": 63,
+    "modifiedAt": "2023-10-20T16:41:15.016065",
+    "boardCreator": {
+        "memberId": 6,
+        "email": "pepe@pepper.com",
+        "name": "김후후",
+        "profileImage": "https://s3.ap-northeast-2.amazonaws.com/newstudyground/profile-image/f12b98ca-3c8c-4a36-a3dd-36b464ba0fcb2.jpeg"
+    },
+    "answers": [
+        {
+            "answerId": 4,
+            "content": "오늘의 아침 식단은 무엇을 드셨나요",
+            "modifiedAt": "2023-10-20T17:33:13.591257",
+            "answerCreator": {
+                "memberId": 7,
+                "email": "ha@naver.com",
+                "name": "혀나",
+                "profileImage": "https://s3.ap-northeast-2.amazonaws.com/newstudyground/profile-image/ff420518-1610-4f95-ba3e-de105bed5a39%E1%84%92%E1%85%A7%E1%86%AB%E1%84%8B%E1%85%A1.png"
+            },
+            "comments": [
+                {
+                    "commentId": 5,
+                    "content": "오늘은 삶은 달걀 2개와 고구마 50g을 섭취하엿읍니닷!!",
+                    "commentCreator": {
+                        "memberId": 6,
+                        "email": "pepe@pepper.com",
+                        "name": "김후후",
+                        "profileImage": "https://s3.ap-northeast-2.amazonaws.com/newstudyground/profile-image/f12b98ca-3c8c-4a36-a3dd-36b464ba0fcb2.jpeg"
+                    }
+                },
+                {
+                    "commentId": 10,
+                    "content": "헉.. 괜찮으신가요?ㅠㅠ 으악",
+                    "commentCreator": {
+                        "memberId": 11,
+                        "email": "rr@gmail.com",
+                        "name": "hi",
+                        "profileImage": "https://s3.ap-northeast-2.amazonaws.com/newstudyground/profile-image/65dbf2a5-4496-42e9-aae1-dab5c962f35cpic.png"
+                    }
+                },
+                {
+                    "commentId": 11,
+                    "content": "대박입니다!!\n",
+                    "commentCreator": {
+                        "memberId": 3,
+                        "email": "godud1118@gmail.com",
+                        "name": "x",
+                        "profileImage": "https://s3.ap-northeast-2.amazonaws.com/newstudyground/profile-image/1ad043aa-85a0-47b2-92af-2d827a4dd427a4764c37c8122597cb90380fa454d607-sticker.png"
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+게시판에 get요청을 할때 data를 어떤 식으로 프론트엔드에전달해야할지에 대한 고민을 많이 하였는데 데이터를 Entity 그대로 response하게 되면 너무 양이 많아지고 필요 없는 데이터까지도 전달되어 알아보기 힘들 것 같아 responseDto를 구성하는 것에 신경을 많이 썼습니다. 게시판의 조회의 경우 댓글(Answer), 대댓글(Comment)도 게시판(Board)에서 조회가 되므로 구분을 위하여 board - answer - comment 순으로 모두 ResponseDto를 작성하여 리스트로 넣어주었습니다.
+
+
+
+#### 북마크 기능 구현
+
+자격증 북마크 기능을 구현하기 위해 많은 시행착오를 거쳤습니다.
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/88f1e6c6-114d-4260-bfb6-0b1f1ea3cf4b)
+
+
+
+최초의 설계에서 자격증의 데이터를 LicenseInfo와 LicenseDate로 구분하고 개발을 진행하였으나, 공공 데이터 포털 API를 통해 받아오는 데이터가 자격증 당 1개씩 일정하게 들어오는 것이 아님을 확인하였습니다. 그래서 북마크 기능과 1:1로 대응될 수 없음을 확인 후에 ERD를 재 설계 하여 개발을 진행하였습니다. 최종적으로 아래와 같이 ERD를 설계하였고 Bookmark와 1:1로 대응되는 LicenseInfo에 북마크수(count) 컬럼을 추가하였습니다. 이는 메인페이지에서 북마크 순으로 자격증을 표출하기 위해 추가하였습니다.
+
+
+
+
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/7244f4bb-3d45-4e74-b129-2e9323c5e4ec)
+
+다음으로 했던 고민은 북마크를 등록하는 기능과, 북마크를 취소하는 기능을 분리해야 하는 지에 대해 고민을 하였습니다.
+
+```java
+public class BookmarkController {
+
+		...
+
+    @PostMapping //북마크 등록
+    public ResponseEntity postBookmark(@RequestBody BookmarkDto bookmarkDto){
+
+        Member member = memberService.findMember(bookmarkDto.getMemberId());
+        LicenseInfo licenseInfo = licenseService.findLicenseInfoByCode(bookmarkDto.getCode());
+
+        bookmarkService.saveBookmark(member,licenseInfo);
+
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping //북마크 취소
+    public ResponseEntity deleteBookmark(@RequestBody BookmarkDto bookmarkDto){
+
+        Member member = memberService.findMember(bookmarkDto.getMemberId());
+        LicenseInfo licenseInfo = licenseService.findLicenseInfoByCode(bookmarkDto.getCode());
+
+        bookmarkService.cancelBookmark(member,licenseInfo);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+}
+```
+
+결과적으로 분리를 하기로 하였고, 그 이유는 프론트에 북마크 이후에 데이터를 전달 할 때 True, False 값으로 현재 로그인 된 Meber가 북마크를 하였는지 확인 가능하게 작성하도록 하였고, 만약 분리되지 않은 상태로 요청이 된다면, 서버 쪽에서 Post요청에 추가로 로직이 구현되어 RESTful하지 않은 API 설계가 될 것이고, insert 쿼리와 delete 쿼리가 모두 일어나게 되며 가독성도 떨어질 것이라고 생각하였습니다.
+
+#### 메인페이지 기능 구현
+
+메인페이지 구성의 경우 2가지의 정보가 필요하였습니다.
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/4c76b08c-40d5-480f-b359-33f675d128da)
+
+
+북마크수가 가장 높은 자격증 5가지와, 커뮤니티 글 중 가장 최신으로 작성된 글 6가지를 가져와 메인페이지 요청시에 뿌려주는 방식으로 동작하도록 작성하였습니다. 이를 위해서 Repository에서 아래와 같은 코드를 작성하였습니다.
+
+```java
+public interface LicenseInfoRepository extends JpaRepository<LicenseInfo,Long> {
+
+     //북마크수 기준으로 상위 5개를 뽑아낸다.
+     public List<LicenseInfo> findTop5ByOrderByMarkCountDesc();
+}
+```
+
+```java
+public interface BoardRepository extends JpaRepository<Board, Long> {
+
+	//최근 등록된 6개의 Board를 뽑아낸다.
+	List<Board> findTop6ByOrderByBoardIdDesc();
+}
+```
+
+이와 같이 구성하여, 프론트엔드와 협의 후에 필요한 데이터만 아래와 같이 전달하였습니다.
+
+```json
+{
+    "licenses": {
+        "data": [
+            {
+                "code": 2253,
+                "name": "건축목공산업기사",
+                "bookmark": true,
+                "date": [... 생략]
+            },
+            {
+                "code": 2264,
+                "name": "섬유디자인산업기사",
+                "bookmark": false,
+                "date": [... 생략]
+            },
+					...생략
+        ]
+    },
+    "boards": [
+        {
+            "boardId": 1,
+            "title": "게시글 제목",
+            "content": "게시글 본문입니다아아아",
+            "views": 0,
+            "modifiedAt": "2023-09-15T20:21:38.951961",
+            "boardCreator": {
+                "memberId": 1,
+                "email": "user1@example.com",
+                "name": "나는회원1",
+                "profileImage": "http://bit.ly/46a2mSp"
+            }
+					...생략
+        }
+    ]
+}
+```
+
+
+
+#### 게시글 | 자격증 검색
+
+
+메인검색창에 검색어를 입력시 게시글(Board)와 자격증(LicenseInfo) 두개의 Repository에서 키워드에 일치하는 값들을 Select할 수 있게 기능을 구현하였습니다.
+
+```java
+public interface LicenseInfoRepository extends JpaRepository<LicenseInfo,Long> {
+
+    public List<LicenseInfo> findByNameContaining(String keyword);
+}
+```
+
+```java
+public interface BoardRepository extends JpaRepository<Board, Long> {
+
+	List<Board> findByTitleContaining(String keyword);
+}
+```
+
+JPARepository에서 메소드명의 By 이후는 SQL의 where 조건절에 대응되고, Containing을 통해 Like 검색을 하였습니다. 즉 keyword로 검색을 진행하였습니다.  자격증의 경우 자격증 명칭에서만 검색을 진행하고, 게시글의 경우 게시글 제목에서만 검색을 진행할 수 있게 하였습니다. 검색결과는 백엔드에서 따로 페이지네이션을 구성하지 않고, 프론트엔드로 전달하도록 구현하였고, 데이터를 프론트엔드에서 페이지로 처리하도록 작성하였습니다. 프로젝트를 마친 상황에서 이 부분은 추가로 백엔드에서 페이지네이션을 구현해봐야겠다는 생각을 하였습니다. 또한 검색 기능에 Index를 적용하여 Select 쿼리 발생시 조회속도를 올리는 계획을 세우고 있습니다.
+
+---
+
+
+
+### 💡 어려웠던 점 / 배운 점
+
+
+#### 페이지네이션 구현
+
+페이지네이션의 경우 백엔드에서 페이지네이션으로 처리하여 보내는 것으로 이야기가 됐었고, 프론트엔드에서도 페이지네이션으로 진행하기로 한 상황이였습니다. 저는 당연히 백엔드에서 로직을 페이지네이션으로 구성하여 보내주는 것이 맞다고 생각하여 그렇게 전달하였습니다. 하지만 프론트에서는 페이지네이션을 직접 구성해버렸고 그렇게 됨으로써 프론트엔드 코드를 모두 뒤집어야 하는 상황이 생겼습니다. 이 부분에 사전에 좀 더 많은 이야기가 오고 갔어야하는데 소통의 부재가 있었다는 생각이 들었습니다. 프론트쪽에서는 당연히 프론트만으로 구현하는 방법을 익혔고 백엔드는 백엔드만으로 구현하는 방법을 익히다 보니 발생한 문제 였습니다. 그래서 API명세서를 다시 작성하고 이부분에 대해서 회의를 진행하여 결과적으로 백엔드에서 페이지네이션 처리를 하고, 이를 프론트에서 받아서 화면에 렌더링 해주는 방법으로 다시 작업을 진행 하였습니다.
+
+
+#### 외부 API 사용
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/621b8248-652b-4f8b-a366-e2c63da07404)
+
+공공데이터포털의 경우 자격증날짜데이터를 요청하는 횟수가 1일 1000회 한도로 정해져 있다 보니 테스트를 진행하는데 어려움이 있었습니다. 설계 단계에서는 직접 구현을 하는 것 보다 외부 API를 사용하는 것이 편리하겠다고 생각하였습니다. 하지만 외부 API를 사용 하는 경우 여러가지 제한 상황들을 확인해야 한다는 것을 알 수 있었습니다. 또한 API를 사용하는 방법을 처음 접하다 보니 구현을 하는데 공부가 필요하였습니다. 그래서 일정이 조금 미뤄지게 되었고, 다른 도메인을 구현하는 시간까지 소모하게 되었습니다. 이를 통해서 설계 단계에서 더 많고 확실한 정보 수집이 필요하다는 것을 알게 되었습니다. 또한 제가 실제로 구현 할 수 있는 정도나 실력을 확실하게 어필하고, 추가로 필요한 부분이 있다면 지원을 요청하거나, 시간을 좀 더 할당 받을 수 있도록 해야 한다는 것을 배웠습니다.
+
+
+#### 협업의 중요성
+
+게시판 CRUD를 맡게 된 백엔드 팀원 한분이 여러가지 사정으로 코드 작성을 전혀 못하게 된 일이 있었습니다. 작성 시간이 정말 부족하여 이틀 정도의 짧은 기간 동안 게시판 관련 CRUD를 모두 작성하였습니다. 짧은 시간으로 API 명세서 수정이 늦어지게 되고, 백엔드 단 기능 개발에 몰두하다 보니 프론트엔드와 소통을 신경 쓰지 못해서, 프론트엔드와 pagenation이나 request, reponse data 에 대한 약속 없이 서로 개발을 진행하는 상황이 생겼습니다. 이를 통해서 프론트엔드와의 소통의 중요성을 깨달았고, 개발 완료 전에 어느 정도 request나 response에 대한 대략적인 자료를 전달 해야 한다는 것을 알게 되었습니다.
+
+---
+
+
+#### 🙋‍♂️ 팀원 리뷰
+
+![image](https://github.com/hae02y/hae02y/assets/59853998/42bedc30-3622-4c94-b98f-b935d5d21c2c)
+
+프로젝트를 마치고 팀원 분들과 **피드백**을 작성하는 시간이 있었습니다. 저는 이를 통해서 **책임감**, **소통**, **열정** 등의 키워드를 받을 수 있었습니다.
+
+---
+
+
+#### 🌞 개인기술 발표 영상
+
+[유튜브 영상보기](https://youtu.be/dHjzRMszBYc?si=ARnF-hFQB8UVe2mH&t=992)
+
+📢 제가 프로젝트에서 사용하였던 Spring Batch에 대해서 기술 리뷰를 하였습니다.
+
+---
+
+
+#### 📃 기록
+
+1. [프로젝트 회고 블로깅](https://togll.tistory.com/243)
+2. [프로젝트 코드 및 구현 리뷰](https://togll.tistory.com/282)

@@ -1,7 +1,7 @@
 {
   "id": "solo-project/studyground/index",
   "title": "스터디그라운드",
-  "description": "You have just learned the basics of Docusaurus and made some changes to the initial template.",
+  "description": "🎉프로젝트 소개",
   "source": "@site/docs/solo-project/studyground/index.md",
   "sourceDirName": "solo-project/studyground",
   "slug": "/solo-project/studyground/",

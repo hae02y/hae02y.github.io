@@ -2,7 +2,7 @@
   "permalink": "/blog/slog22",
   "source": "@site/blog/2024-12-17-name/index.md",
   "title": "ㅇㄹㄴㅇㄹ",
-  "description": "뭘까",
+  "description": "",
   "date": "2024-12-17T00:00:00.000Z",
   "tags": [
     {
@@ -12,7 +12,7 @@
       "description": "making blog tag description"
     }
   ],
-  "readingTime": 0.01,
+  "readingTime": 0,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -45,7 +45,7 @@
     "permalink": "/blog/mybatis"
   },
   "nextItem": {
-    "title": "스터디그라운드",
-    "permalink": "/blog/study"
+    "title": "통합워치마일 운영 DB Connection Pool 초과 이슈",
+    "permalink": "/blog/trouble"
   }
 }
