@@ -1,22 +1,18 @@
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import { useRef } from "react";
-import { OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
-const MovingCamel= () => {
+const MovingCamel = () => {
     const meshRef = useRef();
+    const { scene } = useGLTF("/img/glb/camel.glb"); // 낙타 3D 모델 로드
 
     useFrame(() => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += 0.01; // 매 프레임마다 y축으로 회전
+            meshRef.current.rotation.y += 0.04; // y축으로 회전
         }
     });
 
-        return (
-                <mesh ref={meshRef}>
-                    <boxGeometry args={[1, 1, 1]}/>
-                    <meshStandardMaterial color="hotpink"/>
-                </mesh>
-        );
-}
+    return <primitive ref={meshRef} object={scene} scale={1} />;
+};
 
 export default MovingCamel;
