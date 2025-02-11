@@ -3,59 +3,41 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import MacTerminal from "@site/src/components/MacTerminal";
+import MovingCamel from '@site/src/components/MovingCamel';
+import {OrbitControls} from "@react-three/drei";
+import { Canvas } from '@react-three/fiber';
 
 function HomepageHeader() {
+    const {siteConfig} = useDocusaurusContext();
+
     return (
-        <header className={`h-[94vh] bg-main dark:bg-primary`}>
-            <div className="text-center h-full w-full">
-                <div className="flex flex-col h-screen w-full">
+        <header className={`h-[calc(100vh-4rem)] bg-main dark:bg-[#23262C]`}>
+                <div className="flex flex-col h-full w-full">
                     {/* 상단 1/3 영역 */}
-                    <div className="h-1/3 w-full flex items-center justify-center">
-                        안녕하세요 정해영입니다.
+                    <div className="lg:h-1/3 w-full lg:flex hidden items-center justify-center">
+                        <MacTerminal version={`${siteConfig.tagline}`} title={`${siteConfig.title}`}/>
                     </div>
 
                     {/* 하단 2/3 영역 */}
-                    <div className="h-2/3 w-full flex flex-col">
-                        <div className="flex h-full">
+                    <div className="lg:h-2/3 h-[100%] flex w-full flex-col">
+                        <div className="lg:flex h-[100%]">
                             {/* 좌측 이미지 영역 */}
-                            <div className="w-1/2 bg-gray-300 flex items-center justify-center">
-                                이미지
+                            <div className="h-1/2 w-full lg:h-[100%] lg:w-1/2 bg-gray-300 opacity-40 flex items-center justify-center">
+                                <Canvas>
+                                    <ambientLight intensity={0.5} />
+                                    <directionalLight position={[2, 5, 2]} intensity={1} />
+                                    <MovingCamel /> {/* 3D 모델 추가 */}
+                                    <OrbitControls />
+                                </Canvas>
                             </div>
 
                             {/* 우측 텍스트 영역 */}
-                            <div className="w-1/2 bg-gray-200 flex items-center justify-center">
+                            <div className="h-1/2 w-full lg:h-[100%] lg:w-1/2 bg-gray-200 opacity-40 flex items-center justify-center">
                                 안녕하세요
                             </div>
                         </div>
                     </div>
                 </div>
-                {/*<div className="flex justify-center h-[50%]">*/}
-                {/*    <div className="mt-6">*/}
-                {/*        <Link*/}
-                {/*            className="inline-block bg-primary hover:bg-primary-dark text-white py-2 px-6 rounded-full transition duration-300"*/}
-                {/*            to="/series/"*/}
-                {/*        >*/}
-                {/*            Series*/}
-                {/*        </Link>*/}
-                {/*        <Link*/}
-                {/*            className="inline-block bg-gray-700 hover:bg-gray-600 text-white py-2 px-6 rounded-full ml-4 transition duration-300"*/}
-                {/*            to="/blog/"*/}
-                {/*        >*/}
-                {/*            Blog*/}
-                {/*        </Link>*/}
-                {/*        <div className="inline-block ml-4">*/}
-                {/*            <iframe*/}
-                {/*                src="https://ghbtns.com/github-btn.html?user=hae02y&repo=hae02y.github.io&type=star&count=true&size=large"*/}
-                {/*                frameBorder="0"*/}
-                {/*                scrolling="0"*/}
-                {/*                width="120"*/}
-                {/*                height="30"*/}
-                {/*                title="GitHub Star"*/}
-                {/*            ></iframe>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-            </div>
         </header>
     );
 }

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.navbar {
+  @apply h-[4rem];
+}
+
 .tooltip {
   display: block!important;
   z-index: 10000
@@ -8084,9 +8089,9 @@ body .agile .agile__dots {
 }
 
 .bg-main {
-  background-image: url(/static/img/background/gradient-main.jpg);
+  @apply bg-cover bg-center;
+  background-image: var(--bg-gradient);;
   background-position: top -5rem center;
-  background-size: cover;
 }
 
 .bg-getstarted,.bg-main {
@@ -9784,6 +9789,7 @@ body .agile .agile__dots {
     --accent-rgb: 49, 130, 206; /* RGB 정의 */
     --background: #ffffff; /* 기본 배경 색상 */
     --background-dark: #1a202c; /* 다크 모드 배경 색상 */
+    --bg-gradient: url(/static/img/background/gradient-main.jpg);
   }
 
   [data-theme="dark"] {
@@ -9793,6 +9799,7 @@ body .agile .agile__dots {
     --accent-rgb: 99, 179, 237; /* RGB 정의 */
     --background: #1a202c; /* 다크 모드 배경 */
     --background-dark: #2d3748; /* 더 어두운 배경 */
+    --bg-gradient: #23262C;
   }
 }
 

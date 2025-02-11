@@ -3,7 +3,7 @@ import DynamicTyper from "@site/src/components/DynamicTyper";
 
 const MacTerminal = ({ title, version }) => {
     return (
-        <div className="bg-gray-900 w-full h-[100%] text-white rounded-lg shadow-lg p-4">
+        <div className="w-full h-[100%] text-white rounded-lg shadow-lg p-4">
             {/* 윈도우 컨트롤 바 */}
             <div className="flex items-center mb-4 h-[10%]">
                 <div className="flex gap-2">

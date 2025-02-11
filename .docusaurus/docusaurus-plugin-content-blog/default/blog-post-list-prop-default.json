@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "커리어스킬-존손메즈",
+      "permalink": "/blog/book1",
+      "unlisted": false,
+      "date": "2025-02-02T00:00:00.000Z"
+    },
+    {
       "title": "블로그 정착기 - 3",
       "permalink": "/blog/blog3",
       "unlisted": false,

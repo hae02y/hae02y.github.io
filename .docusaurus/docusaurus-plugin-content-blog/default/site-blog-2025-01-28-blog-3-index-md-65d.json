@@ -40,6 +40,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "커리어스킬-존손메즈",
+    "permalink": "/blog/book1"
+  },
   "nextItem": {
     "title": "벤치마크",
     "permalink": "/blog/benchmark"

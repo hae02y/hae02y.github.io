@@ -42,13 +42,16 @@
       "plugin": "plugin---docusaurus-debugb-38-ad3"
     }
   },
-  "/blog-d38": {
+  "/blog-6b5": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-003-e8e"
+      },
       {
         "content": "content---bloga-8-f-600"
       },
@@ -75,9 +78,6 @@
       },
       {
         "content": "content---blogf-5-e-476"
-      },
-      {
-        "content": "content---blog-11-e-95a"
       }
     ],
     "__props": "__props---blogc-15-573"
@@ -100,7 +100,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authorsef-8-44f"
   },
-  "/blog/authors/haeyoung-ad0": {
+  "/blog/authors/haeyoung-df8": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -109,6 +109,9 @@
       "plugin": "plugin---blog-369-22e"
     },
     "items": [
+      {
+        "content": "content---blog-003-e8e"
+      },
       {
         "content": "content---bloga-8-f-600"
       },
@@ -135,15 +138,12 @@
       },
       {
         "content": "content---blogf-5-e-476"
-      },
-      {
-        "content": "content---blog-11-e-95a"
       }
     ],
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authors-haeyoungc-0-c-72c"
   },
-  "/blog/authors/haeyoung/authors/2-00b": {
+  "/blog/authors/haeyoung/authors/2-bde": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -152,6 +152,9 @@
       "plugin": "plugin---blog-369-22e"
     },
     "items": [
+      {
+        "content": "content---blog-authors-haeyoung-authors-211-e-2a2"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-2199-2ad"
       },
@@ -183,6 +186,17 @@
     },
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-blog-365-d-adf"
+  },
+  "/blog/book1-6d0": {
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
+    "__context": {
+      "data": {
+        "blogMetadata": "blogMetadata---blog-authorsace-e7d"
+      },
+      "plugin": "plugin---blog-369-22e"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "content": "content---blog-book-1-d-0-b-57c"
   },
   "/blog/database1-4f4": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
@@ -239,13 +253,16 @@
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-mybatisbad-ab2"
   },
-  "/blog/page/2-149": {
+  "/blog/page/2-407": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-authors-haeyoung-authors-211-e-2a2"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-2199-2ad"
       },
@@ -296,6 +313,19 @@
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-tags-3-a-2-fa2"
   },
+  "/blog/tags/book-729": {
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
+    "__context": {
+      "plugin": "plugin---blog-369-22e"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "items": [
+      {
+        "content": "content---blog-003-e8e"
+      }
+    ],
+    "__props": "__props---blog-tags-bookad-6-9d5"
+  },
   "/blog/tags/database-6de": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
@@ -339,7 +369,7 @@
         "content": "content---blogf-5-e-476"
       },
       {
-        "content": "content---blog-11-e-95a"
+        "content": "content---blog-authors-haeyoung-authors-211-e-2a2"
       }
     ],
     "__props": "__props---blog-tags-making-blogf-2-c-2d5"
