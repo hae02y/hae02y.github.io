@@ -1,5 +1,5 @@
 ---
-slug: mybatis
+slug: mybatis-2
 title: API 생성에서 나왔던 문제
 authors:
   - haeyoung
