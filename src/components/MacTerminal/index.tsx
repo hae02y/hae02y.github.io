@@ -17,7 +17,6 @@ const MacTerminal = ({ title, version }) => {
         // 터미널 인스턴스 생성
         terminal.current = new Terminal({
             cursorBlink: true,
-            readOnly: false
         });
 
         // FitAddon 인스턴스 생성
@@ -63,7 +62,7 @@ const MacTerminal = ({ title, version }) => {
 
     return (
         <div className="w-full h-[100%] text-white rounded-lg shadow-md p-4">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 h-[5%]">
                 <div className="flex gap-2">
                     <div className="bt red w-3 h-3 bg-red-500 rounded-full cursor-pointer"></div>
                     <div className="bt yellow w-3 h-3 bg-yellow-500 rounded-full cursor-pointer" onClick={(openToggle) => setOpenToggle(!openToggle)}></div>
@@ -73,8 +72,8 @@ const MacTerminal = ({ title, version }) => {
                     My Blog! {version}
                 </div>
             </div>
-            <div className="text-left bg-black w-full h-[80%] rounded-md p-4 font-mono text-lg leading-loose">
-                <div ref={terminalRef} className="terminal-container" />
+            <div className="text-left bg-black w-full h-[90%] rounded-md p-4 font-mono text-lg leading-loose">
+                <div ref={terminalRef} className="terminal-container w-full h-full bg-[]" />
             </div>
         </div>
     );
