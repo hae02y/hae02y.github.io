@@ -10,17 +10,20 @@ const MacTerminal = ({ title, version }) => {
     useEffect(() => {
         // 터미널 인스턴스 생성
         terminal.current = new Terminal({
-            cursorBlink: true
+            cursorBlink: true,
         });
 
         // FitAddon 인스턴스 생성
         const fitAddon = new FitAddon();
         terminal.current.loadAddon(fitAddon);
 
-        // 터미널을 DOM에 부착
         if (terminalRef.current) {
             terminal.current.open(terminalRef.current);
             fitAddon.fit(); // 터미널 크기 조정
+            terminalRef.current.style.outline = "none"; // 포커스 시 아웃라인 제거
+            terminalRef.current.tabIndex = 0; // 키보드 입력을 위해 tabIndex 설정
+
+            terminalRef.current.focus(); // 마운트 시 포커스 설정
         }
 
         // 컴포넌트 해제 시 터미널 인스턴스 해제
