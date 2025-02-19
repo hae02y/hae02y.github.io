@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* xterm.js 스크롤바 숨기기 */
+.xterm .xterm-viewport {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+.xterm .xterm-viewport::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 
 .navbar {
   @apply h-[4rem];

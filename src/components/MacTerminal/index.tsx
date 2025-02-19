@@ -1,16 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import { Terminal } from 'xterm';
-import 'xterm/css/xterm.css'; // xterm.js 스타일 추가
+import 'xterm/css/xterm.css';
 import { FitAddon } from 'xterm-addon-fit';
 
 const MacTerminal = ({ title, version }) => {
-    const terminalRef = useRef(null); // 터미널 DOM을 위한 ref
-    const terminal = useRef(null); // xterm.js 터미널 인스턴스
+    const terminalRef = useRef(null);
+    const terminal = useRef(null);
+    const inputBuffer = useRef("");  // 사용자 입력을 추적하는 버퍼
 
     useEffect(() => {
         // 터미널 인스턴스 생성
         terminal.current = new Terminal({
             cursorBlink: true,
+            readOnly: false
         });
 
         // FitAddon 인스턴스 생성
@@ -19,14 +21,36 @@ const MacTerminal = ({ title, version }) => {
 
         if (terminalRef.current) {
             terminal.current.open(terminalRef.current);
-            fitAddon.fit(); // 터미널 크기 조정
-            terminalRef.current.style.outline = "none"; // 포커스 시 아웃라인 제거
-            terminalRef.current.tabIndex = 0; // 키보드 입력을 위해 tabIndex 설정
+            fitAddon.fit();
+            terminalRef.current.style.outline = "none";
+            terminalRef.current.tabIndex = 0;
 
-            terminalRef.current.focus(); // 마운트 시 포커스 설정
+            const prompt = `${title}@macbook:~$ `;
+            const promptLength = prompt.length;
+
+            // 초기 프롬프트 설정
+            terminal.current.write(prompt);
+
+            // 키 입력 이벤트 처리
+            terminal.current.onKey(({ key, domEvent }) => {
+                const char = domEvent.key;
+
+                if (char === "Enter") {
+                    terminal.current.writeln("");
+                    terminal.current.write(prompt);
+                    inputBuffer.current = "";  // 버퍼 리셋
+                } else if (char === "Backspace") {
+                    if (inputBuffer.current.length > 0) {
+                        terminal.current.write('\b \b');
+                        inputBuffer.current = inputBuffer.current.slice(0, -1);
+                    }
+                } else {
+                    terminal.current.write(char);
+                    inputBuffer.current += char;  // 입력 버퍼에 추가
+                }
+            });
         }
 
-        // 컴포넌트 해제 시 터미널 인스턴스 해제
         return () => {
             terminal.current.dispose();
         };
@@ -34,7 +58,6 @@ const MacTerminal = ({ title, version }) => {
 
     return (
         <div className="w-full h-[100%] text-white rounded-lg shadow-lg p-4">
-            {/* 윈도우 컨트롤 바 */}
             <div className="flex items-center mb-4 h-[10%]">
                 <div className="flex gap-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -45,11 +68,7 @@ const MacTerminal = ({ title, version }) => {
                     My Blog! {version}
                 </div>
             </div>
-            {/* 내용 */}
             <div className="text-left bg-black w-full h-[80%] rounded-md p-4 font-mono text-lg leading-loose">
-                <span className="text-green-400">{title}@macbook</span>
-                <span className="text-white">:~$ </span>
-                {/* xterm.js 터미널 컨테이너 */}
                 <div ref={terminalRef} className="terminal-container" />
             </div>
         </div>
