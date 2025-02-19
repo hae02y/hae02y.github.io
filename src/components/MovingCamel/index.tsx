@@ -2,7 +2,13 @@ import { useGLTF } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
-const MovingCamel = () => {
+type Props = {
+    x? : number;
+    y? : number;
+    z? : number;
+}
+
+const MovingCamel = ({x=0,y=-1,z=0} : Props) => {
     const meshRef = useRef();
     const { scene } = useGLTF("/img/glb/camel.glb"); // 낙타 3D 모델 로드
 
@@ -12,7 +18,7 @@ const MovingCamel = () => {
         }
     });
 
-    return <primitive ref={meshRef} object={scene} scale={1} position={[0,-1,0]}/>;
+    return <primitive ref={meshRef} object={scene} scale={1} position={[x, y, z]}/>;
 };
 
 export default MovingCamel;
