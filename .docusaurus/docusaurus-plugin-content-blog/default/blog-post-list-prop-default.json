@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "API 생성에서 나왔던 문제",
+      "permalink": "/blog/mybatis-2",
+      "unlisted": false,
+      "date": "2025-02-11T00:00:00.000Z"
+    },
+    {
       "title": "커리어스킬-존손메즈",
       "permalink": "/blog/book1",
       "unlisted": false,

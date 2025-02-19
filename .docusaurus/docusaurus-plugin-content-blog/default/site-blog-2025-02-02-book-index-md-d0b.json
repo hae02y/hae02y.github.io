@@ -39,6 +39,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "API 생성에서 나왔던 문제",
+    "permalink": "/blog/mybatis-2"
+  },
   "nextItem": {
     "title": "블로그 정착기 - 3",
     "permalink": "/blog/blog3"
