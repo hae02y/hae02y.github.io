@@ -8,8 +8,10 @@
 }
 
 .xterm-viewport {
-    @apply bg-[#F5F5F7] font-black dark:bg-[#222222] !important;
+    @apply bg-[#F5F5F7] dark:bg-[#222222] text-blue-600 !important;
 }
+
+.xterm-screen { @apply text-[#00ff00]; }
 
 .xterm .xterm-viewport::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
