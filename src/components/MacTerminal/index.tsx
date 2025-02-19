@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Terminal } from 'xterm';
 import 'xterm/css/xterm.css';
 import { FitAddon } from 'xterm-addon-fit';
@@ -7,6 +7,11 @@ const MacTerminal = ({ title, version }) => {
     const terminalRef = useRef(null);
     const terminal = useRef(null);
     const inputBuffer = useRef("");  // 사용자 입력을 추적하는 버퍼
+    const [openToggle , setOpenToggle ] = useState(false);
+
+    useEffect( () => {
+        console.log(openToggle);
+    }, [openToggle])
 
     useEffect(() => {
         // 터미널 인스턴스 생성
@@ -60,9 +65,9 @@ const MacTerminal = ({ title, version }) => {
         <div className="w-full h-[100%] text-white rounded-lg shadow-md p-4">
             <div className="flex items-center mb-4 h-[10%]">
                 <div className="flex gap-2">
-                    <div className="bt red w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="bt yellow w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="bt green w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="bt red w-3 h-3 bg-red-500 rounded-full cursor-pointer"></div>
+                    <div className="bt yellow w-3 h-3 bg-yellow-500 rounded-full cursor-pointer" onClick={(prev) => setOpenToggle(!prev)}></div>
+                    <div className="bt green w-3 h-3 bg-green-500 rounded-full cursor-pointer"></div>
                 </div>
                 <div className="flex-grow text-center text-sm text-gray-400">
                     My Blog! {version}
