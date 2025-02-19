@@ -8,7 +8,7 @@
 }
 
 .xterm-viewport {
-    @apply bg-[#F5F5F7] dark:bg-[#222222] text-blue-600 !important;
+    @apply rounded-l bg-[#F5F5F7] dark:bg-[#222222] text-blue-600 !important;
 }
 
 .xterm-screen { @apply text-[#00ff00]; }
