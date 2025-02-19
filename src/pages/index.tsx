@@ -22,7 +22,7 @@ function HomepageHeader() {
                     <div className="lg:h-2/3 h-[100%] flex w-full flex-col">
                         <div className="lg:flex h-[100%]">
                             {/* 좌측 이미지 영역 */}
-                            <div className="h-1/2 w-full lg:h-[100%] lg:w-1/2 bg-gray-300 opacity-40 flex items-center justify-center">
+                            <div className="h-1/2 w-full lg:h-[100%] lg:w-1/2 flex items-center justify-center">
                                 <Canvas>
                                     <ambientLight intensity={0.5} />
                                     <directionalLight position={[2, 5, 2]} intensity={1} />
