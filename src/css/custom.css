@@ -4,13 +4,16 @@
 
 /* xterm.js 스크롤바 숨기기 */
 .xterm .xterm-viewport {
-  @apply overflow-y-scroll scrollbar-width: none; /* Firefox */
+  @apply overflow-y-scroll;
+}
+
+.xterm-viewport {
+  @apply bg-blue-50;
 }
 
 .xterm .xterm-viewport::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
 
 .navbar {
   @apply h-[4rem];
