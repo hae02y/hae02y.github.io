@@ -20,7 +20,7 @@ const config: Config = {
   ,
   title: 'Hae02y',
   tagline: 'Ver 0.0.1',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/sitelogo.ico',
   // Set the production url of your site here
   url: 'https://hae02y.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served

@@ -9,7 +9,7 @@ export default {
   ],
   "title": "Hae02y",
   "tagline": "Ver 0.0.1",
-  "favicon": "img/favicon.ico",
+  "favicon": "img/sitelogo.ico",
   "url": "https://hae02y.github.io",
   "baseUrl": "/",
   "organizationName": "hae02y",
@@ -317,13 +317,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -345,6 +338,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
