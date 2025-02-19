@@ -7,10 +7,11 @@
   @apply overflow-y-scroll;
 }
 
-.xterm-viewport {
-  @apply bg-blue-50;
+@layer components {
+  .xterm-viewport {
+    @apply bg-[#1e1e1e];
+  }
 }
-
 .xterm .xterm-viewport::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
