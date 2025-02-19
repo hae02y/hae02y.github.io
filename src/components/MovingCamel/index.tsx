@@ -8,11 +8,11 @@ const MovingCamel = () => {
 
     useFrame(() => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += 0.04; // y축으로 회전
+            meshRef.current.rotation.y += 0.03; // y축으로 회전
         }
     });
 
-    return <primitive ref={meshRef} object={scene} scale={1} />;
+    return <primitive ref={meshRef} object={scene} scale={1} position={[0,-1,0]}/>;
 };
 
 export default MovingCamel;

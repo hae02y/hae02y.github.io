@@ -108,36 +108,6 @@ const config: Config = {
         },
       ],
     },
-    footer: {
-      style: 'dark',
-      links: [
-
-        // {
-        //   title: 'Series',
-        //   items: [
-        //     {
-        //       label: 'Tutorial',
-        //       to: '/docs/intro',
-        //     },
-        //   ],
-        // },
-
-        // {
-        //   title: 'Menu',
-        //   items: [
-        //     {
-        //       label: 'Blog',
-        //       to: '/blog',
-        //     },
-        //     {
-        //       label: 'GitHub',
-        //       href: 'https://github.com/hae02y',
-        //     },
-        //   ],
-        // },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Hae02y`,
-    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
