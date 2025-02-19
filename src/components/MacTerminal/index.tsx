@@ -72,8 +72,8 @@ const MacTerminal = ({ title, version }) => {
                     My Blog! {version}
                 </div>
             </div>
-            <div className="text-left bg-black w-full h-[90%] rounded-md p-4 font-mono text-lg leading-loose">
-                <div ref={terminalRef} className="terminal-container w-full h-full bg-[]" />
+            <div className="text-left w-full h-[90%] bg-[#222222] rounded-md p-4 font-mono text-lg leading-loose">
+                <div ref={terminalRef} className="terminal-container w-full h-full bg-[#222222]" />
             </div>
         </div>
     );

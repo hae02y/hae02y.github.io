@@ -4,8 +4,7 @@
 
 /* xterm.js 스크롤바 숨기기 */
 .xterm .xterm-viewport {
-  overflow-y: scroll;
-  scrollbar-width: none; /* Firefox */
+  @apply overflow-y-scroll scrollbar-width: none; /* Firefox */
 }
 
 .xterm .xterm-viewport::-webkit-scrollbar {
