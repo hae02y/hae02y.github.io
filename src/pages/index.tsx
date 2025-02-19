@@ -40,7 +40,7 @@ function EmojiAvatarSection() {
 
                     {/* 우측 텍스트 영역 */}
                     <div
-                        className="h-1/2 w-full lg:h-[100%] lg:w-1/2 bg-gray-200 opacity-40 flex items-center justify-center">
+                        className="h-1/2 w-full lg:h-[100%] lg:w-1/2 flex items-center justify-center">
                         안녕하세요
                     </div>
                 </div>
