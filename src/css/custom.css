@@ -9,7 +9,7 @@
 
 @layer components {
   .xterm-viewport {
-    @apply bg-[#1e1e1e];
+    @apply bg-[#222222] !important;
   }
 }
 .xterm .xterm-viewport::-webkit-scrollbar {
