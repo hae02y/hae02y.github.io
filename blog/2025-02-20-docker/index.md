@@ -32,7 +32,7 @@ Docker 패키지의 무결성을 검증하기 위해 Docker의 공식 GPG 키를
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-#### 3. Docker 리포지토리 추가
+#### 3. Docker 리포지토리 추가!
 
 시스템의 패키지 관리 시스템에 Docker 리포지토리를 추가합니다. 이를 통해 Docker의 최신 버전을 설치하고 관리할 수 있습니다.
 
