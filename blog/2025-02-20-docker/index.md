@@ -65,7 +65,6 @@ sudo systemctl enable docker
 ```bash
 sudo usermod -aG docker ${USER}
 ```
-
 이 명령을 실행한 후에는 로그아웃하고 다시 로그인하여 그룹 변경 사항을 적용해야 합니다.
 
 ### 확인
