@@ -2,7 +2,7 @@
 slug: infra
 title: NCP 클라우드 구축
 authors:
-  - ~~haeyoung~~
+  - haeyoung
 tags:
   - infra
   - docker

@@ -6,10 +6,9 @@
   "date": "2024-12-03T00:00:00.000Z",
   "tags": [
     {
-      "inline": false,
-      "label": "Portfolio",
-      "permalink": "/blog/tags/portfolio",
-      "description": "Portfolio tag description"
+      "inline": true,
+      "label": "portfolio",
+      "permalink": "/blog/tags/portfolio"
     }
   ],
   "readingTime": 30.405,

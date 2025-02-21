@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "NCP 클라우드 구축",
+      "permalink": "/blog/infra",
+      "unlisted": false,
+      "date": "2025-02-20T00:00:00.000Z"
+    },
+    {
       "title": "API 생성에서 나왔던 문제",
       "permalink": "/blog/mybatis-2",
       "unlisted": false,

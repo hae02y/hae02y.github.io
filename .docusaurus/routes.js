@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '73f'),
+    component: ComponentCreator('/blog', '688'),
     exact: true
   },
   {
@@ -54,12 +54,12 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '35f'),
+    component: ComponentCreator('/blog/authors/haeyoung', '42f'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', 'ac8'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '814'),
     exact: true
   },
   {
@@ -80,6 +80,11 @@ export default [
   {
     path: '/blog/database1',
     component: ComponentCreator('/blog/database1', '4f4'),
+    exact: true
+  },
+  {
+    path: '/blog/infra',
+    component: ComponentCreator('/blog/infra', 'fc9'),
     exact: true
   },
   {
@@ -109,7 +114,7 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', '77e'),
+    component: ComponentCreator('/blog/page/2', 'bf9'),
     exact: true
   },
   {
@@ -133,8 +138,18 @@ export default [
     exact: true
   },
   {
+    path: '/blog/tags/blog',
+    component: ComponentCreator('/blog/tags/blog', 'be8'),
+    exact: true
+  },
+  {
     path: '/blog/tags/book',
     component: ComponentCreator('/blog/tags/book', '729'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/cloud',
+    component: ComponentCreator('/blog/tags/cloud', 'ce6'),
     exact: true
   },
   {
@@ -148,8 +163,18 @@ export default [
     exact: true
   },
   {
-    path: '/blog/tags/making-blog',
-    component: ComponentCreator('/blog/tags/making-blog', 'db8'),
+    path: '/blog/tags/docker',
+    component: ComponentCreator('/blog/tags/docker', 'e22'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/infra',
+    component: ComponentCreator('/blog/tags/infra', '5b3'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/ncp',
+    component: ComponentCreator('/blog/tags/ncp', 'a9b'),
     exact: true
   },
   {
