@@ -1,26 +1,19 @@
 import * as React from "react";
-import { Toast } from "radix-ui";
+import * as Toast from "@radix-ui/react-toast";
 
-const ToastDemo = () => {
+type Props = {
+    color?: "yellow" | "red" | "green" | "blue";
+}
+
+const MacToastButton = ({color} : Props) => {
     const [open, setOpen] = React.useState(false);
-    const eventDateRef = React.useRef(new Date());
-    const timerRef = React.useRef(0);
-
-    React.useEffect(() => {
-        return () => clearTimeout(timerRef.current);
-    }, []);
 
     return (
         <Toast.Provider swipeDirection="right">
             <button
-                className="inline-flex h-[35px] items-center justify-center rounded bg-white px-[15px] text-[15px] font-medium leading-[35px] text-violet11 shadow-[0_2px_10px] shadow-blackA4 outline-none hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black"
+                className="bt red w-3 h-3 bg-red-500 rounded-full cursor-pointer focus:shadow"
                 onClick={() => {
                     setOpen(false);
-                    window.clearTimeout(timerRef.current);
-                    timerRef.current = window.setTimeout(() => {
-                        eventDateRef.current = oneWeekAway();
-                        setOpen(true);
-                    }, 100);
                 }}
             >
                 Add to calendar
@@ -70,4 +63,4 @@ function prettyDate(date) {
     }).format(date);
 }
 
-export default ToastDemo;
+export default MacToastButton;
