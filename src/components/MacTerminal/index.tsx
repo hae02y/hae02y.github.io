@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import { Terminal } from 'xterm';
 import 'xterm/css/xterm.css';
 import { FitAddon } from 'xterm-addon-fit';
+import ToastDemo from "@site/src/components/MacToast";
 
 const MacTerminal = ({ title, version }) => {
     const terminalRef = useRef(null);
@@ -65,6 +66,7 @@ const MacTerminal = ({ title, version }) => {
                 </div>
                 <div className="flex-grow text-center text-sm text-gray-400">
                     My Blog! {version}
+                    <ToastDemo />
                 </div>
             </div>
             <div className="text-left w-full h-[90%] rounded-md shadow-lg p-4 font-mono text-lg leading-loose bg-gray-100 dark:bg-[#222222]">
