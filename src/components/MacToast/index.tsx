@@ -24,7 +24,7 @@ const MacToastButton = ({
 
             {/* 토스트 컴포넌트 */}
             <Toast.Root
-                className="relative flex flex-col items-center bg-[#DEDFE0] dark:bg-[#616567] p-6 rounded-md shadow-xl text-gray-800 dark:text-gray-200 text-center"
+                className="relative flex flex-col items-center bg-[#DEDFE0] shadow-2xl dark:bg-[#616567] p-6 rounded-md shadow-xl text-gray-800 dark:text-gray-200 text-center"
                 open={open}
                 onOpenChange={setOpen}
             >
@@ -42,7 +42,7 @@ const MacToastButton = ({
                 <div className="mt-4">
                     <Toast.Action asChild altText="Dismiss">
                         <button
-                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                            className="px-6 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                             onClick={() => setOpen(false)}
                         >
                             Done
@@ -51,7 +51,6 @@ const MacToastButton = ({
                 </div>
             </Toast.Root>
 
-            {/* 토스트가 위치할 영역: 화면 중앙 */}
             <Toast.Viewport
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[2147483647] m-0 flex flex-col gap-2.5 p-6 outline-none"
             />
