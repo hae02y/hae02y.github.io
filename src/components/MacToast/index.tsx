@@ -16,38 +16,44 @@ const MacToastButton = ({
 
     return (
         <Toast.Provider swipeDirection="right">
+            {/* 토스트를 띄우기 위한 버튼 */}
             <button
-                className={`w-3 h-3 bg-${color}-500 rounded-full cursor-pointer focus:shadow`}
-                onClick={() => {
-                    setOpen(true);
-                }}
-            >
-                {/* 버튼 내용은 원한다면 아이콘 등을 추가 */}
-            </button>
+                className={`w-3 h-3 bg-${color}-500 rounded-full cursor-pointer focus:shadow-2xl`}
+                onClick={() => setOpen(true)}
+            ></button>
 
+            {/* 토스트 컴포넌트 */}
             <Toast.Root
-                className="relative bg-gray-900 border-l-4 border-red-500 p-4 rounded-md shadow-lg text-white font-mono"
+                className="relative flex flex-col items-center bg-[#DEDFE0] dark:bg-[#616567] p-6 rounded-md shadow-xl text-gray-800 dark:text-gray-200 text-center"
                 open={open}
                 onOpenChange={setOpen}
             >
-                <Toast.Title className="text-lg font-bold">
+                {/* 상단 경고 아이콘 */}
+                <div className="mb-2">
+                    <span className="text-3xl">⚠️</span>
+                </div>
+                <Toast.Title className="text-xl font-bold">
                     {title}
                 </Toast.Title>
-                <Toast.Description className="text-sm mt-1">
+                <Toast.Description className="mt-2 text-base">
                     {message}
                 </Toast.Description>
-                <Toast.Action asChild altText="닫기">
-                    <button
-                        className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
-                        onClick={() => setOpen(false)}
-                    >
-                        ✕
-                    </button>
-                </Toast.Action>
+                {/* 하단 Done 버튼 */}
+                <div className="mt-4">
+                    <Toast.Action asChild altText="Dismiss">
+                        <button
+                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                            onClick={() => setOpen(false)}
+                        >
+                            Done
+                        </button>
+                    </Toast.Action>
+                </div>
             </Toast.Root>
 
+            {/* 토스트가 위치할 영역: 화면 중앙 */}
             <Toast.Viewport
-                className="fixed top-10 left-1/2 transform -translate-x-1/2 z-[2147483647] m-0 flex flex-col gap-2.5 p-[var(--viewport-padding)] outline-none [--viewport-padding:_25px]"
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[2147483647] m-0 flex flex-col gap-2.5 p-6 outline-none"
             />
         </Toast.Provider>
     );
