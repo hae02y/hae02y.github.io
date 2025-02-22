@@ -3,40 +3,52 @@ import * as Toast from "@radix-ui/react-toast";
 
 type Props = {
     color?: "yellow" | "red" | "green" | "blue";
-}
+    title?: string;
+    message?: string;
+};
 
-const MacToastButton = ({color="red"} : Props) => {
+const MacToastButton = ({
+                            color = "red",
+                            title = "경고",
+                            message = "예기치 않은 오류가 발생했습니다."
+                        }: Props) => {
     const [open, setOpen] = React.useState(false);
 
     return (
         <Toast.Provider swipeDirection="right">
             <button
-                className={`bt red w-3 h-3 bg-${color}-500 rounded-full cursor-pointer focus:shadow`}
+                className={`w-3 h-3 bg-${color}-500 rounded-full cursor-pointer focus:shadow`}
                 onClick={() => {
                     setOpen(true);
                 }}
             >
+                {/* 버튼 내용은 원한다면 아이콘 등을 추가 */}
             </button>
 
             <Toast.Root
-                className="grid grid-cols-[auto_max-content] items-center gap-x-[15px] rounded-md bg-white p-[15px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] [grid-template-areas:_'title_action'_'description_action'] data-[swipe=cancel]:translate-x-0 data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[state=closed]:animate-hide data-[state=open]:animate-slideIn data-[swipe=end]:animate-swipeOut data-[swipe=cancel]:transition-[transform_200ms_ease-out]"
+                className="relative bg-gray-900 border-l-4 border-red-500 p-4 rounded-md shadow-lg text-white font-mono"
                 open={open}
                 onOpenChange={setOpen}
             >
-                <Toast.Title className="mb-[5px] text-[15px] font-medium text-slate12 [grid-area:_title]">
-                    종료할수없습니다.
+                <Toast.Title className="text-lg font-bold">
+                    {title}
                 </Toast.Title>
-                <Toast.Description asChild>
-
+                <Toast.Description className="text-sm mt-1">
+                    {message}
                 </Toast.Description>
-                <Toast.Action
-                    className="[grid-area:_action]"
-                    asChild
-                    altText="Goto schedule to undo"
-                >
+                <Toast.Action asChild altText="닫기">
+                    <button
+                        className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
+                        onClick={() => setOpen(false)}
+                    >
+                        ✕
+                    </button>
                 </Toast.Action>
             </Toast.Root>
-            <Toast.Viewport className="fixed bottom-0 right-0 z-[2147483647] m-0 flex w-[390px] max-w-[100vw] list-none flex-col gap-2.5 p-[var(--viewport-padding)] outline-none [--viewport-padding:_25px]" />
+
+            <Toast.Viewport
+                className="fixed top-10 left-1/2 transform -translate-x-1/2 z-[2147483647] m-0 flex flex-col gap-2.5 p-[var(--viewport-padding)] outline-none [--viewport-padding:_25px]"
+            />
         </Toast.Provider>
     );
 };
