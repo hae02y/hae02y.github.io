@@ -5,18 +5,17 @@ type Props = {
     color?: "yellow" | "red" | "green" | "blue";
 }
 
-const MacToastButton = ({color} : Props) => {
+const MacToastButton = ({color="red"} : Props) => {
     const [open, setOpen] = React.useState(false);
 
     return (
         <Toast.Provider swipeDirection="right">
             <button
-                className="bt red w-3 h-3 bg-red-500 rounded-full cursor-pointer focus:shadow"
+                className={`bt red w-3 h-3 bg-${color}-500 rounded-full cursor-pointer focus:shadow`}
                 onClick={() => {
-                    setOpen(false);
+                    setOpen(true);
                 }}
             >
-                Add to calendar
             </button>
 
             <Toast.Root
@@ -25,42 +24,21 @@ const MacToastButton = ({color} : Props) => {
                 onOpenChange={setOpen}
             >
                 <Toast.Title className="mb-[5px] text-[15px] font-medium text-slate12 [grid-area:_title]">
-                    Scheduled: Catch up
+                    종료할수없습니다.
                 </Toast.Title>
                 <Toast.Description asChild>
-                    <time
-                        className="m-0 text-[13px] leading-[1.3] text-slate11 [grid-area:_description]"
-                        dateTime={eventDateRef.current.toISOString()}
-                    >
-                        {prettyDate(eventDateRef.current)}
-                    </time>
+
                 </Toast.Description>
                 <Toast.Action
                     className="[grid-area:_action]"
                     asChild
                     altText="Goto schedule to undo"
                 >
-                    <button className="inline-flex h-[25px] items-center justify-center rounded bg-green2 px-2.5 text-xs font-medium leading-[25px] text-green11 shadow-[inset_0_0_0_1px] shadow-green7 hover:shadow-[inset_0_0_0_1px] hover:shadow-green8 focus:shadow-[0_0_0_2px] focus:shadow-green8">
-                        Undo
-                    </button>
                 </Toast.Action>
             </Toast.Root>
             <Toast.Viewport className="fixed bottom-0 right-0 z-[2147483647] m-0 flex w-[390px] max-w-[100vw] list-none flex-col gap-2.5 p-[var(--viewport-padding)] outline-none [--viewport-padding:_25px]" />
         </Toast.Provider>
     );
 };
-
-function oneWeekAway(date) {
-    const now = new Date();
-    const inOneWeek = now.setDate(now.getDate() + 7);
-    return new Date(inOneWeek);
-}
-
-function prettyDate(date) {
-    return new Intl.DateTimeFormat("en-US", {
-        dateStyle: "full",
-        timeStyle: "short",
-    }).format(date);
-}
 
 export default MacToastButton;

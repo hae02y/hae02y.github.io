@@ -1,10 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { Terminal } from 'xterm';
+import {Terminal} from 'xterm';
 import 'xterm/css/xterm.css';
-import { FitAddon } from 'xterm-addon-fit';
+import {FitAddon} from 'xterm-addon-fit';
 import ToastDemo from "@site/src/components/MacToast";
+import MacToastButton from "@site/src/components/MacToast";
 
-const MacTerminal = ({ title, version }) => {
+const MacTerminal = ({title, version}) => {
     const terminalRef = useRef(null);
     const terminal = useRef(null);
     const inputBuffer = useRef("");  // 사용자 입력을 추적하는 버퍼
@@ -32,7 +33,7 @@ const MacTerminal = ({ title, version }) => {
             terminal.current.write(prompt);
 
             // 키 입력 이벤트 처리
-            terminal.current.onKey(({ key, domEvent }) => {
+            terminal.current.onKey(({key, domEvent}) => {
                 const char = domEvent.key;
 
                 if (char === "Enter") {
@@ -60,17 +61,17 @@ const MacTerminal = ({ title, version }) => {
         <div className="w-full h-[100%] rounded-lg p-4">
             <div className="flex items-center mb-4 h-[5%]">
                 <div className="flex gap-2">
-                    <div className="bt red w-3 h-3 bg-red-500 rounded-full cursor-pointer"></div>
-                    <div className="bt yellow w-3 h-3 bg-yellow-500 rounded-full cursor-pointer"></div>
-                    <div className="bt green w-3 h-3 bg-green-500 rounded-full cursor-pointer"></div>
+                    <MacToastButton color={"red"}/>
+                    <MacToastButton color={"green"}/>
+                    <MacToastButton color={"yellow"}/>
                 </div>
                 <div className="flex-grow text-center text-sm text-gray-400">
                     My Blog! {version}
-                    <ToastDemo />
                 </div>
             </div>
-            <div className="text-left w-full h-[90%] rounded-md shadow-lg p-4 font-mono text-lg leading-loose bg-gray-100 dark:bg-[#222222]">
-                <div ref={terminalRef} className="terminal-container w-full h-full" />
+            <div
+                className="text-left w-full h-[90%] rounded-md shadow-lg p-4 font-mono text-lg leading-loose bg-gray-100 dark:bg-[#222222]">
+                <div ref={terminalRef} className="terminal-container w-full h-full"/>
             </div>
         </div>
     );
