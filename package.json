@@ -20,6 +20,7 @@
     "@docusaurus/theme-mermaid": "^3.6.3",
     "@headlessui/react": "^2.2.0",
     "@mdx-js/react": "^3.0.0",
+    "@radix-ui/react-toast": "^1.2.6",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^8.2.2",
     "class-variance-authority": "^0.7.1",
