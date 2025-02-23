@@ -21,7 +21,7 @@ const CustomTag: React.FC<CustomTagProps> = ({ label, permalink }) => {
     );
 };
 
-export default function TagsListByLetter({ tags }: Props): JSX.Element {
+export default function TagsListByLetter({ tags }: Props) {
     const letterList = listTagsByLetters(tags);
 
     return (
