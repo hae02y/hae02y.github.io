@@ -14,7 +14,7 @@ import SearchMetadata from '@theme/SearchMetadata';
 import type {Props} from '@theme/BlogTagsPostsPage';
 import Unlisted from '@theme/ContentVisibility/Unlisted';
 
-function BlogTagsPostsPageMetadata({tag}: Props): JSX.Element {
+function BlogTagsPostsPageMetadata({tag}: Props) {
     const title = useBlogTagsPostsPageTitle(tag);
     return (
         <>
@@ -29,7 +29,7 @@ function BlogTagsPostsPageContent({
                                       items,
                                       sidebar,
                                       listMetadata,
-                                  }: Props): JSX.Element {
+                                  }: Props){
     return (
         <BlogLayout sidebar={sidebar}>
             {tag.unlisted && <Unlisted />}
