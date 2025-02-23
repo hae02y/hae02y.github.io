@@ -1,7 +1,7 @@
 import React from 'react';
 import { listTagsByLetters, type TagLetterEntry } from '@docusaurus/theme-common';
 import type { Props } from '@theme/TagsListByLetter';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'; // shadcn UI Tabs 컴포넌트
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@site/src/components/ui/tabs'; // shadcn UI Tabs 컴포넌트
 import Heading from '@theme/Heading';
 
 type CustomTagProps = {
