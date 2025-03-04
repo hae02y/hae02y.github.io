@@ -31,7 +31,6 @@ export default function BlogLayout(props: Props): JSX.Element {
                             {children}
                         </main>
 
-                        {/* TOC(목차) - 데스크톱에서만 보이도록 */}
                         {toc && (
                             <div className="">
                                 <TocPopover toc={toc} />
