@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 // Component responsible for the authors layout
 export default function BlogPostItemHeaderAuthors({
   className,
-}: Props): JSX.Element | null {
+}: Props) {
   const {
     metadata: {authors},
     assets,

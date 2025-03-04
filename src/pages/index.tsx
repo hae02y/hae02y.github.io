@@ -49,22 +49,7 @@ function EmojiAvatarSection() {
     );
 }
 
-function GuestBookSection() {
-    return (
-        <section className="container mx-auto py-12">
-            <h2 className="text-center text-2xl font-bold mb-6">방명록 ✍️</h2>
-            <div className="flex justify-center">
-                <iframe
-                    src="https://utteranc.es/utterances.html?repo=parkgang/parkgang.github.io&issue-term=pathname&label=comment&theme=github-dark"
-                    title="Guest Book"
-                    className="w-full max-w-4xl h-96 border-2 border-gray-200 rounded-lg"
-                ></iframe>
-            </div>
-        </section>
-    );
-}
-
-export default function Home(): JSX.Element {
+export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
         <Layout
@@ -74,7 +59,6 @@ export default function Home(): JSX.Element {
             <HomepageHeader/>
             <main>
                 <EmojiAvatarSection/>
-                {/*<GuestBookSection />*/}
             </main>
         </Layout>
     );
