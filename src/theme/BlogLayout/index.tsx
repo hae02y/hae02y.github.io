@@ -3,20 +3,14 @@
  * (LICENSE file in the project root)
  */
 
-import React, {useState, Fragment, useEffect} from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import type {Props} from '@theme/BlogLayout';
 import {Popover, PopoverButton, PopoverPanel, Transition} from "@headlessui/react";
-import {list} from "postcss";
-import ExecutionEnvironment from "@docusaurus/core/lib/client/exports/ExecutionEnvironment";
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function BlogLayout(props: Props) {
     const {toc, children, ...layoutProps} = props;
-
-    if (!ExecutionEnvironment.canUseDOM) {
-        return null; // 서버에서는 실행 안 됨
-    }
-
 
     return (
         <Layout {...layoutProps}>
@@ -38,9 +32,13 @@ export default function BlogLayout(props: Props) {
                         </main>
 
                         {toc && (
-                            <div className="">
-                                <TocPopover toc={toc} />
-                            </div>
+                            <BrowserOnly>
+                                {() => (
+                                    <div className="">
+                                        <TocPopover toc={toc} />
+                                    </div>
+                                )}
+                            </BrowserOnly>
                         )}
                     </div>
                 </div>
