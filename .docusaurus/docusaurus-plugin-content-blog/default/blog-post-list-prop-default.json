@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "\b설계에서 겪었던 내문제",
+      "permalink": "/blog/designproject",
+      "unlisted": false,
+      "date": "2025-02-26T00:00:00.000Z"
+    },
+    {
       "title": "NCP 클라우드 구축",
       "permalink": "/blog/infra",
       "unlisted": false,

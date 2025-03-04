@@ -57,6 +57,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "\b설계에서 겪었던 내문제",
+    "permalink": "/blog/designproject"
+  },
   "nextItem": {
     "title": "API 생성에서 나왔던 문제",
     "permalink": "/blog/mybatis-2"
