@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Terminal} from 'xterm';
 import 'xterm/css/xterm.css';
 import {FitAddon} from 'xterm-addon-fit';
-import ToastDemo from "@site/src/components/MacToast";
 import MacToastButton from "@site/src/components/MacToast";
 
 const MacTerminal = ({title, version}) => {

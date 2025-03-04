@@ -52,8 +52,6 @@ export default function BlogLayout(props: Props) {
 
 const TocPopover = ({toc}: { toc: any }) => {
 
-    console.log(toc)
-
     return (
         <Popover className="relative block">
             {/* Popover 버튼 */}

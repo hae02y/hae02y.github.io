@@ -5,7 +5,7 @@ import type NavbarItemType from "@theme/NavbarItem";
 
 type Props = WrapperProps<typeof NavbarItemType>;
 
-export default function NavbarItemWrapper(props: any): JSX.Element {
+export default function NavbarItemWrapper(props: any) {
     // 드롭다운 메뉴 구성
 
     if (props.items) {
