@@ -10,7 +10,7 @@ export default function Tag({
   label,
   count,
   description,
-}: Props): JSX.Element {
+}: Props) {
   return (
     <Link
       href={permalink}

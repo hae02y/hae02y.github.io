@@ -64,7 +64,7 @@ function BlogTagsPostsPageContent({
     );
 }
 
-export default function BlogTagsPostsPage(props: Props): JSX.Element {
+export default function BlogTagsPostsPage(props: Props) {
     return (
         <HtmlClassNameProvider
             className={clsx(

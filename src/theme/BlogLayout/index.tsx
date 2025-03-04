@@ -8,9 +8,15 @@ import Layout from '@theme/Layout';
 import type {Props} from '@theme/BlogLayout';
 import {Popover, PopoverButton, PopoverPanel, Transition} from "@headlessui/react";
 import {list} from "postcss";
+import ExecutionEnvironment from "@docusaurus/core/lib/client/exports/ExecutionEnvironment";
 
-export default function BlogLayout(props: Props): JSX.Element {
+export default function BlogLayout(props: Props) {
     const {toc, children, ...layoutProps} = props;
+
+    if (!ExecutionEnvironment.canUseDOM) {
+        return null; // 서버에서는 실행 안 됨
+    }
+
 
     return (
         <Layout {...layoutProps}>
