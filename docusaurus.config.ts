@@ -3,7 +3,6 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-
   plugins: [
     async function myPlugin(context, options) {
       return {
@@ -38,8 +37,8 @@ const config: Config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'ko',
-    locales: ['ko'],
+    defaultLocale: 'en',
+    locales: ['en'],
   },
 
   markdown: {
