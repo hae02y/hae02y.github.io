@@ -106,6 +106,11 @@ export default {
           "sidebarId": "tutorialSidebar",
           "position": "left",
           "label": "프로젝트"
+        },
+        {
+          "to": "/book",
+          "label": "내가읽은책",
+          "position": "left"
         }
       ],
       "hideOnScroll": false
