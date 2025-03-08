@@ -83,18 +83,9 @@ export default {
           "position": "left"
         },
         {
+          "to": "/blog",
           "label": "Blog",
-          "position": "left",
-          "items": [
-            {
-              "label": "Blog",
-              "to": "/blog/"
-            },
-            {
-              "label": "Tags",
-              "to": "/blog/tags"
-            }
-          ]
+          "position": "left"
         },
         {
           "href": "https://github.com/hae02y",

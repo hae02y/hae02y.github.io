@@ -86,14 +86,15 @@ const config: Config = {
       },
       items: [
         {to: '/me', label: 'Resume', position: 'left'},
-        {
-          label: 'Blog',
-          position: 'left',
-          items: [
-            {label: 'Blog', to: '/blog/'},
-            {label: 'Tags', to: '/blog/tags'},
-          ]
-        },
+        {to: '/blog', label: 'Blog', position: 'left'},
+        // {
+        //   label: 'Blog',
+        //   position: 'left',
+        //   items: [
+        //     {label: 'Blog', to: '/blog/'},
+        //     {label: 'Tags', to: '/blog/tags'},
+        //   ]
+        // },
         {
           href: 'https://github.com/hae02y',
           label: 'GitHub',
