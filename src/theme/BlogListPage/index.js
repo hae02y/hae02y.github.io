@@ -7,11 +7,11 @@ import BlogListPaginator from '@theme/BlogListPaginator';
 
 function BlogListPageContent(props) {
     const { items, metadata } = props;
-    const navigate = useNav
+    
 
     return (
         <BlogLayout>
-            <button onClick={() => navigate}>태그보기</button>
+            <button onClick={() => location.href()}>태그보기</button>
             {/* 알림형 블로그 카드 레이아웃 */}
             <div className="grid gap-6 grid-cols-1 md:grid-cols-1 lg:grid-cols-1 p-4">
                 {items.map(({ content }) => (
