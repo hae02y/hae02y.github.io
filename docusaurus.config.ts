@@ -85,9 +85,9 @@ const config: Config = {
         src: 'img/sitelogo.png',
       },
       items: [
-        {to: '/me', label: '이력', position: 'left'},
+        {to: '/me', label: 'Resume', position: 'left'},
         {
-          label: '블로그',
+          label: 'Blog',
           position: 'left',
           items: [
             {label: 'Blog', to: '/blog/'},
@@ -103,9 +103,9 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: '프로젝트',
+          label: 'Portfolio',
         },
-        {to: '/book', label: '내가읽은책', position: 'left'},
+        {to: '/book', label: 'Books', position: 'left'},
       ],
     },
     prism: {

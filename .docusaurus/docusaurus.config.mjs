@@ -79,11 +79,11 @@ export default {
       "items": [
         {
           "to": "/me",
-          "label": "이력",
+          "label": "Resume",
           "position": "left"
         },
         {
-          "label": "블로그",
+          "label": "Blog",
           "position": "left",
           "items": [
             {
@@ -105,11 +105,11 @@ export default {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "프로젝트"
+          "label": "Portfolio"
         },
         {
           "to": "/book",
-          "label": "내가읽은책",
+          "label": "Books",
           "position": "left"
         }
       ],

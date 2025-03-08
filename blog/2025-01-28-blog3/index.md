@@ -1,10 +1,10 @@
 ---
 slug : blog3
-title: 블로그 정착기 - 3
+title: 블로그 디자인 설계
 authors:
   - haeyoung
 tags:
   - blog
 ---
 
-블로그 정착기를 조금더 적어보려고한다.
+블로그 디자인을 설계하는 단계에 드...디어 들어왔다..

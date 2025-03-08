@@ -1,8 +1,8 @@
 {
   "permalink": "/blog/blog3",
   "source": "@site/blog/2025-01-28-blog3/index.md",
-  "title": "블로그 정착기 - 3",
-  "description": "블로그 정착기를 조금더 적어보려고한다.",
+  "title": "블로그 디자인 설계",
+  "description": "블로그 디자인을 설계하는 단계에 드...디어 들어왔다..",
   "date": "2025-01-28T00:00:00.000Z",
   "tags": [
     {
@@ -11,7 +11,7 @@
       "permalink": "/blog/tags/blog"
     }
   ],
-  "readingTime": 0.085,
+  "readingTime": 0.105,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "blog3",
-    "title": "블로그 정착기 - 3",
+    "title": "블로그 디자인 설계",
     "authors": [
       "haeyoung"
     ],
