@@ -13,7 +13,7 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element {
   const mobileSidebar = useNavbarMobileSidebar();
 
   // TODO how can the order be defined for mobile?
-  // Should we allow providing a different list of items?
+  // Should we allow providing a different develop of items?
   const items = useNavbarItems();
 
   return (

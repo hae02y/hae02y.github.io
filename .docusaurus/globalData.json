@@ -83,6 +83,40 @@
         }
       ],
       "breadcrumbs": true
+    },
+    "book": {
+      "path": "/book",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/book",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "develop/fsdfsdf",
+              "path": "/book/develop/fsdfsdf",
+              "sidebar": "defaultSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/book/",
+              "sidebar": "defaultSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "defaultSidebar": {
+              "link": {
+                "path": "/book/develop/fsdfsdf",
+                "label": "develop/fsdfsdf"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
     }
   }
 }

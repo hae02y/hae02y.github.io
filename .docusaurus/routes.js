@@ -213,11 +213,6 @@ export default [
     exact: true
   },
   {
-    path: '/book/',
-    component: ComponentCreator('/book/', 'ca9'),
-    exact: true
-  },
-  {
     path: '/markdown-page',
     component: ComponentCreator('/markdown-page', '3d7'),
     exact: true
@@ -226,6 +221,36 @@ export default [
     path: '/me/',
     component: ComponentCreator('/me/', 'dd3'),
     exact: true
+  },
+  {
+    path: '/book',
+    component: ComponentCreator('/book', '83b'),
+    routes: [
+      {
+        path: '/book',
+        component: ComponentCreator('/book', '650'),
+        routes: [
+          {
+            path: '/book',
+            component: ComponentCreator('/book', '764'),
+            routes: [
+              {
+                path: '/book/',
+                component: ComponentCreator('/book/', 'b23'),
+                exact: true,
+                sidebar: "defaultSidebar"
+              },
+              {
+                path: '/book/develop/fsdfsdf',
+                component: ComponentCreator('/book/develop/fsdfsdf', '552'),
+                exact: true,
+                sidebar: "defaultSidebar"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/docs',

@@ -4,6 +4,14 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'book',
+        path: 'book', // 여기에 마크다운 파일을 저장할 폴더
+        routeBasePath: 'book', // URL이 `/book`이 됨
+      },
+    ],
     async function myPlugin(context, options) {
       return {
         name: "docusaurus-tailwindcss",

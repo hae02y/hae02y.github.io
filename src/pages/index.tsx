@@ -22,8 +22,7 @@ function HomepageHeader() {
     );
 }
 
-function EmojiAvatarSection() {
-    const {siteConfig} = useDocusaurusContext();
+function CamelSection() {
     return (
         <div className={`h-[calc(100vh-4rem)] dark:bg-[#23262C] flex`}>
             <div className="h-[100%] flex w-full flex-col">
@@ -58,7 +57,7 @@ export default function Home() {
         >
             <HomepageHeader/>
             <main>
-                <EmojiAvatarSection/>
+                <CamelSection/>
             </main>
         </Layout>
     );

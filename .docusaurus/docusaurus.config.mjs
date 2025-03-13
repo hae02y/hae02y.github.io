@@ -5,6 +5,14 @@
  */
 export default {
   "plugins": [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        "id": "book",
+        "path": "book",
+        "routeBasePath": "book"
+      }
+    ],
     null
   ],
   "title": "Hae02y",

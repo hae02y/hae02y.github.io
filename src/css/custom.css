@@ -7,6 +7,10 @@
     @apply overflow-y-scroll;
 }
 
+.xterm-helpers {
+    @apply invisible absolute -top-full left-0 w-0 h-0 overflow-hidden;
+}
+
 .xterm-viewport {
     @apply rounded-l bg-gray-100 dark:bg-[#222222] text-blue-600 !important;
 }
