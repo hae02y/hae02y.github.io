@@ -1,0 +1,22 @@
+{
+  "id": "fsdfsdf",
+  "title": "내가 읽은 책",
+  "description": "📚 책 리스트",
+  "source": "@site/book/fsdfsdf.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/book/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "내가 읽은 책",
+    "slug": "/"
+  },
+  "sidebar": "defaultSidebar",
+  "next": {
+    "title": "내가 읽은 책",
+    "permalink": "/book/"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "intro",
+  "title": "Plus",
+  "description": "독서한 내용을 정리합니다.",
+  "source": "@site/book/intro.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/book/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Plus",
+    "slug": "/"
+  },
+  "sidebar": "defaultSidebar",
+  "previous": {
+    "title": "자바 프로그래밍",
+    "permalink": "/book/develop/fsdfsdf"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "list/fsdfsdf",
+  "title": "투게독",
+  "description": "Docusaurus creates a page for each blog post, but also a blog index page, a tag system, an RSS feed...",
+  "source": "@site/book/list/fsdfsdf.md",
+  "sourceDirName": "list",
+  "slug": "/list/fsdfsdf",
+  "permalink": "/book/list/fsdfsdf",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "defaultSidebar",
+  "previous": {
+    "title": "내가 읽은 책",
+    "permalink": "/book/"
+  }
+}

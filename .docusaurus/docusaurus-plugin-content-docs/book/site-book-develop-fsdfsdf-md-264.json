@@ -1,0 +1,19 @@
+{
+  "id": "develop/fsdfsdf",
+  "title": "자바 프로그래밍",
+  "description": "이런이런 내용이 참 좋았습니다.",
+  "source": "@site/book/develop/fsdfsdf.md",
+  "sourceDirName": "develop",
+  "slug": "/develop/fsdfsdf",
+  "permalink": "/book/develop/fsdfsdf",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "defaultSidebar",
+  "next": {
+    "title": "Plus",
+    "permalink": "/book/"
+  }
+}
