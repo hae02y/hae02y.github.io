@@ -1,6 +1,6 @@
 {
   "id": "solo-project/togedog/index",
-  "title": "index",
+  "title": "투게독",
   "description": "Untitled",
   "source": "@site/docs/solo-project/togedog/index.md",
   "sourceDirName": "solo-project/togedog",
@@ -10,9 +10,9 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 3,
+  "sidebarPosition": 97,
   "frontMatter": {
-    "sidebar_position": 3
+    "sidebar_position": 97
   },
   "sidebar": "tutorialSidebar",
   "previous": {

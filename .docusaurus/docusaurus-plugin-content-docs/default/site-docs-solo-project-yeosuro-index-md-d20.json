@@ -10,17 +10,17 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
-  "sidebarPosition": 2,
+  "sidebarPosition": 96,
   "frontMatter": {
-    "sidebar_position": 2
+    "sidebar_position": 96
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "스택오버플로우 클론",
-    "permalink": "/docs/solo-project/stackover/"
+    "title": "개인프로젝트",
+    "permalink": "/docs/category/개인프로젝트"
   },
   "next": {
-    "title": "index",
+    "title": "투게독",
     "permalink": "/docs/solo-project/togedog/"
   }
 }

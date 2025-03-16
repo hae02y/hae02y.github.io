@@ -1,6 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 97
 ---
+
+# 투게독
+
 ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/9e631759-27b8-4d43-b6f8-e198a584d87a/cae4340e-3926-4df6-be70-670a7e67a8a9/Untitled.png)
 
 ## 1. 프로젝트 개요
@@ -38,10 +41,10 @@ sidebar_position: 3
 [프로젝트의 핵심 기능 및 시스템 아키텍처에 대한 설명]
 
 - ERD 설계
-    
-    ![투게독.png](attachment:3a83230b-5e53-480b-950d-ba80705c5608:%E1%84%90%E1%85%AE%E1%84%80%E1%85%A6%E1%84%83%E1%85%A9%E1%86%A8.png)
+	![[투게독.png]]
     
 - 아키텍처
+- ![[투게독 1.png]]
     
     어쩌고~ㅋㅋ
     

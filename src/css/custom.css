@@ -9861,7 +9861,7 @@ code {
 
 /* Global Typography */
 h1 {
-    @apply text-4xl font-bold text-[var(--primary)] leading-snug mb-6;
+    @apply text-3xl font-bold text-[var(--primary)] leading-snug mb-6;
 }
 
 h2 {
@@ -9873,7 +9873,7 @@ h3 {
 }
 
 h4 {
-    @apply text-xl font-medium text-[var(--secondary)] leading-snug mb-3;
+    @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-3;
 }
 
 h5 {
