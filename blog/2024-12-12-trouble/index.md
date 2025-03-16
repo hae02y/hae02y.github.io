@@ -17,24 +17,16 @@ tags:
 장애 내용 요약
 ---
 
-  
-
 - (11/28) 웹 앱 서버에 연동된 서비스 이용 불가 (롯데잠실점 워치마일, 비콘 페이지 등)
-
 </aside>
 
 ---
 
 <aside>
 
-<img src="https://www.notion.so/icons/wrench_green.svg" alt="https://www.notion.so/icons/wrench_green.svg" width="40px" />
-
-  
-
 발생 원인
-
+---
   
-
 - **티미 연동간 만공정보 API 호출 빈도 증가**:
 
 - 주차면 만공정보를 개별로 전달하여 API 호출이 높은 빈도로 발생
@@ -51,11 +43,8 @@ tags:
 
 <aside>
 
-<img src="https://www.notion.so/icons/wall_orange.svg" alt="https://www.notion.so/icons/wall_orange.svg" width="40px" />
-
-  
 **영향 범위**
-
+---
   
 
 - **영향받은 시스템**:
@@ -104,7 +93,6 @@ tags:
 
 > 결과 작성
 
->
 
 - 티미 만공정보 API List형태로 4초 단위 요청 확인
 
@@ -118,14 +106,9 @@ tags:
   
 
 <aside>
+**근본적인 해결 방안**
 
-<img src="https://www.notion.so/icons/gavel_green.svg" alt="https://www.notion.so/icons/gavel_green.svg" width="40px" />
-
-  
-
-### **근본적인 해결 방안**
-
-  
+---
 
 - 타업체 연동시 API 호출수 제한 등을 고려
 
