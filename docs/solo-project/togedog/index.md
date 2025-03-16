@@ -9,17 +9,27 @@ sidebar_position: 3
 
 <aside>
 
-### 투게독
+**투게독**
 
 ---
 
 - **소개** : 반려동물과의 추억으로 우리만의 지도를 채워보세요!
 - **기간** : 2024.01.03 ~ 2024.02.03 (10주)
-- **팀원** : 백엔드 3명 / 프론트엔드 3명 / 디자이너 1명 </aside>
+- **팀원** : 백엔드 3명 / 프론트엔드 3명 / 디자이너 1명 
+</aside>
 
 ### 사용 기술 스택
 
-<div class="stack"> <img src="[https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white)" /> <img src="[https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white](https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)" /> <img src="[https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white](https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)" /> <img src="[https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white](https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)" /> <img src="[https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white](https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white)" /> <img src="[https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)" /> </div>
+<div class="stack"> 
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+  <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/amazonaws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"> 
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"> 
+  <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+</div>
+
 
 ## 2. 프로젝트 상세
 
