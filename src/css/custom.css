@@ -8,7 +8,7 @@ aside {
     @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4;
 }
 aside h3 {
-    @apply text-lg font-semibold text-gray-800 mb-2;
+    @apply text-lg font-semibold text-gray-800 mb-1;
 }
 aside p {
     @apply text-gray-700 text-sm leading-relaxed;
@@ -20,6 +20,10 @@ aside > hr {
 
 hr {
     @apply border-t border-gray-300 my-6 w-full;
+}
+
+.markdown li > p {
+    @apply m-0;
 }
 
 .xterm .xterm-viewport {
