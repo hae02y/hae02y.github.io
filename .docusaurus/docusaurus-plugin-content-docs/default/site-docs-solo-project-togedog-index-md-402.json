@@ -1,7 +1,7 @@
 {
   "id": "solo-project/togedog/index",
   "title": "투게독",
-  "description": "Docusaurus creates a page for each blog post, but also a blog index page, a tag system, an RSS feed...",
+  "description": "1. 프로젝트 개요",
   "source": "@site/docs/solo-project/togedog/index.md",
   "sourceDirName": "solo-project/togedog",
   "slug": "/solo-project/togedog/",

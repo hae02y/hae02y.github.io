@@ -95,8 +95,8 @@
           "mainDocId": "intro",
           "docs": [
             {
-              "id": "develop/fsdfsdf",
-              "path": "/book/develop/fsdfsdf",
+              "id": "develop/index",
+              "path": "/book/develop/",
               "sidebar": "defaultSidebar"
             },
             {
@@ -109,8 +109,8 @@
           "sidebars": {
             "defaultSidebar": {
               "link": {
-                "path": "/book/develop/fsdfsdf",
-                "label": "develop/fsdfsdf"
+                "path": "/book/develop/",
+                "label": "개발 관련 서적"
               }
             }
           }

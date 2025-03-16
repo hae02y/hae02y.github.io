@@ -1,17 +1,17 @@
 {
-  "permalink": "/blog/iocdi",
-  "source": "@site/blog/2025-01-02-iocdi/index.md",
-  "title": "스프링 IOC / DI란 무엇인가?",
-  "description": "IOC / DI란",
-  "date": "2025-01-02T00:00:00.000Z",
+  "permalink": "/blog/onceperfilter",
+  "source": "@site/blog/2025-01-05-springfilter/index.md",
+  "title": "스프링 OncePerRequestFilter 에 대해",
+  "description": "https://beaniejoy.tistory.com/96",
+  "date": "2025-01-05T00:00:00.000Z",
   "tags": [
     {
       "inline": true,
-      "label": "new",
-      "permalink": "/blog/tags/new"
+      "label": "spring",
+      "permalink": "/blog/tags/spring"
     }
   ],
-  "readingTime": 0.025,
+  "readingTime": 0.005,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -29,22 +29,22 @@
     }
   ],
   "frontMatter": {
-    "slug": "iocdi",
-    "title": "스프링 IOC / DI란 무엇인가?",
+    "slug": "onceperfilter",
+    "title": "스프링 OncePerRequestFilter 에 대해",
     "authors": [
       "haeyoung"
     ],
     "tags": [
-      "new"
+      "spring"
     ]
   },
   "unlisted": false,
   "prevItem": {
-    "title": "스프링 OncePerRequestFilter 에 대해",
-    "permalink": "/blog/onceperfilter"
+    "title": "벤치마크",
+    "permalink": "/blog/benchmark"
   },
   "nextItem": {
-    "title": "마이바티스 이해하기-1",
-    "permalink": "/blog/mybatis"
+    "title": "스프링 IOC / DI란 무엇인가?",
+    "permalink": "/blog/iocdi"
   }
 }

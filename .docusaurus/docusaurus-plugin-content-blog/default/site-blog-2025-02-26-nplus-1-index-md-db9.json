@@ -39,6 +39,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "레디스를 사용하자!",
+    "permalink": "/blog/redis"
+  },
   "nextItem": {
     "title": "NCP 클라우드 구축",
     "permalink": "/blog/infra"

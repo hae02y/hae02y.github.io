@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '769'),
+    component: ComponentCreator('/blog', 'e1a'),
     exact: true
   },
   {
@@ -54,12 +54,12 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', 'ff9'),
+    component: ComponentCreator('/blog/authors/haeyoung', '0f4'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '29a'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '980'),
     exact: true
   },
   {
@@ -108,6 +108,11 @@ export default [
     exact: true
   },
   {
+    path: '/blog/mssql',
+    component: ComponentCreator('/blog/mssql', 'b67'),
+    exact: true
+  },
+  {
     path: '/blog/mybatis',
     component: ComponentCreator('/blog/mybatis', '383'),
     exact: true
@@ -118,13 +123,28 @@ export default [
     exact: true
   },
   {
+    path: '/blog/onceperfilter',
+    component: ComponentCreator('/blog/onceperfilter', 'b93'),
+    exact: true
+  },
+  {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', '122'),
+    component: ComponentCreator('/blog/page/2', '86b'),
+    exact: true
+  },
+  {
+    path: '/blog/redis',
+    component: ComponentCreator('/blog/redis', '96a'),
     exact: true
   },
   {
     path: '/blog/slog22',
     component: ComponentCreator('/blog/slog22', 'd45'),
+    exact: true
+  },
+  {
+    path: '/blog/springid',
+    component: ComponentCreator('/blog/springid', '98b'),
     exact: true
   },
   {
@@ -164,7 +184,7 @@ export default [
   },
   {
     path: '/blog/tags/db',
-    component: ComponentCreator('/blog/tags/db', '44f'),
+    component: ComponentCreator('/blog/tags/db', '681'),
     exact: true
   },
   {
@@ -183,6 +203,21 @@ export default [
     exact: true
   },
   {
+    path: '/blog/tags/java',
+    component: ComponentCreator('/blog/tags/java', '623'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/jpa',
+    component: ComponentCreator('/blog/tags/jpa', '1d6'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/mssql',
+    component: ComponentCreator('/blog/tags/mssql', '460'),
+    exact: true
+  },
+  {
     path: '/blog/tags/ncp',
     component: ComponentCreator('/blog/tags/ncp', 'a9b'),
     exact: true
@@ -195,6 +230,16 @@ export default [
   {
     path: '/blog/tags/portfolio',
     component: ComponentCreator('/blog/tags/portfolio', '348'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/redis',
+    component: ComponentCreator('/blog/tags/redis', '6a4'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/spring',
+    component: ComponentCreator('/blog/tags/spring', 'e57'),
     exact: true
   },
   {
@@ -224,15 +269,15 @@ export default [
   },
   {
     path: '/book',
-    component: ComponentCreator('/book', '83b'),
+    component: ComponentCreator('/book', 'a4b'),
     routes: [
       {
         path: '/book',
-        component: ComponentCreator('/book', '650'),
+        component: ComponentCreator('/book', '245'),
         routes: [
           {
             path: '/book',
-            component: ComponentCreator('/book', '764'),
+            component: ComponentCreator('/book', 'dea'),
             routes: [
               {
                 path: '/book/',
@@ -241,8 +286,8 @@ export default [
                 sidebar: "defaultSidebar"
               },
               {
-                path: '/book/develop/fsdfsdf',
-                component: ComponentCreator('/book/develop/fsdfsdf', '552'),
+                path: '/book/develop/',
+                component: ComponentCreator('/book/develop/', '80f'),
                 exact: true,
                 sidebar: "defaultSidebar"
               }

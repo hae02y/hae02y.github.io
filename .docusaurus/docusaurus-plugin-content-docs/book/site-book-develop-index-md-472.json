@@ -1,0 +1,19 @@
+{
+  "id": "develop/index",
+  "title": "개발 관련 서적",
+  "description": "이런이런 내용이 참 좋았습니다.",
+  "source": "@site/book/develop/index.md",
+  "sourceDirName": "develop",
+  "slug": "/develop/",
+  "permalink": "/book/develop/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "defaultSidebar",
+  "next": {
+    "title": "Plus",
+    "permalink": "/book/"
+  }
+}

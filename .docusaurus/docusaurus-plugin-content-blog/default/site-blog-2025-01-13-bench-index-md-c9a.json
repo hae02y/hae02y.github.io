@@ -44,7 +44,7 @@
     "permalink": "/blog/blog3"
   },
   "nextItem": {
-    "title": "스프링 IOC / DI란 무엇인가?",
-    "permalink": "/blog/iocdi"
+    "title": "스프링 OncePerRequestFilter 에 대해",
+    "permalink": "/blog/onceperfilter"
   }
 }
