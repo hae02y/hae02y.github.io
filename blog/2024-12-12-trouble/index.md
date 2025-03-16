@@ -14,12 +14,8 @@ tags:
 > 트러블 슈팅 내용 요약
 
 <aside>
-
-<img src="https://www.notion.so/icons/forward_red.svg" alt="https://www.notion.so/icons/forward_red.svg" width="40px" />
-
-  
-
-### 장애 내용 요약
+장애 내용 요약
+---
 
   
 

@@ -15,7 +15,7 @@ aside p {
 }
 
 hr {
-    @apply border-t border-gray-300 my-6 w-full animate-pulse;
+    @apply border-t border-gray-300 my-6 w-full;
 }
 
 .xterm .xterm-viewport {
@@ -164,11 +164,6 @@ body {
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
 }
 
-hr {
-    height: 0;
-    color: inherit
-}
-
 b, strong {
     font-weight: bolder;
     color: var(--primary);
@@ -261,7 +256,7 @@ summary {
     display: list-item
 }
 
-blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, p, pre {
     margin: 0
 }
 
@@ -294,9 +289,6 @@ body {
     border: 0 solid
 }
 
-hr {
-    border-top-width: 1px
-}
 
 img {
     border-style: solid
@@ -459,10 +451,6 @@ h5, h6 {
 
 h6 {
     font-size: var(--font-size-lg)
-}
-
-hr {
-    margin: 1rem 0
 }
 
 p {
