@@ -4,31 +4,27 @@ sidebar_position: 3
 
 # 투게독
 
-Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
 
-## Create your first Post
+## 1. 프로젝트 개요
 
-Create a file at `blog/2021-02-28-greetings.md`:
-
-```md title="blog/2021-02-28-greetings.md"
----
-slug: greetings
-title: Greetings!
-authors:
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-  - name: Sébastien Lorber
-    title: Docusaurus maintainer
-    url: https://sebastienlorber.com
-    image_url: https://github.com/slorber.png
-tags: [greetings]
 ---
 
-Congratulations, you have made your first post!
+<aside> 
+Information
+---
+- 소개 : 반려동물과의 추억으로 우리만의 지도를 채워보세요!
+- 기간 : 2024.01.03 ~ 2024.02.03 (6주)
+- 팀원 : 백엔드 4, 프론트 3
+</aside>
 
-Feel free to play around and edit this post as much as you like.
-```
+### 사용 기술 스택
 
-A new blog post is now available at [http://localhost:3000/blog/greetings](http://localhost:3000/blog/greetings).
+|언어|Java|||
+|---|---|---|---|
+|프레임워크|Spring Boot|Spring data JPA||
+|데이터베이스|MYSQL|||
+|인프라|AWS|Docker||
+|툴|Intelli J|Postman||
+|CICD|Github Actions|||
+
+
