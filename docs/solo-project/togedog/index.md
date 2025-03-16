@@ -4,7 +4,7 @@ sidebar_position: 97
 
 # 투게독
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/9e631759-27b8-4d43-b6f8-e198a584d87a/cae4340e-3926-4df6-be70-670a7e67a8a9/Untitled.png)
+![Untitled](togedog-logo.png)
 
 ## 1. 프로젝트 개요
 
@@ -37,9 +37,6 @@ sidebar_position: 97
 ---
 
 ### 주요기능 및 아키텍처
-
-[프로젝트의 핵심 기능 및 시스템 아키텍처에 대한 설명]
-
 - ERD 설계를 진행하였습니다. 하단 이미지 처럼 ERD를 설계하였습니다.
 	![erd.png](erd.png)
     
