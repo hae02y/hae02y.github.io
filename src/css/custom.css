@@ -26,6 +26,10 @@ hr {
     @apply m-0;
 }
 
+.markdown div.stack {
+    @apply flex flex-wrap items-center my-6 space-x-2 space-y-2;
+}
+
 .xterm .xterm-viewport {
     @apply overflow-y-scroll;
 }
