@@ -72,7 +72,7 @@ tags:
 
 - 해당 조치 전까지 임시로 티미측 API Key를 만료
 
-![image.png](image1.png)
+![image.png](blog/2024-12-12-trouble/image1.png)
 
 - DB Index 처리 ⇒ 티미 연동의 경우 extcd(타업체 관리코드)를 통해 DB Update 쿼리를 진행
 
