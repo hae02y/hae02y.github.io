@@ -28,7 +28,8 @@ sidebar_position: 97
 - **ETC :** JWT, OAuth 2.0 (Google), Google SMTP
 
 ### 개인 기여
-- Backend (60%)
+
+- ##### **Backend (60%)**
 	- **회원 도메인 개발**
 		- 사용자 등록, 조회, 수정, 삭제 기능 (JPA + Spring Boot)
 	- **보안 설정**
@@ -71,6 +72,10 @@ Frontend 3명, Backend 3명, 디자이너 1명이서 함께 진행한 프로젝�
 </aside>
 
 ### 성과 지표
+
+
+<iframe src="${pageContext.request.contextPath}/pdf/220727.pdf">
+</iframe>
 
 ---
 ## 4. 개인 소감 및 자료
