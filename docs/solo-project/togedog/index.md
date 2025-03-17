@@ -51,13 +51,11 @@ sidebar_position: 97
 	![erd.png](erd.png)
     
 - 아키텍처
-    
-    어쩌고~ㅋㅋ
+	![infra](infra.png)
     
 
 ### 문제 해결 과정
 
-[프로젝트에서 직면한 도전 과제와 이를 해결하기 위한 접근 방법]
 
 
 ---
@@ -73,9 +71,8 @@ Frontend 3명, Backend 3명, 디자이너 1명이서 함께 진행한 프로젝�
 
 ### 성과 지표
 
+[pdf보기](checklist.pdf)
 
-<iframe src="${pageContext.request.contextPath}/pdf/220727.pdf">
-</iframe>
 
 ---
 ## 4. 개인 소감 및 자료
