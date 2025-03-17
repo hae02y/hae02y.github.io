@@ -28,15 +28,19 @@ sidebar_position: 97
 - **ETC :** JWT, OAuth 2.0 (Google), Google SMTP
 
 ### 개인 기여
-
-- **회원 도메인 개발**
-	- 사용자 등록, 조회, 수정, 삭제 기능 (JPA + Spring Boot)
-- **보안 설정**
-	- Spring Security를 활용한 비밀번호 암호화 및 JWT 인증 적용
-- **OAuth 2.0 연동**: Google OAuth 로그인 및 기존 로그인 방식과의 통합
-- **이메일 인증 기능**: SMTP를 활용한 인증 메일 발송 및 Redis 기반 인증 토큰 관리
-- **CI/CD 구축**: Github Actions + Docker + AWS를 활용한 배포 자동화 구축
-- **팀내 문서 관리** : API 설계 및 구현, 코드 리뷰, 성능 최적화 주도
+- Backend (60%)
+	- **회원 도메인 개발**
+		- 사용자 등록, 조회, 수정, 삭제 기능 (JPA + Spring Boot)
+	- **보안 설정**
+		- Spring Security를 활용한 비밀번호 암호화 및 JWT 인증 적용
+	- **OAuth 2.0 연동**
+		- Google OAuth 로그인 및 기존 로그인 방식과의 통합
+	- **이메일 인증 기능**
+		- SMTP를 활용한 인증 메일 발송 및 Redis 기반 인증 토큰 관리
+	- **CI/CD 구축**
+		- Github Actions + Docker + AWS를 활용한 배포 자동화 구축
+	- **팀내 문서 관리**
+		- API 설계 및 구현, 코드 리뷰, 성능 최적화 주도
 
 ---
 ## 2. 프로젝트 상세
