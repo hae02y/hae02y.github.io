@@ -45,6 +45,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "쿠키일까 헤더일까...",
+    "permalink": "/blog/cookie"
+  },
   "nextItem": {
     "title": "JPA에서 ID를 대하는 자세...!",
     "permalink": "/blog/springid"

@@ -1,0 +1,58 @@
+{
+  "permalink": "/blog/cookie",
+  "source": "@site/blog/2025-03-17-coockie/index.md",
+  "title": "쿠키일까 헤더일까...",
+  "description": "testfdfd",
+  "date": "2025-03-17T00:00:00.000Z",
+  "tags": [
+    {
+      "inline": true,
+      "label": "Security",
+      "permalink": "/blog/tags/security"
+    },
+    {
+      "inline": true,
+      "label": "spring",
+      "permalink": "/blog/tags/spring"
+    },
+    {
+      "inline": true,
+      "label": "Java",
+      "permalink": "/blog/tags/java"
+    }
+  ],
+  "readingTime": 0.005,
+  "hasTruncateMarker": false,
+  "authors": [
+    {
+      "name": "Hea02y",
+      "title": "developer @vestellalab",
+      "url": "https://github.com/hea02y",
+      "page": {
+        "permalink": "/blog/authors/haeyoung"
+      },
+      "socials": {
+        "github": "https://github.com/hae02y"
+      },
+      "imageURL": "https://avatars.githubusercontent.com/u/37237200?v=4",
+      "key": "haeyoung"
+    }
+  ],
+  "frontMatter": {
+    "slug": "cookie",
+    "title": "쿠키일까 헤더일까...",
+    "authors": [
+      "haeyoung"
+    ],
+    "tags": [
+      "Security",
+      "spring",
+      "Java"
+    ]
+  },
+  "unlisted": false,
+  "nextItem": {
+    "title": "\bMSSQL 사용하기",
+    "permalink": "/blog/mssql"
+  }
+}
