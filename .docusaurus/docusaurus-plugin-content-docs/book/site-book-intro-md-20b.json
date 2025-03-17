@@ -1,6 +1,6 @@
 {
   "id": "intro",
-  "title": "Plus",
+  "title": "Years",
   "description": "독서한 내용을 정리합니다.",
   "source": "@site/book/intro.md",
   "sourceDirName": ".",
@@ -10,13 +10,15 @@
   "unlisted": false,
   "tags": [],
   "version": "current",
+  "sidebarPosition": 1,
   "frontMatter": {
-    "title": "Plus",
-    "slug": "/"
+    "title": "Years",
+    "slug": "/",
+    "sidebar_position": 1
   },
   "sidebar": "defaultSidebar",
-  "previous": {
-    "title": "개발 관련 서적",
+  "next": {
+    "title": "2025",
     "permalink": "/book/develop/"
   }
 }

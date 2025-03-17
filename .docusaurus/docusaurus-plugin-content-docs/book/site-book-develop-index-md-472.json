@@ -1,6 +1,6 @@
 {
   "id": "develop/index",
-  "title": "개발 관련 서적",
+  "title": "2025",
   "description": "이런이런 내용이 참 좋았습니다.",
   "source": "@site/book/develop/index.md",
   "sourceDirName": "develop",
@@ -12,8 +12,8 @@
   "version": "current",
   "frontMatter": {},
   "sidebar": "defaultSidebar",
-  "next": {
-    "title": "Plus",
+  "previous": {
+    "title": "Years",
     "permalink": "/book/"
   }
 }

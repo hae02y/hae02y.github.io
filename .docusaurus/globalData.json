@@ -109,8 +109,8 @@
           "sidebars": {
             "defaultSidebar": {
               "link": {
-                "path": "/book/develop/",
-                "label": "개발 관련 서적"
+                "path": "/book/",
+                "label": "intro"
               }
             }
           }
