@@ -31,17 +31,27 @@ sidebar_position: 97
 
 - ##### **Backend (60%)**
 	- **회원 도메인 개발 (100%)**
-		- 사용자 등록, 조회, 수정, 삭제 기능 (JPA + Spring Boot)
+	    - Spring Boot + JPA 기반으로 회원 등록, 조회, 수정, 삭제 API 개발
+	    - Entity → DTO 변환 매퍼 적용하여 계층 간 데이터 변환 구조화
+	    - Querydsl 활용으로 복잡한 검색 조건 지원 및 성능 최적화
 	- **보안 설정 (100%)**
-		- Spring Security를 활용한 비밀번호 암호화 및 JWT 인증 적용
+	    - Spring Security + JWT 기반의 인증 및 권한 관리 구현
+	    - BCrypt 해싱 적용으로 사용자 비밀번호 안전하게 암호화
+	    - 인가 필터(JwtAuthenticationFilter) 적용하여 API 보호
 	- **OAuth 2.0 연동 (100%)**
-		- Google OAuth 로그인 및 기존 로그인 방식과의 통합
+	    - Google OAuth 2.0 로그인 및 JWT 토큰 기반 세션 유지
+	    - OAuth 2.0 + 기존 로그인 방식과의 동시 지원을 위한 인증 흐름 설계
+	    - Redis 기반의 OAuth 인증 상태 저장 및 세션 무효화 로직 구현
 	- **이메일 인증 기능 (100%)**
-		- SMTP를 활용한 인증 메일 발송 및 Redis 기반 인증 토큰 관리
+	    - Google SMTP 연동하여 회원가입 시 이메일 인증 로직 개발
+	    - Redis를 활용한 인증 코드 만료 관리 (TTL 적용)
+	    - 비동기 이메일 발송 (@Async) 적용하여 API 응답 시간 최적화
 	- **CI/CD 구축 (80%)**
-		- Github Actions + Docker + AWS를 활용한 배포 자동화 구축
-	- **팀내 문서 관리 (50%)**
-		- API 설계 및 구현, 코드 리뷰, 성능 최적화 주도
+	    - Github Actions + Docker + AWS EC2를 이용한 배포 자동화 파이프라인 구축
+	    - 무중단 배포를 위해 Nginx + Blue-Green Deployment 전략 적용
+	    - S3를 활용한 정적 파일(프로필 이미지 등) 저장 구조 설계
+	- **팀 내 문서 관리 (50%)**
+	    - API 명세서, 코드 컨벤션 설정 및 PR리뷰 프로세스 정립
 
 ---
 ## 2. 프로젝트 상세
