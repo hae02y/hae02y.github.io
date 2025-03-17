@@ -4,7 +4,7 @@
 # 2025
 
 ### 📚 읽는중...
-- 
+- [마이크로서비스 패턴 - 크리스리처드슨(길벗)](https://product.kyobobook.co.kr/detail/S000001834349?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1)
 
 ---
 
