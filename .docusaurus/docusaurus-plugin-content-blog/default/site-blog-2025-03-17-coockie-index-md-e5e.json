@@ -2,7 +2,7 @@
   "permalink": "/blog/cookie",
   "source": "@site/blog/2025-03-17-coockie/index.md",
   "title": "쿠키일까 헤더일까...",
-  "description": "testfdfd",
+  "description": "오늘의 고민! 스프링일까.. 쿠키일까.. 헤더일까...",
   "date": "2025-03-17T00:00:00.000Z",
   "tags": [
     {
@@ -21,7 +21,7 @@
       "permalink": "/blog/tags/java"
     }
   ],
-  "readingTime": 0.005,
+  "readingTime": 0.09,
   "hasTruncateMarker": false,
   "authors": [
     {
