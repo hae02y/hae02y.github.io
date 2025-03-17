@@ -1,6 +1,6 @@
 {
   "id": "intro",
-  "title": "Years",
+  "title": "Intro",
   "description": "독서한 내용을 정리합니다.",
   "source": "@site/book/intro.md",
   "sourceDirName": ".",
@@ -12,7 +12,7 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "title": "Years",
+    "title": "Intro",
     "slug": "/",
     "sidebar_position": 1
   },

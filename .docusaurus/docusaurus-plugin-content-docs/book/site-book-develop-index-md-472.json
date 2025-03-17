@@ -1,7 +1,7 @@
 {
   "id": "develop/index",
   "title": "2025",
-  "description": "이런이런 내용이 참 좋았습니다.",
+  "description": "📚 읽는중...",
   "source": "@site/book/develop/index.md",
   "sourceDirName": "develop",
   "slug": "/develop/",
@@ -13,7 +13,7 @@
   "frontMatter": {},
   "sidebar": "defaultSidebar",
   "previous": {
-    "title": "Years",
+    "title": "Intro",
     "permalink": "/book/"
   }
 }
