@@ -283,6 +283,11 @@ export default [
     exact: true
   },
   {
+    path: '/login',
+    component: ComponentCreator('/login', 'f43'),
+    exact: true
+  },
+  {
     path: '/markdown-page',
     component: ComponentCreator('/markdown-page', '3d7'),
     exact: true

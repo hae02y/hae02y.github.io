@@ -38,6 +38,11 @@ const config: Config = {
   organizationName: 'hae02y', // Usually your GitHub org/user name.
   projectName: 'hae02y', // Usually your repo name.
 
+  customFields: {
+    authid : 'test',
+    authpw : '1234'
+  }
+
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
