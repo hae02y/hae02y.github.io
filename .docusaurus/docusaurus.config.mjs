@@ -22,6 +22,10 @@ export default {
   "baseUrl": "/",
   "organizationName": "hae02y",
   "projectName": "hae02y",
+  "customFields": {
+    "authid": "test",
+    "authpw": "1234"
+  },
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
@@ -372,7 +376,6 @@ export default {
   "staticDirectories": [
     "static"
   ],
-  "customFields": {},
   "scripts": [],
   "headTags": [],
   "stylesheets": [],

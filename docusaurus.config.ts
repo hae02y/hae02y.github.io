@@ -41,7 +41,7 @@ const config: Config = {
   customFields: {
     authid : 'test',
     authpw : '1234'
-  }
+  },
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',

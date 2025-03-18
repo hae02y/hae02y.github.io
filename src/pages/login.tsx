@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useHistory } from '@docusaurus/router';
+import useDocusaurusContext from "@docusaurus/core/lib/client/exports/useDocusaurusContext";
 
 export default function LoginPage() {
     const history = useHistory();
+    const { siteConfig } = useDocusaurusContext(); // Docusaurus config 가져오기
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const AUTH_ID = window.globalThis?.authid || 'default_id';
-    const AUTH_PASSWORD = window.globalThis?.authpw || 'default_password';
+    const AUTH_ID = siteConfig.customFields?.authid || 'default_id';
+    const AUTH_PASSWORD = siteConfig.customFields?.authpw || 'default_password';
 
     const handleLogin = (e) => {
         e.preventDefault();
+
+        console.log(id)
+        console.log(password)
+        console.log(AUTH_ID)
+        console.log(AUTH_PASSWORD)
 
         if (id === AUTH_ID && password === AUTH_PASSWORD) {
             localStorage.setItem('authToken', 'authenticated');

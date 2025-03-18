@@ -14,14 +14,14 @@
       "date": "2025-03-17T00:00:00.000Z"
     },
     {
-      "title": "JPA에서 ID를 대하는 자세...!",
-      "permalink": "/blog/springid",
+      "title": "\bMSSQL 사용하기",
+      "permalink": "/blog/mssql",
       "unlisted": false,
       "date": "2025-03-15T00:00:00.000Z"
     },
     {
-      "title": "\bMSSQL 사용하기",
-      "permalink": "/blog/mssql",
+      "title": "JPA에서 ID를 대하는 자세...!",
+      "permalink": "/blog/springid",
       "unlisted": false,
       "date": "2025-03-15T00:00:00.000Z"
     },
