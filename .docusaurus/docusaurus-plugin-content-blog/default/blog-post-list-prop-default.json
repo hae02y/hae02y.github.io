@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "알고쓰자! 게터 세터!",
+      "permalink": "/blog/gettersetter",
+      "unlisted": false,
+      "date": "2025-03-18T00:00:00.000Z"
+    },
+    {
       "title": "쿠키일까 헤더일까...",
       "permalink": "/blog/cookie",
       "unlisted": false,

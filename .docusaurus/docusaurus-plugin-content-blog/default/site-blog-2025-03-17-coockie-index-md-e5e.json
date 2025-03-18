@@ -51,6 +51,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "알고쓰자! 게터 세터!",
+    "permalink": "/blog/gettersetter"
+  },
   "nextItem": {
     "title": "\bMSSQL 사용하기",
     "permalink": "/blog/mssql"

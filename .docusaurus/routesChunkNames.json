@@ -42,13 +42,16 @@
       "plugin": "plugin---docusaurus-debugb-38-ad3"
     }
   },
-  "/blog-c4a": {
+  "/blog-09d": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-1-e-8-5cf"
+      },
       {
         "content": "content---blogc-0-b-e43"
       },
@@ -75,9 +78,6 @@
       },
       {
         "content": "content---bloga-8-f-600"
-      },
-      {
-        "content": "content---blog-984-5e8"
       }
     ],
     "__props": "__props---blogc-15-573"
@@ -100,7 +100,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authorsef-8-44f"
   },
-  "/blog/authors/haeyoung-9e4": {
+  "/blog/authors/haeyoung-45c": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -109,6 +109,9 @@
       "plugin": "plugin---blog-369-22e"
     },
     "items": [
+      {
+        "content": "content---blog-1-e-8-5cf"
+      },
       {
         "content": "content---blogc-0-b-e43"
       },
@@ -135,15 +138,12 @@
       },
       {
         "content": "content---bloga-8-f-600"
-      },
-      {
-        "content": "content---blog-984-5e8"
       }
     ],
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authors-haeyoungc-0-c-72c"
   },
-  "/blog/authors/haeyoung/authors/2-a00": {
+  "/blog/authors/haeyoung/authors/2-6a7": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -152,6 +152,9 @@
       "plugin": "plugin---blog-369-22e"
     },
     "items": [
+      {
+        "content": "content---blog-984-5e8"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-20-ce-d2b"
       },
@@ -178,15 +181,12 @@
       },
       {
         "content": "content---blog-authors-haeyoung-authors-211-e-2a2"
-      },
-      {
-        "content": "content---blog-authors-haeyoung-authors-2199-2ad"
       }
     ],
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authors-haeyoung-authors-2-cb-8-9c0"
   },
-  "/blog/authors/haeyoung/authors/3-c55": {
+  "/blog/authors/haeyoung/authors/3-08b": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -195,6 +195,9 @@
       "plugin": "plugin---blog-369-22e"
     },
     "items": [
+      {
+        "content": "content---blog-authors-haeyoung-authors-2199-2ad"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-3573-57a"
       }
@@ -267,6 +270,17 @@
     },
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-designprojectdb-9-944"
+  },
+  "/blog/gettersetter-f8c": {
+    "__comp": "__comp---theme-blog-post-pageccc-cab",
+    "__context": {
+      "data": {
+        "blogMetadata": "blogMetadata---blog-authorsace-e7d"
+      },
+      "plugin": "plugin---blog-369-22e"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "content": "content---blog-2025-03-18-gettersetter-471-722"
   },
   "/blog/infra-fc9": {
     "__comp": "__comp---theme-blog-post-pageccc-cab",
@@ -356,13 +370,16 @@
     "sidebar": "sidebar---blog-814-8ac",
     "content": "content---blog-onceperfilteredf-d34"
   },
-  "/blog/page/2-6db": {
+  "/blog/page/2-7e9": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-984-5e8"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-20-ce-d2b"
       },
@@ -389,20 +406,20 @@
       },
       {
         "content": "content---blog-authors-haeyoung-authors-211-e-2a2"
-      },
-      {
-        "content": "content---blog-authors-haeyoung-authors-2199-2ad"
       }
     ],
     "__props": "__props---blog-page-28-ea-cf7"
   },
-  "/blog/page/3-f56": {
+  "/blog/page/3-e74": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-authors-haeyoung-authors-2199-2ad"
+      },
       {
         "content": "content---blog-authors-haeyoung-authors-3573-57a"
       }
@@ -594,13 +611,16 @@
     ],
     "__props": "__props---blog-tags-infraa-05-c8d"
   },
-  "/blog/tags/java-3ee": {
+  "/blog/tags/java-b7c": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-369-22e"
     },
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
+      {
+        "content": "content---blog-1-e-8-5cf"
+      },
       {
         "content": "content---blogc-0-b-e43"
       },
