@@ -33,17 +33,17 @@ export default function LoginPage() {
             <div className="text-center">
                 {/* 프로필 이미지 */}
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white mx-auto shadow-lg">
-                    <img src="/" alt="User Avatar" className="w-full h-full object-cover" />
+                    <img src="/img/camel.png" alt="User Avatar" className="w-full h-full object-cover" />
                 </div>
 
                 {/* 사용자 이름 */}
-                <h2 className="mt-4 text-white text-2xl font-semibold">훈이</h2>
+                <h2 className="mt-4 text-white text-2xl font-semibold">{AUTH_ID}</h2>
 
                 {/* 암호 입력 */}
                 <form onSubmit={handleLogin} className="mt-4">
                     <input
                         type="password"
-                        className="w-72 p-3 text-center text-gray-700 bg-white bg-opacity-50 rounded-full border-none focus:ring-2 focus:ring-white focus:outline-none placeholder-gray-200 transition-all"
+                        className="w-72 p-3 text-center text-gray-700 bg-white bg-opacity-50 rounded-full border-none focus:ring-2 focus:ring-white focus:outline-none placeholder-gray-400 transition-all"
                         placeholder="암호 입력"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
