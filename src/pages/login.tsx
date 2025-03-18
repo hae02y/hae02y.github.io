@@ -12,15 +12,9 @@ export default function LoginPage() {
     const AUTH_ID = siteConfig.customFields?.authid || 'default_id';
     const AUTH_PASSWORD = siteConfig.customFields?.authpw || 'default_password';
 
-    const handleLogin = (e) => {
+    const handleLogin = (e:any) => {
         e.preventDefault();
-
-        console.log(id)
-        console.log(password)
-        console.log(AUTH_ID)
-        console.log(AUTH_PASSWORD)
-
-        if (id === AUTH_ID && password === AUTH_PASSWORD) {
+        if (password === AUTH_PASSWORD) {
             localStorage.setItem('authToken', 'authenticated');
             history.push('/docs/intro'); // 로그인 성공 시 이동할 페이지
         } else {
@@ -28,12 +22,16 @@ export default function LoginPage() {
         }
     };
 
+    const handleBefore = () => {
+        history.push('/'); // 로그인 성공 시 이동할 페이지
+    }
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-gray-300 to-gray-500">
             <div className="text-center">
                 {/* 프로필 이미지 */}
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white mx-auto shadow-lg">
-                    <img src="/img/camel.png" alt="User Avatar" className="w-full h-full object-cover" />
+                    <img src="/img/camel.png" alt="User Avatar" className="w-full h-full object-cover"/>
                 </div>
 
                 {/* 사용자 이름 */}
@@ -60,7 +58,11 @@ export default function LoginPage() {
 
                 {/* Touch ID 안내문 */}
                 <p className="mt-4 text-white text-sm opacity-80">
-                    <span className="font-semibold">Touch ID</span>를 활성화하려면 사용자 암호가 필요합니다.
+                    <span className="font-semibold">Portfolio</span>를 활성화하려면 사용자 암호가 필요합니다.
+                </p>
+
+                <p onClick={handleBefore} className="cursor-pointer mt-4 text-white text-sm opacity-80">
+                    <span className="font-semibold">뒤로가기</span>
                 </p>
             </div>
         </div>
