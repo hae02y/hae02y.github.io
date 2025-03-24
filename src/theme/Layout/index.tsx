@@ -6,8 +6,8 @@ export default function LayoutWrapper(props) {
     const history = useHistory();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    // 로그인 검증이 필요한 페이지 설정 (`/docs` 경로에서만 인증 필요)
     const authRequired = history.location.pathname.startsWith('/docs');
+    const authRequired2 = history.location.pathname.startsWith('/me');
 
     useEffect(() => {
         const token = sessionStorage.getItem('authToken');
@@ -19,7 +19,7 @@ export default function LayoutWrapper(props) {
         }
     }, [history.location.pathname]);
 
-    if (authRequired && !isAuthenticated) {
+    if (authRequired || authRequired2 && !isAuthenticated) {
         return null; // 로그인되지 않은 경우 `/docs` 내용을 숨김
     }
 
