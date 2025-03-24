@@ -7,7 +7,6 @@ export default function LayoutWrapper(props) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const authRequired = history.location.pathname.startsWith('/docs');
-    const authRequired2 = history.location.pathname.startsWith('/me');
 
     useEffect(() => {
         const token = sessionStorage.getItem('authToken');
