@@ -19,7 +19,7 @@ export default function LayoutWrapper(props) {
         }
     }, [history.location.pathname]);
 
-    if (authRequired || authRequired2 && !isAuthenticated) {
+    if (authRequired && !isAuthenticated) {
         return null; // 로그인되지 않은 경우 `/docs` 내용을 숨김
     }
 
