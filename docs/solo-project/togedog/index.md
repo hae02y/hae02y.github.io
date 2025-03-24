@@ -116,7 +116,7 @@ sidebar_position: 97
 <details>  
 
     <summary>    
-    구현 이미지 보기
+    구현 페이지 보기
     </summary>  
 
 | 로그인 페이지                                                                                                                                                     | 회원가입 페이지                                                                                                                                                     |

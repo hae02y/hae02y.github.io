@@ -4,54 +4,133 @@ sidebar_position: 96
 
 # 여수로
 
-Documents are **groups of pages** connected through:
 
-- a **sidebar**
-- **previous/next navigation**
-- **versioning**
+## 1. 프로젝트 개요
 
-## Create your first Doc
 
-Create a Markdown file at `docs/hello.md`:
+<aside>
 
-```md title="docs/hello.md"
-# Hello
+**소개**
 
-This is my **first Docusaurus document**!
-```
-
-A new document is now available at [http://localhost:3000/docs/hello](http://localhost:3000/docs/hello).
-
-## Configure the Sidebar
-
-Docusaurus automatically **creates a sidebar** from the `docs` folder.
-
-Add metadata to customize the sidebar label and position:
-
-```js title="docs/hello.md"
----
-sidebar_label: 'Hi!'
-sidebar_position: 3
 ---
 
-# Hello
+- **프로젝트명** : 투게독 - 반려동물과의 추억으로 우리만의 지도를 채워보세요!
+- **기간** : 2024.01.03 ~ 2024.02.03 (10주) 
+- [🔗 레포지토리 링크](https://github.com/E24I/TOGEDOG)
+</aside>
 
-This is my **first Docusaurus document**!
-```
+### 핵심 기술 스택
 
-It is also possible to create your sidebar explicitly in `sidebars.js`:
+- **Backend:** Java, Spring Boot, Spring Security, JPA, Hibernate
+- **Database:** MySQL, AWS RDS, Redis
+- **CI/CD & DevOps:** Docker, AWS EC2, S3, Github Actions
+- **ETC :** JWT, OAuth 2.0 (Google), Google SMTP
 
-```js title="sidebars.js"
-export default {
-  tutorialSidebar: [
-    'intro',
-    // highlight-next-line
-    'hello',
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['solo-project/create-a-document'],
-    },
-  ],
-};
-```
+### 개인 기여
+
+- ##### **Backend (60%)**
+  - **회원 도메인 개발 (100%)**
+      - Spring Boot + JPA 기반으로 회원 등록, 조회, 수정, 삭제 API 개발
+      - Entity → DTO 변환 매퍼 적용하여 계층 간 데이터 변환 구조화
+      - Querydsl 활용으로 복잡한 검색 조건 지원 및 성능 최적화
+  - **보안 설정 (100%)**
+      - Spring Security + JWT 기반의 인증 및 권한 관리 구현
+      - BCrypt 해싱 적용으로 사용자 비밀번호 안전하게 암호화
+      - 인가 필터(JwtAuthenticationFilter) 적용하여 API 보호
+  - **OAuth 2.0 연동 (100%)**
+      - Google OAuth 2.0 로그인 및 JWT 토큰 기반 세션 유지
+      - OAuth 2.0 + 기존 로그인 방식과의 동시 지원을 위한 인증 흐름 설계
+      - Redis 기반의 OAuth 인증 상태 저장 및 세션 무효화 로직 구현
+  - **이메일 인증 기능 (100%)**
+      - Google SMTP 연동하여 회원가입 시 이메일 인증 로직 개발
+      - Redis를 활용한 인증 코드 만료 관리 (TTL 적용)
+      - 비동기 이메일 발송 (@Async) 적용하여 API 응답 시간 최적화
+  - **CI/CD 구축 (80%)**
+      - Github Actions + Docker + AWS EC2를 이용한 배포 자동화 파이프라인 구축
+      - 무중단 배포를 위해 Nginx + Blue-Green Deployment 전략 적용
+      - S3를 활용한 정적 파일(프로필 이미지 등) 저장 구조 설계
+  - **팀 내 문서 관리 (50%)**
+      - API 명세서, 코드 컨벤션 설정 및 PR리뷰 프로세스 정립
+
+---
+## 2. 프로젝트 상세
+
+### 아키텍처 설계
+- ERD 설계를 진행하였습니다. 하단 이미지 처럼 ERD를 설계하였습니다.
+    
+- 서비스 아키텍처
+    
+
+### 문제 해결 과정
+- **JWT 및 OAuth 2.0을 활용한 인증 시스템 구축**
+    
+    - JWT 토큰 기반 인증으로 무상태(State-less) 방식 구현
+    - OAuth 2.0을 활용하여 Google 로그인 지원
+    - `// 코드 삽입: JWT 인증 필터 및 OAuth 2.0 처리 코드`
+- **Redis 기반 이메일 인증 시스템**
+    
+    - SMTP를 사용한 이메일 인증 및 Redis에 토큰 저장하여 일정 시간 내 확인 가능하도록 구현
+    - `// 코드 삽입: Redis 활용 이메일 인증 코드`
+- **CI/CD 자동화 및 배포 최적화**
+    
+    - Github Actions와 Docker를 이용한 자동 배포 시스템 구축
+    - AWS S3 및 EC2를 이용한 배포 환경 구성
+    - `// 코드 삽입: CI/CD 설정 파일`
+- **트랜잭션 및 데이터 정합성 문제 해결**
+    
+    - JPA 트랜잭션 관리 및 `@Transactional`을 활용하여 데이터 정합성 유지
+    - `// 코드 삽입: 트랜잭션 처리 코드`
+
+---
+## 3. 프로젝트 성과
+
+### 결과 및 피드백
+<aside> 
+- 백엔드 개발자로서, 팀에 기여 하였습니다. 문제없이 프로젝트를 진행하였습니다. 좋은 결과를 보였습니다. 팀원들에게 열심히하고 열정있다는 키워드를 받았습니다.
+</aside>
+
+
+### 성과 지표
+프로젝트의 핵심 기능이 정상적으로 동작하며, 주요 지표 분석 결과는 아래와 같습니다.
+- API 응답 속도 평균 200ms 이하 유지
+- OAuth 로그인 성공률 99% 이상
+- 자동화된 배포 성공률 100%
+
+
+---
+## 4. 개인 소감 및 자료
+### 느낀점
+- 실무 수준의 **OAuth 2.0, JWT 인증 시스템** 경험하며 보안과 인증의 중요성 학습
+- **Github Actions 기반 CI/CD 구축**을 통해 배포 자동화의 필요성을 체감
+- **Redis & RDS 최적화**를 경험하며 데이터 관리 전략 이해
+- 코드 리뷰와 협업을 통해 **팀워크의 중요성**을 배움
+
+### 참고 자료
+
+<details>  
+
+    <summary>    
+    구현 페이지 보기
+    </summary>  
+
+| 로그인 페이지                                                                                                                                                     | 회원가입 페이지                                                                                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <img width="400" alt="스크린샷 2023-09-18 오전 1 39 50" src="https://github.com/JB0129/TOGEDOG/assets/130051470/87bd49ba-1e31-4628-b2bf-3253ebdf7fa9" /> | <img width="400px" alt="스크린샷 2023-09-14 오후 2 49 40" src="https://github.com/JB0129/TOGEDOG/assets/130051470/c6d12e14-090b-4d3f-ab74-dbc8f865d073" /> |
+
+| 피드 페이지                                                                                                                                                        | 피드 상세 페이지                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <img width="400px" alt="스크린샷 2023-09-18 오전 1 40 25" src="https://github.com/JB0129/TOGEDOG/assets/130051470/e849a4aa-bf1a-47a6-a090-b4730e0530b9" /> | <img width="400px" alt="스크린샷 2023-09-14 오후 2 53 21" src="https://github.com/JB0129/TOGEDOG/assets/130051470/2d8df5f7-493b-46d8-b3a5-58ad503dee40" /> |
+
+| 피드 생성 페이지                                                                                                                                                    | 펫 지도 페이지                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <img width="400px" alt="스크린샷 2023-09-14 오후 2 56 37" src="https://github.com/JB0129/TOGEDOG/assets/130051470/35737524-9956-4010-b186-108e9122b9c0" /> | <img width="400px" alt="스크린샷 2023-09-14 오후 2 56 52" src="https://github.com/JB0129/TOGEDOG/assets/130051470/2448e172-cf32-4044-88a7-549ebc912999" /> |
+
+| 마이 페이지                                                                                                                                                         | 채팅 페이지                                                                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <img width="400px" alt="스크린샷 2023-09-15 오전 10 50 06" src="https://github.com/JB0129/TOGEDOG/assets/130051470/d954f2c5-bc62-4b8a-94c0-14589389e809" /> | <img width="400px" alt="스크린샷 2023-09-14 오후 2 58 13" src="https://github.com/JB0129/TOGEDOG/assets/130051470/4fa1c675-7714-4357-a98a-b736b113722c" /> |
+
+
+</details>
+
+---
+

@@ -4,48 +4,23 @@
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 47.4% 11.2%;
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 47.4% 11.2%;
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 47.4% 11.2%;
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-        --destructive: 0 100% 50%;
-        --destructive-foreground: 210 40% 98%;
-        --ring: 215 20.2% 65.1%;
-        --radius: 0.5rem;
+        --primary: #2d3748; /* 기본 텍스트 색상 */
+        --secondary: #718096; /* 보조 텍스트 색상 */
+        --accent: #3182ce; /* 강조 색상 */
+        --accent-rgb: 49, 130, 206; /* RGB 정의 */
+        --background: #ffffff; /* 기본 배경 색상 */
+        --background-dark: #1a202c; /* 다크 모드 배경 색상 */
+        --bg-gradient: #f7fafc; /* 그라디언트 배경 색상 */
     }
 
     .dark {
-        --background: 224 71% 4%;
-        --foreground: 213 31% 91%;
-        --muted: 223 47% 11%;
-        --muted-foreground: 215.4 16.3% 56.9%;
-        --accent: 216 34% 17%;
-        --accent-foreground: 210 40% 98%;
-        --popover: 224 71% 4%;
-        --popover-foreground: 215 20.2% 65.1%;
-        --border: 216 34% 17%;
-        --input: 216 34% 17%;
-        --card: 224 71% 4%;
-        --card-foreground: 213 31% 91%;
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 1.2%;
-        --secondary: 222.2 47.4% 11.2%;
-        --secondary-foreground: 210 40% 98%;
-        --destructive: 0 63% 31%;
-        --destructive-foreground: 210 40% 98%;
-        --ring: 216 34% 17%;
+        --primary: #e2e8f0; /* 라이트 텍스트 색상 */
+        --secondary: #a0aec0; /* 보조 텍스트 색상 */
+        --accent: #63b3ed; /* 강조 색상 */
+        --accent-rgb: 99, 179, 237; /* RGB 정의 */
+        --background: #1a202c; /* 다크 모드 배경 */
+        --background-dark: #2d3748; /* 더 어두운 배경 */
+        --bg-gradient: #23262C;
     }
 }
 
