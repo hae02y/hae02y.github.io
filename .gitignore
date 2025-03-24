@@ -30,3 +30,5 @@ psd
 thumb
 sketch
 
+*.DS_Store
+.docusaurus/
