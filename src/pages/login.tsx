@@ -9,13 +9,13 @@ export default function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const AUTH_ID = siteConfig.customFields?.authid || 'default_id';
+    const AUTH_ID:any = siteConfig.customFields?.authid || 'default_id';
     const AUTH_PASSWORD = siteConfig.customFields?.authpw || 'default_password';
 
     const handleLogin = (e:any) => {
         e.preventDefault();
         if (password === AUTH_PASSWORD) {
-            localStorage.setItem('authToken', 'authenticated');
+            sessionStorage.setItem('authToken', 'authenticated');
             history.push('/docs/intro'); // 로그인 성공 시 이동할 페이지
         } else {
             setError('ID 또는 비밀번호가 잘못되었습니다.');

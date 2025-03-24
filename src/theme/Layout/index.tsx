@@ -10,7 +10,7 @@ export default function LayoutWrapper(props) {
     const authRequired = history.location.pathname.startsWith('/docs');
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = sessionStorage.getItem('authToken');
 
         if (token) {
             setIsAuthenticated(true);
