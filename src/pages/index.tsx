@@ -6,8 +6,7 @@ import MovingCamel from '@site/src/components/MovingCamel';
 import {OrbitControls} from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import TerminalDialog from "@site/src/components/TerminalDialog";
-import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
-import RecentPosts from "@site/src/components/RecentPost";
+import FloatingTags from "@site/src/components/FloatingTags";
 
 
 
@@ -17,10 +16,6 @@ function HomepageHeader() {
     return (<header></header>
     );
 }
-
-// src/components/RecentPosts.tsx
-
-
 
 
 function CamelSection() {
@@ -40,15 +35,13 @@ function CamelSection() {
                     <div
                         className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center"
                     >
-                    <RecentPosts />
-
+                    <FloatingTags />
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
 
 export default function Home() {
     const {siteConfig} = useDocusaurusContext();
@@ -63,3 +56,4 @@ export default function Home() {
         </Layout>
     );
 }
+
