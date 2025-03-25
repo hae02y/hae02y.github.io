@@ -39,9 +39,17 @@ function CamelSection() {
 
                     {/* 우측 텍스트 영역 */}
                     <div
-                        className="h-1/2 w-full lg:h-[100%] lg:w-1/2 flex items-center justify-center">
-                        <img src="/me.jpg" alt="" />
+                        className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900">
+                        <div
+                            className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-white">
+                            <img
+                                src="/me.jpg"
+                                alt="Profile"
+                                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
