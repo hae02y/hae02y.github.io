@@ -24,33 +24,17 @@ function CamelSection() {
             <div className="h-full flex w-full flex-col">
                 <div className="lg:flex h-full">
                     {/* 좌측: 3D Camel */}
-                    <div className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center">
-                        <TerminalDialog />
+                    <div
+                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-white dark:bg-gradient-to-br from-black via-gray-800 to-gray-900"
+                    >
+                        <TerminalDialog/>
                     </div>
 
                     {/* 우측: 프로필 + 다이얼로그 */}
                     <div
                         className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900"
                     >
-                        <Canvas
-                            style={{ background: 'skyblue' }} // 하늘 배경
-                            camera={{ position: [0, 3, 7], fov: 50 }}
-                        >
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[5, 10, 5]} intensity={1.2} />
 
-                            <Suspense fallback={null}>
-                                <MovingCamel />
-                            </Suspense>
-
-                            {/* 바닥 풀판 */}
-                            <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-                                <planeGeometry args={[50, 50]} />
-                                <meshStandardMaterial color="green" />
-                            </mesh>
-
-                            <OrbitControls />
-                        </Canvas>
                     </div>
                 </div>
             </div>
