@@ -25,7 +25,7 @@ export default function FloatingTags() {
         if (selectedTag === '#낙타') {
             return (
                 <div className="w-full h-[400px]">
-                   
+
                 </div>
             );
         }
