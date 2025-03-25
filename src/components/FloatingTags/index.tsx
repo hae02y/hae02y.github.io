@@ -1,5 +1,4 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
 
 const getRandomOffset = () => Math.floor(Math.random() * 200 - 100); // -100 ~ +100
 
@@ -17,23 +16,30 @@ export default function FloatingTags() {
 
     return (
         <div className="relative w-full h-full overflow-hidden flex flex-wrap justify-center items-center gap-4">
-            {myTags.map((tag, index) => {
+            {myTags.map((tag) => {
                 const controls = useAnimation();
 
                 const handleMouseEnter = () => {
                     controls.start({
                         x: getRandomOffset(),
                         y: getRandomOffset(),
-                        transition: { type: 'spring', stiffness: 100, damping: 10 },
+                        transition: { type: 'spring', stiffness: 30, damping: 5 },
                     });
+                };
+
+                const handleClick = () => {
+                    console.log(`🧠 태그 클릭됨: ${tag}`);
+                    alert(`이 태그는 "${tag}" 입니다.`);
                 };
 
                 return (
                     <motion.div
                         key={tag}
-                        className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-xl cursor-pointer text-sm font-medium"
+                        className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-xl cursor-pointer text-sm font-medium select-none"
                         animate={controls}
                         onMouseEnter={handleMouseEnter}
+                        onClick={handleClick}
+                        whileTap={{ scale: 0.95 }}
                     >
                         {tag}
                     </motion.div>
