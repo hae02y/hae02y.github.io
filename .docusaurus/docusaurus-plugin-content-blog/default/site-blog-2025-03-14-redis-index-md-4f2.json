@@ -52,8 +52,8 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "\bMSSQL 사용하기",
-    "permalink": "/blog/mssql"
+    "title": "JPA에서 ID를 대하는 자세...!",
+    "permalink": "/blog/springid"
   },
   "nextItem": {
     "title": "\b설계에서 겪었던 내문제",

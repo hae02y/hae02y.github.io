@@ -25,12 +25,7 @@ export default function FloatingTags() {
         if (selectedTag === '#낙타') {
             return (
                 <div className="w-full h-[400px]">
-                    <Canvas>
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[2, 5, 2]} intensity={1} />
-                        <MovingCamel />
-                        <OrbitControls />
-                    </Canvas>
+                   
                 </div>
             );
         }
