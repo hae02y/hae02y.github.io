@@ -15,6 +15,7 @@ function HomepageHeader() {
     );
 }
 
+
 function CamelSection() {
     const { siteConfig } = useDocusaurusContext();
 
@@ -65,7 +66,6 @@ export default function Home() {
             title={`${siteConfig.title} 블Lo그`}
             description="Description will go into a meta tag in <head />"
         >
-            <HomepageHeader/>
             <main>
                 <CamelSection/>
             </main>
