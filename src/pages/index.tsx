@@ -2,16 +2,10 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import MacTerminal from "@site/src/components/MacTerminal";
 import MovingCamel from '@site/src/components/MovingCamel';
 import {OrbitControls} from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-    DialogClose,
-} from "@site/src/components/ui/dialog";
+import TerminalDialog from "@site/src/components/TerminalDialog";
 
 
 function HomepageHeader() {
@@ -50,7 +44,7 @@ function CamelSection() {
                     <div
                         className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900"
                     >
-                        <TermainalDialog />
+                        <TerminalDialog />
                     </div>
                 </div>
             </div>
