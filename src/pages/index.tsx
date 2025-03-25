@@ -50,25 +50,7 @@ function CamelSection() {
                     <div
                         className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900"
                     >
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <div
-                                    className="cursor-pointer relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-white transition-transform hover:scale-105"
-                                >
-                                    <img
-                                        src="/me.jpg"
-                                        alt="Profile"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            </DialogTrigger>
-                            <DialogContent className="max-w-4xl">
-                                <MacTerminal
-                                    title={siteConfig.title}
-                                    version={siteConfig.tagline}
-                                />
-                            </DialogContent>
-                        </Dialog>
+                        <TermainalDialog />
                     </div>
                 </div>
             </div>
