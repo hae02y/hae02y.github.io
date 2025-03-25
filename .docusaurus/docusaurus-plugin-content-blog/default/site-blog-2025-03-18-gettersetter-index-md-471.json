@@ -39,6 +39,10 @@
     ]
   },
   "unlisted": false,
+  "prevItem": {
+    "title": "스웨거 미친 적용방법",
+    "permalink": "/blog/swagger"
+  },
   "nextItem": {
     "title": "쿠키일까 헤더일까...",
     "permalink": "/blog/cookie"

@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '09d'),
+    component: ComponentCreator('/blog', 'ee2'),
     exact: true
   },
   {
@@ -54,17 +54,17 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '45c'),
+    component: ComponentCreator('/blog/authors/haeyoung', '437'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '6a7'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '703'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '08b'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '790'),
     exact: true
   },
   {
@@ -144,12 +144,12 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', '7e9'),
+    component: ComponentCreator('/blog/page/2', '4b1'),
     exact: true
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', 'e74'),
+    component: ComponentCreator('/blog/page/3', '584'),
     exact: true
   },
   {
@@ -175,6 +175,11 @@ export default [
   {
     path: '/blog/study',
     component: ComponentCreator('/blog/study', '600'),
+    exact: true
+  },
+  {
+    path: '/blog/swagger',
+    component: ComponentCreator('/blog/swagger', '3fd'),
     exact: true
   },
   {
@@ -204,7 +209,7 @@ export default [
   },
   {
     path: '/blog/tags/db',
-    component: ComponentCreator('/blog/tags/db', '681'),
+    component: ComponentCreator('/blog/tags/db', 'eec'),
     exact: true
   },
   {
@@ -224,7 +229,7 @@ export default [
   },
   {
     path: '/blog/tags/java',
-    component: ComponentCreator('/blog/tags/java', 'b7c'),
+    component: ComponentCreator('/blog/tags/java', '954'),
     exact: true
   },
   {
@@ -265,6 +270,11 @@ export default [
   {
     path: '/blog/tags/spring',
     component: ComponentCreator('/blog/tags/spring', '05a'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/swagger',
+    component: ComponentCreator('/blog/tags/swagger', '4e5'),
     exact: true
   },
   {
