@@ -25,6 +25,13 @@ function CamelSection() {
                 <div className="lg:flex h-full">
                     {/* 좌측: 3D Camel */}
                     <div className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center">
+                        <TerminalDialog />
+                    </div>
+
+                    {/* 우측: 프로필 + 다이얼로그 */}
+                    <div
+                        className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900"
+                    >
                         <Canvas
                             style={{ background: 'skyblue' }} // 하늘 배경
                             camera={{ position: [0, 3, 7], fov: 50 }}
@@ -44,13 +51,6 @@ function CamelSection() {
 
                             <OrbitControls />
                         </Canvas>
-                    </div>
-
-                    {/* 우측: 프로필 + 다이얼로그 */}
-                    <div
-                        className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-black via-gray-800 to-gray-900"
-                    >
-                        <TerminalDialog />
                     </div>
                 </div>
             </div>
