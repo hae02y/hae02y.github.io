@@ -14,7 +14,7 @@ export default function TerminalDialog() {
                     {/* 👤 프로필 이미지 */}
                     <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-white group-hover:scale-105 transition-transform duration-500">
                         <img
-                            src="/me.jpg"
+                            src="/img/me.jpg"
                             alt="Profile"
                             className="w-full h-full object-cover"
                         />
