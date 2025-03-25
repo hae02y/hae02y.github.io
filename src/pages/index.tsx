@@ -50,19 +50,18 @@ function CamelSection() {
     return (
         <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
             <div className="h-full flex w-full flex-col">
-                <div className="lg:flex h-full">
+                <div className="lg:flex h-full bg-white dark:bg-gradient-to-br">
                     {/* 좌측: 3D Camel */}
                     <div
-                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-white dark:bg-gradient-to-br from-black via-gray-800 to-gray-900"
+                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center from-black via-gray-800 to-gray-900"
                     >
                         <TerminalDialog/>
                     </div>
 
                     {/* 우측: 프로필 + 다이얼로그 */}
                     <div
-                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center bg-white dark:bg-gradient-to-br from-black via-gray-800 to-gray-900"
+                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center from-black via-gray-800 to-gray-900"
                     >
-                    <RecentPosts/>
 
                     </div>
                 </div>
