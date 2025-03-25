@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'd10'),
+    component: ComponentCreator('/blog', 'ee2'),
     exact: true
   },
   {
@@ -54,7 +54,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', 'd1c'),
+    component: ComponentCreator('/blog/authors/haeyoung', '437'),
     exact: true
   },
   {
@@ -209,7 +209,7 @@ export default [
   },
   {
     path: '/blog/tags/db',
-    component: ComponentCreator('/blog/tags/db', '681'),
+    component: ComponentCreator('/blog/tags/db', 'eec'),
     exact: true
   },
   {

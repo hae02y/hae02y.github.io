@@ -2,9 +2,6 @@ import React, {Suspense} from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import MovingCamel from '@site/src/components/MovingCamel';
-import {OrbitControls} from "@react-three/drei";
-import { Canvas } from '@react-three/fiber';
 import TerminalDialog from "@site/src/components/TerminalDialog";
 import FloatingTags from "@site/src/components/FloatingTags";
 
