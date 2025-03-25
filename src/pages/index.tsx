@@ -7,6 +7,7 @@ import {OrbitControls} from "@react-three/drei";
 import { Canvas } from '@react-three/fiber';
 import TerminalDialog from "@site/src/components/TerminalDialog";
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
+import RecentPosts from "@site/src/components/RecentPost";
 
 
 
@@ -39,7 +40,7 @@ function CamelSection() {
                     <div
                         className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center"
                     >
-
+                    <RecentPosts />
 
                     </div>
                 </div>
