@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -11,15 +11,7 @@ import TerminalDialog from "@site/src/components/TerminalDialog";
 function HomepageHeader() {
     const {siteConfig} = useDocusaurusContext();
 
-    return (
-        <header className={`h-[calc(100vh-4rem)] bg-main dark:bg-[#23262C] hidden lg:flex`}>
-                {/*<div className="flex flex-col h-full w-full">*/}
-                {/*    <div className="lg:h-full w-full lg:flex items-center justify-center">*/}
-                {/*        <MacTerminal version={`${siteConfig.tagline}`} title={`${siteConfig.title}`}/>*/}
-                {/*    </div>*/}
-                {/*    /!* 하단 2/3 영역 *!/*/}
-                {/*</div>*/}
-        </header>
+    return (<header></header>
     );
 }
 
@@ -32,10 +24,23 @@ function CamelSection() {
                 <div className="lg:flex h-full">
                     {/* 좌측: 3D Camel */}
                     <div className="h-1/2 w-full lg:h-full lg:w-1/2 flex items-center justify-center">
-                        <Canvas>
+                        <Canvas
+                            style={{ background: 'skyblue' }} // 하늘 배경
+                            camera={{ position: [0, 3, 7], fov: 50 }}
+                        >
                             <ambientLight intensity={0.5} />
-                            <directionalLight position={[2, 5, 2]} intensity={1} />
-                            <MovingCamel />
+                            <directionalLight position={[5, 10, 5]} intensity={1.2} />
+
+                            <Suspense fallback={null}>
+                                <MovingCamel />
+                            </Suspense>
+
+                            {/* 바닥 풀판 */}
+                            <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+                                <planeGeometry args={[50, 50]} />
+                                <meshStandardMaterial color="green" />
+                            </mesh>
+
                             <OrbitControls />
                         </Canvas>
                     </div>
