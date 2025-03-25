@@ -1,7 +1,7 @@
 {
   "id": "solo-project/studyground/index",
   "title": "스터디그라운드",
-  "description": "🎉프로젝트 소개",
+  "description": "1. 프로젝트 개요",
   "source": "@site/docs/solo-project/studyground/index.md",
   "sourceDirName": "solo-project/studyground",
   "slug": "/solo-project/studyground/",

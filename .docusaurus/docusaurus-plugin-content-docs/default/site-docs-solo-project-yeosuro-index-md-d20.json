@@ -1,7 +1,7 @@
 {
   "id": "solo-project/yeosuro/index",
   "title": "여수로",
-  "description": "Documents are groups of pages connected through:",
+  "description": "1. 프로젝트 개요",
   "source": "@site/docs/solo-project/yeosuro/index.md",
   "sourceDirName": "solo-project/yeosuro",
   "slug": "/solo-project/yeosuro/",
