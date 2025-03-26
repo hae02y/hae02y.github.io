@@ -1,48 +1,48 @@
-/*@tailwind base;*/
-/*@tailwind components;*/
-/*@tailwind utilities;*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/*@layer base {*/
-/*    :root {*/
-/*        --primary: #2d3748; !* 기본 텍스트 색상 *!*/
-/*        --secondary: #718096; !* 보조 텍스트 색상 *!*/
-/*        --accent: #3182ce; !* 강조 색상 *!*/
-/*        --accent-rgb: 49, 130, 206; !* RGB 정의 *!*/
-/*        --background: #ffffff; !* 기본 배경 색상 *!*/
-/*        --background-dark: #1a202c; !* 다크 모드 배경 색상 *!*/
-/*        --bg-gradient: #f7fafc; !* 그라디언트 배경 색상 *!*/
-/*    }*/
+@layer base {
+    :root {
+        --primary: #2d3748; /* 기본 텍스트 색상 */
+        --secondary: #718096; /* 보조 텍스트 색상 */
+        --accent: #3182ce; /* 강조 색상 */
+        --accent-rgb: 49, 130, 206; /* RGB 정의 */
+        --background: #ffffff; /* 기본 배경 색상 */
+        --background-dark: #1a202c; /* 다크 모드 배경 색상 */
+        --bg-gradient: #f7fafc; /* 그라디언트 배경 색상 */
+    }
 
-/*    .dark {*/
-/*        --primary: #e2e8f0; !* 라이트 텍스트 색상 *!*/
-/*        --secondary: #a0aec0; !* 보조 텍스트 색상 *!*/
-/*        --accent: #63b3ed; !* 강조 색상 *!*/
-/*        --accent-rgb: 99, 179, 237; !* RGB 정의 *!*/
-/*        --background: #1a202c; !* 다크 모드 배경 *!*/
-/*        --background-dark: #2d3748; !* 더 어두운 배경 *!*/
-/*        --bg-gradient: #23262C;*/
-/*    }*/
-/*}*/
+    .dark {
+        --primary: #e2e8f0; /* 라이트 텍스트 색상 */
+        --secondary: #a0aec0; /* 보조 텍스트 색상 */
+        --accent: #63b3ed; /* 강조 색상 */
+        --accent-rgb: 99, 179, 237; /* RGB 정의 */
+        --background: #1a202c; /* 다크 모드 배경 */
+        --background-dark: #2d3748; /* 더 어두운 배경 */
+        --bg-gradient: #23262C;
+    }
+}
 
-/*@layer base {*/
-/*    * {*/
-/*        @apply border-border;*/
-/*    }*/
-/*    body {*/
-/*        @apply font-sans antialiased bg-background text-foreground;*/
-/*    }*/
-/*}*/
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply font-sans antialiased bg-background text-foreground;
+    }
+}
 
 
 
-/*@layer base {*/
-/*  * {*/
-/*    @apply border-border outline-ring/50;*/
-/*    }*/
-/*  body {*/
-/*    @apply bg-background text-foreground;*/
-/*    }*/
-/*}*/
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+}
 
 
 
