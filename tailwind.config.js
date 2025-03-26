@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx,mdx,css,html}',
   ],
-  darkMode: ['class', '[data-theme="dark"]'], // Docusaurus의 data-theme 속성을 사용
+  darkMode: ['class', '[data-theme="dark"]'],
   theme: {
   	mode: 'jit',
   	extend: {
