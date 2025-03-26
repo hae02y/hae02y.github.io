@@ -44,7 +44,7 @@
     "permalink": "/blog/makeblogdff"
   },
   "nextItem": {
-    "title": "투게독",
-    "permalink": "/blog/togedog"
+    "title": "필드주입 vs 생성자 주입",
+    "permalink": "/blog/field"
   }
 }

@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Global Variables */
+@layer base {
+    :root {
+        --primary: #2d3748; /* 기본 텍스트 색상 */
+        --secondary: #718096; /* 보조 텍스트 색상 */
+        --accent: #3182ce; /* 강조 색상 */
+        --accent-rgb: 49, 130, 206; /* RGB 정의 */
+        --background: #ffffff; /* 기본 배경 색상 */
+        --background-dark: #1a202c; /* 다크 모드 배경 색상 */
+    }
+
+    [data-theme="dark"] {
+        --primary: #e2e8f0; /* 라이트 텍스트 색상 */
+        --secondary: #a0aec0; /* 보조 텍스트 색상 */
+        --accent: #63b3ed; /* 강조 색상 */
+        --accent-rgb: 99, 179, 237; /* RGB 정의 */
+        --background: #1a202c; /* 다크 모드 배경 */
+        --background-dark: #2d3748; /* 더 어두운 배경 */
+    }
+}
+
 .markdown aside {
     @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4 dark:bg-[#242526];
 }
@@ -9812,28 +9834,6 @@ body .agile .agile__dots {
 }
 
 
-/* Global Variables */
-@layer base {
-    :root {
-        --primary: #2d3748; /* 기본 텍스트 색상 */
-        --secondary: #718096; /* 보조 텍스트 색상 */
-        --accent: #3182ce; /* 강조 색상 */
-        --accent-rgb: 49, 130, 206; /* RGB 정의 */
-        --background: #ffffff; /* 기본 배경 색상 */
-        --background-dark: #1a202c; /* 다크 모드 배경 색상 */
-        --bg-gradient: url(/static/img/background/gradient-main.jpg);
-    }
-
-    [data-theme="dark"] {
-        --primary: #e2e8f0; /* 라이트 텍스트 색상 */
-        --secondary: #a0aec0; /* 보조 텍스트 색상 */
-        --accent: #63b3ed; /* 강조 색상 */
-        --accent-rgb: 99, 179, 237; /* RGB 정의 */
-        --background: #1a202c; /* 다크 모드 배경 */
-        --background-dark: #2d3748; /* 더 어두운 배경 */
-        --bg-gradient: #23262C;
-    }
-}
 
 /* Custom Utilities */
 

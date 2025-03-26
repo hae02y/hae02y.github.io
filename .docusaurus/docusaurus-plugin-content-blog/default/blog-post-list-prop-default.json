@@ -38,6 +38,12 @@
       "date": "2025-03-14T00:00:00.000Z"
     },
     {
+      "title": "스웨거 미친 적용방법",
+      "permalink": "/blog/swagger",
+      "unlisted": false,
+      "date": "2025-03-03T00:00:00.000Z"
+    },
+    {
       "title": "\b설계에서 겪었던 내문제",
       "permalink": "/blog/designproject",
       "unlisted": false,
@@ -66,6 +72,12 @@
       "permalink": "/blog/blog3",
       "unlisted": false,
       "date": "2025-01-28T00:00:00.000Z"
+    },
+    {
+      "title": "패키지 구조 정의",
+      "permalink": "/blog/package",
+      "unlisted": false,
+      "date": "2025-01-15T00:00:00.000Z"
     },
     {
       "title": "벤치마크",
@@ -124,6 +136,12 @@
     {
       "title": "블로그 구축기",
       "permalink": "/blog/makeblog",
+      "unlisted": false,
+      "date": "2024-08-07T00:00:00.000Z"
+    },
+    {
+      "title": "필드주입 vs 생성자 주입",
+      "permalink": "/blog/field",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },

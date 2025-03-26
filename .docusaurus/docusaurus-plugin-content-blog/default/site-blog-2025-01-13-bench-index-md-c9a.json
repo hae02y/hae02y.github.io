@@ -40,8 +40,8 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "블로그 디자인 설계",
-    "permalink": "/blog/blog3"
+    "title": "패키지 구조 정의",
+    "permalink": "/blog/package"
   },
   "nextItem": {
     "title": "스프링 OncePerRequestFilter 에 대해",
