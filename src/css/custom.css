@@ -20,41 +20,30 @@
         --background: #1a202c; /* 다크 모드 배경 */
         --background-dark: #2d3748; /* 더 어두운 배경 */
     }
-}
-@layer base {
+
     * {
-        @apply border-border;
+        @apply border-0;
     }
     body {
-        @apply font-sans antialiased bg-background text-foreground;
+        @apply bg-background text-foreground font-sans antialiased;
     }
 }
-
-
-
-@layer base {
-    * {
-        @apply border-border outline-ring/50;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
-}
-
 
 .markdown aside {
     @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4 dark:bg-[#242526];
 }
+
 .markdown aside h3 {
     @apply text-lg font-semibold text-gray-800 mb-1;
 }
+
 .markdown aside li {
     @apply text-gray-700 text-sm leading-relaxed;
 }
+
 .markdown aside p {
     @apply text-gray-700 text-sm leading-relaxed;
 }
-
 
 .markdown aside > hr {
     @apply border-t m-0 border-gray-300 mb-3 w-full;
@@ -127,24 +116,6 @@ ul {
 
 ol {
     @apply list-decimal;
-}
-
-@layer utilities {
-    .text-accent {
-        color: var(--accent);
-    }
-
-    .hover\:text-accent-opacity:hover {
-        color: rgba(var(--accent-rgb), 0.8); /* 투명도 처리 */
-    }
-
-    .bg-accent {
-        background-color: var(--accent);
-    }
-
-    .hover\:bg-accent-opacity:hover {
-        background-color: rgba(var(--accent-rgb), 0.9); /* 투명도 처리 */
-    }
 }
 
 
