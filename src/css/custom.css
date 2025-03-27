@@ -93,7 +93,7 @@
     }
 
     .markdown aside li {
-        @apply text-gray-300 text-sm leading-relaxed;
+        @apply text-gray-700 dark:text-gray-300 text-sm leading-relaxed;
     }
 
     .markdown aside p {
@@ -124,8 +124,8 @@
         @apply inline-flex flex-wrap items-center mb-3 gap-2;
     }
 
-    hr {
-        @apply border-t border-gray-300 my-3 w-full;
+    .markdown aside hr {
+        @apply border-t border-black my-3 w-full;
     }
 }
 
