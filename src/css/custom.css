@@ -24,6 +24,7 @@
     * {
         @apply border-0;
     }
+
     body {
         @apply bg-background text-foreground font-sans antialiased;
     }
@@ -35,6 +36,49 @@
 
     code {
         font-family: 'JetBrains Mono', 'Cera Round Pro', monospace;
+    }
+
+    /* Headings */
+    h1 {
+        @apply text-2xl font-bold text-[var(--primary)] leading-snug mb-6;
+    }
+
+    h2 {
+        @apply text-xl font-semibold text-[var(--primary)] leading-snug mb-5;
+    }
+
+    h3 {
+        @apply text-lg font-medium text-[var(--primary)] leading-normal mb-4;
+    }
+
+    h4 {
+        @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-3;
+    }
+
+    h5 {
+        @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-2;
+    }
+
+    h6 {
+        @apply text-base font-medium text-[var(--secondary)] leading-snug mb-1;
+    }
+
+    /* Paragraphs */
+    p {
+        @apply text-base leading-relaxed text-[var(--primary)] mb-4;
+    }
+
+    /* Lists */
+    ul, ol {
+        @apply pl-5 mb-4 text-[var(--primary)];
+    }
+
+    ul {
+        @apply list-disc;
+    }
+
+    ol {
+        @apply list-decimal;
     }
 }
 
@@ -84,47 +128,6 @@ hr {
 
 .navbar {
     @apply h-[4rem];
-}
-
-/* Global Typography */
-h1 {
-    @apply text-2xl font-bold text-[var(--primary)] leading-snug mb-6;
-}
-
-h2 {
-    @apply text-xl font-semibold text-[var(--primary)] leading-snug mb-5;
-}
-
-h3 {
-    @apply text-lg font-medium text-[var(--primary)] leading-normal mb-4;
-}
-
-h4 {
-    @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-3;
-}
-
-h5 {
-    @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-2;
-}
-
-h6 {
-    @apply text-base font-medium text-[var(--secondary)] leading-snug mb-1;
-}
-
-p {
-    @apply text-base leading-relaxed text-[var(--primary)] mb-4;
-}
-
-ul, ol {
-    @apply pl-5 mb-4 text-[var(--primary)];
-}
-
-ul {
-    @apply list-disc;
-}
-
-ol {
-    @apply list-decimal;
 }
 
 
@@ -278,7 +281,6 @@ ol {
     font-weight: 900;
     src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
 }
-
 
 
 /* Links */
