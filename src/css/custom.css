@@ -88,15 +88,15 @@ hr {
 
 /* Global Typography */
 h1 {
-    @apply text-3xl font-bold text-[var(--primary)] leading-snug mb-6;
+    @apply text-2xl font-bold text-[var(--primary)] leading-snug mb-6;
 }
 
 h2 {
-    @apply text-2xl font-semibold text-[var(--primary)] leading-snug mb-5;
+    @apply text-xl font-semibold text-[var(--primary)] leading-snug mb-5;
 }
 
 h3 {
-    @apply text-xl font-medium text-[var(--primary)] leading-normal mb-4;
+    @apply text-lg font-medium text-[var(--primary)] leading-normal mb-4;
 }
 
 h4 {
