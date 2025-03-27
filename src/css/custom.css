@@ -27,6 +27,15 @@
     body {
         @apply bg-background text-foreground font-sans antialiased;
     }
+
+
+    html, body {
+        font-family: 'Pretendard', 'Cera Round Pro', sans-serif;
+    }
+
+    code {
+        font-family: 'JetBrains Mono', 'Cera Round Pro', monospace;
+    }
 }
 
 .markdown aside {
@@ -271,16 +280,6 @@ ol {
 }
 
 
-
-/* Custom Utilities */
-
-html, body {
-    font-family: 'Pretendard', 'Cera Round Pro', sans-serif !important;
-}
-
-code {
-    font-family: 'JetBrains Mono', 'Cera Round Pro', monospace !important;
-}
 
 /* Links */
 

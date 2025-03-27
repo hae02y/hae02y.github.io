@@ -7,6 +7,10 @@ module.exports = {
   theme: {
   	mode: 'jit',
   	extend: {
+		fontFamily: {
+			sans: ['Pretendard', 'Cera Round Pro', 'sans-serif'],
+			mono: ['JetBrains Mono', 'Cera Round Pro', 'monospace']
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -55,6 +59,7 @@ module.exports = {
   		}
   	}
   },
+	important: true,
   plugins: [require("tailwindcss-animate")],
   corePlugins: {
     preflight: true,
