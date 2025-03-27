@@ -82,54 +82,67 @@
     }
 }
 
-.markdown aside {
-    @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4 dark:bg-[#242526];
+@layer components {
+    /* Markdown specific styles for asides */
+    .markdown aside {
+        @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4 dark:bg-[#242526];
+    }
+
+    .markdown aside h3 {
+        @apply text-lg font-semibold text-gray-800 mb-1;
+    }
+
+    .markdown aside li {
+        @apply text-gray-300 text-sm leading-relaxed;
+    }
+
+    .markdown aside p {
+        @apply text-gray-700 text-sm leading-relaxed;
+    }
+
+    .markdown aside > hr {
+        @apply border-t m-0 border-gray-300 mb-3 w-full;
+    }
+
+    .markdown li > p {
+        @apply m-0;
+    }
+
+    .markdown ul, .markdown ol {
+        @apply pl-5 mb-4 text-[var(--primary)];
+    }
+
+    .markdown ul {
+        @apply list-disc;
+    }
+
+    .markdown ol {
+        @apply list-decimal;
+    }
+
+    .markdown div.stack {
+        @apply inline-flex flex-wrap items-center mb-3 gap-2;
+    }
+
+    hr {
+        @apply border-t border-gray-300 my-3 w-full;
+    }
 }
 
-.markdown aside h3 {
-    @apply text-lg font-semibold text-gray-800 mb-1;
-}
+@layer components {
+    /* Extended terminal styles within markdown */
+    .xterm .xterm-viewport {
+        @apply overflow-y-scroll rounded-l bg-gray-100 dark:bg-[#222222] text-blue-600 !important;
+    }
 
-.markdown aside li {
-    @apply text-gray-700 text-sm leading-relaxed;
-}
+    .xterm .xterm-helpers {
+        @apply invisible absolute -top-full left-0 w-0 h-0 overflow-hidden;
+    }
 
-.markdown aside p {
-    @apply text-gray-700 text-sm leading-relaxed;
+    .xterm-rows {
+        @apply text-gray-700 dark:text-gray-300 !important;
+    }
 }
-
-.markdown aside > hr {
-    @apply border-t m-0 border-gray-300 mb-3 w-full;
-}
-
-hr {
-    @apply border-t border-gray-300 my-3 w-full;
-}
-
-.markdown li > p {
-    @apply m-0;
-}
-
-.markdown div.stack {
-    @apply inline-flex flex-wrap items-center mb-3 gap-2;
-}
-
-.xterm .xterm-viewport {
-    @apply overflow-y-scroll rounded-l bg-gray-100 dark:bg-[#222222] text-blue-600 !important;
-}
-
-.xterm .xterm-helpers {
-    @apply invisible absolute -top-full left-0 w-0 h-0 overflow-hidden;
-}
-
-.xterm-rows {
-    @apply text-gray-700 dark:text-gray-300 !important;
-}
-
-.navbar {
-    @apply h-[4rem];
-}
-
 
 /*Cera Round Pro*/
 @font-face {
@@ -175,116 +188,7 @@ hr {
 }
 
 
-/*Pretendard*/
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 900;
-    font-display: swap;
-    src: local('Pretendard Black'), url('/font/pretendard/woff2/Pretendard-Black.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Black.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 800;
-    font-display: swap;
-    src: local('Pretendard ExtraBold'), url('/font/pretendard/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 700;
-    font-display: swap;
-    src: local('Pretendard Bold'), url('/font/pretendard/woff2/Pretendard-Bold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 600;
-    font-display: swap;
-    src: local('Pretendard SemiBold'), url('/font/pretendard/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-display: swap;
-    src: local('Pretendard Medium'), url('/font/pretendard/woff2/Pretendard-Medium.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-display: swap;
-    src: local('Pretendard Regular'), url('/font/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 300;
-    font-display: swap;
-    src: local('Pretendard Light'), url('/font/pretendard/woff2/Pretendard-Light.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 200;
-    font-display: swap;
-    src: local('Pretendard ExtraLight'), url('/font/pretendard/woff2/Pretendard-ExtraLight.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraLight.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 100;
-    font-display: swap;
-    src: local('Pretendard Thin'), url('/font/pretendard/woff2/Pretendard-Thin.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Thin.woff') format('woff');
-}
-
-/*JetBrain*/
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: local('JetBrains Mono Regular'), url('/font/jetBrain/JetBrainsMono-Regular.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 100;
-    src: local('JetBrains Mono Thin'), url('/font/jetBrain/JetBrainsMono-Thin.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 300;
-    src: local('JetBrains Mono Light'), url('/font/jetBrain/JetBrainsMono-Light.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 500;
-    src: local('JetBrains Mono Medium'), url('/font/jetBrain/JetBrainsMono-Medium.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: local('JetBrains Mono Bold'), url('/font/jetBrain/JetBrainsMono-Bold.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 900;
-    src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
-}
-
-
 /* Links */
-
 a {
     color: var(--accent);
     text-decoration: none;
@@ -406,4 +310,114 @@ a:hover {
     visibility: visible;
     opacity: 1;
     transition: opacity .15s
+}
+
+
+
+
+/*Pretendard*/
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 900;
+    font-display: swap;
+    src: local('Pretendard Black'), url('/font/pretendard/woff2/Pretendard-Black.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Black.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 800;
+    font-display: swap;
+    src: local('Pretendard ExtraBold'), url('/font/pretendard/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-display: swap;
+    src: local('Pretendard Bold'), url('/font/pretendard/woff2/Pretendard-Bold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-display: swap;
+    src: local('Pretendard SemiBold'), url('/font/pretendard/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-display: swap;
+    src: local('Pretendard Medium'), url('/font/pretendard/woff2/Pretendard-Medium.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 400;
+    font-display: swap;
+    src: local('Pretendard Regular'), url('/font/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 300;
+    font-display: swap;
+    src: local('Pretendard Light'), url('/font/pretendard/woff2/Pretendard-Light.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 200;
+    font-display: swap;
+    src: local('Pretendard ExtraLight'), url('/font/pretendard/woff2/Pretendard-ExtraLight.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    font-weight: 100;
+    font-display: swap;
+    src: local('Pretendard Thin'), url('/font/pretendard/woff2/Pretendard-Thin.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Thin.woff') format('woff');
+}
+
+/*JetBrain*/
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local('JetBrains Mono Regular'), url('/font/jetBrain/JetBrainsMono-Regular.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 100;
+    src: local('JetBrains Mono Thin'), url('/font/jetBrain/JetBrainsMono-Thin.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 300;
+    src: local('JetBrains Mono Light'), url('/font/jetBrain/JetBrainsMono-Light.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 500;
+    src: local('JetBrains Mono Medium'), url('/font/jetBrain/JetBrainsMono-Medium.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    src: local('JetBrains Mono Bold'), url('/font/jetBrain/JetBrainsMono-Bold.woff2') format('woff');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 900;
+    src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
 }
