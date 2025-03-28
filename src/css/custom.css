@@ -103,13 +103,17 @@
 @layer components {
     .btn-gnb {
         @apply px-4 py-2 rounded-lg
-        text-black
+        text-black dark:text-gray-200
         hover:bg-gray-100
         transition-colors duration-200;
     }
 
     .navbar__items {
         @apply flex items-center justify-center gap-4;
+    }
+
+    .navbar__items--right {
+        @apply hidden md:flex;
     }
 }
 
