@@ -191,6 +191,14 @@
     .markdown div.stack {
         @apply inline-flex flex-wrap items-center gap-2 mb-3;
     }
+
+    .markdown table {
+        @apply max-w-full;
+    }
+
+    .markdown a {
+        @apply break-all !important;
+    }
 }
 
 
