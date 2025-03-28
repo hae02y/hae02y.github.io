@@ -54,9 +54,9 @@ export default function BlogPostItemHeaderInfo({
   const {date, readingTime} = metadata;
 
   const dateTimeFormat = useDateTimeFormat({
-    day: 'numeric',
-    month: 'long',
     year: 'numeric',
+    month: 'long',
+    day: 'numeric',
     timeZone: 'UTC',
   });
 

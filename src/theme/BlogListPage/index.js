@@ -4,6 +4,7 @@ import {HtmlClassNameProvider, ThemeClassNames} from '@docusaurus/theme-common';
 import BlogLayout from '@theme/BlogLayout';
 import Link from '@docusaurus/Link';
 import BlogListPaginator from '@theme/BlogListPaginator';
+import {useDateTimeFormat} from "@docusaurus/theme-common/internal";
 
 // 스타일 정의
 export const blogStyles = {
@@ -18,6 +19,7 @@ export const blogStyles = {
     thumbnail: 'w-28 h-20 md:w-36 md:h-24 rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };
+
 
 function BlogListPageContent({items, metadata}) {
     return (
@@ -39,7 +41,7 @@ function BlogListPageContent({items, metadata}) {
                             <div className="flex-1 pr-4">
                                 <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                                 <p className={blogStyles.date}>
-                                    {content.metadata.date} • Invest time, {Math.ceil(content.metadata.readingTime)} 분
+                                    {useDateTimeFormat().format(new Date(content.metadata.date))} • read {Math.ceil(content.metadata.readingTime)} min
                                 </p>
                                 <p className={blogStyles.description}>
                                     {content.metadata.description || 'No description available.'}
