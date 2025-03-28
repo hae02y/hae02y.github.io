@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
-import type { Props } from '@theme/MDXComponents/Img';
+import type {Props} from '@theme/MDXComponents/Img';
 import styles from './styles.module.css';
 
 function transformImgClassName(className?: string): string {
@@ -24,24 +24,17 @@ export default function MDXImg(props: Props): JSX.Element {
     return (
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
-            <figure className="w-full">
-                <div
-                    className="relative w-full sm:w-[75%] md:w-[50%] mx-auto aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+            <div className={`w-full justify-items-center`}>
+                <figure className="w-[80%]">
                     <img
                         decoding="async"
                         {...props}
-                        className="w-full h-full object-cover cursor-pointer"
+                        className="mx-auto cursor-pointer"
                         onClick={togglePopup}
                         alt={props.alt ?? 'image'}
                     />
-                </div>
-                {props.alt && (
-                    <figcaption className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
-                        {props.alt}
-                    </figcaption>
-                )}
-            </figure>
-
+                </figure>
+            </div>
 
             {/* 팝업 */}
             {isOpen && (
