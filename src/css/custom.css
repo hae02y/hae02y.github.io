@@ -132,49 +132,74 @@
         @apply text-orange-600 dark:text-orange-300 bg-gray-400 dark:bg-gray-600 border-gray-300 dark:border-gray-500;
     }
 
-    .markdown aside {
-        @apply bg-gray-200 border border-gray-300 rounded-lg p-4 shadow-md mt-4 dark:bg-[#242526];
+    @layer components {
+        .markdown h1 {
+            @apply text-3xl font-bold text-[var(--primary)] mb-4;
+        }
+
+        .markdown h2 {
+            @apply text-2xl font-semibold text-[var(--primary)] mb-3;
+        }
+
+        .markdown h3 {
+            @apply text-xl font-medium text-[var(--primary)] mb-2;
+        }
+
+        .markdown h4 {
+            @apply text-lg font-medium text-[var(--secondary)] mb-2;
+        }
+
+        .markdown h5 {
+            @apply text-base font-medium text-[var(--secondary)] mb-1;
+        }
+
+        .markdown h6 {
+            @apply text-sm font-medium text-[var(--secondary)] mb-1;
+        }
+
+        .markdown p {
+            @apply text-base leading-relaxed text-[var(--primary)] mb-4;
+        }
+
+        .markdown ul,
+        .markdown ol {
+            @apply pl-6 mb-4 text-[var(--primary)];
+        }
+
+        .markdown ul {
+            @apply list-disc;
+        }
+
+        .markdown ol {
+            @apply list-decimal;
+        }
+
+        .markdown li {
+            @apply leading-relaxed mb-1;
+        }
+
+        .markdown li > p {
+            @apply m-0;
+        }
+
+        .markdown aside {
+            @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
+            rounded-lg p-4 shadow-sm mt-6 text-sm text-gray-800 dark:text-gray-200 leading-relaxed;
+        }
+
+        .markdown aside h3 {
+            @apply text-base font-semibold mb-2 text-[var(--primary)];
+        }
+
+        .markdown aside > hr {
+            @apply border-t border-gray-300 dark:border-gray-500 my-3 w-full;
+        }
+
+        .markdown div.stack {
+            @apply inline-flex flex-wrap items-center gap-2 mb-3;
+        }
     }
 
-    .markdown aside h3 {
-        @apply text-lg font-semibold text-gray-800 mb-1;
-    }
-
-    .markdown aside li {
-        @apply text-gray-700 dark:text-gray-300 text-sm leading-relaxed;
-    }
-
-    .markdown aside p {
-        @apply text-gray-700 text-sm leading-relaxed;
-    }
-
-    .markdown aside > hr {
-        @apply border-t m-0 border-gray-300 mb-3 w-full;
-    }
-
-    .markdown li > p {
-        @apply m-0;
-    }
-
-    .markdown ul, .markdown ol {
-        @apply pl-5 mb-4 text-[var(--primary)];
-    }
-
-    .markdown ul {
-        @apply list-disc;
-    }
-
-    .markdown ol {
-        @apply list-decimal;
-    }
-
-    .markdown div.stack {
-        @apply inline-flex flex-wrap items-center mb-3 gap-2;
-    }
-
-    .markdown aside hr {
-        @apply border-t border-black my-3 w-full;
-    }
 }
 
 @layer components {
