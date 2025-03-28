@@ -25,10 +25,9 @@ export default function MDXImg(props: Props): JSX.Element {
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
             <div className="grid place-items-center w-full">
-                <div className="relative w-[100%] sm:w-[75%] md:w-[50%] aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+                <div className="relative w-[100%] sm:w-[75%] md:w-[50%] h-auto overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
                     <img
                         decoding="async"
-                        loading="lazy"
                         {...props}
                         className={transformImgClassName(props.className)}
                         onClick={togglePopup}
@@ -56,7 +55,7 @@ export default function MDXImg(props: Props): JSX.Element {
                         <img
                             src={props.src}
                             alt={props.alt}
-                            className="max-w-full max-h-full object-contain rounded shadow-2xl"
+                            className="max-w-[90%] max-h-[90%] object-contain rounded shadow-2xl"
                         />
                     </div>
                 </div>
