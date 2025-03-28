@@ -1,4 +1,3 @@
-// BlogListPage.tsx
 import React from 'react';
 import clsx from 'clsx';
 import { HtmlClassNameProvider, ThemeClassNames } from '@docusaurus/theme-common';
@@ -6,16 +5,17 @@ import BlogLayout from '@theme/BlogLayout';
 import Link from '@docusaurus/Link';
 import BlogListPaginator from '@theme/BlogListPaginator';
 
+// 스타일 정의
 export const blogStyles = {
     tagLink:
         'inline-block mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
     blogCard:
-        'flex items-center p-4 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-950 transition-transform hover:-translate-y-1 hover:shadow-lg',
-    date: 'text-xs text-gray-500 dark:text-gray-400 mb-1',
-    title: 'text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1',
-    description: 'text-sm text-gray-700 dark:text-gray-300 line-clamp-2',
-    moreIcon: 'ml-4 text-gray-400 dark:text-gray-500 hover:text-gray-600',
-    grid: 'grid gap-6 grid-cols-1 p-4',
+        'flex justify-between items-start border-b border-gray-200 dark:border-gray-700 py-6 group',
+    date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
+    title:
+        'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
+    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 line-clamp-2 mb-2',
+    thumbnail: 'w-28 h-20 md:w-36 md:h-24 rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };
 
@@ -26,37 +26,26 @@ function BlogListPageContent({ items, metadata }) {
                 태그 보기
             </Link>
 
-            <div className={blogStyles.grid}>
+            <div className="flex flex-col gap-6">
                 {items.map(({ content }) => (
                     <Link
                         key={content.metadata.permalink}
                         to={content.metadata.permalink}
                         className={blogStyles.blogCard}
                     >
-                        <div className="flex-1">
+                        {/* 왼쪽 텍스트 영역 */}
+                        <div className="flex-1 pr-4">
                             <p className={blogStyles.date}>
-                                {new Date(content.metadata.date).toLocaleDateString()}
+                                • {new Date(content.metadata.date).toLocaleDateString()}
                             </p>
                             <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                             <p className={blogStyles.description}>
                                 {content.metadata.description || 'No description available.'}
                             </p>
                         </div>
-                        <div className={blogStyles.moreIcon}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M12 6h.01M12 12h.01M12 18h.01"
-                                />
-                            </svg>
+
+                        {/* 오른쪽 썸네일 이미지 */}
+                        <div className={blogStyles.thumbnail}>
                         </div>
                     </Link>
                 ))}
