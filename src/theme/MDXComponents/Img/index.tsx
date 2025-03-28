@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import type {Props} from '@theme/MDXComponents/Img';
+import styles from './styles.module.css';
+
+function transformImgClassName(className?: string): string {
+    return clsx(className, styles.img, 'cursor-pointer object-cover w-full');
+}
 
 export default function MDXImg(props: Props): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,19 +24,19 @@ export default function MDXImg(props: Props): JSX.Element {
     return (
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
-            <div className="w-full flex justify-center">
-                <figure
-                    className="relative w-[80%] h-auto max-h-96 rounded-xl overflow-hidden border border-gray-300 bg-gray-100 shadow-md">
+            <div className="grid place-items-center w-full">
+                <div
+                    className="relative w-[100%] sm:w-[75%] md:w-[50%] aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
                     <img
+                        decoding="async"
                         loading="lazy"
                         {...props}
-                        className="w-full h-full object-cover object-center cursor-pointer"
+                        className={transformImgClassName(props.className)}
                         onClick={togglePopup}
-                        alt={props.alt ?? 'image'}
+                        alt={'image'}
                     />
-                </figure>
+                </div>
             </div>
-
 
             {/* 팝업 */}
             {isOpen && (
