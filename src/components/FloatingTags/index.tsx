@@ -7,8 +7,9 @@ import MovingCamel from '@site/src/components/MovingCamel';
 
 const getRandomOffset = () => Math.floor(Math.random() * 200 - 100);
 
-export default function FloatingTags() {
+export default function FloatingTags(props) {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    console.log(props)
 
     const myTags = [
         '#낙타',
