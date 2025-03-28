@@ -94,7 +94,7 @@ const config: Config = {
     navbar: {
       logo: {
         alt: 'My Site Logo',
-        src: 'img/sitelogo.png',
+        src: 'img/logo.svg',
       },
       items: [
         {to: '/me', label: 'Resume', position: 'left'},

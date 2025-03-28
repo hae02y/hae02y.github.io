@@ -85,7 +85,7 @@ export default {
     "navbar": {
       "logo": {
         "alt": "My Site Logo",
-        "src": "img/sitelogo.png"
+        "src": "img/logo.svg"
       },
       "items": [
         {
