@@ -41,7 +41,7 @@ function BlogListPageContent({items, metadata}) {
                             <div className="flex-1 pr-4">
                                 <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                                 <p className={blogStyles.date}>
-                                    {useDateTimeFormat().format(new Date(content.metadata.date))} • read {Math.ceil(content.metadata.readingTime)} min
+                                    {useDateTimeFormat().format(new Date(content.metadata.date))} • {Math.ceil(content.metadata.readingTime)} min
                                 </p>
                                 <p className={blogStyles.description}>
                                     {content.metadata.description || 'No description available.'}
