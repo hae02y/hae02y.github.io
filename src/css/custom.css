@@ -102,14 +102,14 @@
 
 @layer components {
     .btn-gnb {
-        @apply px-4 py-2 rounded-lg
+        @apply md:px-4 md:py-2 rounded-lg
         text-black dark:text-gray-200
         hover:bg-gray-100 dark:hover:bg-gray-800
         transition-colors duration-200;
     }
 
     .navbar__list {
-        @apply flex w-full items-center justify-center gap-4;
+        @apply flex w-full items-center justify-center gap-4 text-sm;
     }
 
     .navbar__items--right {
