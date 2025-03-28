@@ -4,7 +4,7 @@ import type {Props} from '@theme/MDXComponents/Img';
 import styles from './styles.module.css';
 
 function transformImgClassName(className?: string): string {
-    return clsx(className, styles.img, 'cursor-pointer object-cover w-full');
+    return clsx(className,'cursor-pointer object-cover w-full');
 }
 
 export default function MDXImg(props: Props): JSX.Element {
@@ -25,8 +25,9 @@ export default function MDXImg(props: Props): JSX.Element {
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
             <div className="grid place-items-center w-full">
-                <div
-                    className="relative w-[100%] sm:w-[75%] md:w-[50%] aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+                 <div
+                        className={`relative w-full md:w-[70%] h-auto justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg`}
+                    >
                     <img
                         decoding="async"
                         loading="lazy"
