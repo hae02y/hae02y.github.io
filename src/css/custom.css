@@ -313,8 +313,6 @@ a:hover {
 }
 
 
-
-
 /*Pretendard*/
 @font-face {
     font-family: 'Pretendard';
@@ -420,4 +418,74 @@ a:hover {
     font-style: normal;
     font-weight: 900;
     src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
+}
+
+
+blockquote:has(>.note:first-child) {
+    @apply bg-blue-50;
+}
+
+blockquote:has(>.warning:first-child) {
+    @apply bg-yellow-50;
+}
+
+blockquote:has(>.tip:first-child) {
+    @apply bg-green-50;
+}
+
+
+/* Prose Typography */
+@layer components {
+    .prose h1 {
+        @apply text-4xl font-bold mb-1;
+    }
+
+    .prose h2 {
+        @apply text-3xl font-bold mb-1;
+    }
+
+    .prose h3 {
+        @apply text-2xl font-bold mb-1;
+    }
+
+    .prose ul, .prose ol {
+        @apply pl-5 my-4;
+    }
+
+    .prose ul {
+        @apply list-disc;
+    }
+
+    .prose ol {
+        @apply list-decimal;
+    }
+
+    .prose li {
+        @apply my-1;
+    }
+
+    .prose a:hover {
+        @apply underline;
+    }
+
+    .prose :not(pre) > code {
+        @apply rounded border border-gray-200 bg-gray-100 px-1 py-0.5 font-mono text-sm font-normal;
+    }
+
+    .prose figure, .prose blockquote {
+        @apply mt-0 mb-0;
+    }
+
+    .prose blockquote {
+        @apply mb-1 pl-4 border-l-4 border-black;
+    }
+
+    .prose blockquote > p:first-of-type {
+        @apply m-0;
+    }
+
+    .prose img, .prose picture, .prose video, .prose figure {
+        @apply my-8;
+    }
+
 }

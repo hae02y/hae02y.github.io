@@ -40,8 +40,8 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "블로그 구축기",
-    "permalink": "/blog/makeblog"
+    "title": "필드주입 vs 생성자 주입",
+    "permalink": "/blog/field"
   },
   "nextItem": {
     "title": "스택오버플로우 포트폴리오",
