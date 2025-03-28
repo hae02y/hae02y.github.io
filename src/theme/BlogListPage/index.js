@@ -39,7 +39,7 @@ function BlogListPageContent({items, metadata}) {
                             <div className="flex-1 pr-4">
                                 <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                                 <p className={blogStyles.date}>
-                                    {new Date(content.metadata.date).toLocaleDateString()} • 아마도.. {Math.ceil(content.metadata.readingTime)} 분
+                                    {content.metadata.date} • Invest time, {Math.ceil(content.metadata.readingTime)} 분
                                 </p>
                                 <p className={blogStyles.description}>
                                     {content.metadata.description || 'No description available.'}
