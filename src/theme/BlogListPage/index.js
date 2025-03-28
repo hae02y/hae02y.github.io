@@ -10,7 +10,7 @@ export const blogStyles = {
     tagLink:
         'inline-block mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
     blogCard:
-        'flex justify-between items-start border-b border-gray-200 dark:border-gray-700 py-6 group',
+        'flex justify-between items-start border-b border-gray-200 dark:border-gray-700 py-6 group max-h-50',
     date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
     title:
         'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
@@ -45,7 +45,7 @@ function BlogListPageContent({ items, metadata }) {
                         </div>
 
                         {/* 오른쪽 썸네일 이미지 */}
-                        <div className={blogStyles.thumbnail}>
+                        <div>
                         </div>
                     </Link>
                 ))}
