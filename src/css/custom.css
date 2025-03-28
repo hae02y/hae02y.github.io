@@ -531,8 +531,4 @@
     .prose blockquote > p:first-of-type {
         @apply m-0;
     }
-
-    .prose img, .prose picture, .prose video, .prose figure {
-        @apply my-8;
-    }
 }

@@ -1,11 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import type {Props} from '@theme/MDXComponents/Img';
-import styles from './styles.module.css';
-
-function transformImgClassName(className?: string): string {
-    return clsx(className, styles.img, 'cursor-pointer object-cover w-full');
-}
 
 export default function MDXImg(props: Props): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,9 +21,8 @@ export default function MDXImg(props: Props): JSX.Element {
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
             <div className="w-full flex justify-center">
                 <figure
-                    className="relative w-[70%] h-auto max-h-96 rounded-xl overflow-hidden border border-gray-300 bg-gray-100 shadow-md">
+                    className="relative w-[80%] h-auto max-h-96 rounded-xl overflow-hidden border border-gray-300 bg-gray-100 shadow-md">
                     <img
-                        decoding="async"
                         loading="lazy"
                         {...props}
                         className="w-full h-full object-cover object-center cursor-pointer"
