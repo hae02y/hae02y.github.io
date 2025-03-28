@@ -9,13 +9,13 @@ import {useDateTimeFormat} from "@docusaurus/theme-common/internal";
 // 스타일 정의
 export const blogStyles = {
     tagLink:
-        'block md:inline-block mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
+        'block md:inline-block break-words line-clamp-3 mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
     blogCard:
         'flex justify-between items-start border-gray-200 dark:border-gray-700 py-6 group h-48',
     date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
     title:
         'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
-    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 line-clamp-2 mb-2',
+    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all mb-2',
     thumbnail: 'w-28 h-full rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };
@@ -61,7 +61,7 @@ function BlogListPageContent({items, metadata}) {
                         <div className="w-full flex flex-wrap gap-2 my-2">
                             {content.metadata.tags?.map(tag => (
                                 <div
-                                    className={`w-fit rounded-full bg-[#D9D9D9] bg-opacity-40 py-0.5 px-2.5 text-[12px] text-[#4F5968]`}>
+                                    className={`w-fit rounded-full bg-[#D9D9D9] dark:bg-gray-700 bg-opacity-40 py-0.5 px-2.5 text-[11px] text-[#4F5968]`}>
                                     <a href={`/blog/tags/${tag.label}`} key={tag}>
                                         {tag.label}
                                     </a>
