@@ -1,40 +1,34 @@
 import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
-import {useBlogPost} from "@docusaurus/plugin-content-blog/client";
-import blogTags from '@site/src/generated/blog-tags'; // 전체 태그 자동 생성됨
-const getRandomOffset = () => Math.floor(Math.random() * 200 - 100);
+
+const getRandomOffset = () => Math.floor(Math.random() * 20 - 10); // ±10px로 줄임
 
 export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-    const me = blogTags();
-    console.log(me);
-
     const myTags = [
-        '#낙타',
-        '#SpringBoot',
-        '#React',
-        '#Swagger장인',
-        '#API디자인',
-        '#JWT인증',
-        '#기술문서화',
-        '#풀스택개발자',
+        '#Java', '#SpringBoot', '#SpringSecurity', '#SpringMVC', '#SpringDataJPA',
+        '#Hibernate', '#JPA', '#MyBatis', '#기술문서화', '#JWT인증',
+        '#OAuth2', '#세션관리', '#CORS설정', '#상태코드관리', '#H2DB',
+        '#MySQL', '#Redis', '#스케줄링', '#메일전송', '#FCM',
+        '#Push알림', '#Thymeleaf', '#SSR', '#S3연동', '#로컬파일저장',
+        '#서버운영', '#에러모니터링', '#인프라협업', '#배포자동화', '#헬스체크',
+        '#로드밸런싱', '#서버이중화', '#로그백업', '#Nginx', '#Docker',
+        '#CI_CD', '#테스트코드', '#유닛테스트', '#테스트전략', '#배포스크립트',
+        '#GitHubActions', '#서버배포자동화', '#환경변수설정', '#프로파일분리', '#ConfigServer',
+        '#YAML관리', '#백오피스개발', '#어드민기능', '#프론트백분리', '#팀개발',
     ];
 
     const getTagContent = () => {
         if (selectedTag === '#낙타') {
-            return (
-                <div className="w-full h-[400px]">
-
-                </div>
-            );
+            return <div className="w-full h-[400px]" />;
         }
 
         return (
             <div>
                 <h2 className="text-lg font-bold mb-2">{selectedTag}</h2>
-                <p className="text-sm text-gray-700 dark:text-gray-200">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                     이 태그에 대한 설명을 여기에 작성할 수 있어요!
                 </p>
             </div>
@@ -49,7 +43,7 @@ export default function FloatingTags() {
                 </DialogContent>
             </Dialog>
 
-            <div className="relative w-full h-full overflow-hidden flex flex-wrap justify-center items-center gap-4">
+            <div className="relative w-full min-h-[60vh] overflow-hidden flex flex-wrap justify-start items-start gap-2 px-4 py-8">
                 {myTags.map((tag) => {
                     const controls = useAnimation();
 
@@ -57,7 +51,7 @@ export default function FloatingTags() {
                         controls.start({
                             x: getRandomOffset(),
                             y: getRandomOffset(),
-                            transition: { type: 'spring', stiffness: 100, damping: 10 },
+                            transition: { type: 'spring', stiffness: 40, damping: 15 },
                         });
                     };
 
@@ -68,7 +62,7 @@ export default function FloatingTags() {
                     return (
                         <motion.div
                             key={tag}
-                            className="px-4 py-2 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-xl cursor-pointer text-sm font-medium select-none"
+                            className="px-3 py-1.5 rounded-xl bg-white/80 dark:bg-[#333] text-sm text-black dark:text-white shadow-md dark:shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all cursor-pointer"
                             animate={controls}
                             onMouseEnter={handleMouseEnter}
                             onClick={handleClick}
