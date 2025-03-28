@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import type {Props} from '@theme/MDXComponents/Img';
+import type { Props } from '@theme/MDXComponents/Img';
 import styles from './styles.module.css';
 
 function transformImgClassName(className?: string): string {
@@ -10,35 +10,55 @@ function transformImgClassName(className?: string): string {
 export default function MDXImg(props: Props): JSX.Element {
     const [isOpen, setIsOpen] = useState(false);
 
-    const togglePopup = () => setIsOpen((prev) => !prev);
+    // 모달 열릴 때 body 스크롤 막기
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }, [isOpen]);
+
+    const togglePopup = () => setIsOpen(prev => !prev);
 
     return (
         <>
-            {/* 이미지 자체 */}
-            <div className={`grid place-items-center w-full`}>
-                <div
-                    className={`relative w-[100%] sm:w-[75%] md:w-[50%] h-auto justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg`}
-                >
+            {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
+            <div className="grid place-items-center w-full">
+                <div className="relative w-[100%] sm:w-[75%] md:w-[50%] aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
                     <img
                         decoding="async"
                         loading="lazy"
                         {...props}
                         className={transformImgClassName(props.className)}
-                        onClick={togglePopup} // 클릭 이벤트 추가
-                        alt={'image'}/>
+                        onClick={togglePopup}
+                        alt={'image'}
+                    />
                 </div>
             </div>
+
             {/* 팝업 */}
             {isOpen && (
                 <div
-                    className="fixed tooltip inset-0 z-70 flex items-center justify-center bg-black bg-opacity-75"
-                    onClick={togglePopup} // 팝업 클릭 시 닫기
+                    className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80"
                 >
-                    <img
-                        src={props.src}
-                        alt={props.alt}
-                        className="max-w-[90%] max-h-[90%] rounded shadow-lg"
-                    />
+                    {/* X 버튼 */}
+                    <button
+                        onClick={togglePopup}
+                        className="absolute top-6 right-6 text-white text-2xl font-bold hover:text-gray-300 transition"
+                        aria-label="Close image popup"
+                    >
+                        &times;
+                    </button>
+
+                    {/* 확대된 이미지 */}
+                    <div className="max-w-[90vw] max-h-[90vh]">
+                        <img
+                            src={props.src}
+                            alt={props.alt}
+                            className="max-w-full max-h-full object-contain rounded shadow-2xl"
+                        />
+                    </div>
                 </div>
             )}
         </>
