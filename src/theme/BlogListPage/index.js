@@ -61,7 +61,7 @@ function BlogListPageContent({items, metadata}) {
                         <div className="w-full flex flex-wrap gap-2 my-2">
                             {content.metadata.tags?.map(tag => (
                                 <div
-                                    className={`w-fit rounded-full bg-[#D9D9D9] dark:bg-gray-700 bg-opacity-40 py-0.5 px-2.5 text-[11px] text-[#4F5968]`}>
+                                    className={`w-fit rounded-full bg-[#D9D9D9] dark:bg-[#242526] bg-opacity-40 py-0.5 px-2.5 text-[11px] text-[#4F5968]`}>
                                     <a href={`/blog/tags/${tag.label}`} key={tag}>
                                         {tag.label}
                                     </a>
