@@ -6,6 +6,9 @@ const getRandomOffset = () => Math.floor(Math.random() * 20 - 10); // ±10px로 
 
 export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const getRandomShift = () => Math.floor(Math.random() * 20 - 10); // -10 ~ +10 px
+    const topOffset = getRandomShift();
+    const leftOffset = getRandomShift();
 
     const myTags = [
         '#Java', '#SpringBoot', '#SpringSecurity', '#SpringMVC', '#SpringDataJPA',
@@ -49,9 +52,9 @@ export default function FloatingTags() {
 
                     const handleMouseEnter = () => {
                         controls.start({
-                            x: getRandomOffset(),
-                            y: getRandomOffset(),
-                            transition: { type: 'spring', stiffness: 40, damping: 15 },
+                            x: getRandomShift(),   // 초기부터 흩어진 위치
+                            y: getRandomShift(),
+                            transition: { type: 'spring', stiffness: 100, damping: 35 },
                         });
                     };
 
@@ -62,7 +65,7 @@ export default function FloatingTags() {
                     return (
                         <motion.div
                             key={tag}
-                            className="px-3 py-1.5 rounded-xl bg-white/80 dark:bg-[#333] text-sm text-black dark:text-white shadow-md dark:shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all cursor-pointer"
+                            className="relative px-3 py-1.5 rounded-xl bg-white/80 dark:bg-[#333] text-sm text-black dark:text-white shadow-md dark:shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all cursor-pointer"
                             animate={controls}
                             onMouseEnter={handleMouseEnter}
                             onClick={handleClick}
