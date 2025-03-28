@@ -9,7 +9,7 @@ import {useDateTimeFormat} from "@docusaurus/theme-common/internal";
 // 스타일 정의
 export const blogStyles = {
     tagLink:
-        'inline-block mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
+        'block md:inline-block mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
     blogCard:
         'flex justify-between items-start border-gray-200 dark:border-gray-700 py-6 group h-48',
     date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
@@ -28,7 +28,7 @@ function BlogListPageContent({items, metadata}) {
                 태그 보기
             </Link>
             <div className={`border-[0.3px] w-full border-gray-300`}></div>
-            <div className="flex flex-col">
+            <div className="flex flex-col w-full">
                 {items.map(({content}) => (
                     <>
                         <Link
@@ -49,7 +49,7 @@ function BlogListPageContent({items, metadata}) {
                             </div>
 
                             {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
-                            <div className="w-28 h-full rounded-lg shrink-0 flex items-center justify-center">
+                            <div className="hidden md:w-28 h-full rounded-lg shrink-0 md:flex items-center justify-center">
                                 <img
                                     src="/img/blog/dark-link.svg"
                                     alt="링크 아이콘"
