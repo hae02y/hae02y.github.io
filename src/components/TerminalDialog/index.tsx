@@ -22,12 +22,7 @@ export default function TerminalDialog() {
 
                     {/* 📄 소개글 (이미지 아래) */}
                     <div className="text-sm leading-relaxed space-y-2 text-center max-w-md px-4">
-                        <p>👋 안녕하세요! 저는 <strong>정해영</strong>입니다.</p>
-                        <p>🚀 백엔드/프론트엔드 개발을 다루며, React와 Spring Boot에 진심인 풀스택 개발자입니다.</p>
-                        <p>📦 현재는 공공 API 및 JWT 기반 인증 시스템 설계에 집중하고 있어요.</p>
-                        <p>🧠 기술 문서화, Swagger 자동화, API 설계를 좋아합니다.</p>
-                        <p>🌱 사이드로는 블로그 및 오픈소스 문서화도 꾸준히 하고 있어요.</p>
-                        <p className="text-blue-600 underline mt-2">터미널 열기 클릭 →</p>
+                        <p className="leading-relaxed">백엔드개발자 | hae02y</p>
                     </div>
                 </div>
             </DialogTrigger>
