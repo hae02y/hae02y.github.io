@@ -80,6 +80,24 @@
     ol {
         @apply list-decimal;
     }
+
+    /* Links */
+    a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+    }
+
+    a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+    }
+
+    a:hover {
+        color: rgba(var(--accent-rgb), 0.8);
+        text-decoration: none;
+    }
 }
 
 @layer components {
@@ -187,24 +205,6 @@
     src: local('Cera Round Pro Black'), url('/font/ceraRound/CeraRoundProBlack.woff') format('woff');
 }
 
-
-/* Links */
-a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-}
-
-a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-}
-
-a:hover {
-    color: rgba(var(--accent-rgb), 0.8);
-    text-decoration: none;
-}
 
 .tooltip {
     display: block !important;
@@ -421,19 +421,6 @@ a:hover {
 }
 
 
-blockquote:has(>.note:first-child) {
-    @apply bg-blue-50;
-}
-
-blockquote:has(>.warning:first-child) {
-    @apply bg-yellow-50;
-}
-
-blockquote:has(>.tip:first-child) {
-    @apply bg-green-50;
-}
-
-
 /* Prose Typography */
 @layer components {
     .prose h1 {
@@ -487,5 +474,4 @@ blockquote:has(>.tip:first-child) {
     .prose img, .prose picture, .prose video, .prose figure {
         @apply my-8;
     }
-
 }
