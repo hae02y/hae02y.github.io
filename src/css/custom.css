@@ -193,7 +193,13 @@
     }
 
     .markdown table {
-        @apply max-w-full;
+        @apply max-w-full break-all;
+    }
+    .markdown thead {
+        @apply max-w-full break-all;
+    }
+    .markdown tbody {
+        @apply max-w-full break-all;
     }
 
     .markdown a {
