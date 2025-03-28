@@ -59,9 +59,12 @@ function BlogListPageContent({items, metadata}) {
                         </Link>
 
                         <div>
-                            {content.metadata.tags.map(tag => (
-                                <div>
-                                    tag
+                            {content.metadata.tags?.map(tag => (
+                                <div
+                                    className={`w-fit rounded-full bg-[#D9D9D9] bg-opacity-40 py-0.5 px-2.5 text-[12px] text-[#4F5968]`}>
+                                    <a href={`/blog/tags/${tag.label}`} key={tag}>
+                                        {tag.label}
+                                    </a>
                                 </div>
                             ))}
                         </div>
