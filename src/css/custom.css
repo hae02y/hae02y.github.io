@@ -101,6 +101,15 @@
 }
 
 @layer components {
+    .btn-gnb {
+        @apply border-4 bg-primary;
+    }
+    .navbar__items {
+        @apply justify-center;
+    }
+}
+
+@layer components {
     /* Markdown specific styles for asides */
 
     .markdown code {
