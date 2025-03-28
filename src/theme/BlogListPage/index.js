@@ -47,8 +47,14 @@ function BlogListPageContent({items, metadata}) {
                                     {content.metadata.description || 'No description available.'}
                                 </p>
                             </div>
-                        </Link>
 
+                            {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
+                            <img
+                                src="/img/blog/white-link.svg"
+                                alt="링크 아이콘"
+                                className="w-96 h-6 md:w-7 md:h-7 object-contain shrink-0"
+                            />
+                        </Link>
                         <div className={`border-[0.3px] w-full border-gray-300`}></div>
                     </>
                 ))}
