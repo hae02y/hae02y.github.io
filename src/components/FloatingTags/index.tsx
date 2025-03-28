@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
-import {OrbitControls} from "@react-three/drei";
-import { Canvas } from '@react-three/fiber';
-import MovingCamel from '@site/src/components/MovingCamel';
-
+import {useBlogPost} from "@docusaurus/plugin-content-blog/client";
+import {useBlogTagsPostsPageTitle} from "@docusaurus/theme-common/internal";
 const getRandomOffset = () => Math.floor(Math.random() * 200 - 100);
 
-export default function FloatingTags(props) {
+export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    console.log(props)
+
+    const me = useBlogTagsPostsPageTitle({1});
+    console.log(me);
 
     const myTags = [
         '#낙타',
