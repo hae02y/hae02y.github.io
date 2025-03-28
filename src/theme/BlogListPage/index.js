@@ -49,16 +49,16 @@ function BlogListPageContent({items, metadata}) {
                             </div>
 
                             {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
-                            <div className={blogStyles.thumbnail}>
+                            <div className="w-28 h-full rounded-lg shrink-0 flex items-center justify-center">
                                 <img
                                     src="/img/blog/dark-link.svg"
                                     alt="링크 아이콘"
-                                    className="w-[50px] h-[50px] object-contain shrink-0 invert dark:invert-0"
+                                    className="w-[50px] h-[50px] object-contain invert dark:invert-0"
                                 />
                             </div>
                         </Link>
 
-                        <div>
+                        <div className={`w-full flex`}>
                             {content.metadata.tags?.map(tag => (
                                 <div
                                     className={`w-fit rounded-full bg-[#D9D9D9] bg-opacity-40 py-0.5 px-2.5 text-[12px] text-[#4F5968]`}>
