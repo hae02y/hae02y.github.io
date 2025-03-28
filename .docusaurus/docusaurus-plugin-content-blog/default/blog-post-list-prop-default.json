@@ -38,8 +38,8 @@
       "date": "2025-03-14T00:00:00.000Z"
     },
     {
-      "title": "스웨거 미친 적용방법",
-      "permalink": "/blog/swagger",
+      "title": "시큐리티 미친적용법",
+      "permalink": "/blog/security",
       "unlisted": false,
       "date": "2025-03-03T00:00:00.000Z"
     },
@@ -116,12 +116,6 @@
       "date": "2024-12-12T00:00:00.000Z"
     },
     {
-      "title": "스터디그라운드",
-      "permalink": "/blog/study",
-      "unlisted": false,
-      "date": "2024-12-03T00:00:00.000Z"
-    },
-    {
       "title": "UUID에 대해서",
       "permalink": "/blog/database1",
       "unlisted": false,
@@ -134,14 +128,14 @@
       "date": "2024-08-20T00:00:00.000Z"
     },
     {
-      "title": "블로그 구축기",
-      "permalink": "/blog/makeblog",
+      "title": "필드주입 vs 생성자 주입",
+      "permalink": "/blog/field",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },
     {
-      "title": "필드주입 vs 생성자 주입",
-      "permalink": "/blog/field",
+      "title": "블로그 구축기",
+      "permalink": "/blog/makeblog",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },

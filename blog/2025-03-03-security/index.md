@@ -1,10 +1,10 @@
 ---
-slug: swagger
-title: 스웨거 미친 적용방법
+slug: security
+title: 시큐리티 미친적용법
 authors:
   - haeyoung
 tags:
-  - swagger
+  - security
   - Java
 ---
 https://velog.io/@on5949/SpringSecurity-Authentication-%EA%B3%BC%EC%A0%95-%EC%A0%95%EB%A6%AC

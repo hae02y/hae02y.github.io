@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '459'),
+    component: ComponentCreator('/blog', '17c'),
     exact: true
   },
   {
@@ -54,17 +54,17 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '9c9'),
+    component: ComponentCreator('/blog/authors/haeyoung', 'dd0'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '9a5'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '883'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '356'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '4ee'),
     exact: true
   },
   {
@@ -154,17 +154,22 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', 'ef1'),
+    component: ComponentCreator('/blog/page/2', '2df'),
     exact: true
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', '9b5'),
+    component: ComponentCreator('/blog/page/3', 'd4a'),
     exact: true
   },
   {
     path: '/blog/redis',
     component: ComponentCreator('/blog/redis', '96a'),
+    exact: true
+  },
+  {
+    path: '/blog/security',
+    component: ComponentCreator('/blog/security', '692'),
     exact: true
   },
   {
@@ -183,18 +188,8 @@ export default [
     exact: true
   },
   {
-    path: '/blog/study',
-    component: ComponentCreator('/blog/study', '600'),
-    exact: true
-  },
-  {
     path: '/blog/swagger',
     component: ComponentCreator('/blog/swagger', 'e5d'),
-    exact: true
-  },
-  {
-    path: '/blog/swagger',
-    component: ComponentCreator('/blog/swagger', '02f'),
     exact: true
   },
   {
@@ -244,7 +239,7 @@ export default [
   },
   {
     path: '/blog/tags/java',
-    component: ComponentCreator('/blog/tags/java', '0f3'),
+    component: ComponentCreator('/blog/tags/java', 'b65'),
     exact: true
   },
   {
@@ -269,7 +264,7 @@ export default [
   },
   {
     path: '/blog/tags/portfolio',
-    component: ComponentCreator('/blog/tags/portfolio', '348'),
+    component: ComponentCreator('/blog/tags/portfolio', 'cac'),
     exact: true
   },
   {
@@ -279,7 +274,7 @@ export default [
   },
   {
     path: '/blog/tags/security',
-    component: ComponentCreator('/blog/tags/security', '235'),
+    component: ComponentCreator('/blog/tags/security', 'df8'),
     exact: true
   },
   {
@@ -289,7 +284,7 @@ export default [
   },
   {
     path: '/blog/tags/swagger',
-    component: ComponentCreator('/blog/tags/swagger', 'b3a'),
+    component: ComponentCreator('/blog/tags/swagger', 'dbc'),
     exact: true
   },
   {
