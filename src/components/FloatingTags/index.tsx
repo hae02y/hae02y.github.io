@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
 import {useBlogPost} from "@docusaurus/plugin-content-blog/client";
-import {useBlogTagsPostsPageTitle} from "@docusaurus/theme-common/internal";
+import blogTags from '@site/src/generated/blog-tags'; // 전체 태그 자동 생성됨
 const getRandomOffset = () => Math.floor(Math.random() * 200 - 100);
 
 export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-    const me = useBlogTagsPostsPageTitle({1});
+    const me = blogTags();
     console.log(me);
 
     const myTags = [
