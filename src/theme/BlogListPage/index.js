@@ -51,12 +51,21 @@ function BlogListPageContent({items, metadata}) {
                             {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
                             <div className={blogStyles.thumbnail}>
                                 <img
-                                    src="/img/blog/white-link.svg"
+                                    src="/img/blog/dark-link.svg"
                                     alt="링크 아이콘"
-                                    className="w-[50px] h-[50px] object-contain shrink-0"
+                                    className="w-[50px] h-[50px] object-contain shrink-0 invert dark:invert-0"
                                 />
                             </div>
                         </Link>
+
+                        <div>
+                            {content.metadata.tags.map(tag => (
+                                <div>
+                                    tag
+                                </div>
+                            ))}
+                        </div>
+
                         <div className={`border-[0.3px] w-full border-gray-300`}></div>
                     </>
                 ))}
