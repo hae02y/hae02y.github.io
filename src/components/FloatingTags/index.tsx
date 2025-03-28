@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
 
-const getRandomOffset = () => Math.floor(Math.random() * 20 - 10); // ±10px로 줄임
+// 랜덤 offset 함수
+const getRandomShift = () => Math.floor(Math.random() * 30 - 15); // -15 ~ +15px
 
 export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    const getRandomShift = () => Math.floor(Math.random() * 20 - 10); // -10 ~ +10 px
-    const topOffset = getRandomShift();
-    const leftOffset = getRandomShift();
 
     const myTags = [
         '#Java', '#SpringBoot', '#SpringSecurity', '#SpringMVC', '#SpringDataJPA',
@@ -24,10 +22,6 @@ export default function FloatingTags() {
     ];
 
     const getTagContent = () => {
-        if (selectedTag === '#낙타') {
-            return <div className="w-full h-[400px]" />;
-        }
-
         return (
             <div>
                 <h2 className="text-lg font-bold mb-2">{selectedTag}</h2>
@@ -52,20 +46,26 @@ export default function FloatingTags() {
 
                     const handleMouseEnter = () => {
                         controls.start({
-                            x: getRandomShift(),   // 초기부터 흩어진 위치
+                            x: getRandomShift(),
                             y: getRandomShift(),
-                            transition: { type: 'spring', stiffness: 100, damping: 35 },
+                            transition: {
+                                type: 'spring',
+                                duration: 0.2,
+                            },
                         });
                     };
 
-                    const handleClick = () => {
-                        setSelectedTag(tag);
-                    };
+                    const handleClick = () => setSelectedTag(tag);
+
+                    // 태그 생성 시 바로 흩어진 위치로 초기화
+                    const initialX = getRandomShift();
+                    const initialY = getRandomShift();
 
                     return (
                         <motion.div
                             key={tag}
                             className="relative px-3 py-1.5 rounded-xl bg-white/80 dark:bg-[#333] text-sm text-black dark:text-white shadow-md dark:shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all cursor-pointer"
+                            initial={{ x: initialX, y: initialY }}
                             animate={controls}
                             onMouseEnter={handleMouseEnter}
                             onClick={handleClick}
