@@ -25,14 +25,16 @@ export default function MDXImg(props: Props): JSX.Element {
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
             <div className={`w-full justify-items-center`}>
-                <figure className="w-[80%]">
-                    <img
-                        decoding="async"
-                        {...props}
-                        className="mx-auto cursor-pointer"
-                        onClick={togglePopup}
-                        alt={props.alt ?? 'image'}
-                    />
+                <figure className="relative w-[80%] max-h-64">
+                    <div className={`w-full h-full overflow-hidden`}>
+                        <img
+                            decoding="async"
+                            {...props}
+                            className="mx-auto my-auto cursor-pointer"
+                            onClick={togglePopup}
+                            alt={props.alt ?? 'image'}
+                        />
+                    </div>
                 </figure>
             </div>
 
@@ -41,7 +43,7 @@ export default function MDXImg(props: Props): JSX.Element {
                 <div
                     className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80"
                 >
-                    {/* X 버튼 */}
+                {/* X 버튼 */}
                     <button
                         onClick={togglePopup}
                         className="absolute top-6 right-6 text-white text-2xl font-bold hover:text-gray-300 transition"
