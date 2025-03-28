@@ -58,7 +58,7 @@ function BlogListPageContent({items, metadata}) {
                             </div>
                         </Link>
 
-                        <div className={`w-full flex`}>
+                        <div className="w-full flex flex-wrap gap-2 my-2">
                             {content.metadata.tags?.map(tag => (
                                 <div
                                     className={`w-fit rounded-full bg-[#D9D9D9] bg-opacity-40 py-0.5 px-2.5 text-[12px] text-[#4F5968]`}>
