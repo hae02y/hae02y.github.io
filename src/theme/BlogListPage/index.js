@@ -36,7 +36,7 @@ function BlogListPageContent({ items, metadata }) {
                         {/* 왼쪽 텍스트 영역 */}
                         <div className="flex-1 pr-4">
                             <p className={blogStyles.date}>
-                                • {new Date(content.metadata.date).toLocaleDateString()}
+                                 • {new Date(content.metadata.date).toLocaleDateString()}
                             </p>
                             <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                             <p className={blogStyles.description}>
