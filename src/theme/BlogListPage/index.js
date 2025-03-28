@@ -34,11 +34,12 @@ function BlogListPageContent({items, metadata}) {
                             to={content.metadata.permalink}
                             className={blogStyles.blogCard}
                         >
+                            {console.log(content.metadata)}
                             {/* 왼쪽 텍스트 영역 */}
                             <div className="flex-1 pr-4">
                                 <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                                 <p className={blogStyles.date}>
-                                    hae02y • {new Date(content.metadata.date).toLocaleDateString()}
+                                    {new Date(content.metadata.date).toLocaleDateString()} • 아마도.. {Math.ceil(content.metadata.readingTime)} 분
                                 </p>
                                 <p className={blogStyles.description}>
                                     {content.metadata.description || 'No description available.'}
