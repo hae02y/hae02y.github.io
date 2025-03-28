@@ -4,21 +4,21 @@
 
 @layer base {
     :root {
-        --primary: #000000;           /* 기본 텍스트 색상 → 검정 */
-        --secondary: #4a4a4a;         /* 보조 텍스트 색상 → 어두운 회색 */
-        --accent: #111111;            /* 강조 색상 → 딥 블랙 */
-        --accent-rgb: 17, 17, 17;     /* RGB 정의 */
-        --background: #ffffff;        /* 배경 → 화이트 */
-        --background-dark: #f5f5f5;   /* 연한 회색 배경 */
+        --primary: #000000; /* 기본 텍스트 색상 → 검정 */
+        --secondary: #4a4a4a; /* 보조 텍스트 색상 → 어두운 회색 */
+        --accent: #111111; /* 강조 색상 → 딥 블랙 */
+        --accent-rgb: 17, 17, 17; /* RGB 정의 */
+        --background: #ffffff; /* 배경 → 화이트 */
+        --background-dark: #f5f5f5; /* 연한 회색 배경 */
     }
 
     [data-theme="dark"] {
-        --primary: #ffffff;           /* 텍스트 색상 → 화이트 */
-        --secondary: #cccccc;         /* 보조 텍스트 → 밝은 회색 */
-        --accent: #ffffff;            /* 강조 색상 → 화이트 */
-        --accent-rgb: 255, 255, 255;  /* RGB 정의 */
-        --background: #000000;        /* 배경 → 블랙 */
-        --background-dark: #1a1a1a;   /* 약간 밝은 블랙 */
+        --primary: #ffffff; /* 텍스트 색상 → 화이트 */
+        --secondary: #cccccc; /* 보조 텍스트 → 밝은 회색 */
+        --accent: #ffffff; /* 강조 색상 → 화이트 */
+        --accent-rgb: 255, 255, 255; /* RGB 정의 */
+        --background: #000000; /* 배경 → 블랙 */
+        --background-dark: #1a1a1a; /* 약간 밝은 블랙 */
     }
 
     * {
@@ -118,89 +118,81 @@
 }
 
 @layer components {
-    /* Markdown specific styles for asides */
-
-    .markdown code {
-        @apply text-sm;
-    }
-
     .markdown code {
         @apply text-sm;
     }
 
     .markdown p code {
-        @apply text-orange-600 dark:text-orange-300 bg-gray-400 dark:bg-gray-600 border-gray-300 dark:border-gray-500;
+        @apply text-sm md:text-base text-orange-600 dark:text-orange-300 bg-gray-400 dark:bg-gray-600 border-gray-300 dark:border-gray-500;
     }
 
-    @layer components {
-        .markdown h1 {
-            @apply text-3xl font-bold text-[var(--primary)] mb-4;
-        }
-
-        .markdown h2 {
-            @apply text-2xl font-semibold text-[var(--primary)] mb-3;
-        }
-
-        .markdown h3 {
-            @apply text-xl font-medium text-[var(--primary)] mb-2;
-        }
-
-        .markdown h4 {
-            @apply text-lg font-medium text-[var(--secondary)] mb-2;
-        }
-
-        .markdown h5 {
-            @apply text-base font-medium text-[var(--secondary)] mb-1;
-        }
-
-        .markdown h6 {
-            @apply text-sm font-medium text-[var(--secondary)] mb-1;
-        }
-
-        .markdown p {
-            @apply text-base leading-relaxed text-[var(--primary)] mb-4;
-        }
-
-        .markdown ul,
-        .markdown ol {
-            @apply pl-6 mb-4 text-[var(--primary)];
-        }
-
-        .markdown ul {
-            @apply list-disc;
-        }
-
-        .markdown ol {
-            @apply list-decimal;
-        }
-
-        .markdown li {
-            @apply leading-relaxed mb-1;
-        }
-
-        .markdown li > p {
-            @apply m-0;
-        }
-
-        .markdown aside {
-            @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
-            rounded-lg p-4 shadow-sm mt-6 text-sm text-gray-800 dark:text-gray-200 leading-relaxed;
-        }
-
-        .markdown aside h3 {
-            @apply text-base font-semibold mb-2 text-[var(--primary)];
-        }
-
-        .markdown aside > hr {
-            @apply border-t border-gray-300 dark:border-gray-500 my-3 w-full;
-        }
-
-        .markdown div.stack {
-            @apply inline-flex flex-wrap items-center gap-2 mb-3;
-        }
+    .markdown h1 {
+        @apply text-2xl md:text-3xl font-bold text-[var(--primary)] mb-3 md:mb-4;
     }
 
+    .markdown h2 {
+        @apply text-xl md:text-2xl font-semibold text-[var(--primary)] mb-3;
+    }
+
+    .markdown h3 {
+        @apply text-lg md:text-xl font-medium text-[var(--primary)] mb-2;
+    }
+
+    .markdown h4 {
+        @apply text-base md:text-lg font-medium text-[var(--secondary)] mb-2;
+    }
+
+    .markdown h5 {
+        @apply text-sm md:text-base font-medium text-[var(--secondary)] mb-1;
+    }
+
+    .markdown h6 {
+        @apply text-xs md:text-sm font-medium text-[var(--secondary)] mb-1;
+    }
+
+    .markdown p {
+        @apply text-sm md:text-base leading-relaxed text-[var(--primary)] mb-4;
+    }
+
+    .markdown ul,
+    .markdown ol {
+        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-base;
+    }
+
+    .markdown ul {
+        @apply list-disc text-sm md:text-base;
+    }
+
+    .markdown ol {
+        @apply list-decimal text-sm md:text-base;
+    }
+
+    .markdown li {
+        @apply leading-relaxed mb-1 text-sm md:text-base;
+    }
+
+    .markdown li > p {
+        @apply m-0 text-sm md:text-base;
+    }
+
+    .markdown aside {
+        @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
+        rounded-lg p-3 md:p-4 shadow-sm mt-6 text-sm text-gray-800 dark:text-gray-200 leading-relaxed;
+    }
+
+    .markdown aside h3 {
+        @apply text-sm md:text-base font-semibold mb-2 text-[var(--primary)];
+    }
+
+    .markdown aside > hr {
+        @apply border-t border-gray-300 dark:border-gray-500 my-3 w-full;
+    }
+
+    .markdown div.stack {
+        @apply inline-flex flex-wrap items-center gap-2 mb-3;
+    }
 }
+
 
 @layer components {
     /* Extended terminal styles within markdown */
