@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "블로그 구축기-2",
-    "permalink": "/blog/makeblogdff"
-  },
-  "nextItem": {
     "title": "필드주입 vs 생성자 주입",
     "permalink": "/blog/field"
+  },
+  "nextItem": {
+    "title": "투게독",
+    "permalink": "/blog/togedog"
   }
 }
