@@ -39,7 +39,7 @@ const config: Config = {
   projectName: 'hae02y', // Usually your repo name.
 
   customFields: {
-    authid : 'test',
+    authid : 'hae02y',
     authpw : '1234'
   },
 

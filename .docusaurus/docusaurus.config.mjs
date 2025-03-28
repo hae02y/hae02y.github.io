@@ -23,7 +23,7 @@ export default {
   "organizationName": "hae02y",
   "projectName": "hae02y",
   "customFields": {
-    "authid": "test",
+    "authid": "hae02y",
     "authpw": "1234"
   },
   "onBrokenLinks": "warn",
