@@ -24,18 +24,23 @@ export default function MDXImg(props: Props): JSX.Element {
     return (
         <>
             {/* 썸네일: 정사각형 네모에 꽉차게 보여야 함 */}
-            <div className="grid place-items-center w-full">
+            <figure className="w-full">
                 <div
-                    className="relative w-full sm:w-[75%] md:w-[50%] h-[300px] overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+                    className="relative w-full sm:w-[75%] md:w-[50%] mx-auto aspect-square overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
                     <img
                         decoding="async"
                         {...props}
                         className="w-full h-full object-cover cursor-pointer"
                         onClick={togglePopup}
-                        alt="image"
+                        alt={props.alt ?? 'image'}
                     />
                 </div>
-            </div>
+                {props.alt && (
+                    <figcaption className="mt-2 text-center text-sm text-gray-500 dark:text-gray-400">
+                        {props.alt}
+                    </figcaption>
+                )}
+            </figure>
 
 
             {/* 팝업 */}
