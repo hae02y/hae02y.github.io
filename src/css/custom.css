@@ -102,10 +102,14 @@
 
 @layer components {
     .btn-gnb {
-        @apply border-4 bg-primary;
+        @apply px-4 py-2 rounded-lg border border-[var(--primary)]
+        bg-[var(--background)] text-[var(--primary)]
+        hover:bg-[var(--primary)] hover:text-[var(--background)]
+        transition-colors duration-200;
     }
+
     .navbar__items {
-        @apply justify-center;
+        @apply flex items-center justify-center gap-4;
     }
 }
 
