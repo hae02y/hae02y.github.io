@@ -16,7 +16,7 @@ export const blogStyles = {
     title:
         'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
     description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 line-clamp-2 mb-2',
-    thumbnail: 'w-28 h-20 md:w-36 md:h-24 rounded-lg object-cover shrink-0',
+    thumbnail: 'w-28 h-full rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };
 
@@ -28,7 +28,7 @@ function BlogListPageContent({items, metadata}) {
                 태그 보기
             </Link>
             <div className={`border-[0.3px] w-full border-gray-300`}></div>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col">
                 {items.map(({content}) => (
                     <>
                         <Link
@@ -49,11 +49,13 @@ function BlogListPageContent({items, metadata}) {
                             </div>
 
                             {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
-                            <img
-                                src="/img/blog/white-link.svg"
-                                alt="링크 아이콘"
-                                className="w-96 h-6 md:w-7 md:h-7 object-contain shrink-0"
-                            />
+                            <div className={blogStyles.thumbnail}>
+                                <img
+                                    src="/img/blog/white-link.svg"
+                                    alt="링크 아이콘"
+                                    className="w-[50px] h-[50px] object-contain shrink-0"
+                                />
+                            </div>
                         </Link>
                         <div className={`border-[0.3px] w-full border-gray-300`}></div>
                     </>
