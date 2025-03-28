@@ -29,7 +29,7 @@ function CamelSection() {
 
                     {/* 우측: 프로필 + 다이얼로그 */}
                     <div
-                        className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center"
+                        className="hidden lg:h-full lg:w-1/2 lg:flex items-center justify-center"
                     >
                     <FloatingTags />
                     </div>
