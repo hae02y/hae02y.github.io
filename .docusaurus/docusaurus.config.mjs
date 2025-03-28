@@ -83,7 +83,6 @@ export default {
   "themeConfig": {
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
-      "title": "해영블Lo그",
       "logo": {
         "alt": "My Site Logo",
         "src": "img/sitelogo.png"
