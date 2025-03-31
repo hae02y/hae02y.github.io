@@ -9,7 +9,7 @@ const config: Config = {
       {
         id: 'book',
         path: 'book', // 여기에 마크다운 파일을 저장할 폴더
-        routeBasePath: 'book', // URL이 `/book`이 됨
+        routeBasePath: 'book', // URL이 `/book`이 됨pagination-nav docusaurus-mt-lg
       },
     ],
     async function myPlugin(context, options) {
@@ -40,7 +40,7 @@ const config: Config = {
 
   customFields: {
     authid : 'hae02y',
-    authpw : '1234'
+    authpw : 'qwe123,.'
   },
 
   onBrokenLinks: 'warn',

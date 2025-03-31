@@ -24,7 +24,7 @@ export default {
   "projectName": "hae02y",
   "customFields": {
     "authid": "hae02y",
-    "authpw": "1234"
+    "authpw": "qwe123,."
   },
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
