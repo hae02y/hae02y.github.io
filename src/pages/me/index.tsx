@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { Document, Page, pdfjs } from 'react-pdf';
 
-// ✅ CDN에서 pdf.worker.min.js 불러오기 (UMD 방식)
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 export default function Me() {
     const [numPages, setNumPages] = useState<number | null>(null);
