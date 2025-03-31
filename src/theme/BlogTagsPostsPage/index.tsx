@@ -34,8 +34,8 @@ function BlogTagsPostsPageContent({
         <BlogLayout sidebar={sidebar}>
             {tag.unlisted && <Unlisted />}
             <header className="margin-bottom--xl">
-                <h1>{tag.label} 관련 블로그 글</h1>
-                {tag.description && <p>{tag.description}</p>}
+                <span className={`text-center`}>Blog/Tags.</span>
+                <span>{tag.label}</span>
                 <Link href={tag.allTagsPath}>
                     <Translate
                         id="theme.tags.tagsPageLink"
