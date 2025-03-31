@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { listTagsByLetters, type TagLetterEntry } from '@docusaurus/theme-common';
 import type { Props } from '@theme/TagsListByLetter';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@site/src/components/ui/tabs'; // shadcn UI Tabs 컴포넌트
@@ -23,23 +23,26 @@ const CustomTag: React.FC<CustomTagProps> = ({ label, permalink }) => {
 
 export default function TagsListByLetter({ tags }: Props) {
     const letterList = listTagsByLetters(tags);
+    const [activeTab, setActiveTab] = useState(letterList[0]?.letter || 'ALL');
 
     return (
         <div className="my-12 px-4">
-            <Tabs defaultValue={letterList[0]?.letter || 'ALL'}>
-                {/* 탭 리스트: 각 탭이 알파벳 그룹을 나타냄 */}
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="mb-4 flex flex-wrap justify-center gap-3">
                     {letterList.map((letterEntry) => (
                         <TabsTrigger
                             key={letterEntry.letter}
                             value={letterEntry.letter}
-                            className="px-4 py-2 border rounded-md text-sm font-medium focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-700"
+                            onMouseEnter={() => setActiveTab(letterEntry.letter)} // 👈 hover 시 변경
+                            className={`px-4 py-2 border rounded-md text-sm font-medium focus:outline-none transition-colors
+                              ${activeTab === letterEntry.letter ? 'bg-gray-200 dark:bg-gray-800' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
+                            `}
                         >
                             {letterEntry.letter}
                         </TabsTrigger>
                     ))}
                 </TabsList>
-                {/* 각 탭 패널: 선택한 알파벳 그룹의 태그들을 보여줌 */}
+
                 {letterList.map((letterEntry) => (
                     <TabsContent
                         key={letterEntry.letter}
