@@ -14,12 +14,17 @@ const CustomTag: React.FC<CustomTagProps> = ({ label, permalink }) => {
     return (
         <a
             href={permalink}
-            className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full text-sm font-medium transition-colors hover:bg-blue-200 dark:hover:bg-blue-800"
+            className="px-3 py-1 rounded-full text-sm font-medium
+                 bg-gray-100 text-gray-800
+                 dark:bg-gray-800 dark:text-gray-200
+                 hover:bg-gray-200 dark:hover:bg-gray-700
+                 transition-colors"
         >
             {label}
         </a>
     );
 };
+
 
 export default function TagsListByLetter({ tags }: Props) {
     const letterList = listTagsByLetters(tags);
@@ -33,7 +38,7 @@ export default function TagsListByLetter({ tags }: Props) {
                         <TabsTrigger
                             key={letterEntry.letter}
                             value={letterEntry.letter}
-                            onMouseEnter={() => setActiveTab(letterEntry.letter)} // 👈 hover 시 변경
+                            onMouseEnter={() => setActiveTab(letterEntry.letter)}
                             className={`px-4 py-2 border rounded-md text-sm font-medium focus:outline-none transition-colors
                               ${activeTab === letterEntry.letter ? 'bg-gray-200 dark:bg-gray-800' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
                             `}
@@ -49,13 +54,6 @@ export default function TagsListByLetter({ tags }: Props) {
                         value={letterEntry.letter}
                         className="p-4"
                     >
-                        <Heading
-                            as="h4"
-                            id={letterEntry.letter}
-                            className="mb-4 text-2xl font-bold text-center text-gray-900 dark:text-gray-100"
-                        >
-                            {letterEntry.letter} 그룹
-                        </Heading>
                         <div className="flex flex-wrap justify-center gap-3">
                             {letterEntry.tags.map((tag) => (
                                 <CustomTag
