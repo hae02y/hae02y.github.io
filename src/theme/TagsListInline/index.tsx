@@ -10,11 +10,6 @@ export default function TagsListInline({tags}: Props) {
   return (
     <>
       <b>
-        <Translate
-          id="theme.tags.tagsListLabel"
-          description="The label alongside a tag list">
-          Tags:
-        </Translate>
       </b>
       <ul className={clsx(styles.tags, 'padding--none', 'margin-left--sm')}>
         {tags.map((tag) => (
