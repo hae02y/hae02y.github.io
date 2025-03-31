@@ -10,7 +10,7 @@ export default function PaginatorNavLink(props: Props): JSX.Element {
     <>
       <Link
           className={clsx(
-              'pagination-nav__link',
+              'pagination-nav__link', `text-sm `,
               isNext ? 'pagination-nav__link--next' : 'pagination-nav__link--prev',
           )}
           to={permalink}>
