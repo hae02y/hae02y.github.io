@@ -7,9 +7,6 @@
       "@site/*": ["./*"], // 기존 Docusaurus 설정 유지
       "@/components/*": ["src/components/*"],
       "@/ui/*": ["src/components/ui/*"]
-    },
-    "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "allowSyntheticDefaultImports": true
+    }
   }
 }

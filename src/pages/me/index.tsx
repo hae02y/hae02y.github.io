@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
-import { Document, Page, pdfjs } from 'react-pdf';
-import workerSrc from 'pdfjs-dist/build/pdf.worker.mjs';
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
 
-pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+
 export default function Me() {
     const [numPages, setNumPages] = useState<number | null>(null);
 
