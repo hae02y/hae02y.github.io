@@ -64,7 +64,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', 'f57'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '4ee'),
     exact: true
   },
   {
@@ -159,7 +159,7 @@ export default [
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', 'ee4'),
+    component: ComponentCreator('/blog/page/3', 'd4a'),
     exact: true
   },
   {

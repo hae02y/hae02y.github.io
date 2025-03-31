@@ -1,26 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@theme/Layout';
+import { Document, Page, pdfjs } from 'react-pdf';
+import workerSrc from 'pdfjs-dist';
+
+pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+
 
 export default function Me() {
+    const [numPages, setNumPages] = useState<number | null>(null);
+
     return (
         <Layout>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '80vh',
-                }}
-            >
-                <object
-                    data="/resume.pdf" // PDF 파일 경로
-                    type="application/pdf"
-                    width="80%"
-                    height="600px"
-                >
-                    <p>PDF를 표시할 수 없습니다. <a href="/resume.pdf">여기를 클릭</a>하여 다운로드하세요.</p>
-                </object>
+            <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
+                <div className="w-full max-w-4xl bg-white shadow rounded p-4">
+                    <Document
+                        file="/resume.pdf" // public 폴더 기준 경로
+                        onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+                        loading="PDF 로딩 중..."
+                    >
+                        {Array.from({ length: numPages || 0 }, (_, index) => (
+                            <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+                        ))}
+                    </Document>
+                </div>
             </div>
         </Layout>
     );
