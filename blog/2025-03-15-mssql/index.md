@@ -20,7 +20,8 @@ WHERE name = 'ansan-daemin';
 ```
 
 ```sql
-ALTER DATABASE [ansan-daemin] COLLATE Latin1_General_100_CI_AS_SC_UTF8;
+ALTER DATABASE [ansan-daemin] 
+      COLLATE Latin1_General_100_CI_AS_SC_UTF8;
 ```
 
 **데이터베이스를 사용 중이면 변경할 수 없음**
@@ -35,7 +36,8 @@ ALTER DATABASE [ansan-daemin] COLLATE Latin1_General_100_CI_AS_SC_UTF8;
 
 ```sql
 ALTER TABLE [users] 
-ALTER COLUMN [name] NVARCHAR(255) COLLATE Latin1_General_100_CI_AS_SC_UTF8;
+ALTER COLUMN [name] NVARCHAR(255) 
+      COLLATE Latin1_General_100_CI_AS_SC_UTF8;
 ```
 
 
