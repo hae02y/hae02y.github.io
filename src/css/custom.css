@@ -205,6 +205,11 @@
     .markdown a {
         @apply break-all !important;
     }
+
+    .markdown pre, code {
+        @apply whitespace-pre-wrap break-words;
+    }
+
 }
 
 
