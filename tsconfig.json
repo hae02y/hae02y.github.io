@@ -9,6 +9,7 @@
       "@/ui/*": ["src/components/ui/*"]
     },
     "esModuleInterop": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "allowSyntheticDefaultImports": true
   }
 }
