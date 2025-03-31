@@ -24,9 +24,10 @@ export const blogStyles = {
 function BlogListPageContent({items, metadata}) {
     return (
         <BlogLayout>
-            <Link to="/blog/tags" className={blogStyles.tagLink}>
-                태그 보기
-            </Link>
+            <div className={`blog-header`}>
+                <h1 className={`text-center`}>Blog.</h1>
+                <Link to={'/blog/tags'}>태그</Link>
+            </div>
             <div className={`border-[0.3px] w-full border-gray-300`}></div>
             <div className="flex flex-col w-full">
                 {items.map(({content}) => (
