@@ -26,7 +26,7 @@ export default function TagsListByLetter({ tags }: Props) {
 
     return (
         <div className="my-12 px-4">
-            <Tabs defaultValue={letterList[0]?.letter || 'all'}>
+            <Tabs defaultValue={letterList[0]?.letter || 'ALL'}>
                 {/* 탭 리스트: 각 탭이 알파벳 그룹을 나타냄 */}
                 <TabsList className="mb-4 flex flex-wrap justify-center gap-3">
                     {letterList.map((letterEntry) => (
