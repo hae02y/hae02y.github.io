@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 import { Document, Page, pdfjs } from 'react-pdf';
-import workerSrc from 'pdfjs-dist';
+import workerPath from 'pdfjs-dist/build/pdf.worker.mjs?url';
 
-pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
+pdfjs.GlobalWorkerOptions.workerSrc = workerPath;
 
 
 export default function Me() {
