@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack5";
+import { Document, Page, pdfjs } from 'react-pdf';
 
+// ✅ CDN에서 pdf.worker.min.js 불러오기 (UMD 방식)
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 export default function Me() {
     const [numPages, setNumPages] = useState<number | null>(null);
@@ -11,7 +13,7 @@ export default function Me() {
             <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
                 <div className="w-full max-w-4xl bg-white shadow rounded p-4">
                     <Document
-                        file="/resume.pdf" // public 폴더 기준 경로
+                        file="/resume.pdf"
                         onLoadSuccess={({ numPages }) => setNumPages(numPages)}
                         loading="PDF 로딩 중..."
                     >
