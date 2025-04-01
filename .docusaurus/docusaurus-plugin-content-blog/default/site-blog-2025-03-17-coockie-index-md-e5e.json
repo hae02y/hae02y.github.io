@@ -21,7 +21,7 @@
       "permalink": "/blog/tags/java"
     }
   ],
-  "readingTime": 0.155,
+  "readingTime": 0.225,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -56,7 +56,7 @@
     "permalink": "/blog/gettersetter"
   },
   "nextItem": {
-    "title": "JPA에서 ID를 대하는 자세...!",
-    "permalink": "/blog/springid"
+    "title": "\bMSSQL 사용하기",
+    "permalink": "/blog/mssql"
   }
 }
