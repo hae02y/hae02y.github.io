@@ -59,12 +59,12 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '883'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '425'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '67e'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '884'),
     exact: true
   },
   {
@@ -154,12 +154,12 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', '2df'),
+    component: ComponentCreator('/blog/page/2', '9d9'),
     exact: true
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', 'ea7'),
+    component: ComponentCreator('/blog/page/3', '75a'),
     exact: true
   },
   {
@@ -189,7 +189,7 @@ export default [
   },
   {
     path: '/blog/stack',
-    component: ComponentCreator('/blog/stack', '03f'),
+    component: ComponentCreator('/blog/stack', 'e54'),
     exact: true
   },
   {
@@ -269,7 +269,7 @@ export default [
   },
   {
     path: '/blog/tags/portfolio',
-    component: ComponentCreator('/blog/tags/portfolio', '6dd'),
+    component: ComponentCreator('/blog/tags/portfolio', '290'),
     exact: true
   },
   {
