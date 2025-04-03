@@ -64,7 +64,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '4ee'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', 'bdd'),
     exact: true
   },
   {
@@ -159,12 +159,17 @@ export default [
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', 'd4a'),
+    component: ComponentCreator('/blog/page/3', 'c49'),
     exact: true
   },
   {
     path: '/blog/redis',
     component: ComponentCreator('/blog/redis', '96a'),
+    exact: true
+  },
+  {
+    path: '/blog/review2023',
+    component: ComponentCreator('/blog/review2023', '7cf'),
     exact: true
   },
   {
@@ -264,12 +269,17 @@ export default [
   },
   {
     path: '/blog/tags/portfolio',
-    component: ComponentCreator('/blog/tags/portfolio', 'cac'),
+    component: ComponentCreator('/blog/tags/portfolio', '6dd'),
     exact: true
   },
   {
     path: '/blog/tags/redis',
     component: ComponentCreator('/blog/tags/redis', '6a4'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/review',
+    component: ComponentCreator('/blog/tags/review', '87e'),
     exact: true
   },
   {
@@ -294,7 +304,7 @@ export default [
   },
   {
     path: '/blog/togedog',
-    component: ComponentCreator('/blog/togedog', 'd43'),
+    component: ComponentCreator('/blog/togedog', '708'),
     exact: true
   },
   {
