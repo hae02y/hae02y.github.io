@@ -1,10 +1,11 @@
 ---
-slug: review2023
-title: 2023년 회고
+slug: review-codestates
+title: 코드스테이츠 메인 프로젝트 회고에요.
 authors:
   - haeyoung
 tags:
   - review
+  - bootcamp
 ---
 ![](https://mblogthumb-phinf.pstatic.net/MjAyMTA1MDhfMjIy/MDAxNjIwNDcxMzMzMjA2.IGuAkdPKsTWcJvuWDfnFhGfcBbBWR3KdEF7b4wD34kcg.bCmezm355XhiMUfZDzLiBay7mdzguXobk84LCG077DQg.JPEG.jwyr5507/IMG_7924.jpg?type=w800)
 
