@@ -50,3 +50,8 @@ tags:
     3. Excel DTO를 Interface로 만들어 필요한 부분에 implment 하는 방식
 
 - [ ] 엑셀이 그대로 업로드 되는가?
+
+
+
+### Thread Safety 한가?
+- 
