@@ -17,7 +17,8 @@ sidebar_position: 1
 - **소개** : Clone coding - 게시판 및 CRUD 구현
 - **기간** : 2023.08.04 ~ 2023.08.23 (2주) 
 - **인원** : Backend 1명, Frontend 1명 (총 2명)
-- [🔗 레포지토리 링크]()
+- [🔗 레포지토리 링크](www.naver.com)
+
 </aside>
 
 ### 핵심 기술 스택
