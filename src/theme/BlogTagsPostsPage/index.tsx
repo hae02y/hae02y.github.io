@@ -22,7 +22,7 @@ export const blogStyles = {
     date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
     title:
         'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
-    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all mb-2',
+    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all mb-2 overflow-hidden whitespace-nowrap text-ellipsis',
     thumbnail: 'w-28 h-full rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };

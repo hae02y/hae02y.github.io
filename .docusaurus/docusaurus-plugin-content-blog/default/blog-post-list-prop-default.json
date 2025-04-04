@@ -2,6 +2,18 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "try-with-resources 를 사용하자!",
+      "permalink": "/blog/trywithresources",
+      "unlisted": false,
+      "date": "2025-04-04T00:00:00.000Z"
+    },
+    {
+      "title": "스프링 부트 엑셀 Export 기능 구현",
+      "permalink": "/blog/springexcel",
+      "unlisted": false,
+      "date": "2025-04-03T00:00:00.000Z"
+    },
+    {
       "title": "스웨거 미친 적용방법",
       "permalink": "/blog/swagger",
       "unlisted": false,
@@ -146,8 +158,8 @@
       "date": "2024-08-07T00:00:00.000Z"
     },
     {
-      "title": "2023년 회고",
-      "permalink": "/blog/review2023",
+      "title": "코드스테이츠 메인 프로젝트 회고에요.",
+      "permalink": "/blog/review-codestates",
       "unlisted": false,
       "date": "2023-12-03T00:00:00.000Z"
     },

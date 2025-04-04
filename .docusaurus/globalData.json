@@ -16,6 +16,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "solo-project/lawngarden/index",
+              "path": "/docs/solo-project/lawngarden/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "solo-project/stackover/index",
               "path": "/docs/solo-project/stackover/",
               "sidebar": "tutorialSidebar"
