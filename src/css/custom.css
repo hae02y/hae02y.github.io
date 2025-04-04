@@ -207,7 +207,7 @@
     }
 
     .markdown pre, code {
-        @apply whitespace-pre-wrap break-words;
+        @apply whitespace-pre-wrap break-words !important;
     }
 
 }
