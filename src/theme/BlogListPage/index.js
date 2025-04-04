@@ -15,7 +15,7 @@ export const blogStyles = {
     date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
     title:
         'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
-    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all overflow-hidden text-ellipsis',
+    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all overflow-hidden line-clamp-2 mb-4',
     thumbnail: 'w-28 h-full rounded-lg object-cover shrink-0',
     pagination: 'mt-8 flex justify-center',
 };
@@ -39,7 +39,7 @@ function BlogListPageContent({items, metadata}) {
                         >
                             {console.log(content.metadata)}
                             {/* 왼쪽 텍스트 영역 */}
-                            <div className="flex-1 pr-4">
+                            <div className="flex-1 pr-4 h-full">
                                 <h3 className={blogStyles.title}>{content.metadata.title}</h3>
                                 <p className={blogStyles.date}>
                                     {useDateTimeFormat().format(new Date(content.metadata.date))} • {Math.ceil(content.metadata.readingTime)} min

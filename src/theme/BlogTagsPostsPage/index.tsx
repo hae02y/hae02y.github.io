@@ -47,7 +47,7 @@ function BlogTagsPostsPageContent({
     return (
         <BlogLayout sidebar={sidebar}>
             {tag.unlisted && <Unlisted/>}
-            <header className="margin-bottom--xl">
+            <header>
                 <h1 className={`text-center`}>Blog/Tags.</h1>
                 <h3 className="text-uppercase text-center">WHERE = '<strong className={`text-orange-500 dark:text-orange-400`}>{tag.label}</strong>'; </h3>
                 <Link href={tag.allTagsPath}>
