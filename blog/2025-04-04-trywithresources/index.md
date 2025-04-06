@@ -6,7 +6,7 @@ authors:
 tags:
   - Java
 ---
-
+https://mangkyu.tistory.com/217
 ### try-with-resources
 
 `try-with-resources`는 Java7에서 도입된 기능입니다. 자원을 자동으로 관리하고 자원누수를 방지하는 역할을 합니다.
