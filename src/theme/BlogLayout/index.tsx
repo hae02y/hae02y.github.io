@@ -74,7 +74,7 @@ const TocPopover = ({toc}: { toc: any }) => {
                             <a
                                 key={item.id}
                                 href={`#${item.id}`}
-                                className="block text-gray-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                                className="block text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
                             >
                                 {item.value.replace(/<\/?[^>]+(>|$)/g, "")}
                             </a>
