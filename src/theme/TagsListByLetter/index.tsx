@@ -33,7 +33,7 @@ export default function TagsListByLetter({ tags }: Props) {
 
     return (
         <div className="my-12 px-4">
-            <div className="max-w-screen-lg mx-auto h-full flex border border-gray-200 dark:border-gray-800 rounded-lg shadow overflow-hidden bg-white dark:bg-gray-900">
+            <div className="max-w-screen-lg mx-auto max-h-[70%] flex border border-gray-200 dark:border-gray-800 rounded-lg shadow overflow-hidden bg-white dark:bg-gray-900">
 
                 {/* 왼쪽: 문자 목록 */}
                 <div className="w-24 sm:w-32 overflow-y-auto border-r border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-800 p-2">
