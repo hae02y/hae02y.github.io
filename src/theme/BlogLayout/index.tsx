@@ -53,11 +53,12 @@ const TocPopover = ({toc}: { toc: any }) => {
     return (
         <Popover className="relative block">
             {/* Popover 버튼 */}
-            <PopoverButton
-                className="fixed bottom-4 right-4"
-            >
-                <div className={`w-10 h-10 bg-gray-300 rounded-md shadow-sm`}>
-                    <img src="/img/index/black-index.svg" alt="" className={`w-full h-full`}/>
+            <PopoverButton className="fixed bottom-4 right-4">
+                <div className="w-10 h-10 rounded-2xl relative hover:shadow-lg">
+                    {/* 라이트모드 아이콘 */}
+                    <img src="/img/index/black-index.svg" alt="index" className="w-full h-full block dark:hidden" />
+                    {/* 다크모드 아이콘 */}
+                    <img src="/img/index/white-index.svg" alt="index-dark" className="w-full h-full hidden dark:block" />
                 </div>
             </PopoverButton>
             <PopoverPanel
