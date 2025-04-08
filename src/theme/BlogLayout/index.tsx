@@ -56,8 +56,8 @@ const TocPopover = ({toc}: { toc: any }) => {
             <PopoverButton
                 className="fixed bottom-4 right-4"
             >
-                <div className={`w-16 h-16`}>
-                    <img src="/img/logo.png" alt=""/>
+                <div className={`w-10 h-10 bg-gray-300 rounded-md shadow-sm`}>
+                    <img src="/img/index/black-index.svg" alt="" className={`w-full h-full`}/>
                 </div>
             </PopoverButton>
             <PopoverPanel
