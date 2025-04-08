@@ -31,41 +31,46 @@ export default function TagsListByLetter({ tags }: Props) {
     const [activeTab, setActiveTab] = useState(letterList[0]?.letter || 'ALL');
 
     return (
-        <div className="my-12 px-4">
-            <Tabs value={activeTab} onValueChange={setActiveTab}>
-                <TabsList className="mb-4 flex flex-wrap justify-center gap-3">
+        <div className="my-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row gap-6">
+                {/* 왼쪽 문자 목록 */}
+                <div className="sm:w-32 flex sm:flex-col flex-wrap justify-center gap-2 sm:gap-3">
                     {letterList.map((letterEntry) => (
-                        <TabsTrigger
+                        <button
                             key={letterEntry.letter}
-                            value={letterEntry.letter}
-                            onMouseEnter={() => setActiveTab(letterEntry.letter)}
-                            className={`px-4 py-2 border rounded-md text-sm font-medium focus:outline-none transition-colors
-                              ${activeTab === letterEntry.letter ? 'bg-gray-200 dark:bg-gray-800' : 'hover:bg-gray-100 dark:hover:bg-gray-700'}
+                            onClick={() => setActiveTab(letterEntry.letter)}
+                            className={`px-4 py-2 border rounded-md text-sm font-medium transition-colors 
+                                ${
+                                activeTab === letterEntry.letter
+                                    ? 'bg-gray-200 dark:bg-gray-800'
+                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700'
+                            }
                             `}
                         >
                             {letterEntry.letter}
-                        </TabsTrigger>
+                        </button>
                     ))}
-                </TabsList>
+                </div>
 
-                {letterList.map((letterEntry) => (
-                    <TabsContent
-                        key={letterEntry.letter}
-                        value={letterEntry.letter}
-                        className="p-4"
-                    >
-                        <div className="flex flex-wrap justify-center gap-3">
-                            {letterEntry.tags.map((tag) => (
-                                <CustomTag
-                                    key={tag.permalink}
-                                    label={tag.label}
-                                    permalink={tag.permalink}
-                                />
-                            ))}
-                        </div>
-                    </TabsContent>
-                ))}
-            </Tabs>
+                {/* 오른쪽 태그 리스트 */}
+                <div className="flex-1">
+                    {letterList.map((letterEntry) =>
+                        letterEntry.letter === activeTab ? (
+                            <div key={letterEntry.letter} className="flex flex-wrap gap-2 sm:gap-3">
+                                {letterEntry.tags.map((tag) => (
+                                    <CustomTag
+                                        key={tag.permalink}
+                                        label={tag.label}
+                                        permalink={tag.permalink}
+                                    />
+                                ))}
+                            </div>
+                        ) : null
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
+
+
