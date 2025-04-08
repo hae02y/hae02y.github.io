@@ -61,21 +61,25 @@ const TocPopover = ({toc}: { toc: any }) => {
                 </div>
             </PopoverButton>
             <PopoverPanel
-                    transition
-                    anchor="top"
-                    className="z-10 right-0 w-[200px] h-auto max-w-none p-4 bg-white whitespace-pre-line border border-gray-200 rounded-lg shadow-lg"
-                >
-                    {/* 실제 TOC 내용 */}
-                    <div className="text-left text-xs">
-                        {toc?.props?.toc
-                            ?.filter((item) => item?.level <= 3) // level이 3 이상인 항목만 필터링
-                            .map((item) => (
-                                <a key={item.id} href={`#${item.id}`} className="block mb-2 text-gray-500 hover:text-opacity-60 dark:text-white dark:hover:text-opacity-80 transition-colors">
-                                    {item.value.replace(/<\/?[^>]+(>|$)/g, "")}
-                                </a>
-                            ))}
-                    </div>
-                </PopoverPanel>
+                anchor="top"
+                className="z-10 right-0 w-[240px] max-w-sm p-4 bg-white dark:bg-gray-900 whitespace-pre-line border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl text-sm
+        opacity-0 scale-100 transition-opacity duration-200 ease-out
+        data-[headlessui-state=open]:opacity-100"
+            >
+                <div className="text-left space-y-2">
+                    {toc?.props?.toc
+                        ?.filter((item) => item?.level <= 3)
+                        .map((item) => (
+                            <a
+                                key={item.id}
+                                href={`#${item.id}`}
+                                className="block text-gray-600 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                            >
+                                {item.value.replace(/<\/?[^>]+(>|$)/g, "")}
+                            </a>
+                        ))}
+                </div>
+            </PopoverPanel>
         </Popover>
     );
 }
