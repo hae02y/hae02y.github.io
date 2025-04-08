@@ -104,13 +104,13 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {to: '/book', label: 'Books', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Portfolio',
         },
-        {to: '/book', label: 'Books', position: 'left'},
       ],
     },
     prism: {
