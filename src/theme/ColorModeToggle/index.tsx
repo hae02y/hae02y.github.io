@@ -19,7 +19,7 @@ export default function ColorModeToggle({ className, ...props }) {
             onClick={() => setColorMode(isDarkMode ? 'light' : 'dark')}
             {...props}
         >
-            {isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
+            {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
         </button>
     );
 }
