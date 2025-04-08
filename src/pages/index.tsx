@@ -19,7 +19,7 @@ function CamelSection() {
     return (
         <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
             <div className="h-full flex w-full flex-col">
-                <div className="lg:flex h-full bg-gradient-to-br from-white via-gray-200 to-gray-300 dark:from-black dark:via-gray-900 dark:to-gray-900">
+                <div className="lg:flex h-full bg-gradient-to-br from-white via-gray-200 to-gray-300 dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
                     {/* 좌측: 3D Camel */}
                     <div
                         className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center"
