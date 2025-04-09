@@ -7,7 +7,7 @@ export default function Me() {
     return (
         <Layout>
             <div className="flex flex-col items-center justify-center min-h-[80vh] px-4">
-
+                <PdfViewer pdfUrl={"pdfUrl"} onErrorPDFRender={onErrorPDFRender} />
             </div>
         </Layout>
     );
