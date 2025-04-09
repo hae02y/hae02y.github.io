@@ -105,6 +105,11 @@
               "sidebar": "defaultSidebar"
             },
             {
+              "id": "inff/index",
+              "path": "/insight/inff/",
+              "sidebar": "defaultSidebar"
+            },
+            {
               "id": "intro",
               "path": "/insight/",
               "sidebar": "defaultSidebar"

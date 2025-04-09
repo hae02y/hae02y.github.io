@@ -1051,17 +1051,17 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-vestellalab-project-thesharpjije-1-f-52-ec6"
   },
-  "/insight-745": {
+  "/insight-feb": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---insight-6-a-4-005"
     }
   },
-  "/insight-3e8": {
+  "/insight-84e": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "__props": "__props---insight-076-400"
   },
-  "/insight-476": {
+  "/insight-94c": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/insight/-4e8": {
@@ -1071,6 +1071,10 @@
   "/insight/develop/-a57": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---insight-develop-371-dac"
+  },
+  "/insight/inff/-acc": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---insight-inff-1-b-6-7a4"
   },
   "/-e5f": {
     "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",

@@ -445,15 +445,15 @@ export default [
   },
   {
     path: '/insight',
-    component: ComponentCreator('/insight', '745'),
+    component: ComponentCreator('/insight', 'feb'),
     routes: [
       {
         path: '/insight',
-        component: ComponentCreator('/insight', '3e8'),
+        component: ComponentCreator('/insight', '84e'),
         routes: [
           {
             path: '/insight',
-            component: ComponentCreator('/insight', '476'),
+            component: ComponentCreator('/insight', '94c'),
             routes: [
               {
                 path: '/insight/',
@@ -464,6 +464,12 @@ export default [
               {
                 path: '/insight/develop/',
                 component: ComponentCreator('/insight/develop/', 'a57'),
+                exact: true,
+                sidebar: "defaultSidebar"
+              },
+              {
+                path: '/insight/inff/',
+                component: ComponentCreator('/insight/inff/', 'acc'),
                 exact: true,
                 sidebar: "defaultSidebar"
               }
