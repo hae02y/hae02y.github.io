@@ -6,6 +6,7 @@ type LazyImageProps = {
     alt?: string;
     className?: string;
     loaderSize?: number;
+    onClick?: () => void;
 };
 
 const LazyImage: React.FC<LazyImageProps> = ({
@@ -13,6 +14,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
                                                  alt = '',
                                                  className = '',
                                                  loaderSize = 24,
+                                                 onClick,
                                              }) => {
     const [loaded, setLoaded] = useState(false);
 
@@ -28,11 +30,12 @@ const LazyImage: React.FC<LazyImageProps> = ({
                 </div>
             )}
 
-            {/* 이미지 본체 */}
+            {/* 실제 이미지 */}
             <img
                 src={src}
                 alt={alt}
                 onLoad={() => setLoaded(true)}
+                onClick={onClick} // ✅ 클릭 이벤트 적용됨!
                 className={`transition-opacity duration-300 ease-in-out w-full h-auto ${
                     loaded ? 'opacity-100' : 'opacity-0'
                 }`}

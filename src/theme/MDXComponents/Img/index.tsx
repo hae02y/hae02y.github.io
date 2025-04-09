@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
-import type {Props} from '@theme/MDXComponents/Img';
+import type { Props } from '@theme/MDXComponents/Img';
 import styles from './styles.module.css';
+import LazyImage from '@site/src/components/LazyImage'; // ✅ 추가
 
 function transformImgClassName(className?: string): string {
     return clsx(className, styles.img, 'cursor-pointer object-cover w-full');
 }
 
-export default function MDXImg(props: Props): JSX.Element {
+export default function MDXImg(props: Props){
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = () => setIsOpen((prev) => !prev);
@@ -15,24 +16,24 @@ export default function MDXImg(props: Props): JSX.Element {
     return (
         <>
             {/* 이미지 자체 */}
-            <div className={`grid place-items-center w-full`}>
-                <div
-                    className={`relative w-[100%] sm:w-[75%] md:w-[50%] h-auto justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg`}
-                >
-                    <img
+            <div className="grid place-items-center w-full">
+                <div className="relative w-[100%] sm:w-[75%] md:w-[50%] h-auto justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+                    <LazyImage
                         decoding="async"
                         loading="lazy"
                         {...props}
                         className={transformImgClassName(props.className)}
-                        onClick={togglePopup} // 클릭 이벤트 추가
-                        alt={'image'}/>
+                        onClick={togglePopup}
+                        alt={props.alt ?? 'image'}
+                    />
                 </div>
             </div>
+
             {/* 팝업 */}
             {isOpen && (
                 <div
-                    className="fixed tooltip inset-0 z-70 flex items-center justify-center bg-black bg-opacity-75"
-                    onClick={togglePopup} // 팝업 클릭 시 닫기
+                    className="fixed inset-0 z-70 flex items-center justify-center bg-black bg-opacity-75"
+                    onClick={togglePopup}
                 >
                     <img
                         src={props.src}
