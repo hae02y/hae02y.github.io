@@ -44,7 +44,7 @@ export default function Home() {
     return (
         <Layout
             title={`${siteConfig.title} 블Lo그`}
-            description="Description will go into a meta tag in <head />"
+            description="정해영 기술블로그"
         >
             <main>
                 <CamelSection/>
