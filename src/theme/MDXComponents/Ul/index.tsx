@@ -12,9 +12,9 @@ function transformUlClassName(className?: string): string | undefined {
   return clsx(
     className,
     // This class is set globally by GitHub/MDX. We keep the global class, and
-    // add another class to get a task develop without the default ul styling
+    // add another class to get a task Conference without the default ul styling
     // See https://github.com/syntax-tree/mdast-util-to-hast/issues/28
-    className?.includes('contains-task-develop') && styles.containsTaskList,
+    className?.includes('contains-task-Conference') && styles.containsTaskList,
   );
 }
 

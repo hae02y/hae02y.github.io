@@ -97,20 +97,25 @@
           "label": "Next",
           "isLast": true,
           "path": "/insight",
-          "mainDocId": "intro",
+          "mainDocId": "book/intro",
           "docs": [
             {
-              "id": "develop/index",
-              "path": "/insight/develop/",
+              "id": "book/index",
+              "path": "/insight/book/",
               "sidebar": "defaultSidebar"
             },
             {
-              "id": "inff/index",
-              "path": "/insight/inff/",
+              "id": "book/intro",
+              "path": "/insight/",
               "sidebar": "defaultSidebar"
             },
             {
-              "id": "intro",
+              "id": "Conference/index",
+              "path": "/insight/Conference/",
+              "sidebar": "defaultSidebar"
+            },
+            {
+              "id": "Conference/intro",
               "path": "/insight/",
               "sidebar": "defaultSidebar"
             }
@@ -119,8 +124,8 @@
           "sidebars": {
             "defaultSidebar": {
               "link": {
-                "path": "/insight/",
-                "label": "intro"
+                "path": "/insight/Conference/",
+                "label": "2025"
               }
             }
           }
