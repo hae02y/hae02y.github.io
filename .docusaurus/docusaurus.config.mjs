@@ -24,7 +24,8 @@ export default {
   "projectName": "hae02y",
   "customFields": {
     "authid": "hae02y",
-    "authpw": "qwe123,."
+    "authpw": "qwe123,.",
+    "resume": "/resume.pdf"
   },
   "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
@@ -325,13 +326,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -353,6 +347,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

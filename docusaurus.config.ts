@@ -40,7 +40,8 @@ const config: Config = {
 
   customFields: {
     authid : 'hae02y',
-    authpw : 'qwe123,.'
+    authpw : 'qwe123,.',
+    resume: '/resume.pdf',
   },
 
   onBrokenLinks: 'warn',
