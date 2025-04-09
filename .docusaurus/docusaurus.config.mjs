@@ -8,9 +8,9 @@ export default {
     [
       "@docusaurus/plugin-content-docs",
       {
-        "id": "insight",
-        "path": "insight",
-        "routeBasePath": "insight"
+        "id": "Insight",
+        "path": "Insight",
+        "routeBasePath": "Insight"
       }
     ],
     null
@@ -105,7 +105,7 @@ export default {
           "position": "right"
         },
         {
-          "to": "/insight",
+          "to": "/Insight",
           "label": "Insight",
           "position": "left"
         },
@@ -325,13 +325,6 @@ export default {
         }
       ]
     },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
-    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -353,6 +346,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

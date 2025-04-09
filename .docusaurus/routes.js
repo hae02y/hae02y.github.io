@@ -444,38 +444,32 @@ export default [
     ]
   },
   {
-    path: '/insight',
-    component: ComponentCreator('/insight', 'b99'),
+    path: '/Insight',
+    component: ComponentCreator('/Insight', '177'),
     routes: [
       {
-        path: '/insight',
-        component: ComponentCreator('/insight', '367'),
+        path: '/Insight',
+        component: ComponentCreator('/Insight', '063'),
         routes: [
           {
-            path: '/insight',
-            component: ComponentCreator('/insight', '3c7'),
+            path: '/Insight',
+            component: ComponentCreator('/Insight', '567'),
             routes: [
               {
-                path: '/insight/',
-                component: ComponentCreator('/insight/', '282'),
+                path: '/Insight/',
+                component: ComponentCreator('/Insight/', 'fe6'),
                 exact: true,
                 sidebar: "defaultSidebar"
               },
               {
-                path: '/insight/',
-                component: ComponentCreator('/insight/', 'b76'),
+                path: '/Insight/book/year2025/',
+                component: ComponentCreator('/Insight/book/year2025/', '6a2'),
                 exact: true,
                 sidebar: "defaultSidebar"
               },
               {
-                path: '/insight/book/',
-                component: ComponentCreator('/insight/book/', 'e99'),
-                exact: true,
-                sidebar: "defaultSidebar"
-              },
-              {
-                path: '/insight/Conference/',
-                component: ComponentCreator('/insight/Conference/', '783'),
+                path: '/Insight/Conference/year2025/',
+                component: ComponentCreator('/Insight/Conference/year2025/', 'fd3'),
                 exact: true,
                 sidebar: "defaultSidebar"
               }

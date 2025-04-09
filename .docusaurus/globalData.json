@@ -89,34 +89,29 @@
       ],
       "breadcrumbs": true
     },
-    "insight": {
-      "path": "/insight",
+    "Insight": {
+      "path": "/Insight",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/insight",
-          "mainDocId": "book/intro",
+          "path": "/Insight",
+          "mainDocId": "intro",
           "docs": [
             {
-              "id": "book/index",
-              "path": "/insight/book/",
+              "id": "book/year2025/index",
+              "path": "/Insight/book/year2025/",
               "sidebar": "defaultSidebar"
             },
             {
-              "id": "book/intro",
-              "path": "/insight/",
+              "id": "Conference/year2025/index",
+              "path": "/Insight/Conference/year2025/",
               "sidebar": "defaultSidebar"
             },
             {
-              "id": "Conference/index",
-              "path": "/insight/Conference/",
-              "sidebar": "defaultSidebar"
-            },
-            {
-              "id": "Conference/intro",
-              "path": "/insight/",
+              "id": "intro",
+              "path": "/Insight/",
               "sidebar": "defaultSidebar"
             }
           ],
@@ -124,8 +119,8 @@
           "sidebars": {
             "defaultSidebar": {
               "link": {
-                "path": "/insight/Conference/",
-                "label": "2025"
+                "path": "/Insight/",
+                "label": "intro"
               }
             }
           }
