@@ -7,8 +7,8 @@
   "tags": [
     {
       "inline": true,
-      "label": "book",
-      "permalink": "/blog/tags/book"
+      "label": "insight",
+      "permalink": "/blog/tags/insight"
     }
   ],
   "readingTime": 0.045,
@@ -35,7 +35,7 @@
       "haeyoung"
     ],
     "tags": [
-      "book"
+      "insight"
     ]
   },
   "unlisted": false,

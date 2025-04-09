@@ -89,24 +89,24 @@
       ],
       "breadcrumbs": true
     },
-    "book": {
-      "path": "/book",
+    "insight": {
+      "path": "/insight",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/book",
+          "path": "/insight",
           "mainDocId": "intro",
           "docs": [
             {
               "id": "develop/index",
-              "path": "/book/develop/",
+              "path": "/insight/develop/",
               "sidebar": "defaultSidebar"
             },
             {
               "id": "intro",
-              "path": "/book/",
+              "path": "/insight/",
               "sidebar": "defaultSidebar"
             }
           ],
@@ -114,7 +114,7 @@
           "sidebars": {
             "defaultSidebar": {
               "link": {
-                "path": "/book/",
+                "path": "/insight/",
                 "label": "intro"
               }
             }

@@ -7,9 +7,9 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'book',
-        path: 'book', // 여기에 마크다운 파일을 저장할 폴더
-        routeBasePath: 'book', // URL이 `/book`이 됨pagination-nav docusaurus-mt-lg
+        id: 'insight',
+        path: 'insight', // 여기에 마크다운 파일을 저장할 폴더
+        routeBasePath: 'insight', // URL이 `/insight`이 됨pagination-nav docusaurus-mt-lg
       },
     ],
     async function myPlugin(context, options) {
@@ -104,7 +104,7 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
-        {to: '/book', label: 'Books', position: 'left'},
+        {to: '/insight', label: 'Insight', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',

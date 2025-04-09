@@ -213,11 +213,6 @@ export default [
     exact: true
   },
   {
-    path: '/blog/tags/book',
-    component: ComponentCreator('/blog/tags/book', '729'),
-    exact: true
-  },
-  {
     path: '/blog/tags/bootcamp',
     component: ComponentCreator('/blog/tags/bootcamp', '36c'),
     exact: true
@@ -255,6 +250,11 @@ export default [
   {
     path: '/blog/tags/infra',
     component: ComponentCreator('/blog/tags/infra', '5b3'),
+    exact: true
+  },
+  {
+    path: '/blog/tags/insight',
+    component: ComponentCreator('/blog/tags/insight', '803'),
     exact: true
   },
   {
@@ -348,36 +348,6 @@ export default [
     exact: true
   },
   {
-    path: '/book',
-    component: ComponentCreator('/book', 'a4b'),
-    routes: [
-      {
-        path: '/book',
-        component: ComponentCreator('/book', '245'),
-        routes: [
-          {
-            path: '/book',
-            component: ComponentCreator('/book', 'dea'),
-            routes: [
-              {
-                path: '/book/',
-                component: ComponentCreator('/book/', 'b23'),
-                exact: true,
-                sidebar: "defaultSidebar"
-              },
-              {
-                path: '/book/develop/',
-                component: ComponentCreator('/book/develop/', '80f'),
-                exact: true,
-                sidebar: "defaultSidebar"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     path: '/docs',
     component: ComponentCreator('/docs', '2cd'),
     routes: [
@@ -466,6 +436,36 @@ export default [
                 component: ComponentCreator('/docs/vestellalab-project/thesharpjije-1/', 'e42'),
                 exact: true,
                 sidebar: "tutorialSidebar"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/insight',
+    component: ComponentCreator('/insight', '745'),
+    routes: [
+      {
+        path: '/insight',
+        component: ComponentCreator('/insight', '3e8'),
+        routes: [
+          {
+            path: '/insight',
+            component: ComponentCreator('/insight', '476'),
+            routes: [
+              {
+                path: '/insight/',
+                component: ComponentCreator('/insight/', '4e8'),
+                exact: true,
+                sidebar: "defaultSidebar"
+              },
+              {
+                path: '/insight/develop/',
+                component: ComponentCreator('/insight/develop/', 'a57'),
+                exact: true,
+                sidebar: "defaultSidebar"
               }
             ]
           }

@@ -8,9 +8,9 @@ export default {
     [
       "@docusaurus/plugin-content-docs",
       {
-        "id": "book",
-        "path": "book",
-        "routeBasePath": "book"
+        "id": "insight",
+        "path": "insight",
+        "routeBasePath": "insight"
       }
     ],
     null
@@ -105,8 +105,8 @@ export default {
           "position": "right"
         },
         {
-          "to": "/book",
-          "label": "Books",
+          "to": "/insight",
+          "label": "Insight",
           "position": "left"
         },
         {
@@ -325,6 +325,13 @@ export default {
         }
       ]
     },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
+    },
     "colorMode": {
       "defaultMode": "light",
       "disableSwitch": false,
@@ -346,13 +353,6 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
-    },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
     }
   },
   "baseUrlIssueBanner": true,

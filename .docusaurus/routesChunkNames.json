@@ -602,19 +602,6 @@
     ],
     "__props": "__props---blog-tags-blog-156-b5d"
   },
-  "/blog/tags/book-729": {
-    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
-    "__context": {
-      "plugin": "plugin---blog-369-22e"
-    },
-    "sidebar": "sidebar---blog-814-8ac",
-    "items": [
-      {
-        "content": "content---blog-authors-haeyoung-authors-2003-634"
-      }
-    ],
-    "__props": "__props---blog-tags-bookad-6-9d5"
-  },
   "/blog/tags/bootcamp-36c": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
@@ -727,6 +714,19 @@
       }
     ],
     "__props": "__props---blog-tags-infraa-05-c8d"
+  },
+  "/blog/tags/insight-803": {
+    "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
+    "__context": {
+      "plugin": "plugin---blog-369-22e"
+    },
+    "sidebar": "sidebar---blog-814-8ac",
+    "items": [
+      {
+        "content": "content---blog-authors-haeyoung-authors-2003-634"
+      }
+    ],
+    "__props": "__props---blog-tags-insight-2-b-8-8d3"
   },
   "/blog/tags/java-6e5": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
@@ -986,27 +986,6 @@
     },
     "config": "config---login-5-e-9-d49"
   },
-  "/book-a4b": {
-    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
-    "__context": {
-      "plugin": "plugin---book-8-ff-a1e"
-    }
-  },
-  "/book-245": {
-    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
-    "__props": "__props---book-9-a-1-47b"
-  },
-  "/book-dea": {
-    "__comp": "__comp---theme-doc-roota-94-67a"
-  },
-  "/book/-b23": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---book-20-b-548"
-  },
-  "/book/develop/-80f": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---book-develop-472-b0d"
-  },
   "/docs-2cd": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
@@ -1071,6 +1050,27 @@
   "/docs/vestellalab-project/thesharpjije-1/-e42": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-vestellalab-project-thesharpjije-1-f-52-ec6"
+  },
+  "/insight-745": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---insight-6-a-4-005"
+    }
+  },
+  "/insight-3e8": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---insight-076-400"
+  },
+  "/insight-476": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/insight/-4e8": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---insight-c-43-917"
+  },
+  "/insight/develop/-a57": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---insight-develop-371-dac"
   },
   "/-e5f": {
     "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",
