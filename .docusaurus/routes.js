@@ -64,7 +64,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '378'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '844'),
     exact: true
   },
   {
@@ -129,7 +129,7 @@ export default [
   },
   {
     path: '/blog/method-reference',
-    component: ComponentCreator('/blog/method-reference', 'ae6'),
+    component: ComponentCreator('/blog/method-reference', '3cf'),
     exact: true
   },
   {
@@ -164,7 +164,7 @@ export default [
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', '37a'),
+    component: ComponentCreator('/blog/page/3', 'bf3'),
     exact: true
   },
   {
@@ -264,7 +264,7 @@ export default [
   },
   {
     path: '/blog/tags/java',
-    component: ComponentCreator('/blog/tags/java', 'a7b'),
+    component: ComponentCreator('/blog/tags/java', 'a70'),
     exact: true
   },
   {
