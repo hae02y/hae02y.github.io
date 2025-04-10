@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
-import type {Props} from '@theme/Tag';
-
 
 // 랜덤 offset 함수
 const getRandomShift = () => Math.floor(Math.random() * 30 - 15); // -15 ~ +15px
 
-export default function FloatingTags({permalink,
-                                     label,
-                                     count,
-                                     description,
-}: Props) {
+export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
     const myTags = [
+        '#Java', '#SpringBoot', '#SpringSecurity', '#SpringMVC', '#SpringDataJPA',
+        '#Hibernate', '#JPA', '#MyBatis', '#기술문서화', '#JWT인증',
+        '#OAuth2', '#세션관리', '#CORS설정', '#상태코드관리', '#H2DB',
+        '#MySQL', '#Redis', '#스케줄링', '#메일전송', '#FCM',
+        '#Push알림', '#Thymeleaf', '#SSR', '#S3연동', '#로컬파일저장',
+        '#서버운영', '#에러모니터링', '#인프라협업', '#배포자동화', '#헬스체크',
+        '#로드밸런싱', '#서버이중화', '#로그백업', '#Nginx', '#Docker',
+        '#CI_CD', '#테스트코드', '#유닛테스트', '#테스트전략', '#배포스크립트',
+        '#GitHubActions', '#서버배포자동화', '#환경변수설정', '#프로파일분리', '#ConfigServer',
+        '#YAML관리', '#백오피스개발', '#어드민기능', '#프론트백분리', '#팀개발',
     ];
-
-
 
     const getTagContent = () => {
         return (
