@@ -64,7 +64,7 @@ tags:
 
 - List 형태로 만공정보를 한번에 전달하기로 하였으나 개별 주차면 마다 API 요청을 보냄
 
-![image.png](image.png)
+![image.png](blog/2024-12-12-trouble/image.png)
 
 - 티미측 담당자(김주엽 대리 010-6525-8682)에게 해당 상황 전달
 
