@@ -59,7 +59,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '72f'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', 'fa7'),
     exact: true
   },
   {
@@ -75,11 +75,6 @@ export default [
   {
     path: '/blog/blog3',
     component: ComponentCreator('/blog/blog3', 'b9a'),
-    exact: true
-  },
-  {
-    path: '/blog/blog3',
-    component: ComponentCreator('/blog/blog3', 'c46'),
     exact: true
   },
   {
@@ -133,6 +128,11 @@ export default [
     exact: true
   },
   {
+    path: '/blog/method-reference',
+    component: ComponentCreator('/blog/method-reference', 'ae6'),
+    exact: true
+  },
+  {
     path: '/blog/mssql',
     component: ComponentCreator('/blog/mssql', 'b67'),
     exact: true
@@ -159,7 +159,7 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', 'd43'),
+    component: ComponentCreator('/blog/page/2', '96a'),
     exact: true
   },
   {
@@ -214,7 +214,7 @@ export default [
   },
   {
     path: '/blog/tags/blog',
-    component: ComponentCreator('/blog/tags/blog', '792'),
+    component: ComponentCreator('/blog/tags/blog', 'be8'),
     exact: true
   },
   {
@@ -264,7 +264,7 @@ export default [
   },
   {
     path: '/blog/tags/java',
-    component: ComponentCreator('/blog/tags/java', '6e5'),
+    component: ComponentCreator('/blog/tags/java', 'a7b'),
     exact: true
   },
   {
