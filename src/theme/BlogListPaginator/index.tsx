@@ -5,7 +5,7 @@ import type { Props } from '@theme/BlogListPaginator';
 
 const PAGE_BLOCK_SIZE = 5;
 
-export default function BlogListPaginator({ metadata }: Props): JSX.Element {
+export default function BlogListPaginator({ metadata }: Props){
     const { totalPages, permalink } = metadata;
     const currentPage = Number(permalink.split('/').filter(Boolean).pop()) || 1;
 
