@@ -40,8 +40,8 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "마이바티스 이해하기-1",
-    "permalink": "/blog/mybatis"
+    "title": "페이지네이션에 대한 이해",
+    "permalink": "/blog/pagination"
   },
   "nextItem": {
     "title": "통합워치마일 운영 DB Connection Pool 초과 이슈",
