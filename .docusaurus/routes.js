@@ -64,7 +64,12 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '210'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '881'),
+    exact: true
+  },
+  {
+    path: '/blog/authors/haeyoung/authors/4',
+    component: ComponentCreator('/blog/authors/haeyoung/authors/4', '9be'),
     exact: true
   },
   {
@@ -118,6 +123,11 @@ export default [
     exact: true
   },
   {
+    path: '/blog/mainproject',
+    component: ComponentCreator('/blog/mainproject', '211'),
+    exact: true
+  },
+  {
     path: '/blog/makeblog',
     component: ComponentCreator('/blog/makeblog', 'b76'),
     exact: true
@@ -164,7 +174,12 @@ export default [
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', 'f45'),
+    component: ComponentCreator('/blog/page/3', '3b0'),
+    exact: true
+  },
+  {
+    path: '/blog/page/4',
+    component: ComponentCreator('/blog/page/4', '7a9'),
     exact: true
   },
   {
@@ -224,7 +239,7 @@ export default [
   },
   {
     path: '/blog/tags/bootcamp',
-    component: ComponentCreator('/blog/tags/bootcamp', '36c'),
+    component: ComponentCreator('/blog/tags/bootcamp', '6a0'),
     exact: true
   },
   {

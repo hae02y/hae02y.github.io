@@ -152,14 +152,14 @@
       "date": "2024-08-20T00:00:00.000Z"
     },
     {
-      "title": "필드주입 vs 생성자 주입",
-      "permalink": "/blog/field",
+      "title": "블로그 구축기",
+      "permalink": "/blog/makeblog",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },
     {
-      "title": "블로그 구축기",
-      "permalink": "/blog/makeblog",
+      "title": "필드주입 vs 생성자 주입",
+      "permalink": "/blog/field",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },
@@ -180,6 +180,12 @@
       "permalink": "/blog/togedog",
       "unlisted": false,
       "date": "2023-11-05T00:00:00.000Z"
+    },
+    {
+      "title": "부트캠프 동료분과 첫 코드리뷰를 진행하였습니다.",
+      "permalink": "/blog/mainproject",
+      "unlisted": false,
+      "date": "2023-10-19T00:00:00.000Z"
     }
   ]
 }
