@@ -110,11 +110,6 @@
               "sidebar": "defaultSidebar"
             },
             {
-              "id": "Conference/year2025/index",
-              "path": "/Insight/Conference/year2025/",
-              "sidebar": "defaultSidebar"
-            },
-            {
               "id": "intro",
               "path": "/Insight/",
               "sidebar": "defaultSidebar"

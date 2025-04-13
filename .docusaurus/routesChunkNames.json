@@ -42,7 +42,7 @@
       "plugin": "plugin---docusaurus-debugb-38-ad3"
     }
   },
-  "/blog-d20": {
+  "/blog-f64": {
     "__comp": "__comp---theme-blog-list-pagea-6-a-7ba",
     "__context": {
       "plugin": "plugin---blog-369-22e"
@@ -65,10 +65,10 @@
         "content": "content---blogc-0-b-e43"
       },
       {
-        "content": "content---blog-3-ec-bde"
+        "content": "content---blog-65-e-b55"
       },
       {
-        "content": "content---blog-65-e-b55"
+        "content": "content---blog-3-ec-bde"
       },
       {
         "content": "content---blog-28-a-6e4"
@@ -100,7 +100,7 @@
     "sidebar": "sidebar---blog-814-8ac",
     "__props": "__props---blog-authorsef-8-44f"
   },
-  "/blog/authors/haeyoung-70c": {
+  "/blog/authors/haeyoung-355": {
     "__comp": "__comp---theme-blog-pages-blog-authors-posts-page-33-f-bd5",
     "__context": {
       "data": {
@@ -125,10 +125,10 @@
         "content": "content---blogc-0-b-e43"
       },
       {
-        "content": "content---blog-3-ec-bde"
+        "content": "content---blog-65-e-b55"
       },
       {
-        "content": "content---blog-65-e-b55"
+        "content": "content---blog-3-ec-bde"
       },
       {
         "content": "content---blog-28-a-6e4"
@@ -718,7 +718,7 @@
     ],
     "__props": "__props---blog-tags-databasea-6-f-05e"
   },
-  "/blog/tags/db-c8b": {
+  "/blog/tags/db-488": {
     "__comp": "__comp---theme-blog-tags-posts-page-687-b6c",
     "__context": {
       "plugin": "plugin---blog-369-22e"
@@ -726,10 +726,10 @@
     "sidebar": "sidebar---blog-814-8ac",
     "items": [
       {
-        "content": "content---blog-3-ec-bde"
+        "content": "content---blog-65-e-b55"
       },
       {
-        "content": "content---blog-65-e-b55"
+        "content": "content---blog-3-ec-bde"
       },
       {
         "content": "content---blog-28-a-6e4"
@@ -1140,17 +1140,17 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-vestellalab-project-thesharpjije-1-f-52-ec6"
   },
-  "/Insight-a68": {
+  "/Insight-539": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
       "plugin": "plugin---insight-925-642"
     }
   },
-  "/Insight-115": {
+  "/Insight-095": {
     "__comp": "__comp---theme-doc-version-roota-7-b-5de",
     "__props": "__props---insight-86-a-b84"
   },
-  "/Insight-77d": {
+  "/Insight-4b8": {
     "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/Insight/-fe6": {
@@ -1164,10 +1164,6 @@
   "/Insight/book/year2025/-6a2": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---insight-book-year-2025-539-c0e"
-  },
-  "/Insight/Conference/year2025/-fd3": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---insight-conference-year-2025-5-a-6-781"
   },
   "/-e5f": {
     "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",

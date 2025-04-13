@@ -39,7 +39,7 @@ export default [
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', 'd20'),
+    component: ComponentCreator('/blog', 'f64'),
     exact: true
   },
   {
@@ -54,7 +54,7 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung',
-    component: ComponentCreator('/blog/authors/haeyoung', '70c'),
+    component: ComponentCreator('/blog/authors/haeyoung', '355'),
     exact: true
   },
   {
@@ -254,7 +254,7 @@ export default [
   },
   {
     path: '/blog/tags/db',
-    component: ComponentCreator('/blog/tags/db', 'c8b'),
+    component: ComponentCreator('/blog/tags/db', '488'),
     exact: true
   },
   {
@@ -475,15 +475,15 @@ export default [
   },
   {
     path: '/Insight',
-    component: ComponentCreator('/Insight', 'a68'),
+    component: ComponentCreator('/Insight', '539'),
     routes: [
       {
         path: '/Insight',
-        component: ComponentCreator('/Insight', '115'),
+        component: ComponentCreator('/Insight', '095'),
         routes: [
           {
             path: '/Insight',
-            component: ComponentCreator('/Insight', '77d'),
+            component: ComponentCreator('/Insight', '4b8'),
             routes: [
               {
                 path: '/Insight/',
@@ -500,12 +500,6 @@ export default [
               {
                 path: '/Insight/book/year2025/',
                 component: ComponentCreator('/Insight/book/year2025/', '6a2'),
-                exact: true,
-                sidebar: "defaultSidebar"
-              },
-              {
-                path: '/Insight/Conference/year2025/',
-                component: ComponentCreator('/Insight/Conference/year2025/', 'fd3'),
                 exact: true,
                 sidebar: "defaultSidebar"
               }
