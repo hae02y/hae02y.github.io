@@ -1,16 +1,15 @@
 ---
 
 ---
-# 2025
+# 2022~2024
 
-### 📚 읽는중...  
+### 📚 완독!
 
-- [마이크로서비스 패턴 - 크리스리처드슨(길벗)](https://product.kyobobook.co.kr/detail/S000001834349?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1)
-- [최고의 프롬프트 엔지니어링 강의 - 김진중](https://m.yes24.com/Goods/Detail/126690830)
-
+- [라이프트렌드2022 - 김용섭]()
+- [지적대화를위한넓고얕은지식O - 채사장]()
+- [앵무새죽이기 - 하퍼리]()
+- [유닉스의 탄생 - 브라이언 커니헨]()
+- [비전공자도 이해할수있는 AI 지식 - 박상길]()
+- [2023 축의전환 - 마우로기옌]()
 
 ---
-
-### ✍ 완료
-
-- [커리어스킬 - 존손메즈](https://www.yes24.com/Product/Goods/71829578?pid=123487&cosemkid=go15560997724514434&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_11903%EB%8F%84%EC%84%9C&utm_term=%EC%BB%A4%EB%A6%AC%EC%96%B4%EC%8A%A4%ED%82%AC&gad_source=1&gclid=Cj0KCQjw7dm-BhCoARIsALFk4v-nuudPlE86-kIsc72DXLRhlPOzDKoKF3eRt-bMgzVGKgZ6Ej9lgQAaArtzEALw_wcB)
