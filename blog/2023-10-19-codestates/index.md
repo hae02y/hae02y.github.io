@@ -1,5 +1,5 @@
 ---
-slug: mainproject
+slug: code-review
 title: 부트캠프 동료분과 첫 코드리뷰를 진행하였습니다.
 authors:
   - haeyoung
