@@ -6,7 +6,7 @@ authors:
 tags:
   - bootcamp
 ---
-이미지1
+![](dd.png)
 
 백엔드 팀원 중 한분과 프로젝트를 마치고 코드리뷰를 진행하였다. 말이 거창해서 코드리뷰이고 본인이 구현한 부분에 대해서 서로 이야기를 나누는 시간이였다. 나는 자격증 정보를 어떤식으로 불러오는지와 표출하는 방법등에 대해서 설명을 했고, 팀원분이 궁금해 하셨던 공공데이터 포털 API로 코드값을 넣어서 전달하는 부분을 중심으로 설명했다. 그리고 나는 팀원분이 구현했던 스프링시큐리티쪽에 관해서 질문을 했고 답변을 들었다. 이부분에 대해서 기록을 남기려고 한다.
 
@@ -14,7 +14,7 @@ tags:
 
 시큐리티 - > 필터체인 내부에서 어떤식으로 동작하는지를 확인
 
-이미지2
+![](dd2.png)
   
 사용자가 로그인하게 되면 http request가 들어오고 권한을 생성해서 (Authentication)토큰을 발급한다. 권한을 전달하면 PoviderManager를 상속받은 AuthenticationManager에게 전달을 한다. AuthenticationProvider로 전달을 하고, UserDetail을 조회를 하고, User의 정보, 이름, 패스워드등을 조회를 한다. 크리덴셜 저장소 -> 데이터베이스와 만나는 부분으로 설명. 즉 MemberRepository이다.  
   
@@ -89,7 +89,7 @@ CORS 같은 필터를 추가로 넣어줄수 있고, handlerMessage 등�
 ####   
 **JWT**
 
-이미지3
+![](dd3.png)
 
 1.  사용자는 **URL /auth/login** 로 **EMAIL** 과 **PASSWORD**를 **POST** 요청으로 보낸다
 2.  스프링 시큐리티의 핵심 로직으로 DB로 이메일과 패스워드를 인증하고 통과하면 **Access Token**과 **Refresh Token**을 발급한다.
@@ -113,7 +113,7 @@ jwtAuthenticationFilter를 통해서 jwt decode했을때 나오는 값등�
   
 jwtVerificationFilter는 토큰을 어떤식으로 검증할 것인지 확인해주는 필터이다. jwt를 검증할때 권한이 있는지 없는지를 확인. Bearer 값이 빠졌거나, authorization이 null 이거나 이런 값들을 추가해서 검증방식을 설정한다.
 
-이미지4
+![](dd4.png)
 
 handler는 사실상 예외처리부분이라고 보면되고, 시큐리티에서 발생하는 로그찍기 위해서 작성.  
   
