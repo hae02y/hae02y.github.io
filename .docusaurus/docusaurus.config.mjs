@@ -82,6 +82,14 @@ export default {
     ]
   ],
   "themeConfig": {
+    "algolia": {
+      "appId": "B1G2GM9NG0",
+      "apiKey": "a-example-api-key-1234567890abcdef",
+      "indexName": "hae02y_docs",
+      "contextualSearch": true,
+      "searchParameters": {},
+      "searchPagePath": "search"
+    },
     "image": "img/me.jpg",
     "navbar": {
       "title": "hae02y",

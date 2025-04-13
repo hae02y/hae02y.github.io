@@ -1026,6 +1026,12 @@
     },
     "config": "config---login-5-e-9-d49"
   },
+  "/search-5de": {
+    "__comp": "__comp---theme-search-page-1-a-4-d6f",
+    "__context": {
+      "plugin": "plugin---searchc-14-0ea"
+    }
+  },
   "/docs-2cd": {
     "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
