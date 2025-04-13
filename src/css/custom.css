@@ -48,19 +48,19 @@
     }
 
     h3 {
-        @apply text-lg font-medium text-[var(--primary)] leading-normal mb-4;
+        @apply text-lg font-semibold text-[var(--primary)] leading-normal mb-4;
     }
 
     h4 {
-        @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-3;
+        @apply text-lg font-semibold text-[var(--secondary)] leading-snug mb-3;
     }
 
     h5 {
-        @apply text-lg font-medium text-[var(--secondary)] leading-snug mb-2;
+        @apply text-lg font-semibold text-[var(--secondary)] leading-snug mb-2;
     }
 
     h6 {
-        @apply text-base font-medium text-[var(--secondary)] leading-snug mb-1;
+        @apply text-base font-semibold text-[var(--secondary)] leading-snug mb-1;
     }
 
     /* Paragraphs */
