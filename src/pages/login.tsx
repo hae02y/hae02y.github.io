@@ -31,7 +31,7 @@ export default function LoginPage() {
             <div className="text-center">
                 {/* 프로필 이미지 */}
                 <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white mx-auto shadow-lg">
-                    <img src="/img/camel.png" alt="User Avatar" className="w-full h-full object-cover"/>
+                    <img src="/img/sitelogo.png" alt="User Avatar" className="w-full h-full object-cover"/>
                 </div>
 
                 {/* 사용자 이름 */}
