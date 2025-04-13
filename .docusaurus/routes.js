@@ -475,19 +475,25 @@ export default [
   },
   {
     path: '/Insight',
-    component: ComponentCreator('/Insight', '177'),
+    component: ComponentCreator('/Insight', 'a68'),
     routes: [
       {
         path: '/Insight',
-        component: ComponentCreator('/Insight', '063'),
+        component: ComponentCreator('/Insight', '115'),
         routes: [
           {
             path: '/Insight',
-            component: ComponentCreator('/Insight', '567'),
+            component: ComponentCreator('/Insight', '77d'),
             routes: [
               {
                 path: '/Insight/',
                 component: ComponentCreator('/Insight/', 'fe6'),
+                exact: true,
+                sidebar: "defaultSidebar"
+              },
+              {
+                path: '/Insight/book/before2024/',
+                component: ComponentCreator('/Insight/book/before2024/', '3de'),
                 exact: true,
                 sidebar: "defaultSidebar"
               },
