@@ -27,19 +27,19 @@
 
     body {
         @apply bg-background text-foreground font-sans antialiased;
-        font-family: 'Freesentation', 'Pretendard', 'Cera Round Pro', sans-serif !important;
+        font-family: 'Freesentation', 'Pretendard', sans-serif !important;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Pretendard', 'Cera Round Pro', sans-serif !important;
+        font-family: 'Pretendard', sans-serif !important;
     }
 
     p , blockquote, pre {
-        font-family: 'Freesentation', 'Pretendard', 'Cera Round Pro', sans-serif !important;
+        font-family: 'Freesentation', 'Pretendard', sans-serif !important;
     }
 
     code {
-        font-family: 'JetBrains Mono', 'Cera Round Pro', monospace !important;
+        font-family: 'JetBrains Mono', monospace !important;
     }
 
     /* Headings */
@@ -127,15 +127,15 @@
     }
 
     .markdown p code {
-        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ul code {
-        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ol code {
-        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown h1 {
