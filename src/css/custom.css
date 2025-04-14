@@ -387,6 +387,15 @@
 }
 
 
+/*Freesentation*/
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 900;
+    font-display: swap;
+    src: local('Pretendard Black'), url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype'), url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype');
+}
+
+
 /*Pretendard*/
 @font-face {
     font-family: 'Pretendard';
