@@ -123,7 +123,7 @@
 
 @layer components {
     .markdown code {
-        @apply text-base;
+        @apply text-sm;
     }
 
     .markdown p code {
@@ -159,7 +159,7 @@
     }
 
     .markdown h6 {
-        @apply text-xs md:text-sm font-medium text-[var(--secondary)] mb-1;
+        @apply text-sm md:text-sm font-medium text-[var(--secondary)] mb-1;
     }
 
     .markdown p {
@@ -168,23 +168,23 @@
 
     .markdown ul,
     .markdown ol {
-        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-sm;
+        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-base;
     }
 
     .markdown ul {
-        @apply list-disc text-sm md:text-sm;
+        @apply list-disc text-sm md:text-base;
     }
 
     .markdown ol {
-        @apply list-decimal text-sm md:text-sm;
+        @apply list-decimal text-sm md:text-base;
     }
 
     .markdown li {
-        @apply leading-relaxed mb-1 text-sm md:text-sm;
+        @apply leading-relaxed mb-1 text-sm md:text-base;
     }
 
     .markdown li > p {
-        @apply m-0 text-sm md:text-sm;
+        @apply m-0 text-sm md:text-base;
     }
 
     .markdown aside {
@@ -215,7 +215,7 @@
     }
 
     .markdown a {
-        @apply text-sm break-all !important;
+        @apply text-sm md:text-base break-all  !important;
     }
 
     .markdown pre, code {
