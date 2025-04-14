@@ -125,7 +125,15 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.oneDark,
-      // additionalLanguages: ['java', 'bash'],
+      additionalLanguages: [
+        'markup', 'bash', 'clike', 'c', 'cpp', 'css', 'javascript',
+        'jsx', 'coffeescript', 'actionscript', 'markup-templating',
+        'typescript', 'tsx', 'docker', 'elixir', 'go', 'graphql',
+        'java', 'json', 'kotlin', 'lua', 'makefile', 'markdown',
+        'nginx', 'perl', 'php', 'php-extras', 'python', 'ruby',
+        'rust', 'sql', 'swift', 'toml', 'yaml', 'ini', 'powershell',
+        'wasm', 'regex', 'scala', 'csharp', 'haskell', 'diff'
+      ],
     },
   } satisfies Preset.ThemeConfig,
 };

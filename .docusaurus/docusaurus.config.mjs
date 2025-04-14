@@ -366,7 +366,50 @@ export default {
           }
         ]
       },
-      "additionalLanguages": [],
+      "additionalLanguages": [
+        "markup",
+        "bash",
+        "clike",
+        "c",
+        "cpp",
+        "css",
+        "javascript",
+        "jsx",
+        "coffeescript",
+        "actionscript",
+        "markup-templating",
+        "typescript",
+        "tsx",
+        "docker",
+        "elixir",
+        "go",
+        "graphql",
+        "java",
+        "json",
+        "kotlin",
+        "lua",
+        "makefile",
+        "markdown",
+        "nginx",
+        "perl",
+        "php",
+        "php-extras",
+        "python",
+        "ruby",
+        "rust",
+        "sql",
+        "swift",
+        "toml",
+        "yaml",
+        "ini",
+        "powershell",
+        "wasm",
+        "regex",
+        "scala",
+        "csharp",
+        "haskell",
+        "diff"
+      ],
       "magicComments": [
         {
           "className": "theme-code-block-highlighted-line",
@@ -377,13 +420,6 @@ export default {
           }
         }
       ]
-    },
-    "mermaid": {
-      "theme": {
-        "dark": "dark",
-        "light": "default"
-      },
-      "options": {}
     },
     "colorMode": {
       "defaultMode": "light",
@@ -406,6 +442,13 @@ export default {
     "tableOfContents": {
       "minHeadingLevel": 2,
       "maxHeadingLevel": 3
+    },
+    "mermaid": {
+      "theme": {
+        "dark": "dark",
+        "light": "default"
+      },
+      "options": {}
     }
   },
   "baseUrlIssueBanner": true,
