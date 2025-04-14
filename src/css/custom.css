@@ -30,8 +30,12 @@
     }
 
 
-    html, body, h1, h2, h3, h4, h5, h6, p , blockquote, pre {
+    html, body, h1, h2, h3, h4, h5, h6 {
         font-family: 'Pretendard', 'Cera Round Pro', sans-serif !important;
+    }
+
+    p , blockquote, pre {
+        font-family: 'Freesentation', 'Pretendard', 'Cera Round Pro', sans-serif !important;
     }
 
     code {
@@ -65,7 +69,7 @@
 
     /* Paragraphs */
     p {
-        @apply text-base leading-relaxed text-[var(--primary)] mb-4;
+        @apply text-sm leading-relaxed text-[var(--primary)] mb-4;
     }
 
     /* Lists */
@@ -123,15 +127,15 @@
     }
 
     .markdown p code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ul code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ol code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown h1 {
