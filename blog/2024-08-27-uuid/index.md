@@ -61,13 +61,9 @@ UUID는 다양한 방법으로 생성이 가능한데, 표준에 따르면 다�
 
 ### JAVA로 테스트 해보자
 
-
-:::note
 [**java.util Class UUID**](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
 ![alt text](image-1.png)
-
 확인결과 Version 1,3,4를 지원한다.
-:::
 
 #### UUID Version 3.
 
