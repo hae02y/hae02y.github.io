@@ -69,7 +69,7 @@
 
     /* Paragraphs */
     p {
-        @apply text-sm leading-relaxed text-[var(--primary)] mb-4;
+        @apply text-base leading-relaxed text-[var(--primary)] mb-4;
     }
 
     /* Lists */
@@ -123,19 +123,19 @@
 
 @layer components {
     .markdown code {
-        @apply text-sm;
+        @apply text-base;
     }
 
     .markdown p code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ul code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ol code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-base text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown h1 {
@@ -215,7 +215,7 @@
     }
 
     .markdown a {
-        @apply break-all !important;
+        @apply text-sm break-all !important;
     }
 
     .markdown pre, code {
@@ -396,7 +396,7 @@
     font-family: 'Freesentation';
     font-weight: 900;
     font-display: swap;
-    src: local('Pretendard Black'), url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype'), url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype');
+    src: local('Pretendard Black'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype');
 }
 
 
