@@ -12,7 +12,7 @@ tags:
 
 #### SpringSecurity 설명
 
-시큐리티 - > 필터체인 내부에서 어떤식으로 동작하는지를 확인
+스프링 시큐리티의 필터체인 내부에서 어떤식으로 동작하는지를 확인
 
 ![](dd2.png)
   
@@ -20,11 +20,11 @@ tags:
   
 기본적으로 로그인을 했을때, 스프링 시큐리티 자체에서 작동하는 흐름확인.
 
-```
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .headers().frameOptions().sameOrigin()  // 동일한 출처로 들어오는 요청만 렌더링 허용
+```java
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .headers().frameOptions().sameOrigin()  // 동일한 출처로 들어오는 요청만 렌더링 허용
                 .and()
                 .csrf().disable() // csrf 허용 안 함
                 .cors().configurationSource(corsConfigurationSource())  // 직접 작성한 corsConfiguration 적용
