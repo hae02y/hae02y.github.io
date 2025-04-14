@@ -23,9 +23,7 @@ java
 
 
 ```java
-
 list.forEach(s -> System.out.println(s));// 람다 표현식    
-```
 ```
 
 ```java
