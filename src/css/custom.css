@@ -215,7 +215,11 @@
     }
 
     .markdown a {
-        @apply text-sm md:text-base break-all  !important;
+        @apply text-sm md:text-base break-all !important;
+    }
+
+    .markdown a:hover::after {
+        @apply text-orange-500 ml-1 !important;
     }
 
     .markdown pre, code {
