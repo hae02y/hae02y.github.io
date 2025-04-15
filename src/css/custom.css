@@ -123,7 +123,7 @@
 
 @layer components {
     .markdown code {
-        @apply text-sm;
+        @apply text-[11px] md:text-[13px];
     }
 
     .markdown p code {
