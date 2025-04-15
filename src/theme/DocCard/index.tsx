@@ -101,17 +101,26 @@ function CardCategory({item}: {item: PropSidebarItemCategory}): ReactNode {
 }
 
 function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
-  const icon = isInternalUrl(item.href) ? '📄️' : '🔗';
   const doc = useDocById(item.docId ?? undefined);
+
+  // frontMatter에서 icon 필드 읽기
+  const iconPath = (doc as any)?.frontMatter?.icon;
+  const icon = iconPath ? (
+      <img src={iconPath} alt={item.label + ' 아이콘'} className={styles.icon} />
+  ) : (
+      <img src="/icons/docs.svg" alt="기본 아이콘" className={styles.icon} />
+  );
+
   return (
-    <CardLayout
-      href={item.href}
-      icon={icon}
-      title={item.label}
-      description={item.description ?? doc?.description}
-    />
+      <CardLayout
+          href={item.href}
+          icon={icon}
+          title={item.label}
+          description={item.description ?? doc?.description}
+      />
   );
 }
+
 
 export default function DocCard({item}: Props): ReactNode {
   switch (item.type) {
