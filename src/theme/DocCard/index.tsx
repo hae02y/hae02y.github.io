@@ -106,9 +106,9 @@ function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
   // frontMatter에서 icon 필드 읽기
   const iconPath = (doc as any)?.frontMatter?.icon;
   const icon = iconPath ? (
-      <img src={iconPath} alt={item.label + ' 아이콘'} className={styles.icon} />
+      <img src={iconPath} alt={`${item.label} 아이콘`} className="w-5 h-5 mr-2 inline-block align-middle shrink-0" />
   ) : (
-      <img src="/icons/docs.svg" alt="기본 아이콘" className={styles.icon} />
+      <img src="/icons/docs.svg" alt={`${item.label} 아이콘`} className="w-5 h-5 mr-2 inline-block align-middle shrink-0" />
   );
 
   return (
