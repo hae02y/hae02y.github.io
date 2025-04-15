@@ -139,19 +139,19 @@
     }
 
     .markdown p div code {
-        @apply text-[11px] md:text-[13px];
+        @apply text-[11px] md:text-[13px] bg-transparent;
     }
 
     .markdown ul div code {
-        @apply text-[11px] md:text-[13px];
+        @apply text-[11px] md:text-[13px] bg-transparent;
     }
 
     .markdown ol div code {
-        @apply text-[11px] md:text-[13px];
+        @apply text-[11px] md:text-[13px] bg-transparent;
     }
 
     .markdown li div code {
-        @apply text-[11px] md:text-[13px];
+        @apply text-[11px] md:text-[13px] bg-transparent;
     }
 
     .markdown h1 {
