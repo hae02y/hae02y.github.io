@@ -227,6 +227,11 @@
         @apply ml-2 !important;
     }
 
+    .markdown h1,h2,h3,h4,h5,h6 a::after {
+        content: '### ';
+        @apply ml-2 !important;
+    }
+
     .markdown pre, code {
         @apply whitespace-pre-wrap break-all break-words !important;
     }
