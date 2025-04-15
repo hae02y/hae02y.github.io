@@ -108,7 +108,7 @@ function CardLink({item}: {item: PropSidebarItemLink}): ReactNode {
   const icon = iconPath ? (
       <img src={iconPath} alt={`${item.label} 아이콘`} className="w-5 h-5 mr-2 inline-block align-middle shrink-0" />
   ) : (
-      <img src="/icons/docs.svg" alt={`${item.label} 아이콘`} className="w-5 h-5 mr-2 inline-block align-middle shrink-0" />
+      <img src="/icons/docs.svg" alt={`${item.label} 아이콘`} className="w-5 h-5 mr-2 inline-block align-middle shrink-0 dark:invert" />
   );
 
   return (
