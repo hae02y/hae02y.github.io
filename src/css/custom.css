@@ -223,13 +223,29 @@
     }
 
     .markdown a::before {
-        content: '🔗 ';
-        @apply ml-2 !important;
+        content: '[';
     }
 
-    .markdown h1,h2,h3,h4,h5,h6 a::after {
-        content: '### ';
-        @apply ml-2 !important;
+    .markdown a::after {
+        content: ']';
+    }
+
+    .markdown h1 > a::before,
+    .markdown h2 > a::before,
+    .markdown h3 > a::before,
+    .markdown h4 > a::before,
+    .markdown h5 > a::before,
+    .markdown h6 > a::before {
+        content: '';
+    }
+
+    .markdown h1 > a::after,
+    .markdown h2 > a::after,
+    .markdown h3 > a::after,
+    .markdown h4 > a::after,
+    .markdown h5 > a::after,
+    .markdown h6 > a::after {
+        content: '#';
     }
 
     .markdown pre, code {
