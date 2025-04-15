@@ -138,6 +138,22 @@
         @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
+    .markdown p div code {
+        @apply text-[11px] md:text-[13px];
+    }
+
+    .markdown ul div code {
+        @apply text-[11px] md:text-[13px];
+    }
+
+    .markdown ol div code {
+        @apply text-[11px] md:text-[13px];
+    }
+
+    .markdown li div code {
+        @apply text-[11px] md:text-[13px];
+    }
+
     .markdown h1 {
         @apply text-2xl md:text-3xl font-bold text-[var(--primary)] mb-3 md:mb-4;
     }
