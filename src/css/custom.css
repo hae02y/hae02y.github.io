@@ -127,15 +127,15 @@
     }
 
     .markdown p code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ul code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown ol code {
-        @apply text-sm text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
+        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700;
     }
 
     .markdown h1 {
