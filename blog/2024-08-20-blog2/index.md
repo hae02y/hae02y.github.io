@@ -1,6 +1,6 @@
 ---
-slug: makeblogdff
-title: 블로그 구축기-2
+slug: makeblog2
+title: 블로그 플랫폼을 옮기자(feat. 도큐사우르스)
 authors:
   - haeyoung
 tags:

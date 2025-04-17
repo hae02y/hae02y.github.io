@@ -1,11 +1,12 @@
 ---
-slug: database1
-title: UUID에 대해서
-authors: [haeyoung]
-tags: [database]
+slug: uuid
+title: UUID란 무엇 일까요? 왜쓸까요?
+authors:
+  - haeyoung
+tags:
+  - database
+  - uuid
 ---
-
-
 ## UUID 란?
 
 ![alt text](image.png)
