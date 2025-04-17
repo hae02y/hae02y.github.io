@@ -1,6 +1,6 @@
 ---
 slug: mybatis
-title: Mybatis를 쓰면 뭐가 좋을까?
+title: Mybatis를 처음 사용해보는 사람이 존재한다?!
 authors:
   - haeyoung
 tags:

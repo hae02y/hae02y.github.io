@@ -1,6 +1,6 @@
 ---
 slug: iocdi
-title: 스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?
+title: 스프링 IOC / DI란 무엇일까요?
 authors:
   - haeyoung
 tags:

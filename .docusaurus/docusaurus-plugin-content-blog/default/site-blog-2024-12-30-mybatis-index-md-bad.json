@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/mybatis",
   "source": "@site/blog/2024-12-30-mybatis/index.md",
-  "title": "Mybatis를 쓰면 뭐가 좋을까?",
+  "title": "Mybatis를 처음 사용해보는 사람이 존재한다?!",
   "description": "마이바티스를 회사에서 쓰게 되엇다.",
   "date": "2024-12-30T00:00:00.000Z",
   "tags": [
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "mybatis",
-    "title": "Mybatis를 쓰면 뭐가 좋을까?",
+    "title": "Mybatis를 처음 사용해보는 사람이 존재한다?!",
     "authors": [
       "haeyoung"
     ],
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?",
+    "title": "스프링 IOC / DI란 무엇일까요?",
     "permalink": "/blog/iocdi"
   },
   "nextItem": {
-    "title": "페이지네이션 과연 어디까지 알고있는가",
+    "title": "페이지네이션에 대해 어디까지 알고있나요?",
     "permalink": "/blog/pagination"
   }
 }

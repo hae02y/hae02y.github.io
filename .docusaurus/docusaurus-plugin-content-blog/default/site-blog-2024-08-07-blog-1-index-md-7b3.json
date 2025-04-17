@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "블로그 플랫폼을 옮길게요.(feat. 도큐사우르스)",
-    "permalink": "/blog/makeblog2"
-  },
-  "nextItem": {
     "title": "필드주입을 쓰면 안되는 이유를 아시나요?",
     "permalink": "/blog/field"
+  },
+  "nextItem": {
+    "title": "\"코드는 짧아지지만 의미는 더 명확하게.\" - 메서드참조 -",
+    "permalink": "/blog/method-reference"
   }
 }
