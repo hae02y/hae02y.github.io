@@ -1,8 +1,8 @@
 {
   "permalink": "/blog/iocdi",
   "source": "@site/blog/2025-01-02-iocdi/index.md",
-  "title": "스프링 IOC / DI란 무엇인가?",
-  "description": "IOC / DI란",
+  "title": "스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?",
+  "description": "과연 내가 IoC DI 개념을 자세히 알고있을까?",
   "date": "2025-01-02T00:00:00.000Z",
   "tags": [
     {
@@ -11,7 +11,7 @@
       "permalink": "/blog/tags/new"
     }
   ],
-  "readingTime": 0.025,
+  "readingTime": 0.11,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "iocdi",
-    "title": "스프링 IOC / DI란 무엇인가?",
+    "title": "스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?",
     "authors": [
       "haeyoung"
     ],
@@ -44,7 +44,7 @@
     "permalink": "/blog/onceperfilter"
   },
   "nextItem": {
-    "title": "마이바티스 이해하기-1",
+    "title": "Mybatis를 쓰면 뭐가 좋을까?",
     "permalink": "/blog/mybatis"
   }
 }

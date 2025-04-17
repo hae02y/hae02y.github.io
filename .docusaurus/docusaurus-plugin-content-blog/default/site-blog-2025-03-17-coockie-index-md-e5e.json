@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/cookie",
   "source": "@site/blog/2025-03-17-coockie/index.md",
-  "title": "쿠키일까 헤더일까...",
+  "title": "JWT토큰을 보낸다면 쿠키일까요. 헤더일까요.",
   "description": "오늘의 고민! 스프링일까.. 쿠키일까.. 헤더일까...",
   "date": "2025-03-17T00:00:00.000Z",
   "tags": [
@@ -40,7 +40,7 @@
   ],
   "frontMatter": {
     "slug": "cookie",
-    "title": "쿠키일까 헤더일까...",
+    "title": "JWT토큰을 보낸다면 쿠키일까요. 헤더일까요.",
     "authors": [
       "haeyoung"
     ],
@@ -52,11 +52,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "알고쓰자! 게터 세터!",
+    "title": "Getter / Setter 알고쓰고있나요?",
     "permalink": "/blog/gettersetter"
   },
   "nextItem": {
-    "title": "\bMSSQL 사용하기",
+    "title": "\bMSSQL은 왜 이거 안될까요?",
     "permalink": "/blog/mssql"
   }
 }

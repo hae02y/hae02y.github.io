@@ -59,17 +59,12 @@ export default [
   },
   {
     path: '/blog/authors/haeyoung/authors/2',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/2', '59c'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/2', 'ae2'),
     exact: true
   },
   {
     path: '/blog/authors/haeyoung/authors/3',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/3', '849'),
-    exact: true
-  },
-  {
-    path: '/blog/authors/haeyoung/authors/4',
-    component: ComponentCreator('/blog/authors/haeyoung/authors/4', '9be'),
+    component: ComponentCreator('/blog/authors/haeyoung/authors/3', 'a12'),
     exact: true
   },
   {
@@ -83,11 +78,6 @@ export default [
     exact: true
   },
   {
-    path: '/blog/book1',
-    component: ComponentCreator('/blog/book1', '6d0'),
-    exact: true
-  },
-  {
     path: '/blog/code-review',
     component: ComponentCreator('/blog/code-review', '4e1'),
     exact: true
@@ -95,11 +85,6 @@ export default [
   {
     path: '/blog/cookie',
     component: ComponentCreator('/blog/cookie', '488'),
-    exact: true
-  },
-  {
-    path: '/blog/database1',
-    component: ComponentCreator('/blog/database1', 'cc1'),
     exact: true
   },
   {
@@ -133,8 +118,8 @@ export default [
     exact: true
   },
   {
-    path: '/blog/makeblogdff',
-    component: ComponentCreator('/blog/makeblogdff', 'b3e'),
+    path: '/blog/makeblog2',
+    component: ComponentCreator('/blog/makeblog2', 'fbb'),
     exact: true
   },
   {
@@ -153,11 +138,6 @@ export default [
     exact: true
   },
   {
-    path: '/blog/mybatis-2',
-    component: ComponentCreator('/blog/mybatis-2', 'ded'),
-    exact: true
-  },
-  {
     path: '/blog/onceperfilter',
     component: ComponentCreator('/blog/onceperfilter', 'b93'),
     exact: true
@@ -169,17 +149,12 @@ export default [
   },
   {
     path: '/blog/page/2',
-    component: ComponentCreator('/blog/page/2', '766'),
+    component: ComponentCreator('/blog/page/2', 'd01'),
     exact: true
   },
   {
     path: '/blog/page/3',
-    component: ComponentCreator('/blog/page/3', '9b8'),
-    exact: true
-  },
-  {
-    path: '/blog/page/4',
-    component: ComponentCreator('/blog/page/4', '7a9'),
+    component: ComponentCreator('/blog/page/3', '82e'),
     exact: true
   },
   {
@@ -203,11 +178,6 @@ export default [
     exact: true
   },
   {
-    path: '/blog/slog22',
-    component: ComponentCreator('/blog/slog22', 'd45'),
-    exact: true
-  },
-  {
     path: '/blog/springexcel',
     component: ComponentCreator('/blog/springexcel', '05e'),
     exact: true
@@ -215,11 +185,6 @@ export default [
   {
     path: '/blog/springid',
     component: ComponentCreator('/blog/springid', '98b'),
-    exact: true
-  },
-  {
-    path: '/blog/stack',
-    component: ComponentCreator('/blog/stack', 'e54'),
     exact: true
   },
   {
@@ -234,7 +199,7 @@ export default [
   },
   {
     path: '/blog/tags/blog',
-    component: ComponentCreator('/blog/tags/blog', 'be8'),
+    component: ComponentCreator('/blog/tags/blog', '3bc'),
     exact: true
   },
   {
@@ -278,13 +243,8 @@ export default [
     exact: true
   },
   {
-    path: '/blog/tags/insight',
-    component: ComponentCreator('/blog/tags/insight', '803'),
-    exact: true
-  },
-  {
     path: '/blog/tags/java',
-    component: ComponentCreator('/blog/tags/java', 'a70'),
+    component: ComponentCreator('/blog/tags/java', '268'),
     exact: true
   },
   {
@@ -305,11 +265,6 @@ export default [
   {
     path: '/blog/tags/new',
     component: ComponentCreator('/blog/tags/new', '79d'),
-    exact: true
-  },
-  {
-    path: '/blog/tags/portfolio',
-    component: ComponentCreator('/blog/tags/portfolio', '290'),
     exact: true
   },
   {
@@ -339,22 +294,27 @@ export default [
   },
   {
     path: '/blog/tags/troubleshooting',
-    component: ComponentCreator('/blog/tags/troubleshooting', '3a1'),
+    component: ComponentCreator('/blog/tags/troubleshooting', '675'),
     exact: true
   },
   {
-    path: '/blog/togedog',
-    component: ComponentCreator('/blog/togedog', '708'),
+    path: '/blog/tags/uuid',
+    component: ComponentCreator('/blog/tags/uuid', '996'),
     exact: true
   },
   {
-    path: '/blog/trouble',
-    component: ComponentCreator('/blog/trouble', 'e71'),
+    path: '/blog/trouble2',
+    component: ComponentCreator('/blog/trouble2', '7eb'),
     exact: true
   },
   {
     path: '/blog/trywithresources',
     component: ComponentCreator('/blog/trywithresources', '380'),
+    exact: true
+  },
+  {
+    path: '/blog/uuid',
+    component: ComponentCreator('/blog/uuid', '9d5'),
     exact: true
   },
   {

@@ -2,7 +2,7 @@
   "permalink": "/blog/onceperfilter",
   "source": "@site/blog/2025-01-05-springfilter/index.md",
   "title": "스프링 OncePerRequestFilter 에 대해",
-  "description": "https://beaniejoy.tistory.com/96",
+  "description": "스프링 OncePerRequestFilter 에 대해 자세히 알아보자",
   "date": "2025-01-05T00:00:00.000Z",
   "tags": [
     {
@@ -11,7 +11,7 @@
       "permalink": "/blog/tags/spring"
     }
   ],
-  "readingTime": 0.005,
+  "readingTime": 0.075,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "벤치마크",
+    "title": "자바에서 성능 벤치마킹을 하고싶어요.",
     "permalink": "/blog/benchmark"
   },
   "nextItem": {
-    "title": "스프링 IOC / DI란 무엇인가?",
+    "title": "스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?",
     "permalink": "/blog/iocdi"
   }
 }

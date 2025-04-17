@@ -1,5 +1,5 @@
 {
-  "permalink": "/blog/mybatis-2",
+  "permalink": "/blog/trouble2",
   "source": "@site/blog/2025-02-11-devapi/index.md",
   "title": "API 생성에서 나왔던 문제",
   "description": "오늘 업무중 기존 레거시로 구현된 앱의 레거시 API를 떼어내고 신규로 만든 APP과 신규로 구현한 API서버를 연동하는 과정에서 공지사항 관련된 API를 구현해야하는 업무가 생겼다.",
@@ -29,7 +29,7 @@
     }
   ],
   "frontMatter": {
-    "slug": "mybatis-2",
+    "slug": "trouble2",
     "title": "API 생성에서 나왔던 문제",
     "authors": [
       "haeyoung"
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "NCP 클라우드 구축",
+    "title": "NCP 클라우드에 도커를 올릴거에요",
     "permalink": "/blog/infra"
   },
   "nextItem": {
-    "title": "커리어스킬-존손메즈",
-    "permalink": "/blog/book1"
+    "title": "저 디자인 잘하고 싶어요 (with Blog)",
+    "permalink": "/blog/blog3"
   }
 }

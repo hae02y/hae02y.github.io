@@ -1,8 +1,8 @@
 {
   "permalink": "/blog/mybatis",
   "source": "@site/blog/2024-12-30-mybatis/index.md",
-  "title": "마이바티스 이해하기-1",
-  "description": "https://velog.io/@ung6860/JSPMybatis-ResultMap-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0",
+  "title": "Mybatis를 쓰면 뭐가 좋을까?",
+  "description": "마이바티스를 회사에서 쓰게 되엇다.",
   "date": "2024-12-30T00:00:00.000Z",
   "tags": [
     {
@@ -11,7 +11,7 @@
       "permalink": "/blog/tags/db"
     }
   ],
-  "readingTime": 0.07,
+  "readingTime": 0.145,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "mybatis",
-    "title": "마이바티스 이해하기-1",
+    "title": "Mybatis를 쓰면 뭐가 좋을까?",
     "authors": [
       "haeyoung"
     ],
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "스프링 IOC / DI란 무엇인가?",
+    "title": "스프링 IOC / DI란 무엇일까요? 자세히 알고있나요?",
     "permalink": "/blog/iocdi"
   },
   "nextItem": {
-    "title": "페이지네이션에 대한 이해",
+    "title": "페이지네이션 과연 어디까지 알고있는가",
     "permalink": "/blog/pagination"
   }
 }

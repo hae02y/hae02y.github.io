@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/infra",
   "source": "@site/blog/2025-02-20-docker/index.md",
-  "title": "NCP 클라우드 구축",
+  "title": "NCP 클라우드에 도커를 올릴거에요",
   "description": "도커 설치",
   "date": "2025-02-20T00:00:00.000Z",
   "tags": [
@@ -45,7 +45,7 @@
   ],
   "frontMatter": {
     "slug": "infra",
-    "title": "NCP 클라우드 구축",
+    "title": "NCP 클라우드에 도커를 올릴거에요",
     "authors": [
       "haeyoung"
     ],
@@ -58,11 +58,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "\b설계에서 겪었던 내문제",
+    "title": "N+1 문제는 어떻게 해결하면 좋을까요?",
     "permalink": "/blog/designproject"
   },
   "nextItem": {
     "title": "API 생성에서 나왔던 문제",
-    "permalink": "/blog/mybatis-2"
+    "permalink": "/blog/trouble2"
   }
 }

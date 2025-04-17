@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/springid",
   "source": "@site/blog/2025-03-15-spring/index.md",
-  "title": "JPA에서 ID를 대하는 자세...!",
+  "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
   "description": "고려사항",
   "date": "2025-03-15T00:00:00.000Z",
   "tags": [
@@ -45,7 +45,7 @@
   ],
   "frontMatter": {
     "slug": "springid",
-    "title": "JPA에서 ID를 대하는 자세...!",
+    "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
     "authors": [
       "haeyoung"
     ],
@@ -58,11 +58,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "\bMSSQL 사용하기",
+    "title": "\bMSSQL은 왜 이거 안될까요?",
     "permalink": "/blog/mssql"
   },
   "nextItem": {
-    "title": "레디스를 사용하자!",
+    "title": "Redis야 리프레시토큰줘",
     "permalink": "/blog/redis"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "permalink": "/blog/makeblogdff",
+  "permalink": "/blog/makeblog2",
   "source": "@site/blog/2024-08-20-blog2/index.md",
-  "title": "블로그 구축기-2",
+  "title": "블로그 플랫폼을 옮길게요.(feat. 도큐사우르스)",
   "description": "블로그 플랫폼을 옮기면서 여러 문제를 마주했다.",
   "date": "2024-08-20T00:00:00.000Z",
   "tags": [
@@ -29,8 +29,8 @@
     }
   ],
   "frontMatter": {
-    "slug": "makeblogdff",
-    "title": "블로그 구축기-2",
+    "slug": "makeblog2",
+    "title": "블로그 플랫폼을 옮길게요.(feat. 도큐사우르스)",
     "authors": [
       "haeyoung"
     ],
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "UUID에 대해서",
-    "permalink": "/blog/database1"
+    "title": "UUID에 대해 어느정도 알고 있나요?",
+    "permalink": "/blog/uuid"
   },
   "nextItem": {
-    "title": "블로그 구축기",
+    "title": "블로그를  옮겨보려고 해요.",
     "permalink": "/blog/makeblog"
   }
 }

@@ -1,6 +1,6 @@
 ---
 slug: uuid
-title: UUID란 무엇 일까요? 왜쓸까요?
+title: UUID에 대해 어느정도 알고 있나요?
 authors:
   - haeyoung
 tags:

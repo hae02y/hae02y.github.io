@@ -1,8 +1,8 @@
 {
   "permalink": "/blog/blog3",
   "source": "@site/blog/2025-01-28-blog3/index.md",
-  "title": "블로그 디자인 설계",
-  "description": "블로그 디자인을 설계하는 단계에 드...디어 들어왔다..",
+  "title": "저 디자인 잘하고 싶어요 (with Blog)",
+  "description": "블로그 디자인을 잘하고싶다",
   "date": "2025-01-28T00:00:00.000Z",
   "tags": [
     {
@@ -11,7 +11,7 @@
       "permalink": "/blog/tags/blog"
     }
   ],
-  "readingTime": 0.105,
+  "readingTime": 0.06,
   "hasTruncateMarker": false,
   "authors": [
     {
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "blog3",
-    "title": "블로그 디자인 설계",
+    "title": "저 디자인 잘하고 싶어요 (with Blog)",
     "authors": [
       "haeyoung"
     ],
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "커리어스킬-존손메즈",
-    "permalink": "/blog/book1"
+    "title": "API 생성에서 나왔던 문제",
+    "permalink": "/blog/trouble2"
   },
   "nextItem": {
-    "title": "패키지 구조 정의",
+    "title": "당신은 어떤식으로 패키지 구조를 \b구성하시죠?",
     "permalink": "/blog/package"
   }
 }

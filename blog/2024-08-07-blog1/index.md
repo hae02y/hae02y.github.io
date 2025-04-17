@@ -1,6 +1,6 @@
 ---
 slug: makeblog
-title: 사내스터디 그리고 블로그 이사 시작
+title: 블로그를  옮겨보려고 해요.
 authors:
   - haeyoung
 tags:

@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/redis",
   "source": "@site/blog/2025-03-14-redis/index.md",
-  "title": "레디스를 사용하자!",
+  "title": "Redis야 리프레시토큰줘",
   "description": "이번 프로젝트를 진행하면서 리프레시토큰을 redis에 저장하도록 구성하였다.",
   "date": "2025-03-14T00:00:00.000Z",
   "tags": [
@@ -40,7 +40,7 @@
   ],
   "frontMatter": {
     "slug": "redis",
-    "title": "레디스를 사용하자!",
+    "title": "Redis야 리프레시토큰줘",
     "authors": [
       "haeyoung"
     ],
@@ -52,11 +52,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "JPA에서 ID를 대하는 자세...!",
+    "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
     "permalink": "/blog/springid"
   },
   "nextItem": {
-    "title": "시큐리티 미친적용법",
+    "title": "Spring Security AuthenticationManager를 뜯어보아요",
     "permalink": "/blog/security"
   }
 }

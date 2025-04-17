@@ -1,7 +1,7 @@
 {
   "permalink": "/blog/designproject",
   "source": "@site/blog/2025-02-26-nplus1/index.md",
-  "title": "\b설계에서 겪었던 내문제",
+  "title": "N+1 문제는 어떻게 해결하면 좋을까요?",
   "description": "https://programmer93.tistory.com/83",
   "date": "2025-02-26T00:00:00.000Z",
   "tags": [
@@ -30,7 +30,7 @@
   ],
   "frontMatter": {
     "slug": "designproject",
-    "title": "\b설계에서 겪었던 내문제",
+    "title": "N+1 문제는 어떻게 해결하면 좋을까요?",
     "authors": [
       "haeyoung"
     ],
@@ -40,11 +40,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "시큐리티 미친적용법",
+    "title": "Spring Security AuthenticationManager를 뜯어보아요",
     "permalink": "/blog/security"
   },
   "nextItem": {
-    "title": "NCP 클라우드 구축",
+    "title": "NCP 클라우드에 도커를 올릴거에요",
     "permalink": "/blog/infra"
   }
 }
