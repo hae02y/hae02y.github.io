@@ -1,6 +1,6 @@
 ---
 slug: springid
-title: JPA에서 ID를 대하는 자세...!
+title: JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.
 authors:
   - haeyoung
 tags:

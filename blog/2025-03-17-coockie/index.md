@@ -1,6 +1,6 @@
 ---
 slug: cookie
-title: 쿠키일까 헤더일까...
+title: JWT토큰을 보낸다면 쿠키일까요. 헤더일까요.
 authors:
   - haeyoung
 tags:

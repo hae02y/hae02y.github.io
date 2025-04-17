@@ -1,6 +1,6 @@
 ---
 slug: mssql
-title: "\bMSSQL 사용하기"
+title: "\bMSSQL은 왜 이거 안될까요?"
 authors:
   - haeyoung
 tags:

@@ -1,6 +1,6 @@
 ---
 slug: swagger
-title: 스웨거 미친 적용방법
+title: "\bMic Swagger 말고 Swagger 사용방법"
 authors:
   - haeyoung
 tags:

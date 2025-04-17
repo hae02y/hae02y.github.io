@@ -1,6 +1,6 @@
 ---
 slug: gettersetter
-title: 알고쓰자! 게터 세터!
+title: Getter / Setter 알고쓰고있나요?
 authors:
   - haeyoung
 tags:
