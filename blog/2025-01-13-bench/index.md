@@ -1,10 +1,11 @@
 ---
 slug: benchmark
-title: 벤치마크
+title: 자바에서 성능 벤치마킹을 하고싶어요.
 authors:
   - haeyoung
 tags:
   - new
+  - Java
 ---
 
 이번프로젝트를 진행하면서 벤치마킹을 해야하는 상황이 발생하였다.

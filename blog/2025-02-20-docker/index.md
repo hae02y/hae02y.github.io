@@ -1,6 +1,6 @@
 ---
 slug: infra
-title: NCP 클라우드 구축
+title: NCP 클라우드에 도커를 올릴거에요
 authors:
   - haeyoung
 tags:

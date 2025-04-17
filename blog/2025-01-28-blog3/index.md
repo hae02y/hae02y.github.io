@@ -1,10 +1,10 @@
 ---
-slug : blog3
-title: 블로그 디자인 설계
+slug: blog3
+title: 저 디자인 잘하고 싶어요 (with Blog)
 authors:
   - haeyoung
 tags:
   - blog
 ---
 
-블로그 디자인을 설계하는 단계에 드...디어 들어왔다..
+블로그 디자인을 잘하고싶다
