@@ -7,7 +7,7 @@ tags:
   - Java
 ---
 
-### ParserBuilder 가 없다는데..?
+### parserBuilder()는 왜 못쓰지?
 
 ```java
 import io.jsonwebtoken.JwtException  
@@ -42,12 +42,28 @@ JWT 토큰 검증을 위해서 `JJWT` 라이브러리를 사용하는 과정에�
 
 ```java
 Jwts.parser()
-  .verifyWith(secretKey) // <----
+  .verifyWith(secretKey or publicKey) // <----
   .build()
   .parseSignedClaims(jwsString);
 ```
 
-또한 기존의 `setSigningKey()` 가 `verifyWith()` 로 변경되면서 `Key` 타입을 `publicKey` / `secretKey` 타입중 일치하는 걸로 명시해줘야한다.
+또한 기존의 `setSigningKey()` 가 `verifyWith()` 로 변경되면서 `Key` 타입을 `publicKey` / `secretKey` 타입중 일치하는 걸로 명시해줘야한다. 결과적으로 기존에 `Key`로 반환되던 타입을 SecretKey로 특정하여 생성하도록 변경하였다.
+
+![](image2.png)
+
+**최종결과**
+```java
+fun validateToken(token: String): Boolean =   
+    try {  
+    Jwts.parser()  
+        .verifyWith(getSigningKey(jwtProperties.secret))  
+        .build()  
+        .parseSignedClaims(token)  
+    true  
+} catch (ex: JwtException) {  
+    false  
+}
+```
 
 ---
 #### 참고
