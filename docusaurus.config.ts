@@ -93,7 +93,7 @@ const config: Config = {
     algolia: {
       appId: 'BJ0L9RUPZ0',
       apiKey: '9bd9504036390edaf8f3892263884bbc',
-      indexName: 'hae02y_docs',
+      indexName: 'default',
       contextualSearch: true,
       searchParameters: {},
       searchPagePath: 'search',
