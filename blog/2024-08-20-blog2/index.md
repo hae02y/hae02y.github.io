@@ -92,7 +92,7 @@ const config: Config = {
 ![alt text](image-3.png)
 docusaurus에서 기본적으로 추천하는 방식.
 
-위의 이미지와 같은 방식을 포함한 다양한 방법으로 배포가 가능하지만 docusaurus에서 추천하는 방식은 배포되는동안 블로그 접근이 중단된다. 그리고 나는 github.io를 살리고 싶어서 github pages를 사용하기로 했다. 블로그 글을 작성후 push 하면 자동으로 배포되도록 CI/CD를 구성했다. 일단 `/.github/workflows/ 하위에 yaml을 하나 작성하자.
+위의 이미지와 같은 방식을 포함한 다양한 방법으로 배포가 가능하지만 docusaurus에서 추천하는 방식은 배포되는동안 블로그 접근이 중단된다. 그리고 나는 github.io를 살리고 싶어서 github pages를 사용하기로 했다. 블로그 글을 작성후 push 하면 자동으로 배포되도록 CI/CD를 구성했다. 일단 `/.github/workflows/` 하위에 yaml을 하나 작성하자.
 
 ```yaml
 name: Deploy to GitHub Pages
@@ -150,9 +150,7 @@ jobs:
 
 ![alt text](image-4.png)
 
-`Settings > Pages`
-에서 Source 를 GitHub Actions 으로 설정 
-이후에는 main 브랜치에 커밋이 push 될 때마다 자동으로 배포 작업이 진행된다.
+`Settings > Pages` 에서 Source 를 GitHub Actions 으로 설정 이후에는 main 브랜치에 커밋이 push 될 때마다 자동으로 배포 작업이 진행된다.
 
 
 #### 추가 진행 예정
