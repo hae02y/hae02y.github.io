@@ -231,19 +231,11 @@
     }
 
     .markdown a {
-        @apply text-sm md:text-base text-gray-600 dark:text-gray-300 break-all !important;
+        @apply text-sm md:text-base text-gray-600 dark:text-gray-300 break-all underline !important;
     }
 
-    .markdown a:hover {
-        @apply underline;
-    }
-
-    .markdown a::before {
-        content: '🔗';
-    }
-
-    .markdown a::after {
-        content: ']';
+    .markdown a:hover::before {
+        content: '🔗 ';
     }
 
     .markdown h1 > a::before,
