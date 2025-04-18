@@ -38,14 +38,14 @@
       "date": "2025-03-17T00:00:00.000Z"
     },
     {
-      "title": "\bMSSQL은 왜 이거 안될까요?",
-      "permalink": "/blog/mssql",
+      "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
+      "permalink": "/blog/springid",
       "unlisted": false,
       "date": "2025-03-15T00:00:00.000Z"
     },
     {
-      "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
-      "permalink": "/blog/springid",
+      "title": "\bMSSQL은 왜 이거 안될까요?",
+      "permalink": "/blog/mssql",
       "unlisted": false,
       "date": "2025-03-15T00:00:00.000Z"
     },
@@ -134,14 +134,14 @@
       "date": "2024-08-20T00:00:00.000Z"
     },
     {
-      "title": "필드주입을 쓰면 안되는 이유를 아시나요?",
-      "permalink": "/blog/field",
+      "title": "블로그를  옮겨보려고 해요.",
+      "permalink": "/blog/makeblog",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },
     {
-      "title": "블로그를  옮겨보려고 해요.",
-      "permalink": "/blog/makeblog",
+      "title": "필드주입을 쓰면 안되는 이유를 아시나요?",
+      "permalink": "/blog/field",
       "unlisted": false,
       "date": "2024-08-07T00:00:00.000Z"
     },

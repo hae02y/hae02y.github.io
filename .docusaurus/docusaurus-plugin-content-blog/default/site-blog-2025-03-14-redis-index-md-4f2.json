@@ -52,8 +52,8 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "JPA에서 @ID를 사용하는 다양한 방법을 소개합니다.",
-    "permalink": "/blog/springid"
+    "title": "\bMSSQL은 왜 이거 안될까요?",
+    "permalink": "/blog/mssql"
   },
   "nextItem": {
     "title": "Spring Security AuthenticationManager를 뜯어보아요",

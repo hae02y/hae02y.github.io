@@ -91,8 +91,8 @@ const config: Config = {
 
   themeConfig: {
     algolia: {
-      appId: 'B1G2GM9NG0',
-      apiKey: 'a-example-api-key-1234567890abcdef',
+      appId: 'BJ0L9RUPZ0',
+      apiKey: '9bd9504036390edaf8f3892263884bbc',
       indexName: 'hae02y_docs',
       contextualSearch: true,
       searchParameters: {},

@@ -32,5 +32,6 @@ sketch
 
 *.DS_Store
 .docusaurus/
+.docusaurus
 
 build/

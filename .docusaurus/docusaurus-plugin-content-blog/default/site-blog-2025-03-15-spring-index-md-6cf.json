@@ -58,11 +58,11 @@
   },
   "unlisted": false,
   "prevItem": {
-    "title": "\bMSSQL은 왜 이거 안될까요?",
-    "permalink": "/blog/mssql"
+    "title": "JWT토큰을 보낸다면 쿠키일까요. 헤더일까요.",
+    "permalink": "/blog/cookie"
   },
   "nextItem": {
-    "title": "Redis야 리프레시토큰줘",
-    "permalink": "/blog/redis"
+    "title": "\bMSSQL은 왜 이거 안될까요?",
+    "permalink": "/blog/mssql"
   }
 }
