@@ -2,6 +2,12 @@
   "title": "모든 포스트",
   "items": [
     {
+      "title": "JJWT 라이브러리 parserbuilder()가 왜 안불러와질까?",
+      "permalink": "/blog/jwt-parserbuilder",
+      "unlisted": false,
+      "date": "2025-04-18T00:00:00.000Z"
+    },
+    {
       "title": "try-with-resources 를 사용하자!",
       "permalink": "/blog/trywithresources",
       "unlisted": false,
