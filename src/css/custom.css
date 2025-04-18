@@ -239,7 +239,7 @@
     }
 
     .markdown a::before {
-        content: '[';
+        content: '🔗';
     }
 
     .markdown a::after {
