@@ -34,7 +34,11 @@ class TokenProvider(
   }
 ```
 
-JWT 토큰 검증을 위해서 `JJWT` 라이브러리를 사용하는 과정에서 parserBui
+JWT 토큰 검증을 위해서 `JJWT` 라이브러리를 사용하는 과정에서 `parserBuilder()`가 정의되지 않았다는 컴파일 오류가 발생하였다.
+
+![image](image.png)
+
+
 
 ---
 #### 참고

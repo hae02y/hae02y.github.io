@@ -9,7 +9,7 @@ tags:
 ---
 ## UUID 란?
 
-![alt text](image.png)
+![alt text](blog/2024-08-27-uuid/image.png)
 
 UUID(Universally Unique Identifier) 는 전세계적으로 고유한 식별자를 생성하는 표준화된 방법이다. 분산시스템 등에서 중복되지 않는 유일한 값을 구성할때 사용되는 고유한 식별자이다. 128bit의 길이를 가지고, 32자리의 16진수로 표현된다. 일반적으로 8-4-4-4-12 형식으로 구분된 문자열로 나타난다.
 
