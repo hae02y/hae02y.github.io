@@ -15,15 +15,7 @@ UUID(Universally Unique Identifier) 는 전세계적으로 고유한 식별자�
 
 ### 그래서 왜?
 
-현재 회사의 DB Schema에서 PK를 UUID로 관리하는 DB도 있고, sequentially하게 관리하는 DB도 있어서 어떤 이유로 이렇게 적용됐는지 궁금했다. 
-
-<details>
-    <summary>
-    요약 보기
-    </summary>
-    - UUID에 대한 이해
-    - DB에서 PK로 UUID를 사용하는 장단점
-</details>
+회사에서 `PrimaryKey` 를 UUID로 관리하는 DB도 있고, `시퀀셜`하게 관리하는 DB도 있어서 어떤 이유로 이렇게 적용됐는지 궁금했다.
 
 ### UUID 구성
 
@@ -64,7 +56,7 @@ UUID는 다양한 방법으로 생성이 가능한데, 표준에 따르면 다�
 
 [**java.util Class UUID**](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
 ![alt text](image-1.png)
-확인결과 Version 1,3,4를 지원한다.
+확인결과 UUID Version 1,3,4를 지원한다.
 
 #### UUID Version 3.
 
@@ -148,4 +140,4 @@ sha-1 보안취약점으로 인해 보안에 취약해짐
 ---
 참고자료
 
-(1)[https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84]
+[참고자료](https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84)
