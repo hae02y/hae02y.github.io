@@ -7,16 +7,15 @@ tags:
   - database
   - uuid
 ---
-## UUID 란?
-
-![alt text](image.png)
-
-UUID(Universally Unique Identifier) 는 전세계적으로 고유한 식별자를 생성하는 표준화된 방법이다. 분산시스템 등에서 중복되지 않는 유일한 값을 구성할때 사용되는 고유한 식별자이다. 128bit의 길이를 가지고, 32자리의 16진수로 표현된다. 일반적으로 8-4-4-4-12 형식으로 구분된 문자열로 나타난다.
-
 ### 그래서 왜?
 
 회사에서 `PrimaryKey` 를 UUID로 관리하는 DB도 있고, `시퀀셜`하게 관리하는 DB도 있다. `UUID` 사용을 추후에 도입했다고 하는데, 어떻게 하면 더 효율적으로 사용할수있을까에 대해서 노력했던 내용을 기록하려고 한다.
 
+### UUID 란?
+
+![alt text](image.png)
+
+UUID(Universally Unique Identifier) 는 전세계적으로 고유한 식별자를 생성하는 표준화된 방법이다. 분산시스템 등에서 중복되지 않는 유일한 값을 구성할때 사용되는 고유한 식별자이다. 128bit의 길이를 가지고, 32자리의 16진수로 표현된다. 일반적으로 8-4-4-4-12 형식으로 구분된 문자열로 나타난다.
 
 ### UUID 구성
 
@@ -142,3 +141,5 @@ sha-1 보안취약점으로 인해 보안에 취약해짐
 참고자료
 
 [참고자료](https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84)
+[참고자료2](https://stackoverflow.com/questions/52414414/best-practices-on-primary-key-auto-increment-and-uuid-in-sql-databases)
+[참고자료3](https://americanopeople.tistory.com/378)
