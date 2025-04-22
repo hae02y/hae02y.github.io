@@ -7,7 +7,7 @@ tags:
   - Java
 ---
 
-### parserBuilder()는 왜 못쓰지?
+#### parserBuilder()는 왜 못쓰지?
 
 ```java
 import io.jsonwebtoken.JwtException  
@@ -51,7 +51,8 @@ Jwts.parser()
 
 ![](image2.png)
 
-**최종결과**
+#### 최종결과
+
 ```java
 fun validateToken(token: String): Boolean =   
     try {  
