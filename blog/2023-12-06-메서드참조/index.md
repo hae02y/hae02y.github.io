@@ -119,7 +119,7 @@ Converter<String, Integer> converter = Integer::parseInt;
     
 - 성능 측면에서는 일반 람다와 거의 동일하나, 메서드 참조는 **더 많은 최적화 가능성**을 제공해 JIT 컴파일 시 유리
     
-- 내부적으로는 **Synthetic Lambda Class**가 생성되지 않아 **GC 부담감소 (특히 반복 호출 시 유리).
+- 내부적으로는 **Synthetic Lambda Class**가 생성되지 않아 GC 부담감소 (특히 반복 호출 시 유리).
     
 
 ---
