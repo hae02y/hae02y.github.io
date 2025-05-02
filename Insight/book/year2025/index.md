@@ -7,7 +7,8 @@
 
 - [마이크로서비스 패턴 - 크리스리처드슨(길벗)](https://product.kyobobook.co.kr/detail/S000001834349?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1)
 - [최고의 프롬프트 엔지니어링 강의 - 김진중](https://m.yes24.com/Goods/Detail/126690830)
-
+- [클린 아키텍처 - 로버트 C.마틴](https://link.coupang.com/a/crE1T4)
+- 
 
 ---
 
