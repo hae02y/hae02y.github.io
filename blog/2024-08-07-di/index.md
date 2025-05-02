@@ -14,6 +14,7 @@ tags:
 	- 필드 주입(Field Injection)
 	- 수정자 주입(Setter, Method Injection)
 
+그럼 이중 어떤 방법이 좋을까? 결론은 **생성자 주입 (Constructor Injection)** 이다. 그럼 그 이유를 알아보자.
 #### 예제로 알아보자
 
 
