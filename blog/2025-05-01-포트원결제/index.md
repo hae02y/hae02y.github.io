@@ -1,10 +1,12 @@
 ---
-slug: jwt-parserbuilder
-title: JJWT 라이브러리 parserbuilder()가 왜 안불러와질까?
+slug: portone
+title: 스프링과 포트원으로 결제를 빠르게 구현해요.
 authors:
   - haeyoung
 tags:
   - Java
+  - spring
+  - payment
 ---
 
 #### parserBuilder()는 왜 못쓰지?
@@ -49,7 +51,7 @@ Jwts.parser()
 
 또한 기존의 `setSigningKey()` 가 `verifyWith()` 로 변경되면서 `Key` 타입을 `publicKey` / `secretKey` 타입중 일치하는 걸로 명시해줘야한다. 결과적으로 기존에 `Key`로 반환되던 타입을 SecretKey로 특정하여 생성하도록 변경하였다.
 
-![](blog/2025-04-18-parserbuilder/image2.png)
+![](blog/2025-05-01-포트원결제/image2.png)
 
 #### 최종결과
 
