@@ -15,7 +15,62 @@ tags:
 	- 수정자 주입(Setter, Method Injection)
 
 그럼 이중 어떤 방법이 좋을까? 결론은 **생성자 주입 (Constructor Injection)** 이다. 그럼 그 이유를 알아보자.
-#### 예제로 알아보자
+#### 1. 생성자 주입
+```java
+@Component
+public class OrderService {
+
+    private final PaymentService paymentService;
+
+    @Autowired
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    public void processOrder() {
+        paymentService.pay();
+    }
+}
+```
+
+#### 2. 필드 주입
+```java
+@Component
+public class OrderService {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    public void processOrder() {
+        paymentService.pay();
+    }
+}
+```
+
+#### 3. 수정자 주입
+
+- **Setter 주입**
+```java
+test
+```
+
+- **Method 주입**
+```java
+@Component
+public class OrderService {
+
+    private PaymentService paymentService;
+
+    @Autowired
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    public void processOrder() {
+        paymentService.pay();
+    }
+}
+```
 
 
 
