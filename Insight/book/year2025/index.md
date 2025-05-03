@@ -8,7 +8,10 @@
 - [마이크로서비스 패턴 - 크리스리처드슨(길벗)](https://product.kyobobook.co.kr/detail/S000001834349?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1)
 - [최고의 프롬프트 엔지니어링 강의 - 김진중](https://m.yes24.com/Goods/Detail/126690830)
 - [클린 아키텍처 - 로버트 C.마틴](https://link.coupang.com/a/crE1T4)
-- 
+- [AI엔지니어의 모든것 - AI엔지니어연구회]()
+- [비전공자도 이해할수있는 AI - 박상길]()
+- [안드로이드 with Kotlin 앱 - 안귀정]()
+- [업무시간을 반으로 줄이는 챗GPT 글쓰기 - 정태일]()
 
 ---
 
