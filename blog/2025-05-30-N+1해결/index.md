@@ -158,7 +158,3 @@ java
 엔티티나 Mapper 코드도 함께 맞춰드릴 수 있어요.
 
 ---
-#### 참고
-[참고1](https://howisitgo1ng.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9C%BC%EB%A1%9C-%ED%8F%AC%ED%8A%B8%EC%9B%90-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EA%B2%B0%EC%A0%9C-%EA%B5%AC%ED%98%84-%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95Java-Spring-Boot-JPA-PortOne)
-[인증결제흐름](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/background.md)
-
