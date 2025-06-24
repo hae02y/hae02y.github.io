@@ -13,7 +13,7 @@ tags:
 - 포트원을 사용하여 구현
 - 테스트
 
-### 문제있는 쿼리
+### 문제있는 쿼리  
 ```sql
 Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from Parking_Dailypark_Parkinghistory ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
 
@@ -52,11 +52,11 @@ Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkA
 `ParkingHistory` → `ParkAreaMaster`가 `@ManyToOne(fetch = FetchType.LAZY)` 로 매핑되어 있을 때,  
 JPA는 ParkingHistory 목록을 먼저 쿼리한 후, 각 row마다 `getParkArea().getParkAreaName()` 같은 접근이 있을 때마다 **별도 쿼리로 parkArea 테이블을 조회**해요.
 
-java
-
-복사편집
-
-`// List<ParkingHistory> 조회 후 for (ParkingHistory history : historyList) {     history.getParkArea().getParkAreaName(); // 여기서 parkAreaCode별로 쿼리 N번 발생! }`
+```java
+// List<ParkingHistory> 조회 후 
+for (ParkingHistory history : historyList) {     history.getParkArea().getParkAreaName(); // 여기서 parkAreaCode별로 쿼리 N번 발생! 
+}
+```
 
 ---
 
@@ -64,11 +64,17 @@ java
 
 ### 🔧 방법 1: QueryDSL fetchJoin 사용
 
-java
 
-복사편집
-
-`QParkingHistory ph = QParkingHistory.parkingHistory; QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;  List<ParkingHistory> result = queryFactory     .selectFrom(ph)     .join(ph.parkArea, pa).fetchJoin()     .where(         ph.carNo4char.eq(carNum)             .and(ph.inOutStatusCode.eq((byte) 1))             .and(ph.outTime.isNull())     )     .fetch();`
+```java
+QParkingHistory ph = QParkingHistory.parkingHistory; 
+QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;  
+List<ParkingHistory> result = queryFactory     
+	.selectFrom(ph)     
+	.join(ph.parkArea, pa)
+	.fetchJoin()     
+	.where(ph.carNo4char.eq(carNum).and(ph.inOutStatusCode.eq((byte) 1))             .and(ph.outTime.isNull()))     
+	.fetch();
+```
 
 이렇게 하면 ParkingHistory와 연관된 ParkArea를 **한 번의 조인 쿼리**로 가져오게 됩니다!
 
@@ -76,11 +82,9 @@ java
 
 ### 🔧 방법 2: `@EntityGraph` (JPA Repository 방식)
 
-java
+```java
+```
 
-복사편집
-
-`@EntityGraph(attributePaths = {"parkArea"}) List<ParkingHistory> findByCarNo4charAndInOutStatusCodeAndOutTimeIsNull(...);`
 
 - 이것도 Lazy를 Eager처럼 만드는 트릭이에요.
     
@@ -132,7 +136,8 @@ java
 
 복사편집
 
-`public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {     QParkingHistory ph = QParkingHistory.parkingHistory;     QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;      List<ParkingHistory> results = queryFactory         .selectFrom(ph)         .join(ph.parkArea, pa).fetchJoin()         .where(             ph.carNo4char.eq(Short.valueOf(carNum))                 .and(ph.inOutStatusCode.eq((byte) 1))                 .and(ph.outTime.isNull())         )         .fetch();      return results.stream()             .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto)             .collect(Collectors.toList()); }`
+```public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {     QParkingHistory ph = QParkingHistory.parkingHistory;     QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;      List<ParkingHistory> results = queryFactory         .selectFrom(ph)         .join(ph.parkArea, pa).fetchJoin()         .where(             ph.carNo4char.eq(Short.valueOf(carNum))                 .and(ph.inOutStatusCode.eq((byte) 1))                 .and(ph.outTime.isNull())         )         .fetch();      return results.stream()             .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto)             .collect(Collectors.toList()); }
+```
 
 > `ph.parkArea`는 `@ManyToOne` 관계에서 `mappedBy` 되지 않고 직접 FK 컬럼(`parkAreaCode`)로 매핑돼 있어야 합니다.
 
