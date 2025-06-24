@@ -9,10 +9,6 @@ tags:
   - payment
 ---
 
-#### 포트원 사용
-- 포트원을 사용하여 구현
-- 테스트
-
 ### 문제있는 쿼리  
 ```sql
 Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from Parking_Dailypark_Parkinghistory ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
@@ -83,22 +79,18 @@ List<ParkingHistory> result = queryFactory
 ### 🔧 방법 2: `@EntityGraph` (JPA Repository 방식)
 
 ```java
+@EntityGraph(attributePaths = {"parkArea"}) List<ParkingHistory> findByCarNo4charAndInOutStatusCodeAndOutTimeIsNull(...);
 ```
 
-
 - 이것도 Lazy를 Eager처럼 만드는 트릭이에요.
-    
 - **쿼리 메서드로만 충분할 때** 아주 유용해요!
-    
 
 ---
 
 ## 🧠 참고
 
 - N+1 문제는 성능에 치명적이니 반드시 잡아야 해요.
-    
 - 특히 리스트 조회 API에서 연관 테이블 접근이 있다면 **fetch join이 필수**입니다.
-    
 
 ---
 
@@ -106,8 +98,10 @@ List<ParkingHistory> result = queryFactory
 원하시면 말만 해줘요, 바로 달려갑니다 😎🔥
 
 ##### 나의 말:
-
-public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) { QParkingHistory carInfo = QParkingHistory.parkingHistory; BooleanExpression predicate = carInfo.carNo4char.eq(Short.valueOf(carNum)) .and(carInfo.inOutStatusCode.eq((byte) 1)) .and(carInfo.outTime.isNull()) ; Iterable<ParkingHistory> iterable = parkingHistoryRepository.findAll(predicate); return StreamSupport.stream(iterable.spliterator(), false) .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto) .collect(Collectors.toList()); } 그럼 이쪽에서 문제가 되는건가?
+```java
+public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) { QParkingHistory carInfo = QParkingHistory.parkingHistory; BooleanExpression predicate = carInfo.carNo4char.eq(Short.valueOf(carNum)) .and(carInfo.inOutStatusCode.eq((byte) 1)) .and(carInfo.outTime.isNull()) ; Iterable<ParkingHistory> iterable = parkingHistoryRepository.findAll(predicate); return StreamSupport.stream(iterable.spliterator(), false) .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto) .collect(Collectors.toList()); } 
+```
+그럼 이쪽에서 문제가 되는건가?
 
 ###### ChatGPT의 말:
 
@@ -117,7 +111,7 @@ public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) { QParki
 
 ## 💥 현재 문제 상황 요약
 
-- `parkingHistoryRepository.findAll(predicate)` → `ParkingHistory` 목록만 조회
+`parkingHistoryRepository.findAll(predicate)` →  `ParkingHistory` 목록만 조회
     
 - `ParkingHistory`는 내부적으로 `@ManyToOne(fetch = LAZY)`로 `ParkAreaMaster`에 연결
     
@@ -132,11 +126,20 @@ public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) { QParki
 
 아래처럼 `QueryDSL`로 `ParkingHistory`와 `ParkAreaMaster`를 조인해서 **한 번의 쿼리로 모두 가져오게** 하면 돼요:
 
-java
 
-복사편집
+```java
+public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {     QParkingHistory ph = QParkingHistory.parkingHistory;     
+QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;      
+List<ParkingHistory> results = queryFactory         
+.selectFrom(ph)         
+.join(ph.parkArea, pa)
+.fetchJoin()         
+.where(ph.carNo4char.eq(Short.valueOf(carNum))                 .and(ph.inOutStatusCode.eq((byte) 1)).and(ph.outTime.isNull()))         .fetch();      
 
-```public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {     QParkingHistory ph = QParkingHistory.parkingHistory;     QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;      List<ParkingHistory> results = queryFactory         .selectFrom(ph)         .join(ph.parkArea, pa).fetchJoin()         .where(             ph.carNo4char.eq(Short.valueOf(carNum))                 .and(ph.inOutStatusCode.eq((byte) 1))                 .and(ph.outTime.isNull())         )         .fetch();      return results.stream()             .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto)             .collect(Collectors.toList()); }
+return results.stream()             
+	.map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto)             
+	.collect(Collectors.toList()); 
+}
 ```
 
 > `ph.parkArea`는 `@ManyToOne` 관계에서 `mappedBy` 되지 않고 직접 FK 컬럼(`parkAreaCode`)로 매핑돼 있어야 합니다.
@@ -146,20 +149,8 @@ java
 ## 💡 추가 팁
 
 - 위 방식 쓰려면 `ParkingHistory` 엔티티에 아래처럼 `@ManyToOne` 매핑이 되어 있어야 합니다:
-    
-
-java
-
-복사편집
-
-`@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "parkAreaCode", insertable = false, updatable = false) private ParkAreaMaster parkArea;`
+```java
+@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "parkAreaCode", insertable = false, updatable = false) private ParkAreaMaster parkArea;
+```
 
 - `insertable = false, updatable = false` 옵션은 **FK 값은 ParkingHistory에 있지만 ParkArea 정보는 조회 전용**일 때 사용해요.
-    
-
----
-
-필요하시면 전체 코드를 다시 정리해서 드릴게요 해영님! 😊  
-엔티티나 Mapper 코드도 함께 맞춰드릴 수 있어요.
-
----
