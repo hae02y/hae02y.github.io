@@ -117,7 +117,7 @@ public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) { QParki
     
 - 이후 `ParkingHistoryMapper::CarInfoToCarInfoResponseDto` 에서 `history.getParkArea().getParkAreaName()` 등의 **연관 필드 접근**이 있을 경우
     
-- **결과적으로 `ParkingHistory` 수만큼 `ParkAreaMaster` 조회 쿼리가 반복됨** → N+1 문제 발생
+- 결과적으로 `ParkingHistory` 수만큼 `ParkAreaMaster` 조회 쿼리가 반복됨 → N+1 문제 발생
     
 
 ---

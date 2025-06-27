@@ -39,7 +39,7 @@
     }
 
     code {
-        font-family: 'JetBrains Mono', monospace !important;
+        font-family: 'JetBrains Mono', 'Pretendard' ,monospace !important;
     }
 
     /* Headings */
@@ -236,11 +236,11 @@
     }
 
     .markdown a {
-        @apply text-sm md:text-base text-gray-600 dark:text-gray-300 break-all underline !important;
+        @apply text-sm md:text-base text-gray-600 dark:text-gray-300 break-all;
     }
 
-    .markdown a:hover::before {
-        content: '🔗 ';
+    .markdown a:hover {
+        @apply underline !important;
     }
 
     .markdown h1 > a::before,
@@ -269,17 +269,19 @@
 
 
 @layer components {
-    /* Extended terminal styles within markdown */
+    .xterm {
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
     .xterm .xterm-viewport {
-        @apply overflow-y-scroll rounded-l bg-gray-100 dark:bg-[#222222] text-blue-600 !important;
+        scrollbar-width: thin;
+        scrollbar-color: #555 transparent;
     }
 
-    .xterm .xterm-helpers {
-        @apply invisible absolute -top-full left-0 w-0 h-0 overflow-hidden;
-    }
-
-    .xterm-rows {
-        @apply text-gray-700 dark:text-gray-300 !important;
+    .xterm .xterm-rows {
+        padding: 8px;
     }
 }
 
