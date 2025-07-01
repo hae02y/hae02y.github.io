@@ -14,17 +14,17 @@ export default function TerminalDialog() {
             <DialogTrigger asChild>
                 <div className="flex flex-col items-center space-y-4 cursor-pointer group">
                     {/* 👤 프로필 이미지 */}
-                    <div className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl ring-4 ring-white group-hover:scale-105 transition-transform duration-500">
+                    <div className="w-80 h-80 lg:w-96 lg:h-72 border-2 border-black bg-white">
                         <img
                             src="/img/me.jpg"
                             alt="Profile"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full contrast-125"
                         />
                     </div>
 
                     {/* 📄 소개글 (이미지 아래) */}
-                    <div className="text-sm leading-relaxed space-y-2 text-center max-w-md px-4">
-                        <p className="leading-relaxed">백엔드개발자 | hae02y</p>
+                    <div className="text-sm leading-relaxed space-y-2 text-center max-w-md px-4 py-2">
+                        <p className="font-mono text-2xl font-bold text-gray-800 dark:text-white">Backend Developer</p>
                     </div>
                 </div>
             </DialogTrigger>

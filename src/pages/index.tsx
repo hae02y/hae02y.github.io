@@ -3,6 +3,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import TerminalDialog from "@site/src/components/TerminalDialog";
 import FloatingTags from "@site/src/components/FloatingTags";
+import BouncyDev from "@site/src/components/BounceDev";
 
 
 
@@ -31,7 +32,12 @@ function CamelSection() {
                     <div
                         className="hidden lg:h-full lg:w-1/2 lg:flex items-center justify-center"
                     >
-                    <FloatingTags />
+
+                        <div className={`flex-col`}>
+                            {/*<BouncyDev />*/}
+                            <FloatingTags />
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -43,7 +49,7 @@ export default function Home() {
     const {siteConfig} = useDocusaurusContext();
     return (
         <Layout
-            title={`${siteConfig.title} 블Lo그`}
+            title={`개발 공장`}
             description="정해영 기술블로그"
         >
             <main>

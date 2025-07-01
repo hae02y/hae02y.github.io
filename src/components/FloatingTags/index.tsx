@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
 import { motion, useAnimation } from 'framer-motion';
 
-// 랜덤 offset 함수
-const getRandomShift = () => Math.floor(Math.random() * 30 - 15); // -15 ~ +15px
+const getRandomShift = () => Math.floor(Math.random() * 30 - 15);
 
-export default function FloatingTags() {
+export default function FloatingTagsWithIntro() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
     const myTags = [
@@ -16,26 +15,46 @@ export default function FloatingTags() {
         '#Push알림', '#Thymeleaf', '#SSR', '#S3연동', '#로컬파일저장',
     ];
 
-    const getTagContent = () => {
-        return (
-            <div>
-                <h2 className="text-lg font-bold mb-2">{selectedTag}</h2>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
-                    이 태그에 대한 설명을 여기에 작성할 수 있어요!
-                </p>
-            </div>
-        );
-    };
+    const getTagContent = () => (
+        <div>
+            <h2 className="text-lg font-bold mb-2 text-black dark:text-white">
+                {selectedTag}
+            </h2>
+            <p className="text-sm text-black dark:text-white">
+                이 태그에 대한 설명을 여기에 작성할 수 있어요!
+            </p>
+        </div>
+    );
 
     return (
         <>
             <Dialog open={selectedTag !== null} onOpenChange={() => setSelectedTag(null)}>
-                <DialogContent className="max-w-xl p-4">
+                <DialogContent className="max-w-xl p-4 bg-white dark:bg-black border border-black dark:border-white">
                     {getTagContent()}
                 </DialogContent>
             </Dialog>
 
-            <div className="relative w-full min-h-[60vh] overflow-hidden flex flex-wrap justify-start items-start gap-2 px-4 py-8">
+            {/* 상단 소개 영역 */}
+            <div className="font-mono text-black dark:text-white text-sm leading-relaxed space-y-4 px-4">
+                <div>
+                    <p>―――</p>
+                    <p className={`font-mono text-sm text--bold`}>
+                        Backend developer who writes code that works,<br/>
+                        documents what matters, and deploys with intent.<br/>
+                        Obsessed with structure, clarity, and no-nonsense design.
+                    </p>
+                    <p>―――</p>
+                    <div className={`flex gap-6`}>
+                        <a href="/me" className="font-mono text-blue-600 underline">Resume</a>
+                        <a href="/blog" className="font-mono text-blue-600 underline">Blog</a>
+                        <a href="/insight" className="font-mono text-blue-600 underline">Insight</a>
+                    </div>
+                </div>
+            </div>
+
+            {/* 태그 영역 */}
+            <div
+                className="relative w-full min-h-[60vh] overflow-hidden flex flex-wrap justify-start items-start gap-2 px-4 py-8 font-mono">
                 {myTags.map((tag) => {
                     const controls = useAnimation();
 
@@ -52,14 +71,21 @@ export default function FloatingTags() {
 
                     const handleClick = () => setSelectedTag(tag);
 
-                    // 태그 생성 시 바로 흩어진 위치로 초기화
                     const initialX = getRandomShift();
                     const initialY = getRandomShift();
 
                     return (
                         <motion.div
                             key={tag}
-                            className="relative px-3 py-1.5 rounded-xl bg-white/80 dark:bg-[#333] text-sm text-black dark:text-white shadow-md dark:shadow-lg border border-gray-300 dark:border-gray-600 hover:shadow-xl transition-all cursor-pointer"
+                            className={`
+                px-2 py-1 text-xs font-bold
+                text-black dark:text-white
+                bg-white dark:bg-black
+                border border-black dark:border-white
+                hover:bg-black hover:text-white
+                dark:hover:bg-white dark:hover:text-black
+                cursor-pointer transition-all
+              `}
                             initial={{ x: initialX, y: initialY }}
                             animate={controls}
                             onMouseEnter={handleMouseEnter}
