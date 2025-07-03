@@ -21,7 +21,7 @@ function NavbarBackdrop(props: ComponentProps<'div'>) {
   );
 }
 
-export default function NavbarLayout({children}: Props): JSX.Element {
+export default function NavbarLayout({children}: Props) {
   const {
     navbar: {hideOnScroll, style},
   } = useThemeConfig();

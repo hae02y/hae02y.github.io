@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 import MacToastButton from "@site/src/components/MacToast";
 import "xterm/css/xterm.css";
@@ -15,8 +15,6 @@ const MacTerminalClient = ({ title, version }) => {
     const containerRef = useRef(null);
     const termRef = useRef(null);
     const inputBuffer = useRef("");
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
 
     useEffect(() => {
         let term, fitAddon;
@@ -31,25 +29,9 @@ const MacTerminalClient = ({ title, version }) => {
                 fontSize: 14,
                 lineHeight: 1,
                 theme: {
-                    background: "#1e1e1e",       // 진한 다크
-                    foreground: "#d4d4d4",       // 부드러운 회색 글자
-                    cursor: "#ffcc00",           // 노란색 커서
-                    black: "#000000",
-                    red: "#f7768e",
-                    green: "#9ece6a",
-                    yellow: "#e0af68",
-                    blue: "#7aa2f7",
-                    magenta: "#bb9af7",
-                    cyan: "#7dcfff",
-                    white: "#c0caf5",
-                    brightBlack: "#1f2335",
-                    brightRed: "#f7768e",
-                    brightGreen: "#9ece6a",
-                    brightYellow: "#e0af68",
-                    brightBlue: "#7aa2f7",
-                    brightMagenta: "#bb9af7",
-                    brightCyan: "#7dcfff",
-                    brightWhite: "#ffffff",
+                    background: "#000000",
+                    foreground: "#FFFFFF",
+                    cursor: "#000000",
                 },
             });
             fitAddon = new FitAddon();
@@ -57,9 +39,8 @@ const MacTerminalClient = ({ title, version }) => {
             term.loadAddon(fitAddon);
             term.open(containerRef.current);
             fitAddon.fit();
-            term.focus(); // ✅ 꼭 필요
+            term.focus();
 
-            // 포커스를 유지할 수 있도록 클릭 이벤트로 다시 포커스
             containerRef.current.addEventListener("click", () => {
                 term.focus();
             });
@@ -67,34 +48,59 @@ const MacTerminalClient = ({ title, version }) => {
             const prompt = `${title}@macbook:~$ `;
             term.write(prompt);
 
-            const handleCommand = (input) => {
+            const handleCommand = (input: string) => {
                 switch (input) {
                     case "hello":
-                        term.writeln("Hello, " + title + "!");
+                        term.writeln("\x1b[32m✅ Hello, " + title + "!\x1b[0m");
                         break;
+
                     case "help":
-                        term.writeln("Available commands:");
-                        term.writeln("  hello - 인사");
-                        term.writeln("  clear - 터미널 초기화");
-                        term.writeln("  help  - 명령어 목록");
+                        term.writeln("\x1b[34m📖 Available commands:\x1b[0m");
+                        term.writeln("\x1b[34m  hello   - 인사\x1b[0m");
+                        term.writeln("\x1b[34m  clear   - 터미널 초기화\x1b[0m");
+                        term.writeln("\x1b[34m  help    - 명령어 목록\x1b[0m");
+                        term.writeln("\x1b[34m  git     - GitHub 링크 출력\x1b[0m");
+                        term.writeln("\x1b[34m  blog    - 블로그 링크 출력\x1b[0m");
+                        term.writeln("\x1b[34m  insight - 인사이트 링크 출력\x1b[0m");
                         break;
+
                     case "clear":
                         term.clear();
                         break;
-                    case "":
-                        // do nothing
+
+                    case "git":
+                        term.writeln(
+                            "\x1b[36m🌐 GitHub: \x1b]8;;https://github.com/hae02y\x1b\\https://github.com/hae02y\x1b]8;;\x1b\\\x1b[0m"
+                        );
                         break;
+
+                    case "blog":
+                        term.writeln(
+                            "\x1b[35m📝 Blog: \x1b]8;;https://hae02y.dev/blog\x1b\\https://hae02y.dev/blog\x1b]8;;\x1b\\\x1b[0m"
+                        );
+                        break;
+
+                    case "insight":
+                        term.writeln(
+                            "\x1b[33m🔍 Insight: \x1b]8;;https://hae02y.dev/insight\x1b\\https://hae02y.dev/insight\x1b]8;;\x1b\\\x1b[0m"
+                        );
+                        break;
+
+                    case "":
+                        break;
+
                     default:
-                        term.writeln(`Command not found: ${input}`);
+                        term.writeln(`\x1b[31m❌ Command not found: ${input}\x1b[0m`);
                 }
             };
+
 
 
             term.onKey(({ key, domEvent }) => {
                 const char = domEvent.key;
                 if (char === "Enter") {
                     term.writeln("");
-                    handleCommand(inputBuffer.current.trim()); // 여기서 사용됨
+                    handleCommand(inputBuffer.current.trim());
                     term.write(prompt);
                     inputBuffer.current = "";
                 } else if (char === "Backspace") {
@@ -119,25 +125,20 @@ const MacTerminalClient = ({ title, version }) => {
     }, [title]);
 
     return (
-        <div className="w-full h-full rounded-lg p-4">
-            <div className="flex items-center mb-4 h-[5%]">
-                <div className="flex gap-2">
+        <div className="w-full h-full border border-black font-mono p-2 bg-white dark:bg-black text-black dark:text-white">
+            <div className="flex items-center justify-between mb-2 border-b border-black px-2 py-1">
+                <div className="flex gap-1">
                     <MacToastButton color="red" />
                     <MacToastButton color="green" />
                     <MacToastButton color="yellow" />
                 </div>
-                <div className="flex-grow text-center text-sm text-gray-400">
-                    My Blog! {version}
-                </div>
+
             </div>
 
-            <div className="text-left w-full h-[90%] rounded-md shadow-lg p-4 font-mono text-lg bg-gray-100 dark:bg-[#222222]">
-                <div
-                    ref={containerRef}
-                    className="terminal-container w-full h-full"
-                    style={{ minHeight: "300px" }}
-                />
-            </div>
+            <div
+                ref={containerRef}
+                className="w-full h-[300px] bg-black text-white font-mono text-xs p-2 border-t border-black"
+            />
         </div>
     );
 };

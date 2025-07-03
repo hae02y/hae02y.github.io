@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Menu } from "@headlessui/react";
 import type { WrapperProps } from "@docusaurus/types";
 import type NavbarItemType from "@theme/NavbarItem";
@@ -6,19 +6,22 @@ import type NavbarItemType from "@theme/NavbarItem";
 type Props = WrapperProps<typeof NavbarItemType>;
 
 export default function NavbarItemWrapper(props: any) {
-    // 드롭다운 메뉴 구성
+    const baseButtonClasses =
+        "px-3 py-1 border border-black font-mono uppercase text-sm transition-all";
+    const themeButtonClasses =
+        "bg-white text-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black";
 
     if (props.items) {
         return (
-            <Menu as="div" className="relative inline-block text-left">
+            <Menu as="div" className="relative inline-block text-left font-mono">
                 {/* Menu 버튼 */}
                 <Menu.Button
-                    className="inline-flex items-center px-4 py-2 text-sm rounded-md text-[#3182ce] dark:text-[#63b3ed] hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                    className={`${baseButtonClasses} ${themeButtonClasses} inline-flex items-center`}
                 >
                     {props.label}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="ml-2 h-5 w-5"
+                        className="ml-1 h-4 w-4"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                     >
@@ -31,13 +34,17 @@ export default function NavbarItemWrapper(props: any) {
                 </Menu.Button>
 
                 {/* Dropdown 메뉴 아이템 */}
-                <Menu.Items className="absolute right-0 mt-2 w-24 bg-white dark:bg-gray-800 rounded-lg shadow-lg ring-1 ring-gray-300 dark:ring-gray-700 z-10">
+                <Menu.Items className="absolute right-0 mt-1 w-32 border border-black bg-white dark:bg-black z-10">
                     {props.items.map((subItem, index) => (
                         <Menu.Item key={index}>
                             {({ active }) => (
                                 <a
                                     href={subItem.to}
-                                    className={`dark:bg-gray-800 block px-4 py-2 text-sm rounded-md text-gray-600 dark:text-gray-100}`}
+                                    className={`block px-3 py-1 text-xs uppercase ${
+                                        active
+                                            ? "bg-black text-white dark:bg-white dark:text-black"
+                                            : "text-black hover:bg-black hover:text-white dark:text-white dark:hover:bg-white dark:hover:text-black"
+                                    }`}
                                 >
                                     {subItem.label}
                                 </a>
@@ -46,65 +53,19 @@ export default function NavbarItemWrapper(props: any) {
                     ))}
                 </Menu.Items>
             </Menu>
-            // <Menu as="div" className="relative inline-block text-left">
-            //     <Menu.Button
-            //         className="btn btn-plain btn-gnb text-[#3182ce] dark:text-[#63b3ed]"
-            //     >
-            //         {props.label}
-            //     </Menu.Button>
-            //     <Menu.Items className="absolute mt-2 w-48 bg-gray-800 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-10">
-            //         {props.items.map((subItem: any, index: number) => (
-            //             <Menu.Item key={index}>
-            //                 {({ active }) => (
-            //                     <a
-            //                         href={subItem.to}
-            //                         className={`${
-            //                             active ? "bg-gray-700 text-white" : "text-gray-300"
-            //                         } block px-4 py-2 text-sm rounded-md transition-all`}
-            //                     >
-            //                         {subItem.label}
-            //                     </a>
-            //                 )}
-            //             </Menu.Item>
-            //         ))}
-            //     </Menu.Items>
-            // </Menu>
         );
     }
 
-    if(props.type) {
-        return (
-            <>
-                <a
-                    href={'/docs/intro'}
-                    className="btn btn-plain btn-gnb"
-                >
-                    {props.label}
-                </a>
-            </>
-        )
-    }
-
-    if(props.href) {
-        return (
-            <>
-                <a
-                    href={props.href}
-                    className="btn btn-plain btn-gnb"
-                >
-                    {props.label}
-                </a>
-            </>
-        )
-    }
-
-    // 기본 링크 구성
-    return (
+    const renderLink = (href: string) => (
         <a
-            href={props.to}
-            className="btn btn-plain btn-gnb"
+            href={href}
+            className={`${baseButtonClasses} ${themeButtonClasses}`}
         >
             {props.label}
         </a>
     );
+
+    if (props.type) return renderLink("/docs/intro");
+    if (props.href) return renderLink(props.href);
+    return renderLink(props.to);
 }

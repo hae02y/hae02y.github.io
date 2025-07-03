@@ -1,9 +1,9 @@
 import React from 'react';
 import {Router} from "lucide-react";
 
-export default function NavbarLogo(): JSX.Element {
+export default function NavbarLogo(){
   return (
-      <a className="btn" href={'/'}>
+      <a className="btn hidden sm:block" href={'/'}>
         {/* 라이트 모드용 로고 */}
         <img
             src="/img/logo/Hae02y-dark.svg"

@@ -12,9 +12,9 @@ export default function TerminalDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <div className="flex flex-col items-center space-y-4 cursor-pointer group">
+                <div className="flex w-80 h-64 md:w-96 md:h-80 lg:w-96 lg:h-80 2xl:w-[90%] 2xl:h-[80%] flex-col items-center space-y-4 cursor-pointer group">
                     {/* 👤 프로필 이미지 */}
-                    <div className="w-80 h-80 lg:w-96 lg:h-72 border-2 border-black bg-white">
+                    <div className="w-full h-full border border-gray-950 dark:border-white bg-white">
                         <img
                             src="/img/me.jpg"
                             alt="Profile"
@@ -24,7 +24,7 @@ export default function TerminalDialog() {
 
                     {/* 📄 소개글 (이미지 아래) */}
                     <div className="text-sm leading-relaxed space-y-2 text-center max-w-md px-4 py-2">
-                        <p className="font-mono text-2xl font-bold text-gray-800 dark:text-white">Backend Developer</p>
+                        <p className="font-mono text-2xl font-bold text-gray-800 dark:text-white">Backend Developer.</p>
                     </div>
                 </div>
             </DialogTrigger>

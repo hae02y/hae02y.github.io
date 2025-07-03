@@ -1,18 +1,43 @@
-import { useState } from 'react';
-import { Dialog, DialogContent } from '@site/src/components/ui/dialog';
-import { motion, useAnimation } from 'framer-motion';
+import {useState} from 'react';
+import {Dialog, DialogContent} from '@site/src/components/ui/dialog';
+import {motion, useAnimation} from 'framer-motion';
+import useGlobalData, {usePluginData} from "@docusaurus/core/lib/client/exports/useGlobalData";
 
 const getRandomShift = () => Math.floor(Math.random() * 30 - 15);
 
-export default function FloatingTagsWithIntro() {
+export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
+    const blogPluginData = useGlobalData();
+    console.log(blogPluginData);
+    // const blogData = globalData['docusaurus-plugin-content-docs'].default;
+    // console.log(blogData);
+    // const tags : BlogTags = blogData?.blogTags; // 태그 객체
 
     const myTags = [
-        '#Java', '#SpringBoot', '#SpringSecurity', '#SpringMVC', '#SpringDataJPA',
-        '#Hibernate', '#JPA', '#MyBatis', '#기술문서화', '#JWT인증',
-        '#OAuth2', '#세션관리', '#CORS설정', '#상태코드관리', '#H2DB',
-        '#MySQL', '#Redis', '#스케줄링', '#메일전송', '#FCM',
-        '#Push알림', '#Thymeleaf', '#SSR', '#S3연동', '#로컬파일저장',
+        '#Java',
+        '#SpringBoot',
+        '#SpringSecurity',
+        '#SpringMVC',
+        '#SpringDataJPA',
+        '#Hibernate', '#JPA',
+        '#MyBatis',
+        '#기술문서화',
+        '#JWT인증',
+        '#OAuth2',
+        '#세션관리',
+        '#CORS설정',
+        '#상태코드관리',
+        '#H2DB',
+        '#MySQL',
+        '#Redis',
+        '#스케줄링',
+        '#메일전송',
+        '#FCM',
+        '#Push알림',
+        '#Thymeleaf',
+        '#SSR',
+        '#S3연동',
+        '#로컬파일저장',
     ];
 
     const getTagContent = () => (
@@ -86,11 +111,11 @@ export default function FloatingTagsWithIntro() {
                 dark:hover:bg-white dark:hover:text-black
                 cursor-pointer transition-all
               `}
-                            initial={{ x: initialX, y: initialY }}
+                            initial={{x: initialX, y: initialY}}
                             animate={controls}
                             onMouseEnter={handleMouseEnter}
                             onClick={handleClick}
-                            whileTap={{ scale: 0.95 }}
+                            whileTap={{scale: 0.95}}
                         >
                             {tag}
                         </motion.div>
