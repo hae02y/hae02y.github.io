@@ -1,11 +1,11 @@
 ---
-slug: nexjs-cicd
-title: NextJS 배포는 어떻게 하는게 좋을까?
+slug: transaction
+title: 중복트랜잭션은 어떻게 처리될까?
 authors:
   - haeyoung
 tags:
-  - infra
-  - CICD
+  - DB
+  - spring
 ---
 근데 서비스단에 transanction 박았는데 저렇게 쿼리에 트랜잯션처리 되있어도 괜찮아?
 
