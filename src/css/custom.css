@@ -441,9 +441,9 @@
 /*Freesentation*/
 @font-face {
     font-family: 'Freesentation';
-    font-weight: 400;
+    font-weight: 100;
     font-display: swap;
-    src: local('Pretendard Black'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype');
+    src: url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype'), url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype');
 }
 
 
