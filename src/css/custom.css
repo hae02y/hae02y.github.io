@@ -28,6 +28,8 @@
     body {
         @apply bg-background text-foreground font-sans antialiased;
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;
+        font-size: 16px;
+        line-height: 28px;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -439,7 +441,7 @@
 /*Freesentation*/
 @font-face {
     font-family: 'Freesentation';
-    font-weight: 900;
+    font-weight: 400;
     font-display: swap;
     src: local('Pretendard Black'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype'), url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype');
 }
@@ -486,27 +488,6 @@
     font-weight: 400;
     font-display: swap;
     src: local('Pretendard Regular'), url('/font/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-display: swap;
-    src: local('Pretendard Light'), url('/font/pretendard/woff2/Pretendard-Light.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard-extra-lignt';
-    font-weight: 300;
-    font-display: swap;
-    src: local('Pretendard ExtraLight'), url('/font/pretendard/woff2/Pretendard-ExtraLight.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraLight.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard-lignt';
-    font-weight: 300;
-    font-display: swap;
-    src: local('Pretendard Thin'), url('/font/pretendard/woff2/Pretendard-Thin.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Thin.woff') format('woff');
 }
 
 /*JetBrain*/
