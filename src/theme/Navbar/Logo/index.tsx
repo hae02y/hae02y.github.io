@@ -3,7 +3,7 @@ import {Router} from "lucide-react";
 
 export default function NavbarLogo(){
   return (
-      <a className="btn hidden sm:block" href={'/'}>
+      <a className="btn hidden md:block" href={'/'}>
         {/* 라이트 모드용 로고 */}
         <img
             src="/img/logo/Hae02y-dark.svg"
