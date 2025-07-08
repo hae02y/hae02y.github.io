@@ -113,13 +113,7 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
-        {to: '/Insight', label: 'Insight', position: 'left'},
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Portfolio',
-        },
+        {to: '/Insight', label: 'Insight', position: 'left'}
       ],
     },
     prism: {
