@@ -66,15 +66,15 @@ https://www.hae02y.com/user?id=1
 | 분산 시스템 | 어려움            | 충돌 거의 없음 |
 | 가독성    | O              | X        |
 
-데이터의 기본키는 외부에 노출되면 안된다. `INCREMENT PK`, `UUID` 모두 상관없이 그러하다. pk를 변경하는 비용은 높지만, pk는 언젠가 변경될 수 있기 때문에, 기본키를 외부에 노출하면 이 비용은 더 높아진다.  예를 들어, 기본키가 변경되면, 외부에 공개되었던 페이지의 데이터가 조회되지 않는 현상이 발생할 수 있다.  시스템에서 절대~~ 변경되지 않는 것은 없다. 예를 들어, 데이터가 많아져서 저장소를 RDB에서 NoSQL으로 이전하게 되는 경우, pk가 숫자형에서 문자형으로 변경될 수 있다.   
+데이터의 기본키는 외부에 노출되면 안된다. `INCREMENT PK`, `UUID` 모두 상관없이 그러하다. PK를 변경하는 비용은 높지만, PK는 언젠가 변경될 수 있기 때문에, 기본키를 외부에 노출하면 이 비용은 더 높아진다.  예를 들어, 기본키가 변경되면, 외부에 공개되었던 페이지의 데이터가 조회되지 않는 현상이 발생할 수 있다.  Software에서 절대로 변경되지 않는 것은 없다. 예를 들어, 데이터가 많아져서 저장소를 RDBMS에서 NoSQL으로 이전하게 되는 경우, PK가 숫자형에서 문자형으로 변경될 수 있다.   
 
-애플리케이션 내부용 키로는 `INCREMENT PK`를, 외부에 공개할 키로는 `UUID`를 사용하는 것을 권장한다. 애플리케이션 내부에서는 `INCREMENT PK`를 사용하여 관계 데이터를 참조하면 성능과 저장 장소 측면에서 이점을 얻을 수 있다.  식별값이 노출되는 서비스가 내부 시스템일지라도 `UUID`으로 데이터를 식별하는 것이 좋다. 외부에 공개될 식별자로 `UUID`를 사용하게되면, 향후에 내부 기본키를 변경해야하더라도 영향 범위를 데이터베이스로 한정지을 수 있다. `UUID`가 사용자 친화적이지 않아서, URL에 붙여서 사용할 수 없는 경우가 있다. 이 때에는 slug를 사용하여 사용자 친화적인 URL패턴을 만들면 된다. 만약 slug가 중복된다면, 뒤에 해시값을 붙여서 대체 식별자를 만들 수 있다. 블로그에서 URL에 글의 제목을 활용하는 사례가 이와 같은 방식이다.
+애플리케이션 내부용 키로는 `INCREMENT PK`를, 외부에 공개할 키로는 `UUID`를 사용하는 것을 권장한다. 애플리케이션 내부에서는 `INCREMENT PK`를 사용하여 관계 데이터를 참조하면 성능과 저장 장소 측면에서 이점을 얻을 수 있다.  식별값이 노출되는 서비스가 내부시스템일지라도 `UUID`으로 데이터를 식별하는 것이 좋다. 외부에 공개될 식별자로 `UUID`를 사용하게되면, 향후에 내부 기본키를 변경해야하더라도 영향범위를 데이터베이스로 한정지을 수 있다. `UUID`가 사용자 친화적이지 않아서, URL에 붙여서 사용할 수 없는 경우가 있다. 이 때에는 slug를 사용하여 사용자 친화적인 URL패턴을 만들면 된다. 만약 slug가 중복된다면, 뒤에 해시값을 붙여서 대체 식별자를 만들 수 있다. 블로그에서 URL에 글의 제목을 활용하는 사례가 이와 같은 방식이다.
 
 #### ULID / KSUID 란?
 
 둘 다 UUID의 단점을 보완하기 위해 나온 고유 ID 생성 규격이다.
 
-**Universally Unique Lexicographically Sortable Identifier**
+**ULID : Universally Unique Lexicographically Sortable Identifier**
 - **의미**: UUID처럼 유니크하지만, 문자열이 시간 순 정렬 가능
 - 형식: `01FZV9YJ00X4M2YH6Y3M1QGJVT`
 - 내부 구조: 상위 비트: 타임스탬프 / 하위 비트: 랜덤값
@@ -84,7 +84,7 @@ https://www.hae02y.com/user?id=1
 - 사용 예: Firebase Firestore, 일부 NoSQL, 이벤트 소싱
     
 
-**K-Sortable Unique Identifier**
+**KSUID : K-Sortable Unique Identifier**
 - **의미**: 쿠팡/Stripe 등에서 사용, UUID처럼 유니크하면서도 정렬 가능한 ID
 - 형식: `0o5Fs0EELR0fUjHjbCnE8v0X9Ey`
 - 내부 구조: 첫 4바이트: 생성 시간 (Unix epoch) / 나머지 16바이트: 랜덤값
@@ -163,14 +163,7 @@ public static UUID createUUIDv5(String name, UUID namespace) {
 
 - 애플리케이션 내부용 키로는 `INREMENT PK`를, 외부에 공개할 키로는 `UUID`를 사용하는 것을 권장
 - PK는 외부에 노출되지않는 것이 중요
-- 
-
-
 
 #### Ref.
-
-[UUID에 의존하면 안되는 이유](https://hackernoon.com/lang/ko/%EC%9D%B8%EC%A6%9D-%EC%83%9D%EC%84%B1-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%AA%A8%EB%B2%94-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%9C%84%ED%95%B4-uuid%EC%97%90-%EC%9D%98%EC%A1%B4%ED%95%98%EC%A7%80-%EB%A7%88%EC%8B%AD%EC%8B%9C%EC%98%A4.)
-[UUID를 기본키로 사용시 주의 사항](https://tomharrisonjr.com/uuid-or-guid-as-primary-keys-be-careful-7b2aa3dcb439)
-[참고자료](https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84)
-[참고자료2](https://stackoverflow.com/questions/52414414/best-practices-on-primary-key-auto-increment-and-uuid-in-sql-databases)
-[참고자료3](https://americanopeople.tistory.com/378)
+- [UUID에 의존하면 안되는 이유](https://hackernoon.com/lang/ko/%EC%9D%B8%EC%A6%9D-%EC%83%9D%EC%84%B1-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%AA%A8%EB%B2%94-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%9C%84%ED%95%B4-uuid%EC%97%90-%EC%9D%98%EC%A1%B4%ED%95%98%EC%A7%80-%EB%A7%88%EC%8B%AD%EC%8B%9C%EC%98%A4.)   
+- [UUID를 기본키로 사용시 주의 사항](https://tomharrisonjr.com/uuid-or-guid-as-primary-keys-be-careful-7b2aa3dcb439)
