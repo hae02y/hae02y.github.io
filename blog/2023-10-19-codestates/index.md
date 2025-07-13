@@ -42,36 +42,13 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 .and()
                 .apply(new CustomFilterconfigurer())
                 .and()
-//                .authorizeHttpRequests(authorize -> authorize
-//                        .anyRequest().permitAll()   // 모든 요청 접근 허용
-//                )
                         .authorizeHttpRequests(authorize -> authorize
-/** --------------- member 접근 권한 설정 ------------------- **/
+/** --------------- 접근 권한 설정 예시------------------- **/
                         .antMatchers(HttpMethod.POST, "/members/signup").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/members/mypage/edit/**").hasRole("USER")
                         .antMatchers(HttpMethod.PATCH, "/members/mypage/**").hasRole("USER")
                         .antMatchers(HttpMethod.GET, "/members").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.GET, "/members/**").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.DELETE, "/members/delete/**").hasAnyRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/members/mypage/image/upload/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/members/mypage/image/delete/**").hasRole("USER")
-/** ----------- boards 접근 권한 설정 --------------------- **/
-                        .antMatchers(HttpMethod.POST, "/boards/create").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.PATCH, "/boards/edit/**").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.GET, "/boards").permitAll()
-                        .antMatchers(HttpMethod.GET, "/boards/**").permitAll()
-                        .antMatchers(HttpMethod.DELETE, "/boards/delete/**").hasAnyRole("ADMIN", "USER")
-/** ----------- boards-answers 접근 권한 설정 --------------- **/
-                        .antMatchers(HttpMethod.POST, "/boards/**/answers/create").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.PATCH, "/boards/**/answers/**").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.DELETE, "/boards/**/answers/**/delete").hasAnyRole("ADMIN", "USER")
-/** ------------- boards-replies 접근 권한 설정 ------- **/
-                        .antMatchers(HttpMethod.POST, "/answers/replies/create".hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.PATCH, "/answers/replies/**").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.DELETE, "/answers/replies/**/delete").hasAnyRole("ADMIN", "USER")
-/** ----------- licenses 접근 권한 설정 -------------- **/
-                        .antMatchers(HttpMethod.GET, "/licenses/**").permitAll()
-                        .antMatchers(HttpMethod.GET, "/licenses").permitAll()
+
                 );
         return http.build();
     }
