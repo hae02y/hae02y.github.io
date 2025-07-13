@@ -41,7 +41,49 @@ public class OrderService {
 
 객체에 의존성을 추가 하게 되면 순환 참조 문제가 발생한다. 즉 A가 B를 참조, B가 A를 참조 와 같은 경우가 발생하는 것이다. 예를 한번 들어보자.
 
+필드 주입을 통해서 순환 참조를 구성해보자.
+Order / Payment `Bean`을 생성하고 서로 필드 주입을 진행한다.
+```java
+@Component
+public class OrderService {
 
+    @Autowired
+    private PaymentService paymentService;
+
+    public void processPay() {
+        paymentService.pay();
+    }
+}
+
+@Component
+public class PaymentService {
+
+    @Autowired
+    private OrderService orderService;
+
+    public void processOrder() {
+        orderService.order();
+    }
+}
+```
+
+그리고 이 두개의 `Bean`을 주입해보자.
+```java
+@Component
+public class OrderPayService {
+
+    @Autowired
+    private OrderSerivce orderService;
+	
+	@Autowired
+    private PaymentService paymentService;
+
+    public void processPay() {
+        orderService.order();
+        paymentService.pay();
+    }
+}
+```
 
 #### 2. 필드 주입
 ```java
@@ -51,7 +93,8 @@ public class OrderService {
     @Autowired
     private PaymentService paymentService;
 
-    public void processOrder() {
+    public void processOrderPay() {
+        paymentService.pay();
         paymentService.pay();
     }
 }
