@@ -10,9 +10,9 @@ tags:
 ### 의존성 주입
 
 Spring Framework에서 의존성을 주입하는 방법은 3가지가 있다.
-	1. 생성자 주입(Constructor Injection)
-	2. 필드 주입(Field Injection)
-	3. 수정자 주입(Method-Setter Injection)
+	1. **생성자 주입(Constructor Injection)**
+	2. **필드 주입(Field Injection)**
+	3. **수정자 주입(Method-Setter Injection)**
 
 그럼 이중 어떤 방법이 가장 권장될까?  
 결론이 **생성자 주입** 이라는 것은 아마 스프링 사용자라면 대부분 알고있다. 하지만 왜 생성자 주입이 가장 권장되는지 정확히 알고있지 못하다. 지금부터 이부분에 대해서 파악해보자.
@@ -49,9 +49,7 @@ public class OrderService {
 }
 ```
 
-#### 3. 수정자 주입
-
-- **Method(Setter) 주입**
+#### 3. 수정자 주입 (Method - Setter 주입)
 ```java
 @Component
 public class OrderService {
@@ -221,3 +219,5 @@ class OrderServiceTest {
     }
 }
 ```
+
+이렇게 생성자 주입의 장점에 대해서 알아보았다. 어렴풋이 알고있었던 부분에 대해서 깊이 파고들어 확인 해보니, 좀더 많은 내용을 알수있는 좋은 경험 이였다.
