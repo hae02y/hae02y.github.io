@@ -33,6 +33,49 @@ public class OrderService {
     }
 }
 ```
+
+#### 2. 필드 주입
+```java
+@Component
+public class OrderService {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    public void processOrderPay() {
+        paymentService.pay();
+        paymentService.pay();
+    }
+}
+```
+
+#### 3. 수정자 주입
+
+- **Setter 주입**
+```java
+test
+```
+
+- **Method 주입**
+```java
+@Component
+public class OrderService {
+
+    private PaymentService paymentService;
+
+    @Autowired
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    public void processOrder() {
+        paymentService.pay();
+    }
+}
+```
+
+
+### 생성자 주입을 사용해야 하는 이유
 생성자 주입 사용을 권하는 이유는 다음과 같다.  
 
 1. 순환 참조 방지
@@ -129,48 +172,12 @@ public class OrderPayService {
 ```
 
 ![에러](1.png)
+이렇게 서버자체가 구동되지 않아 순환참조를 빌드 시점에서 방지 가능하다.
 
-
-#### 2. 필드 주입
-```java
-@Component
-public class OrderService {
-
-    @Autowired
-    private PaymentService paymentService;
-
-    public void processOrderPay() {
-        paymentService.pay();
-        paymentService.pay();
-    }
-}
-```
-
-#### 3. 수정자 주입
-
-- **Setter 주입**
-```java
-test
-```
-
-- **Method 주입**
-```java
-@Component
-public class OrderService {
-
-    private PaymentService paymentService;
-
-    @Autowired
-    public void setPaymentService(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
-
-    public void processOrder() {
-        paymentService.pay();
-    }
-}
-```
-
+**이런차이가 발생하는 이유?**
+- 필드 주입, 수정자 주입은 빈을 생성한후, 주입하려는 빈을 찾아 주입
+- 생성자 주입은 생성자의 인자에 사용되는 빈을 찾거나 빈 팩토리에서 생성됨, 그리고 찾은 인자 빈으로 주입하려는 빈의 생성자를 호출, 즉 먼저 빈을 생성하지 않고 주입하려는 빈을 찾음
+- 해당 이유로 객체 생성 시점에서 빈을 주입하기 때문에, 서로 참조하는 객체가 생성되지 않은 상태에서 그 빈을 참조하기 때문에 오류가 발생
 
 
 https://jackjeong.tistory.com/entry/Spring-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A3%BC%EC%9E%85-vs-%ED%95%84%EB%93%9C-%EC%A3%BC%EC%9E%85-Autowired
