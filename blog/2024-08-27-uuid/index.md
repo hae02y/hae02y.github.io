@@ -51,10 +51,9 @@ UUID는 다양한 방법으로 생성이 가능한데, 표준에 따르면 다�
 https://www.hae02y.com/user?id=1
 ```
 
-위의 URL에서 파라미터에 들어가는 `id` 값을 바꿔줌으로써, 다른 사람의 정보를 확인할수있음을 예측할수있다. 이렇게 예측가능한 모델이 된다면 SQL Injection의 위험성에 노출되게 되고, PK값을 그대로 파라미터로 사용함은 문제가 될수있다. 즉, 고유값을 같는 특정한 값으로 해당 데이터를 식별 할 필요가 있다.
+위의 URL에서 파라미터에 들어가는 `id` 값을 바꿔줌으로써, 다른 사람의 정보를 확인할수있음을 예측할수있다. 이렇게 예측가능한 모델이 된다면 Insecure Direct Object Reference, IDOR)의 위험성에 노출되게 되고, PK값을 그대로 파라미터로 사용함은 문제가 될수있다. 즉, 고유값을 같는 특정한 값으로 해당 데이터를 식별 할 필요가 있다.
 
-서버내에서 특정한 키를 발급하거나, 세션등을 사용하여 특정 클라이언트에 한정된 고유값을 사용한다면 이를 해결할수있다. 하지만 트래픽이 많아져서 서버를 늘리게 된다면 고유값을 유지하는데 어려움이 생긴다. 이러한 상황에서 사용할수있는 방법이 `UUID` 다.
-
+서버내에서 특정한 키를 발급하거나, 세션등을 사용하여 특정 클라이언트에 한정된 고유값을 사용한다면 이를 해결할수있다. 즉, PK는 내부 시스템의 식별용으로만 사용하고, 클라이언트에게는 비즈니스용 식별자를 노출하여 해결이 가능하다. 이때 선택할수있는 옵션이 `UUID`이다. 또한 고유성을 ㄱ
 
 
 - 데이터베이스의 기본키로 설정하여 레코드의 고유성을 보장
@@ -149,6 +148,7 @@ public static UUID createUUIDv5(String name, UUID namespace) {
 #### Ref.
 
 [UUID에 의존하면 안되는 이유](https://hackernoon.com/lang/ko/%EC%9D%B8%EC%A6%9D-%EC%83%9D%EC%84%B1-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%AA%A8%EB%B2%94-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%9C%84%ED%95%B4-uuid%EC%97%90-%EC%9D%98%EC%A1%B4%ED%95%98%EC%A7%80-%EB%A7%88%EC%8B%AD%EC%8B%9C%EC%98%A4.)
+[UUID를 기본키로 사용시 주의 사항](https://tomharrisonjr.com/uuid-or-guid-as-primary-keys-be-careful-7b2aa3dcb439)
 [참고자료](https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84)
 [참고자료2](https://stackoverflow.com/questions/52414414/best-practices-on-primary-key-auto-increment-and-uuid-in-sql-databases)
 [참고자료3](https://americanopeople.tistory.com/378)
