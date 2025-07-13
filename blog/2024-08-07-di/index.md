@@ -128,6 +128,9 @@ public class OrderPayService {
 
 ```
 
+![에러](1.png)
+
+
 #### 2. 필드 주입
 ```java
 @Component
