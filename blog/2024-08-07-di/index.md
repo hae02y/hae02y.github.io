@@ -9,12 +9,13 @@ tags:
 ---
 ### 의존성 주입
 
-- 스프링 프레임워에서 의존성을 주입하는 방법은 3가지가 있다.
-	- 생성자 주입(Constructor Injection)
-	- 필드 주입(Field Injection)
-	- 수정자 주입(Setter, Method Injection)
+Spring Framework에서 의존성을 주입하는 방법은 3가지가 있다.
+	1. 생성자 주입(Constructor Injection)
+	2. 필드 주입(Field Injection)
+	3. 수정자 주입(Setter, Method Injection)
 
-그럼 이중 어떤 방법이 좋을까? 결론은 **생성자 주입 (Constructor Injection)** 이다. 그럼 그 이유를 알아보자.
+그럼 이중 어떤 방법이 가장 권장될까?  
+결론이 **생성자 주입** 이라는 것은 아마 스프링 사용자라면 대부분 알고있다. 하지만 왜 생성자 주입이 가장 권장되는지 정확히 알고있지 못하다. 지금부터 이부분에 대해서 파악해보자.
 #### 1. 생성자 주입
 ```java
 @Component
@@ -32,6 +33,7 @@ public class OrderService {
     }
 }
 ```
+생성자 주입은 `@Autowired` 어노테이션을 붙이지 않아도
 
 #### 2. 필드 주입
 ```java
