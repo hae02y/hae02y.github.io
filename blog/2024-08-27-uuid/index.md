@@ -66,6 +66,29 @@ https://www.hae02y.com/user?id=1
 | 분산 시스템 | 어려움            | 충돌 거의 없음 |
 | 가독성    | O              | X        |
 
+#### ULID / KSUID 란?
+
+둘 다 UUID의 단점을 보완하기 위해 나온 고유 ID 생성 규격이다.
+
+**Universally Unique Lexicographically Sortable Identifier**
+- **의미**: UUID처럼 유니크하지만, 문자열이 **시간 순 정렬 가능**
+- 형식: `01FZV9YJ00X4M2YH6Y3M1QGJVT`
+- 내부 구조: 상위 비트: 타임스탬프 / 하위 비트: 랜덤값
+- 시간 순서대로 생성 → DB 인덱스 정렬 효율적
+- 보통 `26`자 Base32 문자열
+- 공간 효율성: UUID와 비슷하지만, 읽고 쓸 때 더 빠름
+- 사용 예: Firebase Firestore, 일부 NoSQL, 이벤트 소싱
+    
+
+**K-Sortable Unique Identifier**
+- **의미**: 쿠팡/Stripe 등에서 사용, UUID처럼 유니크하면서도 정렬 가능한 ID
+- 형식: `0o5Fs0EELR0fUjHjbCnE8v0X9Ey`
+- 내부 구조: 첫 4바이트: 생성 시간 (Unix epoch) / 나머지 16바이트: 랜덤값
+- 결과적으로 시간순 정렬 가능 & UUID와 동일한 20바이트
+- 고유성 보장 + 시간 순 정렬성
+- RDB → INT PK + UUID 외부 노출 or ULID/KSUID
+- NoSQL/분산 → ULID/KSUID 더 적합
+
 
 
 - 데이터베이스의 기본키로 설정하여 레코드의 고유성을 보장
