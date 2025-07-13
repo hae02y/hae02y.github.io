@@ -169,8 +169,10 @@ public class OrderPayService {
 
 ```
 
+서버자체가 구동되지 않아 순환참조를 빌드 시점에서 방지 가능하다.
+
 ![에러](1.png)
-이렇게 서버자체가 구동되지 않아 순환참조를 빌드 시점에서 방지 가능하다.
+
 
 **이런차이가 발생하는 이유?**
 - 필드 주입, 수정자 주입은 빈을 생성한후, 주입하려는 빈을 찾아 주입
@@ -184,7 +186,38 @@ public class OrderPayService {
 생성자 주입은 필드를 `final`로 선언이 가능하며, **런타임 시점에 객체의 불변성을 보장**한다.
 
 #### 테스트 코드 작성 용이
-생성자 주입을 사용하면 스프링 컨테이너의 도움 없이 테스트 코드를 편리하게 작성이 가능하다. 
+생성자 주입을 사용하면 스프링 컨테이너의 도움 없이 테스트 코드를 편리하게 작성이 가능하다. 테스트 하고자 하는 클래스에 필드 주입이나 수정자 주입으로 `Bean`이 주입되면, `Mockito` 와 같은 목킹을 하여 테스트를 진행해야한다. 하지만 생성자 주입을 사용하면 단순하게 원하는 객체를 생성하여, 생성자에 넣어줌으로써 사용이 가능하다.
 
+**필드 주입의 경우**
+```java
+@Autowired
+private PaymentService paymentService;
 
-https://jackjeong.tistory.com/entry/Spring-%EC%83%9D%EC%84%B1%EC%9E%90-%EC%A3%BC%EC%9E%85-vs-%ED%95%84%EB%93%9C-%EC%A3%BC%EC%9E%85-Autowired
+@Test
+void test() {
+    OrderService orderService = new OrderService();
+    orderService.processOrder();  // 👉 NPE 발생, 의존성 주입 안 됨
+}
+```
+
+**생성자 주입의 경우**
+```java
+class OrderServiceTest {
+
+    @Test
+    void processOrder() {
+        // 👇 목 객체 직접 생성
+        PaymentService fakePaymentService = new PaymentService() {
+            @Override
+            public String pay() {
+                return "테스트 결제 완료";
+            }
+        };
+
+        // 👇 생성자에 주입
+        OrderService orderService = new OrderService(fakePaymentService);
+        String result = orderService.processOrder();
+        assertThat(result).isEqualTo("테스트 결제 완료");
+    }
+}
+```
