@@ -29,12 +29,14 @@
         @apply bg-background text-foreground font-sans antialiased;
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;
         font-size: 16px;
-        line-height: 28px;
         font-weight: 500;
-        letter-spacing: 0;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        line-height: 1.8;          /* 기본 1.5보다 넉넉하게 */
+        letter-spacing: 0.03em;    /* 자간을 살짝 벌림 */
+        word-break: keep-all;      /* 한글 가독성 유지 */
+        word-spacing: 0.05em;      /* 단어 간격 살짝 */
     }
 
     h1, h2, h3, h4, h5, h6 {
