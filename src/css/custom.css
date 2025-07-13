@@ -132,40 +132,45 @@
 }
 
 @layer components {
+
+    .markdown td {
+        @apply text-xs
+    }
+
     .markdown code {
         @apply text-[11px] md:text-[13px];
     }
 
     .markdown p code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
     }
 
     .markdown ul code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
     }
 
     .markdown ol code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
     }
 
     .markdown td code {
-        @apply text-xs text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
     }
 
     .markdown p div code {
-        @apply text-[11px] md:text-[13px] bg-transparent;
+        @apply text-[11px] md:text-[12px] bg-transparent;
     }
 
     .markdown ul div code {
-        @apply text-[11px] md:text-[13px] bg-transparent;
+        @apply text-[11px] md:text-[12px] bg-transparent;
     }
 
     .markdown ol div code {
-        @apply text-[11px] md:text-[13px] bg-transparent;
+        @apply text-[11px] md:text-[12px] bg-transparent;
     }
 
     .markdown li div code {
-        @apply text-[11px] md:text-[13px] bg-transparent;
+        @apply text-[11px] md:text-[12px] bg-transparent;
     }
 
 
