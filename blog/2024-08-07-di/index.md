@@ -78,11 +78,54 @@ public class OrderPayService {
 	@Autowired
     private PaymentService paymentService;
 
-    public void processPay() {
+    public void processPayOrder() {
         orderService.order();
         paymentService.pay();
     }
 }
+```
+
+그리고 해당 서버를 구동하면, 정상적으로 동작을 한다, 하지만 `processPayOrder()`를 호출하게 되면 순환참조로 인해 서버가 죽는 상황이 발생한다.
+
+결과를 보면 메소드 실행 전까지 순환참조가 있더라도 해당 문제를 빌드 시점에서 알수없다.
+
+이 예제를 생성자 주입을 통해 진행하면 서버 실행 시점에서 바로 에러를 `catch`할수있다.
+```java
+@Component
+@RequiredArgsConstructor
+public class OrderService {
+
+    private final PaymentService paymentService;
+
+    public void processPay() {
+        paymentService.pay();
+    }
+}
+
+@Component
+@RequiredArgsConstructor
+public class PaymentService {
+
+    private final OrderSerivce orderService;
+
+    public void processOrder() {
+        orderService.order();
+    }
+}
+
+@Component
+@RequiredArgsConstructor
+public class OrderPayService {
+
+    private final PaymentService paymentService;
+    private final OrderSerivce orderService;
+
+    public void processPayOrder() {
+        orderService.order();
+        paymentService.pay();
+    }
+}
+
 ```
 
 #### 2. 필드 주입
