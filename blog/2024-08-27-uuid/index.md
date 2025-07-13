@@ -71,7 +71,7 @@ https://www.hae02y.com/user?id=1
 둘 다 UUID의 단점을 보완하기 위해 나온 고유 ID 생성 규격이다.
 
 **Universally Unique Lexicographically Sortable Identifier**
-- **의미**: UUID처럼 유니크하지만, 문자열이 **시간 순 정렬 가능**
+- **의미**: UUID처럼 유니크하지만, 문자열이 시간 순 정렬 가능
 - 형식: `01FZV9YJ00X4M2YH6Y3M1QGJVT`
 - 내부 구조: 상위 비트: 타임스탬프 / 하위 비트: 랜덤값
 - 시간 순서대로 생성 → DB 인덱스 정렬 효율적
@@ -89,20 +89,9 @@ https://www.hae02y.com/user?id=1
 - RDB → INT PK + UUID 외부 노출 or ULID/KSUID
 - NoSQL/분산 → ULID/KSUID 더 적합
 
-
-
-- 데이터베이스의 기본키로 설정하여 레코드의 고유성을 보장
-- 파일시스템이나 디렉터리의 고유한 식별자로 사용
-- API 설계시에 자원의 고유 식별자로 사용되어 분산 시스템에서 자원의 충돌없는 식별이 가능하게 함
-- 트랙잭션의 고유 식별자로 사용되어 분산된 여러 시스템간의 충돌을 방지
-
-
-### JAVA에서의 사용방법
-
-[java.util Class UUID](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
-![alt text](image-1.png)
-확인결과 UUID Version 1,3,4를 지원한다.
-
+### 사용 예시
+내가 주로 사용하는 Java에서는 UUID Version 1,3,4를 지원한다. 이를 사용하는 예시를 작성해보았다.   
+[참고 : UUID Java Docs](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
 #### UUID Version 3.
 
 ```java
@@ -165,11 +154,7 @@ public static UUID createUUIDv5(String name, UUID namespace) {
 ```
 
 
-
-[관련기사 보기](http://blog.plura.io/?p=6619)
-
-
-## 결론
+### 결론
 
 보안을 위해서 우리 회사에서 사용하는 UUID중 하나임 
 
@@ -178,8 +163,6 @@ public static UUID createUUIDv5(String name, UUID namespace) {
 `6dfXXXX-2XXX-1XXX-XXXX-b25b27XXXXXX`
 
 
-
----
 #### Ref.
 
 [UUID에 의존하면 안되는 이유](https://hackernoon.com/lang/ko/%EC%9D%B8%EC%A6%9D-%EC%83%9D%EC%84%B1-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%AA%A8%EB%B2%94-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%9C%84%ED%95%B4-uuid%EC%97%90-%EC%9D%98%EC%A1%B4%ED%95%98%EC%A7%80-%EB%A7%88%EC%8B%AD%EC%8B%9C%EC%98%A4.)
