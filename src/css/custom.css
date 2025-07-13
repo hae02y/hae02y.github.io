@@ -45,6 +45,7 @@
 
     p , blockquote, pre {
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;
+        letter-spacing: 0;
     }
 
     code {
