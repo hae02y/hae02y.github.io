@@ -7,9 +7,7 @@ tags:
   - database
   - uuid
 ---
-회사에서 레거시코
-
-회사에서 `PrimaryKey` 를 UUID로 관리하는 DB도 있고, `시퀀셜`하게 관리하는 DB도 있다. `UUID` 사용을 추후에 도입했다고 하는데, 어떻게 하면 더 효율적으로 사용할수있을까에 대해서 노력했던 내용을 기록하려고 한다.
+회사에서 레거시 코드를 보던 도중 PK를 `UUID`로 관리하고 있다는 것을 알게 되었다. `UUID`를 사용하는 이유에 대해 찾아보던 중 새롭게 알게된 내용과 어떻게 사용하는 것이 효율적인지 기록해보려고 한다.
 
 ### UUID 란?
 
@@ -17,7 +15,7 @@ tags:
 
 UUID(Universally Unique Identifier) 는 전세계적으로 고유한 식별자를 생성하는 표준화된 방법이다. 분산시스템 등에서 중복되지 않는 유일한 값을 구성할때 사용되는 고유한 식별자이다. 128bit의 길이를 가지고, 32자리의 16진수로 표현된다. 일반적으로 8-4-4-4-12 형식으로 구분된 문자열로 나타난다.
 
-### UUID 구성
+#### UUID 구성
 
 UUID는 다양한 방법으로 생성이 가능한데, 표준에 따르면 다양한 버전을 가지고 있다. 총 5개의 버전으로 출시년도에 따라서 버전이 존재한다.
 
@@ -119,12 +117,9 @@ public static UUID createUUIDv5(String name, UUID namespace) {
 }
 ```
 
-:::info
 
-sha-1 보안취약점으로 인해 보안에 취약해짐
 
 [관련기사 보기](http://blog.plura.io/?p=6619)
-:::
 
 
 ## 결론
@@ -138,8 +133,9 @@ sha-1 보안취약점으로 인해 보안에 취약해짐
 
 
 ---
-참고자료
+#### Ref.
 
+[UUID에 의존하면 안되는 이유](https://hackernoon.com/lang/ko/%EC%9D%B8%EC%A6%9D-%EC%83%9D%EC%84%B1-%EC%B7%A8%EC%95%BD%EC%A0%90-%EB%B0%8F-%EB%AA%A8%EB%B2%94-%EC%82%AC%EB%A1%80%EB%A5%BC-%EC%9C%84%ED%95%B4-uuid%EC%97%90-%EC%9D%98%EC%A1%B4%ED%95%98%EC%A7%80-%EB%A7%88%EC%8B%AD%EC%8B%9C%EC%98%A4.)
 [참고자료](https://chanos.tistory.com/entry/MySQL-UUID%EB%A5%BC-%ED%9A%A8%EC%9C%A8%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%EB%85%B8%EB%A0%A5%EA%B3%BC-%ED%95%9C%EA%B3%84)
 [참고자료2](https://stackoverflow.com/questions/52414414/best-practices-on-primary-key-auto-increment-and-uuid-in-sql-databases)
 [참고자료3](https://americanopeople.tistory.com/378)
