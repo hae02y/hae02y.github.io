@@ -43,16 +43,25 @@ UUID는 다양한 방법으로 생성이 가능한데, 표준에 따르면 다�
     - Version 3.와 유사하지만 `SHA-1` 해시함수를 사용하여 이름기반으로 생성
 
 
-#### UUID 사용 사례
+#### UUID 사용
+
+관계형 DB에서 데이터를 식별하기 위해 PK를 사용한다. 클라이언트와 서버 간의 데이터 확인을 위해 보통 PK를 주고 받지만 해당 방법은 보안적인 측면에서 위험성이 존재한다. 한번 예를 들어보자.
+
+```java
+https://www.hae02y.com/user?id=1
+```
+
+위의 URL에서 파라미터에 들어가는 `id` 값을 바꿔줌으로써, 다른 사람의 정보를 확인할수있음을 예측할수있다. 이렇게 예측가능한 모델이 된다면 SQL Injection의 위험성에 노출되게 되고, PK값을 그대로 파라미터로 사용함은 문제가 될수있다. 즉, 고유값을 같는 특정한 값으로 해당 데이터를 식별 할 필
+
 - 데이터베이스의 기본키로 설정하여 레코드의 고유성을 보장
 - 파일시스템이나 디렉터리의 고유한 식별자로 사용
 - API 설계시에 자원의 고유 식별자로 사용되어 분산 시스템에서 자원의 충돌없는 식별이 가능하게 함
 - 트랙잭션의 고유 식별자로 사용되어 분산된 여러 시스템간의 충돌을 방지
 
 
-### JAVA로 테스트 해보자
+### JAVA에서의 사용방법
 
-[**java.util Class UUID**](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
+[java.util Class UUID](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
 ![alt text](image-1.png)
 확인결과 UUID Version 1,3,4를 지원한다.
 
