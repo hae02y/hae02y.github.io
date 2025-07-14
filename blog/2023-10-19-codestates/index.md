@@ -55,28 +55,28 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 ```
 
   
-- 구현을 직접 하는 부분 - SecurityFilterChain을 통해서 구현을 진행한다.  
-- CORS 같은 필터를 추가로 넣어줄수 있고, handlerMessage 등을 추가 시킬수있다.
+- 구현을 직접 하는 부분 - SecurityFilterChain을 통해서 구현을 진행한다.  
+- CORS 같은 필터를 추가로 넣어줄수 있고, handlerMessage 등을 추가 시킬수있다.
 
 #### JWT
 
 ![](dd3.png)
 
-1.  사용자는 **URL /auth/login** 로 **EMAIL** 과 **PASSWORD**를 **POST** 요청으로 보낸다
-2.  스프링 시큐리티의 핵심 로직으로 DB로 이메일과 패스워드를 인증하고 통과하면 **Access Token**과 **Refresh Token**을 발급한다.
-3.  사용자는 일반 데이터 요청을 **Access Token**과 함께 보낸다
-4.  서버는 **Access Token**을 검증하고 통과하면 데이터 응답을 보낸다
-5.  사용자가 만료된 **Access Token**을 이용해 요청을 보내면 서버는 재발행요청을 한다
-6.  재발행 요청은 만료된 **Access Token**과 유효한 **RefreshToken** 값을 **URL /auth/reissue 로 POST** 요청을 보낸다.
-7.  서버에서는 **RefreshToken**을 검증하고 다시 **AccessToken**과 **RefreshToken** 값을 사용자에게 넘겨준다
+1.  사용자는 **URL /auth/login** 로 **EMAIL** 과 **PASSWORD**를 **POST** 요청으로 보낸다
+2.  스프링 시큐리티의 핵심 로직으로 DB로 이메일과 패스워드를 인증하고 통과하면 **Access Token**과 **Refresh Token**을 발급한다.
+3.  사용자는 일반 데이터 요청을 **Access Token**과 함께 보낸다
+4.  서버는 **Access Token**을 검증하고 통과하면 데이터 응답을 보낸다
+5.  사용자가 만료된 **Access Token**을 이용해 요청을 보내면 서버는 재발행요청을 한다
+6.  재발행 요청은 만료된 **Access Token**과 유효한 **RefreshToken** 값을 **URL /auth/reissue 로 POST** 요청을 보낸다.
+7.  서버에서는 **RefreshToken**을 검증하고 다시 **AccessToken**과 **RefreshToken** 값을 사용자에게 넘겨준다
 
   
-jwt를 통해 로그인을 하게 되면. 사용자를 확인할때 access, refresh 토큰을 발급한다.  그리고 이것이 유효한지 확인하여, 사용자가 승인이되고 아니면 안되게 한다. JwtTokenizer 클래스에서 JWT 토큰을 만들어주는것이다.  엑세스토큰 만료기간도 여기서 설정한다. @value로 설정. 보통 억세스토큰 시간의 적정 시간은 1시간 이내로 하고, 중간보안은 6시간정도, 그이상은 약한 보안이다. 현재 시큐리티에서 제일 보완해야할 부분이다. claims 은 jwt에 저장된 정보로 보면되고, 디코딩할때 사용하는 것이다. 인코딩된 키로부터 키객체 생성..! `jwtAuthenticationFilter`를 통해서 jwt decode했을때 나오는 값등을 넣어 줄수 있다. `jwtVerificationFilter`는 토큰을 어떤식으로 검증할 것인지 확인해주는 필터이다. jwt를 검증할때 권한이 있는지 없는지를 확인. Bearer 값이 빠졌거나, authorization이 null 이거나 이런 값들을 추가해서 검증방식을 설정한다.
+jwt를 통해 로그인을 하게 되면. 사용자를 확인할때 access, refresh 토큰을 발급한다.  그리고 이것이 유효한지 확인하여, 사용자가 승인이되고 아니면 안되게 한다. JwtTokenizer 클래스에서 JWT 토큰을 만들어주는것이다.  엑세스토큰 만료기간도 여기서 설정한다. @value로 설정. 보통 억세스토큰 시간의 적정 시간은 1시간 이내로 하고, 중간보안은 6시간정도, 그이상은 약한 보안이다. 현재 시큐리티에서 제일 보완해야할 부분이다. claims 은 jwt에 저장된 정보로 보면되고, 디코딩할때 사용하는 것이다. 인코딩된 키로부터 키객체 생성..! `jwtAuthenticationFilter`를 통해서 jwt decode했을때 나오는 값등을 넣어 줄수 있다. `jwtVerificationFilter`는 토큰을 어떤식으로 검증할 것인지 확인해주는 필터이다. jwt를 검증할때 권한이 있는지 없는지를 확인. Bearer 값이 빠졌거나, authorization이 null 이거나 이런 값들을 추가해서 검증방식을 설정한다.
 
 ![](dd4.png)
 
 - handler는 사실상 예외처리부분이라고 보면되고, 시큐리티에서 발생하는 로그찍기 위해서 작성.  
-- 필터는 사용용도에 따라서 끼워주는 곳이 달라진다.  
+- 필터는 사용용도에 따라서 끼워주는 곳이 달라진다.  
   
 
 ```java
@@ -149,15 +149,15 @@ public class MemberDetailsService implements UserDetailsService {
 ```
 
   
-- UserDetailService를 상속받아서, 사용이된다. 이를 통해서 유저디테일이 있으면 멤버를 가져오고, 이런식으로 하여, Member Entity와 스프링시큐리티가 만나는부분이다. 즉 멤버의 정보를 가져와서. MemberDetail을 만들어준다.  
+- UserDetailService를 상속받아서, 사용이된다. 이를 통해서 유저디테일이 있으면 멤버를 가져오고, 이런식으로 하여, Member Entity와 스프링시큐리티가 만나는부분이다. 즉 멤버의 정보를 가져와서. MemberDetail을 만들어준다.  
   
-- CustomAuthorityUtils -> 유저의 권한을 설정해주는 부분으로, 사용자가 가입을 했을때 권한을 어떤것을 줄지 설정하는 클래스이다.   
+- CustomAuthorityUtils -> 유저의 권한을 설정해주는 부분으로, 사용자가 가입을 했을때 권한을 어떤것을 줄지 설정하는 클래스이다.   
   
-- 이렇게 해서 비교를 하는건 UserDetails , 로그인한 애가 가진 정보랑 비교를 하는것. 토큰을 풀어서 토큰 자체의 담긴 정보와 지금 접근하려고 하는 정보랑 비교를 한다. 이부분이 verifyAuthorizedUser 이부분을 탄다.  
+- 이렇게 해서 비교를 하는건 UserDetails , 로그인한 애가 가진 정보랑 비교를 하는것. 토큰을 풀어서 토큰 자체의 담긴 정보와 지금 접근하려고 하는 정보랑 비교를 한다. 이부분이 verifyAuthorizedUser 이부분을 탄다.  
   
-- Outh2로 넘어가보면, 로그인 요청이 들어오면 서버로 들어오는 것이아니고, 정해놓은 서버(카카오, 구글등)으로 요청이넘어가고 authorization 코드를 발급해준다. 그리고 이코드를 프론트에서 받아서 백엔드로 넘겨준다. 그러면 백에서 이코드를 정해놓은 서버(카카오, 구글)에 확인 요청하고 맞다면 프론트에 응답을 해준다. 이상황에서 토큰값이 노출될수 있기 때문에 JWT를사용해서 프론트로 넘겨준다.   
+- Outh2로 넘어가보면, 로그인 요청이 들어오면 서버로 들어오는 것이아니고, 정해놓은 서버(카카오, 구글등)으로 요청이넘어가고 authorization 코드를 발급해준다. 그리고 이코드를 프론트에서 받아서 백엔드로 넘겨준다. 그러면 백에서 이코드를 정해놓은 서버(카카오, 구글)에 확인 요청하고 맞다면 프론트에 응답을 해준다. 이상황에서 토큰값이 노출될수 있기 때문에 JWT를사용해서 프론트로 넘겨준다.   
   
-- 이 과정은 gradle에 outh2를 추가해주면 자동적으로 구현이 가능하다.  
+- 이 과정은 gradle에 outh2를 추가해주면 자동적으로 구현이 가능하다.  
 
 #### 후기
 
