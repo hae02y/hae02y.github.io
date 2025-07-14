@@ -29,11 +29,11 @@
         @apply bg-background text-foreground font-sans antialiased;
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        line-height: 1.8;          /* 기본 1.5보다 넉넉하게 */
+        line-height: 1.6;          /* 기본 1.5보다 넉넉하게 */
         letter-spacing: 0.03em;    /* 자간을 살짝 벌림 */
         word-break: keep-all;      /* 한글 가독성 유지 */
         word-spacing: 0.05em;      /* 단어 간격 살짝 */
@@ -79,7 +79,7 @@
 
     /* Paragraphs */
     p {
-        @apply text-base leading-relaxed text-[var(--primary)] mb-4;
+        @apply text-base text-[var(--primary)];
     }
 
     /* Lists */
@@ -133,46 +133,32 @@
 
 @layer components {
 
+    .markdown strong {
+        @apply font-semibold;
+    }
+
+    .markdown th {
+        @apply text-sm;
+    }
+
     .markdown td {
-        @apply text-sm
+        @apply text-sm;
     }
 
     .markdown code {
-        @apply text-[11px] md:text-[13px];
+        @apply text-[11px] md:text-[12px] 2xl:text-[13px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
     }
 
-    .markdown p code {
-        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+    .markdown p div code,
+    .markdown ul div code,
+    .markdown ol div code,
+    .markdown li div code,
+    .markdown th code,
+    .markdown td code,
+    .markdown p code
+    {
+        @apply text-[11px] md:text-[12px] 2xl:text-[12px] font-semibold;
     }
-
-    .markdown ul code {
-        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
-    }
-
-    .markdown ol code {
-        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
-    }
-
-    .markdown td code {
-        @apply text-[11px] md:text-[12px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
-    }
-
-    .markdown p div code {
-        @apply text-[11px] md:text-[12px] bg-transparent;
-    }
-
-    .markdown ul div code {
-        @apply text-[11px] md:text-[12px] bg-transparent;
-    }
-
-    .markdown ol div code {
-        @apply text-[11px] md:text-[12px] bg-transparent;
-    }
-
-    .markdown li div code {
-        @apply text-[11px] md:text-[12px] bg-transparent;
-    }
-
 
     .markdown h1 {
         @apply text-2xl md:text-3xl font-bold text-[var(--primary)] mb-3 md:mb-4;
@@ -199,37 +185,37 @@
     }
 
     .markdown p {
-        @apply text-sm md:text-base leading-relaxed text-[var(--primary)] mb-4;
+        @apply text-sm md:text-base 2xl:text-[17px] text-[var(--primary)] mb-3;
     }
 
     .markdown ul,
     .markdown ol {
-        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-base;
+        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-base 2xl:text-[17px];
     }
 
     .markdown ul {
-        @apply list-disc text-sm md:text-base;
+        @apply list-disc;
     }
 
     .markdown ol {
-        @apply list-decimal text-sm md:text-base;
+        @apply list-decimal;
     }
 
     .markdown li {
-        @apply leading-relaxed mb-1 text-sm md:text-base;
+        @apply mt-0 text-sm md:text-base 2xl:text-[17px];
     }
 
     .markdown li > p {
-        @apply m-0 text-sm md:text-base;
+        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
     }
 
     .markdown aside {
         @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
-        rounded-lg p-3 md:p-4 shadow-sm mt-6 text-sm text-gray-800 dark:text-gray-200 leading-relaxed;
+        rounded-lg p-3 md:p-4 shadow-sm mt-6 text-sm text-gray-800 dark:text-gray-200;
     }
 
     .markdown aside h3 {
-        @apply text-sm md:text-base font-semibold mb-2 text-[var(--primary)];
+        @apply text-sm md:text-base 2xl:text-[17px] font-semibold mb-2 text-[var(--primary)];
     }
 
     .markdown aside > hr {
@@ -240,12 +226,8 @@
         @apply inline-flex flex-wrap items-center gap-2 mb-3;
     }
 
-    .markdown table {
-        @apply max-w-full break-all;
-    }
-    .markdown thead {
-        @apply max-w-full break-all;
-    }
+    .markdown table,
+    .markdown thead,
     .markdown tbody {
         @apply max-w-full break-all;
     }
@@ -299,50 +281,6 @@
         padding: 8px;
     }
 }
-
-/*Cera Round Pro*/
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Cera Round Pro Regular'), url('/font/ceraRound/CeraRoundProRegular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 100;
-    src: local('Cera Round Pro Thin'), url('/font/ceraRound/CeraRoundProThin.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Cera Round Pro Light'), url('/font/ceraRound/CeraRoundProLight.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 500;
-    src: local('Cera Round Pro Medium'), url('/font/ceraRound/CeraRoundProMedium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Cera Round Pro Bold'), url('/font/ceraRound/CeraRoundProBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 900;
-    src: local('Cera Round Pro Black'), url('/font/ceraRound/CeraRoundProBlack.woff') format('woff');
-}
-
 
 .tooltip {
     display: block !important;
@@ -459,6 +397,77 @@
     src: url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype')
 }
 
+/* Thin 100 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 100;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-1Thin.ttf') format('truetype');
+}
+
+/* ExtraLight 200 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 200;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-2ExtraLight.ttf') format('truetype');
+}
+
+/* Light 300 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 300;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-3Light.ttf') format('truetype');
+}
+
+/* Regular 400 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 400;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype');
+}
+
+/* Medium 500 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 500;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype');
+}
+
+/* SemiBold 600 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 600;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-6SemiBold.ttf') format('truetype');
+}
+
+/* Bold 700 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 700;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-7Bold.ttf') format('truetype');
+}
+
+/* ExtraBold 800 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 800;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-8ExtraBold.ttf') format('truetype');
+}
+
+/* Black 900 */
+@font-face {
+    font-family: 'Freesentation';
+    font-weight: 900;
+    font-display: swap;
+    src: url('/font/freesentation/Freesentation-9Black.ttf') format('truetype');
+}
 
 /*Pretendard*/
 @font-face {
@@ -546,8 +555,45 @@
     src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
 }
 
+/*Cera Round Pro*/
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Cera Round Pro Regular'), url('/font/ceraRound/CeraRoundProRegular.woff') format('woff');
+}
 
-/* Prose Typography */
-@layer components {
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Cera Round Pro Thin'), url('/font/ceraRound/CeraRoundProThin.woff') format('woff');
+}
 
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Cera Round Pro Light'), url('/font/ceraRound/CeraRoundProLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Cera Round Pro Medium'), url('/font/ceraRound/CeraRoundProMedium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Cera Round Pro Bold'), url('/font/ceraRound/CeraRoundProBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cera Round Pro';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Cera Round Pro Black'), url('/font/ceraRound/CeraRoundProBlack.woff') format('woff');
 }
