@@ -71,9 +71,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
 
-5. 
-
-NCloud를 위한 Config설정
+5. ncloud 접속을 위한 Config 설정
 ```bash
 ## ~/.ncloud/configure
 
@@ -88,10 +86,11 @@ chmod 600 ~/.ncloud/configure
 ```
 
 
+6. 
+
 현재 프로젝트에서 `Docker Hub`가 아닌 `NCP`에서 지원하는 Docker Registry를 사용중이여서 해당 부분을 Secret으로 만들어 설정해줘야한다.
 
-
-5. 도커 레지스트리 설정
+7. 도커 레지스트리 설정
 ```bash
 
 ```
