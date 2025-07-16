@@ -54,7 +54,7 @@ function NavbarContentLayout({
   );
 }
 
-export default function NavbarContent(): JSX.Element {
+export default function NavbarContent() {
   const mobileSidebar = useNavbarMobileSidebar();
 
   const items = useNavbarItems();
