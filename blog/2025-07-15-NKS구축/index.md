@@ -18,7 +18,8 @@ tags:
 4. 노드풀 생성
 5. 도메인 및 LB 설정
 6. 관리용 시스템 생성
-7. KubeCtl 설치 
+7. Bastion Host 구축
+8. KubeCtl 설치 
 
 ### 설정
 
@@ -69,7 +70,7 @@ kubectl version --client
 
 ### 파이프 라인
 
-사용중인 레포지토리는 `Bitbucket` 인데, `Pipeline`이라는 좋은 기능 구축 하려고 하는 방식은 다음과 같다.
+사용중인 레포지토리는 `Bitbucket` 인데, `Pipeline`이라는 좋은 기능을 제공한다. Github Action 처럼 Bitbucket 자체에 내장되어 `CI/CD`를 간편하게 해줄수있는 도구이다. 이를 통해 구축 하려고 하는 방식은 다음과 같다.
 ![](screen4.png)
 
 
