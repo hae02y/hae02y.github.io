@@ -43,8 +43,27 @@ VPC 및 서브넷을 생성한다.
 ```
 
 2. 바이너리 검증
-	```bash
+```bash
    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+```
+    
+```bash
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+```
+
+명령어를 통해 정상 출력시 아래와 같은 내용이 표출 된다.
+
+![정상 출력](screen3.png)
+
+
+3. kubectl 설치
+```bash
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+4. 설치된 버전 확인
+```bash
+kubectl version --client
 ```
 
 
