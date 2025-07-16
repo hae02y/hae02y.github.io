@@ -21,7 +21,7 @@ tags:
 7. Bastion Host 구축
 8. KubeCtl 설치 
 
-### 설정
+### NCP 및 서버 설정
 
 #### VPC 준비
 VPC 및 서브넷을 생성한다.
@@ -73,6 +73,54 @@ kubectl version --client
 사용중인 레포지토리는 `Bitbucket` 인데, `Pipeline`이라는 좋은 기능을 제공한다. Github Action 처럼 Bitbucket 자체에 내장되어 `CI/CD`를 간편하게 해줄수있는 도구이다. 이를 통해 구축 하려고 하는 방식은 다음과 같다.
 ![](screen4.png)
 
+
+### Bitbucket 설정
+
+#### kube-deploy.yml
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ansan-daemin-api
+spec:
+  selector:
+    app: ansan-daemin-api
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 7070
+      nodePort: 30082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ansan-daemin-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ansan-daemin-api
+  template:
+    metadata:
+      labels:
+        app: ansan-daemin-api
+    spec:
+      imagePullSecrets:
+        - name: registry
+      containers:
+        - name: ansan-daemin-api
+          image: {{image}}
+          ports:
+            - containerPort: 8082
+          volumeMounts:
+            - name: cdn-volume
+              mountPath: /mnt/nas/ansan-daemin/cdn
+      volumes:
+        - name: cdn-volume
+          persistentVolumeClaim:
+            claimName: ansan-daemin-nas-pvc
+```
+`kube-deploy.yml`은 
 
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
