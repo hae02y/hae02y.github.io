@@ -130,6 +130,11 @@ kubectl set image deployment/ansan-daemin-api ansan-daemin-api=이미지명
 
 위의 CLI 명령어를 통해서 배포하는것도 가능하지만, 이렇게 하면 전체 Deployment에 대한 정의가 코드로 남지 않는다. `kube-deploy.yml`을 만듦으로써, 클러스터 초기화 / 재배포 상황에서 사용이 가능하고, 다른 환경을 구성 하더라도 재사용이 가능하다. 그리고 `kubectl` apply 를 통해 선언적으로 배포가 가능해진다.
 
+#### bitbucket.yml
+```yaml
+
+```
+
 
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
