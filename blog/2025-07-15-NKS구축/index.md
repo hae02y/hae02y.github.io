@@ -76,6 +76,8 @@ kubectl version --client
 
 ### Bitbucket 설정
 
+`CI/CD`를 적용할 레포지토리에 해당 `yml`을 세팅한다.
+
 #### kube-deploy.yml
 ```yaml
 apiVersion: v1
@@ -111,7 +113,7 @@ spec:
         - name: ansan-daemin-api
           image: {{image}}
           ports:
-            - containerPort: 8082
+            - containerPort: 7070
           volumeMounts:
             - name: cdn-volume
               mountPath: /mnt/nas/ansan-daemin/cdn
@@ -120,7 +122,14 @@ spec:
           persistentVolumeClaim:
             claimName: ansan-daemin-nas-pvc
 ```
-`kube-deploy.yml`은 
+`kube-deploy.yml`은 관리의 편의성과 안정성을 위해서 필요하다. 만약 해당 `yml`파일이 없더라도
+
+```bash
+kubectl set image deployment/ansan-daemin-api ansan-daemin-api=이미지명
+```
+
+위의 CLI 명령어를 통해서 배포하는것도 가능하지만, 이렇게 하면 전체 Deployment에 대한 정의가 코드로 남지 않는다. `kube-deploy.yml`을 만듦으로써, 클러스터 초기화 / 재배포 상황에서 사용이 가능하고, 다른 환경을 구성 하더라도 재사용이 가능하다. 그리고 `kubectl` apply 를 통해 선언적으로 배포가 가능해진다.
+
 
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
