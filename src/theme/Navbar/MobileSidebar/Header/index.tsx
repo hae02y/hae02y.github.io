@@ -25,8 +25,8 @@ function CloseButton() {
 export default function NavbarMobileSidebarHeader(): JSX.Element {
   return (
     <div className="navbar-sidebar__brand">
-      <NavbarLogo />
-      <NavbarColorModeToggle className="margin-right--md" />
+      <button>Go to main.</button>
+      <NavbarColorModeToggle className="margin-left--md" />
       <CloseButton />
     </div>
   );
