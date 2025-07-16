@@ -14,7 +14,7 @@ export default function PaginatorNavLink(props: Props) {
               isNext ? 'pagination-nav__link--next' : 'pagination-nav__link--prev',
           )}
           to={permalink}>
-        <div className="text-sm break-words line-clamp-2">
+        <div className="text-sm break-all line-clamp-2">
           {title}
         </div>
       </Link>
