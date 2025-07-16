@@ -67,6 +67,12 @@ kubectl version --client
 ```
 
 
+### 파이프 라인
+
+사용중인 레포지토리는 `Bitbucket` 인데, `Pipeline`이라는 좋은 기능 구축 하려고 하는 방식은 다음과 같다.
+![](screen4.png)
+
+
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
 - 
