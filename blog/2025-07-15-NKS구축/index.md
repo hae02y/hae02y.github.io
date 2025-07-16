@@ -9,7 +9,8 @@ tags:
   - NCP
   - Infra
 ---
-![](screen1.png)
 
+
+![](screen1.png)
 
 
