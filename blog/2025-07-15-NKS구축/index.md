@@ -10,7 +10,15 @@ tags:
   - Infra
 ---
 
+### 설정
+
+![](screen2.png)
+
 
 ![](screen1.png)
 
 
+
+### Ref.
+- [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
+- 
