@@ -21,7 +21,7 @@ tags:
 7. Bastion Host 구축
 8. KubeCtl 설치 
 
-### NCP 및 서버 설정
+### NCP 설정
 
 #### VPC 준비
 VPC 및 서브넷을 생성한다.
@@ -32,6 +32,11 @@ VPC 및 서브넷을 생성한다.
 ![](screen1.png)
 
 
+#### BastionHost 생성
+kubectl을 사용하기 위해서는 bastionHost가 필요하다.
+
+
+### BastionHost 설정
 #### KubeCtl 설치
 
 이번에 구축한 서버의 경우 `X86-64` 이고, 혹시 ARM 기반 으로 구축을 하는경우 아래 링크를 참고하자.
@@ -55,7 +60,6 @@ echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 명령어를 통해 정상 출력시 아래와 같은 내용이 표출 된다.
 
 ![정상 출력](screen3.png)
-
 
 3. kubectl 설치
 ```bash
@@ -87,11 +91,10 @@ metadata:
 spec:
   selector:
     app: ansan-daemin-api
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 80
       targetPort: 7070
-      nodePort: 30082
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -114,13 +117,6 @@ spec:
           image: {{image}}
           ports:
             - containerPort: 7070
-          volumeMounts:
-            - name: cdn-volume
-              mountPath: /mnt/nas/ansan-daemin/cdn
-      volumes:
-        - name: cdn-volume
-          persistentVolumeClaim:
-            claimName: ansan-daemin-nas-pvc
 ```
 `kube-deploy.yml`은 관리의 편의성과 안정성을 위해서 필요하다. 만약 해당 `yml`파일이 없더라도
 
@@ -132,7 +128,87 @@ kubectl set image deployment/ansan-daemin-api ansan-daemin-api=이미지명
 
 #### bitbucket.yml
 ```yaml
+image: atlassian/default-image:4
 
+options:
+  docker: true
+  size: 2x
+
+definitions:
+  services:
+    docker:
+      memory: 2048
+
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Docker build & push
+          size: 2x
+          script:
+            - export IMAGE_NAME=$NCLOUD_CR_URL/$APPLICATION_NAME:$BITBUCKET_COMMIT
+            - docker build -t $APPLICATION_NAME .
+            - docker tag $APPLICATION_NAME $IMAGE_NAME
+            - echo "$NCLOUD_KEY" | docker login -u $NCLOUD_ID $NCLOUD_CR_URL --password-stdin
+            - docker push $IMAGE_NAME
+          services:
+            - docker
+          caches:
+            - docker
+      - step:
+          name: Deploy to NKS via Bastion (GitOps style)
+          deployment: production
+          script:
+            - export IMAGE_NAME=$NCLOUD_CR_URL/$APPLICATION_NAME:$BITBUCKET_COMMIT
+            - apt-get update && apt-get install -y sshpass openssh-client
+            - ssh-keyscan -H $DEV_SERVER_HOST >> ~/.ssh/known_hosts
+
+            # YAML에 이미지 치환
+            - sed -i "s|{{image}}|$IMAGE_NAME|g" kube-deployment.yml
+
+            # Bastion에 접속해서 apply
+            - cat kube-deployment.yml | sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no $SERVER_USER@$BASTION_HOST "
+              export PATH=\$PATH:/home1/ncloud/bin &&
+              kubectl --kubeconfig /home1/ncloud/kubeconfig-ansan.yaml apply -f -
+              "
+
+    ## Develop
+    develop:
+      - step:
+          name: Docker build & push
+          size: 2x
+          script:
+            - export IMAGE_NAME=$NCLOUD_CR_URL/$APPLICATION_NAME:latest
+            - docker build -t $APPLICATION_NAME .
+            - docker tag $APPLICATION_NAME $IMAGE_NAME
+            - echo "$NCLOUD_KEY" | docker login -u $NCLOUD_ID $NCLOUD_CR_URL --password-stdin
+            - docker push $IMAGE_NAME
+          services:
+            - docker
+          caches:
+            - docker
+
+      - step:
+          name: Deploy to Server
+          deployment: test
+          script:
+            - export IMAGE_NAME=$NCLOUD_CR_URL/$APPLICATION_NAME:latest
+            - apt-get update && apt-get install -y sshpass openssh-client
+            - ssh-keyscan $DEV_SERVER_HOST >> ~/.ssh/known_hosts
+
+            - echo "$SERVER_PASS" | sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no $SERVER_USER@$BASTION_HOST "
+              cd $DOCKER_COMPOSE_PATH &&
+              
+              echo -n \"$NCLOUD_KEY\" | docker login -u \"$NCLOUD_ID\" --password-stdin \"$NCLOUD_CR_URL\" &&
+              
+              docker-compose stop ansan-daemin-api || true &&
+              docker-compose rm -f ansan-daemin-api || true &&
+              
+              docker-compose pull ansan-daemin-api &&
+              docker-compose up -d ansan-daemin-api &&
+              
+              docker image prune -f --filter=\"until=24h\"
+              "
 ```
 
 
