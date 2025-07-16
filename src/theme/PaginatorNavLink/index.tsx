@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import type {Props} from '@theme/PaginatorNavLink';
 
-export default function PaginatorNavLink(props: Props): JSX.Element {
+export default function PaginatorNavLink(props: Props) {
   const {permalink, title, subLabel, isNext} = props;
     {console.log(props)}
     return (
@@ -14,8 +14,10 @@ export default function PaginatorNavLink(props: Props): JSX.Element {
               isNext ? 'pagination-nav__link--next' : 'pagination-nav__link--prev',
           )}
           to={permalink}>
-        <div className="">{title} </div>
+        <div className="text-sm break-words line-clamp-2">
+          {title}
+        </div>
       </Link>
     </>
-  );
+    );
 }
