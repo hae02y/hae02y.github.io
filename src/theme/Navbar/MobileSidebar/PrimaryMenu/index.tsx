@@ -2,6 +2,9 @@ import React from 'react';
 import {useThemeConfig} from '@docusaurus/theme-common';
 import {useNavbarMobileSidebar} from '@docusaurus/theme-common/internal';
 import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
+import {Search} from "lucide-react";
+import SearchBar from "@theme/SearchBar";
+import NavbarSearch from "@theme/Navbar/Search";
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -17,15 +20,8 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element {
   const items = useNavbarItems();
 
   return (
-    <ul className="menu__list">
-      {items.map((item, i) => (
-        <NavbarItem
-          mobile
-          {...item}
-          onClick={() => mobileSidebar.toggle()}
-          key={i}
-        />
-      ))}
-    </ul>
+      <NavbarSearch>
+        <SearchBar />
+      </NavbarSearch>
   );
 }

@@ -18,7 +18,6 @@ export default function NavbarMobileSidebarLayout({
           'navbar-sidebar__items--show-secondary': secondaryMenuShown,
         })}>
         <div className="navbar-sidebar__item menu">{primaryMenu}</div>
-        <div className="navbar-sidebar__item menu">{secondaryMenu}</div>
       </div>
     </div>
   );
