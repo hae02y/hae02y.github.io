@@ -18,7 +18,7 @@ function useNavbarItems() {
   return useThemeConfig().navbar.items as NavbarItemConfig[];
 }
 
-function NavbarItems({items}: {items: NavbarItemConfig[]}): JSX.Element {
+function NavbarItems({items}: {items: NavbarItemConfig[]}){
   return (
     <>
       {items.map((item, i) => (
