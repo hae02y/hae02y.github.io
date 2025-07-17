@@ -35,6 +35,8 @@ VPC 및 서브넷을 생성한다.
 #### BastionHost 생성
 kubectl을 사용하기 위해서는 bastionHost가 필요하다.
 
+#### NAT 설정
+NKS 클러스터가 Private tjq
 
 ### BastionHost 설정
 #### KubeCtl 설치
