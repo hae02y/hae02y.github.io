@@ -166,17 +166,17 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: watchmile-api
+                name: ansan-daemin-api
                 port:
                   number: 80
-    - host: ansan-gov.watchmile.net
+    - host: parkingm-api.ansanuc.net
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: watchmile-dashboard
+                name: ansan-admin-api
                 port:
                   number: 80
 ```
