@@ -30,7 +30,34 @@ public class Post {
 }
 ```
 
+게시글과 댓글은 1:N 관계 이고, 댓글 컬렉션은 `LAZY` 로딩으로 설정되어있다. 이때 아래와 같이 `Service`에서 동작한다고 해보자.
 
+```java
+List<Post> posts = postRepository.findAll();
+
+for (Post post : posts) {
+    System.out.println(post.getComments().size());
+}
+```
+
+이로인해 발생하는 `Query`는 다음과 같다.
+```sql
+-- 게시글 목록 조회 (1번)
+SELECT * FROM post;
+
+-- 게시글 1번의 댓글 조회
+SELECT * FROM comment WHERE post_id = 1;
+
+-- 게시글 2번의 댓글 조회
+SELECT * FROM comment WHERE post_id = 2;
+
+...
+
+-- 게시글 N번의 댓글 조회
+SELECT * FROM comment WHERE post_id = N;
+```
+
+이렇게 총 N+1 번의 Query가 발생하게 된다. N번 조회되는 데이터가 많지 않다면 큰 문제는 없겠지만 만약 게시글이 40만건이라면...? 40만 1번의 Query가 발생하는 것이다. 이로인해 네트워크 릿
 
 ### 문제있는 쿼리  
 ```sql
