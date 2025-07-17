@@ -333,4 +333,3 @@ ansan-daemin-api-7578988667-ptkqw   0/1     InvalidImageName   0          15h
 
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
-- 
