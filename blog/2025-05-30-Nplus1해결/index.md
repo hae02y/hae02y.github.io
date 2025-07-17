@@ -69,33 +69,24 @@ SELECT * FROM comment WHERE post_id = N;
 
 >  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다!
 
+그럼 내가 실무를 진행하면서 겪었던 문제와 이에 대한 해결 방법까지 자세히 알아보자.
+
+### N+1 해결 방법
+
+
 ### 문제있는 쿼리  
 ```sql
-Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from Parking_Dailypark_Parkinghistory ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
+Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from parking_daily ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
+Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
+Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
+Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
+...
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from Parking_Comm_ParkAreaMaster pa1_0 where pa1_0.parkAreaCode=?
+Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=?
 ```
 
 
