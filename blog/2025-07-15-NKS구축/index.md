@@ -235,6 +235,16 @@ pipelines:
 ```
 
 
+
+### 내가 만난 문제
+
+#### Pull 이 안땡겨짐
+```bash
+ncloud@server:~$ kubectl get pods
+NAME                                READY   STATUS             RESTARTS   AGE
+ansan-daemin-api-7578988667-ptkqw   0/1     InvalidImageName   0          15h
+```
+
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
 - 
