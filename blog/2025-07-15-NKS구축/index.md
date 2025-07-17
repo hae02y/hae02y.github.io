@@ -123,10 +123,18 @@ kubectl get pods -n kube-system | grep ingress
 kubectl --kubeconfig=$KUBE_CONFIG apply -f https://raw.githubusercontent.com/NaverCloudPlatform/nks-alb-ingress-controller/main/docs/install/pub/install.yaml
 ```
 
+설치 완료시 아래와 같은 응답을 받을수 있다.
+![](screen7.png)
+
+
 - Nginx 방식
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 ```
+
+
+설치가 완료되면 이제 Ingress를 세팅해서 실제로 `apply`하는 작업을 수행해야 한다. 이를 위해 Ingress.yml을 작성하자. 자세한 설명은 하단의 링크를 참고하자.
+[NCP - ALB Ingress 설정 방법](https://guide.ncloud-docs.com/docs/k8s-k8suse-albingress)
 
 3. Ingress.yml
 ```yaml
@@ -134,10 +142,9 @@ ncloud@vstl-wm-kubectl:~$ cat watchmile-api-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: watchmile-api-ingress
+  name: ansan-gov-ingress
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
-    #    alb.ingress.kubernetes.io/ssl-certificate-no: "21050"
     alb.ingress.kubernetes.io/ssl-certificate-no: "21805"
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/load-balancer-name: wm-alb
