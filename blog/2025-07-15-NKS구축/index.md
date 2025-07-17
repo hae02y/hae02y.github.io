@@ -156,11 +156,10 @@ spec:
   ingressClassName: alb
   tls:
     - hosts:
-        - api.ansanuc.net
+        - parkingapi.ansanuc.net
       secretName: dummy-tls
   rules:
-#    - host: api.aidt.live
-    - host: gov.watchmile.net
+    - host: parking-api.ansanuc.net
       http:
         paths:
           - path: /
@@ -170,7 +169,6 @@ spec:
                 name: watchmile-api
                 port:
                   number: 80
-#    - host: ansan-ppl.aidt.live
     - host: ansan-gov.watchmile.net
       http:
         paths:
@@ -179,16 +177,6 @@ spec:
             backend:
               service:
                 name: watchmile-dashboard
-                port:
-                  number: 80
-    - host: payment-gov.watchmile.net
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: payment-api
                 port:
                   number: 80
 ```
