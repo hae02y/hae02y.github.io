@@ -67,6 +67,8 @@ SELECT * FROM comment WHERE post_id = N;
 
 최근 회사에서 신입지원자분의 이력서를 검토하다가 토이프로젝트에서 `JPA` 대신  `Mybatis` 를 도입한 이유를 N+1 문제 방지를 위해 사용했다는 것을 보고 한번더 이 포스팅의 필요성을 느꼈다.
 
+>  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다!
+
 ### 문제있는 쿼리  
 ```sql
 Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from Parking_Dailypark_Parkinghistory ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
