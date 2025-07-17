@@ -106,12 +106,24 @@ chmod 600 ~/.ncloud/configure
 
 #### Ingress 설치
 
-1. 설치 확인
+Ingress Controller의 사용 방식은 2가지가 있다. 이중 내가 사용할 방식은 `ALB`를 생성하여 Ingress로 컨트롤 하는 방식이다.
+
+1. Nginx Ingress
+2. ALB Ingress
+
+
+3. Ingress Controller 설치 확인
 ```bash
 kubectl get pods -n kube-system | grep ingress
 ```
 
 2. 없으면 설치를 진행
+- ALB 방식
+```bash
+kubectl --kubeconfig=$KUBE_CONFIG apply -f https://raw.githubusercontent.com/NaverCloudPlatform/nks-alb-ingress-controller/main/docs/install/pub/install.yaml
+```
+
+- Nginx 방식
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 ```
