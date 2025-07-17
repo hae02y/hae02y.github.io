@@ -57,7 +57,14 @@ SELECT * FROM comment WHERE post_id = 2;
 SELECT * FROM comment WHERE post_id = N;
 ```
 
-이렇게 총 N+1 번의 Query가 발생하게 된다. N번 조회되는 데이터가 많지 않다면 큰 문제는 없겠지만 만약 게시글이 40만건이라면...? 40만 1번의 Query가 발생하는 것이다. 이로인해 네트워크 릿
+이렇게 총 N+1 번의 Query가 발생하게 된다. N번 조회되는 데이터가 많지 않다면 큰 문제는 없겠지만 만약 게시글이 40만건이라면...? 40만 1번의 Query가 발생하는 것이다. 이로인해 네트워크 비용과 DB부하가 증가하게 되고, 페이지 로딩속도나 트래픽에서 병목이 생길 수 있다.   
+
+보통 `JPA`를 사용하다보면 일어나는 경우가 많지만 아래와 같은 경우에서 충분히 발생 가능하다.    
+1. for, stream, map 등으로 연관 엔티티를 루프 돌며 조회하는 경우
+2. JPA, Hibernate, QueryDSL 등 JPA 기반 ORM에서 `LAZY`연관을 접근하는 경우
+3. Mybatis에서 `<Collection>`과 select 조합으로 매핑하여 사용하는 경우
+
+
 
 ### 문제있는 쿼리  
 ```sql
