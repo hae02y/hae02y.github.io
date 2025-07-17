@@ -12,6 +12,7 @@ tags:
 
 ### 구축 순서
 
+```bash
 1. VPC 준비
 2. Subnet 생성
 3. NKS클러스터 생성
@@ -20,6 +21,7 @@ tags:
 6. 관리용 시스템 생성
 7. Bastion Host 구축
 8. KubeCtl 설치 
+```
 
 ### NCP 설정
 
