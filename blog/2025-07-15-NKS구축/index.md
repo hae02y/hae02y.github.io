@@ -38,6 +38,8 @@ kubectl을 사용하기 위해서는 bastionHost가 필요하다.
 #### NAT 설정
 NKS 클러스터가 Private 서브넷에 구성되어있어 노드가 Public Internet에 접근할수없다. NKS 노드에 외부 인터넷이 열려야지 `Docker Registry`등의 서비스를 사용 가능하다. NAT Gateway 설정으로 노드는 외부에 노출하지 않고, 인터넷이 가능한 환경을 구축한다.
 
+먼저 NAT Gatway를 생성하고, NAT Gateway를 Private 서브넷의 Route Table에 등록해준다.
+![](screen5.png)
 
 
 
