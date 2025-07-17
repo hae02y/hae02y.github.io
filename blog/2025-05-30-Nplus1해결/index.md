@@ -8,6 +8,29 @@ tags:
   - spring
   - payment
 ---
+실무에서 `N+1`가 발생하여 해결했던 경험에 대해서 작성해보고자 한다.
+
+### N+1 이란?
+
+N+1 문제는 데이터를 1번의 Query로 조회한 후, 각 데이터의 연관된 데이터를 추가로 N번 Query 하는 비효율적인 데이터 조회 패턴이다. 보통 연관관계에서 주로 발생하게 되고, 코드 설계에 따라 `for`문  등을 돌면서 발생가능하다.
+
+예를 들어 아래와 같은 코드가 있다고 가정해보자.
+```java
+@Entity
+
+public class Post {
+
+    @Id
+    private Long id;
+
+    private String title;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<Comment> comments;
+}
+```
+
+
 
 ### 문제있는 쿼리  
 ```sql
