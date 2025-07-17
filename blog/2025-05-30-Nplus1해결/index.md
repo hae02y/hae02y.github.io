@@ -65,9 +65,6 @@ SELECT * FROM comment WHERE post_id = N;
 2. JPA, Hibernate, QueryDSL 등 JPA 기반 ORM에서 `LAZY`연관을 접근하는 경우
 3. Mybatis에서 `<Collection>`과 select 조합으로 매핑하여 사용하는 경우    
 
-최근 회사에서 신입지원자분의 이력서를 검토하다가 토이프로젝트에서 `JPA` 대신  `Mybatis` 를 도입한 이유를 N+1 문제 방지를 위해 사용했다는 것을 보고 한번더 이 포스팅의 필요성을 느꼈다.
-
->  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다!
 
 그럼 내가 실무를 진행하면서 겪었던 문제와 이에 대한 해결 방법까지 자세히 알아보자.
 
@@ -84,6 +81,16 @@ Hibernate: select ... from parkarea_master where park_area_code=?
 ...
 Hibernate: select ... from parkarea_master where park_area_code=?
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 맞아요 해영님, 이건 **전형적인 N+1 문제**가 발생한 로그예요 😢
@@ -201,3 +208,10 @@ return results.stream()
 ```
 
 - `insertable = false, updatable = false` 옵션은 **FK 값은 ParkingHistory에 있지만 ParkArea 정보는 조회 전용**일 때 사용해요.
+
+
+### 마무리
+
+최근 회사에서 신입지원자분의 이력서를 검토하다가 토이프로젝트에서 `JPA` 대신  `Mybatis` 를 도입한 이유를 N+1 문제 방지를 위해 사용했다는 것을 보고 한번더 이 포스팅의 필요성을 느꼈다.
+
+>  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다!
