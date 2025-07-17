@@ -41,7 +41,7 @@ NKS 클러스터가 Private 서브넷에 구성되어있어 노드가 Public Int
 먼저 NAT Gatway를 생성하고, NAT Gateway를 Private 서브넷의 Route Table에 등록해준다.
 ![](screen5.png)
 
-
+![](screen6.png)
 
 ### BastionHost 설정
 #### KubeCtl 설치
@@ -101,6 +101,22 @@ chmod 600 ~/.ncloud/configure
 ```bash
 
 ```
+
+
+
+#### Ingress 설치
+
+1. 설치 확인
+```bash
+kubectl get pods -n kube-system | grep ingress
+```
+
+2. 없으면 설치를 진행
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
+```
+
+
 
 ### 파이프 라인
 
