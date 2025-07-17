@@ -73,20 +73,16 @@ SELECT * FROM comment WHERE post_id = N;
 
 ### N+1 해결 방법
 
+프로젝트를 진행하면서 API 호출을 하니 스크롤 5번 분량의 로그가 찍혔다.
 
-### 문제있는 쿼리  
 ```sql
-Hibernate: select ph1_0.ticketNo, ph1_0.approvalMethod, ph1_0.baseCost, ph1_0.bigo, ph1_0.carNo, ph1_0.carNo4Char, ph1_0.createDate, ph1_0.discountCode, ph1_0.finalCost, ph1_0.inBooth, ph1_0.inOutStatusCode, ph1_0.inTime, ph1_0.outBooth, ph1_0.outTime, ph1_0.parkAreaCode, ph1_0.parkingDay, ph1_0.sesuDay, ph1_0.sunnapCost, ph1_0.unpaidProcess, ph1_0.useOk, ph1_0.useTime from parking_daily ph1_0 where ph1_0.carNo4Char=? and ph1_0.inOutStatusCode=? and ph1_0.outTime is null 
+Hibernate: select ... from parking_daily ...
 
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=? 
-
+Hibernate: select ... from parkarea_master where park_area_code=?
+Hibernate: select ... from parkarea_master where park_area_code=?
+Hibernate: select ... from parkarea_master where park_area_code=?
 ...
-
-Hibernate: select pa1_0.parkAreaCode, pa1_0.parkAreaName from parkarea_master pa1_0 where pa1_0.parkAreaCode=?
+Hibernate: select ... from parkarea_master where park_area_code=?
 ```
 
 
