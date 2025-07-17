@@ -116,7 +116,68 @@ kubectl get pods -n kube-system | grep ingress
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.10.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
-
+3. Ingress.yml
+```yaml
+ncloud@vstl-wm-kubectl:~$ cat watchmile-api-ingress.yaml 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: watchmile-api-ingress
+  annotations:
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
+    #    alb.ingress.kubernetes.io/ssl-certificate-no: "21050"
+    alb.ingress.kubernetes.io/ssl-certificate-no: "21805"
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/load-balancer-name: wm-alb
+    alb.ingress.kubernetes.io/load-balancer-type: "alb"
+    alb.ingress.kubernetes.io/network-type: public
+    alb.ingress.kubernetes.io/load-balancer-size: small
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+    alb.ingress.kubernetes.io/target-group-name: watchmile-api-tg
+spec:
+  ingressClassName: alb
+  tls:
+    - hosts:
+#        - api.aidt.live
+#        - ansan-ppl.aidt.live
+        - gov.watchmile.net
+        - ansan-gov.watchmile.net
+        - payment-gov.watchmile.net
+      secretName: dummy-tls
+  rules:
+#    - host: api.aidt.live
+    - host: gov.watchmile.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: watchmile-api
+                port:
+                  number: 80
+#    - host: ansan-ppl.aidt.live
+    - host: ansan-gov.watchmile.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: watchmile-dashboard
+                port:
+                  number: 80
+    - host: payment-gov.watchmile.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-api
+                port:
+                  number: 80
+```
 
 ### 파이프 라인
 
