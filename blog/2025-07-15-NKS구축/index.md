@@ -145,23 +145,18 @@ metadata:
   name: ansan-gov-ingress
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}, {"HTTPS":443}]'
-    alb.ingress.kubernetes.io/ssl-certificate-no: "21805"
+    alb.ingress.kubernetes.io/ssl-certificate-no: "26109"
     alb.ingress.kubernetes.io/ssl-redirect: "443"
-    alb.ingress.kubernetes.io/load-balancer-name: wm-alb
+    alb.ingress.kubernetes.io/load-balancer-name: ansan-kube-alb
     alb.ingress.kubernetes.io/load-balancer-type: "alb"
     alb.ingress.kubernetes.io/network-type: public
     alb.ingress.kubernetes.io/load-balancer-size: small
     alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
-    alb.ingress.kubernetes.io/target-group-name: watchmile-api-tg
 spec:
   ingressClassName: alb
   tls:
     - hosts:
-#        - api.aidt.live
-#        - ansan-ppl.aidt.live
-        - gov.watchmile.net
-        - ansan-gov.watchmile.net
-        - payment-gov.watchmile.net
+        - api.ansanuc.net
       secretName: dummy-tls
   rules:
 #    - host: api.aidt.live
