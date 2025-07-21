@@ -83,9 +83,15 @@ Hibernate: select ... from parkarea_master where park_area_code=?
 ```
 
 
+그럼 이렇게 되는 이유는 뭐였을까? 바로 아래의 코드에서 발생했다.
 
+```java
+// List<ParkingHistory> 조회 후 
+for (ParkingHistory history : historyList) {     history.getParkArea().getParkAreaName();
+}
+```
 
-
+ParkingHistory 와 ParkAreaMaster가 `FetchType.LAZY)` 로 매핑되어있는 상태에서, 위의 코드를 실행하면 JPA는 ParkingHistory 목록을 먼저 Query 한 후, 각 row마다 `getParkArea().getParkAreaName()` 같은 접근이 있을 때마다 **별도 쿼리로 parkArea 테이블을 조회**해요.
 
 
 
