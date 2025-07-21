@@ -128,6 +128,8 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 }
 ```
 
+
+
 ### **🌱 장점**
 
 - 📄 코드가 매우 간결 (@EntityGraph 한 줄로 끝)
