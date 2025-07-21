@@ -115,7 +115,9 @@ public class ParkingHistory {
 #### @EntityGraph
 `EntityGraph`는 JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행하도록 한다. 즉 `Fetch Join`을 적용할수있도록 JPA에서 지원하는 기능으로 `JPQL`으로 `Join`을 작성하지않고 사용이 가능하다.
 
-이방법은 Left Outer Join 만을 지원한다. 그러므로 다른 방식이 필요하다면 `JPQL`을 통해 직접 `JOIN`을 작성해야한다.
+이방법은 `Left Outer Join` 만을 지원한다. 그러므로 다른 방식이 필요하다면 `JPQL`을 통해 직접 `JOIN`을 작성해야한다. 또한 동적인 조건이 있는 경우 사용이 어려우며 복잡한 연관 `Entity`가 많은 경우 관리 측면에서 어려움이 생긴다. 일반적으로 아래 `Query`처럼 `findByXXX` 같은 정적 쿼리에만 사용하는 것을 추천한다.   
+
+이방법은 `QueryDSL` 도입이 안되어있고, `JPA`만을 사용하는 프로젝트나, 정적쿼리를 많이 사용하고 선언적으로 동작하는 경우에 사용하면 이점이 있다.
 
 ```java
 @Repository
@@ -134,6 +136,86 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 ![](screen1.png)
 
 [참고 : Spring Docs](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.entity-graph)
+
+
+#### BatchSize
+
+`BatchSize`를 조절하는 방법도 있다. `JPA`의 hibernate.default_batch_fetch_size 설정으로, 지연 로딩을 할 때 요청되는 연관 `Entity`를 모아서 `IN (?,?,…)`로 한 번에 조회하는 방법이다.
+
+
+## **✅ 1️⃣ QueryDSL +** 
+
+## **fetchJoin**
+
+  
+
+### **💡 원리**
+
+  
+
+JOIN FETCH 구문을 SQL에 삽입해 연관 엔티티를 한 번의 쿼리로 모두 로딩합니다.
+
+JPA는 연관 엔티티를 Lazy Proxy 대신 실제 객체로 채워 넣습니다.
+
+  
+
+> 즉, SQL이 다음처럼 변합니다:
+
+> select … from parking_daily p join parkarea_master a on p.parkAreaCode = a.parkAreaCode
+
+---
+
+### **🌱 장점**
+
+- 🚀 **쿼리 1번으로 메인 엔티티 + 연관 엔티티 모두 로딩**
+    
+- 🔍 연관 데이터를 즉시 사용 가능
+    
+- 🔄 동적 쿼리에서도 자유롭게 사용 가능
+    
+- 💾 영속성 컨텍스트에 엔티티가 관리되므로 이후 변경 감지 가능
+    
+
+---
+
+### **🌵 단점**
+
+- 📈 **@OneToMany 컬렉션 연관에서 중복 데이터 발생 가능성**
+    
+    → 페이징 불가하거나 성능 저하
+    
+- 🧹 조회 결과가 메모리에 모두 올라오기 때문에 큰 테이블에서는 주의
+    
+- 💥 DISTINCT를 명시하지 않으면 중복된 엔티티가 리스트에 포함될 수 있음
+    
+
+---
+
+### **🧭 추천 상황**
+
+  
+
+✅ 동적 조건이 많고, 연관 데이터를 반드시 함께 가져와야 하는 상황
+
+✅ 연관 엔티티가 @ManyToOne, @OneToOne처럼 단건인 경우 (컬렉션 아님)
+
+✅ 연관 데이터를 DTO로 매핑하지 않고 엔티티로 처리하는 경우
+
+---
+
+## **✅ 2️⃣** 
+
+## **@EntityGraph**
+
+  
+
+### **💡 원리**
+
+  
+
+JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행합니다.
+
+---
 
 ### **🌱 장점**
 
@@ -169,8 +251,128 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 
 ✅ QueryDSL 도입이 안 되어 있는 레거시 프로젝트
 
+---
 
-맞아요 해영님, 이건 **전형적인 N+1 문제**가 발생한 로그예요 😢
+## **✅ 3️⃣ DTO 직접 조회**
+
+  
+
+### **💡 원리**
+
+  
+
+애초에 엔티티를 로딩하지 않고, 쿼리 결과를 DTO 형태로 바로 매핑합니다.
+
+JPA 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가져옴.
+
+  
+
+> SQL 예시:
+
+> select p.ticketNo, p.carNo4char, a.parkAreaName from … join …
+
+---
+
+### **🌱 장점**
+
+- 🧹 엔티티 불필요한 필드 로딩 방지 → 메모리 효율적
+    
+- 🚄 성능 최적화 최고 수준
+    
+- 🪴 클라이언트 응답에 불필요한 데이터 배제
+    
+
+---
+
+### **🌵 단점**
+
+- 🧲 엔티티가 아니기 때문에 Dirty Checking 불가 (수정은 별도로 처리해야 함)
+    
+- 🔗 DTO 구조가 바뀌면 쿼리도 반드시 같이 바꿔야 함 → 유지보수 부담
+    
+- 🔷 복잡한 DTO 매핑에서는 쿼리 가독성 하락 가능성
+    
+
+---
+
+### **🧭 추천 상황**
+
+  
+
+✅ 클라이언트에 응답할 때 DTO로 전달하는 경우
+
+✅ 수정/삭제가 아닌 **조회 전용** API
+
+✅ 대량 데이터 처리 및 성능이 중요한 상황
+
+---
+
+## **✅ 4️⃣ BatchSize**
+
+  
+
+### **💡 원리**
+
+  
+
+JPA의 hibernate.default_batch_fetch_size 설정으로, 지연 로딩을 할 때 요청되는 연관 엔티티를 모아서 IN (?,?,…)로 한 번에 조회합니다.
+
+---
+
+### **🌱 장점**
+
+- 🔧 코드 수정 없이 설정만으로 적용
+    
+- 🧊 LAZY 전략을 유지할 수 있음
+    
+- 🔄 여러 엔티티 타입에 동시에 적용 가능
+    
+
+---
+
+### **🌵 단점**
+
+- ⚖️ 쿼리가 여전히 N/batchSize + 1 회 발생
+    
+- 🐢 fetch join보다 성능이 떨어질 수 있음
+    
+- 🔷 연관 데이터가 너무 많으면 IN 절 길이 문제
+    
+
+---
+
+### **🧭 추천 상황**
+
+  
+
+✅ 코드 변경이 힘든 레거시 시스템
+
+✅ Lazy 로딩을 유지하면서 최소한의 최적화를 하고 싶은 경우
+
+✅ fetchJoin을 적용하기 애매한 경우
+
+---
+
+## **✅ 5️⃣ EAGER**
+
+  
+
+### **💡 원리**
+
+  
+
+연관 엔티티를 항상 즉시 로딩하도록 설정합니다.
+
+SQL 실행 시 반드시 JOIN을 붙여 가져옵니다.
+
+---
+
+### **🌱 장점**
+
+- 🔄 항상 연관 데이터까지 로딩 → LazyInitializationException 방지
+    
+- 🔷 코드가 심플
+
 
 ---
 
