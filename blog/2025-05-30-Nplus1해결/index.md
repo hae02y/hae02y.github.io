@@ -96,6 +96,9 @@ ParkingHistory 테이블과 parkArea 테이블이 `FetchType.LAZY)` 로 매핑�
 이를 방지하는 방법을 하나씩 알아보자.
 
 #### FetchType.EAGER
+
+첫번째로, FetchType을 `EAGER`로 설정하는 방법이 있다. 이를 통해서 연관된 `Entity`를 항상 즉시 로딩하도록 설정이 가능하고, 해당하는 테이블을 조회하는 `SQL` 실행 시 항상 `JOIN`을 통해 가져오도록 한다. 
+
 ```java
 @Entity  
 @Table(name = "parking_history")  
@@ -107,6 +110,7 @@ public class ParkingHistory {
 }
 ```
 
+항상 연관된 데이터까지 로딩 되므로 성능저하가 발생할수있고, 어디서든 로딩이 되기때문에 `Query`의 예측이 어려워진다. 이방식을 사용할때는 반드시 연관데이터가 필요한경우나 가 적합하다.
 
 
 
