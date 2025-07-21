@@ -193,61 +193,37 @@ public List<ParkingHistoryResponseDto> findInoutByCarNumDto(String carNum) {
 }
 ```
 
-이방법은 ``
-
-✅ 클라이언트에 응답할 때 DTO로 전달하는 경우
-
-✅ 수정/삭제가 아닌 **조회 전용** API
-
-✅ 대량 데이터 처리 및 성능이 중요한 상황
-
-### **💡 원리**
-
-  
+이방법은 `Update` / `Delete` 가 아닌 조회 전용으로 사용하는 API거나 대량 데이터 처리 및 성능이 중요한 상황에서 `Fetch Join` 대신 사용 할수있는 방법이다.
 
 
+#### QueryDSL + fetchJoin
 
-  
+위에서 봤던 방법과 마찬가지로 `Fetch Join`을 SQL에 포함시켜 연관 데이터를 한 번의 `Query`로 로딩하는 방법이다. `JPA`는 연관 엔티티를 `Lazy Proxy`를 대신해 실제 객체로 채워서 넣는다.
 
-> SQL 예시:
+이방법을 통해서 `Query` 1번으로 N+1을 해결하고, 동적인 조건의 `Query`도 가능해지게 된다. 또한 영속성 컨텍스트에 `Entity`가 관리되므로 이후 변경 감지 가능해진다.
 
-> select p.ticketNo, p.carNo4char, a.parkAreaName from … join …
+```java
+public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {
+    QParkingHistory ph = QParkingHistory.parkingHistory;
+    QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;
 
----
+    List<ParkingHistory> histories = queryFactory
+            .selectFrom(ph)
+            .join(ph.parkArea, pa).fetchJoin()
+            .where(
+                ph.carNo4char.eq(Short.valueOf(carNum))
+                .and(ph.inOutStatusCode.eq((byte) 1))
+                .and(ph.outTime.isNull())
+            )
+            .fetch();
 
-### **🌱 장점**
-
-- 🧹 엔티티 불필요한 필드 로딩 방지 → 메모리 효율적
-    
-- 🚄 성능 최적화 최고 수준
-    
-- 🪴 클라이언트 응답에 불필요한 데이터 배제
-    
-
----
-
-### **🌵 단점**
-
-- 🧲 엔티티가 아니기 때문에 Dirty Checking 불가 (수정은 별도로 처리해야 함)
-    
-- 🔗 DTO 구조가 바뀌면 쿼리도 반드시 같이 바꿔야 함 → 유지보수 부담
-    
-- 🔷 복잡한 DTO 매핑에서는 쿼리 가독성 하락 가능성
-    
-
----
-
-### **🧭 추천 상황**
-
-  
+    return histories.stream()
+            .map(ParkingHistoryMapper::CarInfoToCarInfoResponseDto)
+            .toList();
+}
+```
 
 
-
-
-
-## **✅ 1️⃣ QueryDSL +** 
-
-## **fetchJoin**
 
   
 
@@ -255,9 +231,6 @@ public List<ParkingHistoryResponseDto> findInoutByCarNumDto(String carNum) {
 
   
 
-JOIN FETCH 구문을 SQL에 삽입해 연관 엔티티를 한 번의 쿼리로 모두 로딩합니다.
-
-JPA는 연관 엔티티를 Lazy Proxy 대신 실제 객체로 채워 넣습니다.
 
   
 
@@ -268,14 +241,6 @@ JPA는 연관 엔티티를 Lazy Proxy 대신 실제 객체로 채워 넣습니�
 ---
 
 ### **🌱 장점**
-
-- 🚀 **쿼리 1번으로 메인 엔티티 + 연관 엔티티 모두 로딩**
-    
-- 🔍 연관 데이터를 즉시 사용 가능
-    
-- 🔄 동적 쿼리에서도 자유롭게 사용 가능
-    
-- 💾 영속성 컨텍스트에 엔티티가 관리되므로 이후 변경 감지 가능
     
 
 ---
