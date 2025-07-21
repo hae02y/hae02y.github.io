@@ -166,9 +166,40 @@ histories.forEach(history -> {
 
 #### DTO 직접 조회
 
-이방법은 애초에 엔티티를 로딩하지 않고, 쿼리 결과를 `DTO` 형태로 바로 매핑하는 방법으로 `JPA` 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가져오는 방법이다.
+이방법은 애초에 엔티티를 로딩하지 않고, 쿼리 결과를 `DTO` 형태로 바로 매핑하는 방법으로 `JPA` 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가져오는 방법이다. 이 방법을 통해 `entity`의 불필요한 로딩을 방지하고, 메모리를 효율적으로 사용할수있으며, 클라이언트가 불필요한 정보는 배제하여 성능상으로 큰 이점이있다. 
 
-``
+하지만 `Entity`구조가 아니므로 `Dirty Checking`이 불가능하여 `Update` 와 같은 요청은 별도로 처리를 해야한다. 또한 `DTO`구조가 바뀌는 경우 `Query`도 변경 되므로 유지보수에 부담이 있고, 복잡한 `DTO` 매핑에서 가독성이 하락할수있다.
+
+```java
+public List<ParkingHistoryResponseDto> findInoutByCarNumDto(String carNum) {
+    QParkingHistory ph = QParkingHistory.parkingHistory;
+    QParkAreaMaster pa = QParkAreaMaster.parkAreaMaster;
+
+    return queryFactory
+            .select(Projections.constructor(
+                    ParkingHistoryResponseDto.class, //DTO로 설정
+                    ph.ticketNo,
+                    ph.carNo4char,
+                    pa.parkAreaName
+            ))
+            .from(ph)
+            .join(ph.parkArea, pa)
+            .where(
+                ph.carNo4char.eq(Short.valueOf(carNum))
+                .and(ph.inOutStatusCode.eq((byte) 1))
+                .and(ph.outTime.isNull())
+            )
+            .fetch();
+}
+```
+
+이방법은 ``
+
+✅ 클라이언트에 응답할 때 DTO로 전달하는 경우
+
+✅ 수정/삭제가 아닌 **조회 전용** API
+
+✅ 대량 데이터 처리 및 성능이 중요한 상황
 
 ### **💡 원리**
 
@@ -210,11 +241,7 @@ histories.forEach(history -> {
 
   
 
-✅ 클라이언트에 응답할 때 DTO로 전달하는 경우
 
-✅ 수정/삭제가 아닌 **조회 전용** API
-
-✅ 대량 데이터 처리 및 성능이 중요한 상황
 
 
 
