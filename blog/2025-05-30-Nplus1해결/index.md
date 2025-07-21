@@ -113,11 +113,10 @@ public class ParkingHistory {
 하지만 항상 연관된 데이터까지 로딩 되므로 성능저하가 발생할수있고, 어디서든 로딩이 되기때문에 `Query`의 예측이 어려워진다. 이방식을 사용할때는 반드시 연관데이터가 필요한경우나 연관 엔티티의 데이터가 적은경우가 적합하다. `N+1` 문제 해결만을 목적으로 사용하기는 적합한 방법이 아니다.
 
 #### @EntityGraph
-`EntityGraph`는 JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행하도록 한다.
+`EntityGraph`는 JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행하도록 한다. 즉 `Fetch Join`을 적용할수있도록 JPA에서 지원하는 기능으로 `JPQL`으로 `Join`을 작성하지않고 사용이 가능하다.
 
 ```java
 @Repository
-
 public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, Long> {
     @EntityGraph(attributePaths = {"parkArea"})
     List<ParkingHistory> findByCarNo4charAndInOutStatusCodeAndOutTimeIsNull(
