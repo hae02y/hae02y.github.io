@@ -68,7 +68,7 @@ SELECT * FROM comment WHERE post_id = N;
 
 그럼 내가 실무를 진행하면서 겪었던 문제와 이에 대한 해결 방법까지 자세히 알아보자.
 
-### N+1 해결 방법
+### 실무에서의 N+1
 
 프로젝트를 진행하면서 API 호출을 하니 스크롤 5번 분량의 로그가 찍혔다.
 
@@ -91,8 +91,21 @@ for (ParkingHistory history : historyList) {     history.getParkArea().getParkAr
 }
 ```
 
-ParkingHistory 와 ParkAreaMaster가 `FetchType.LAZY)` 로 매핑되어있는 상태에서, 위의 코드를 실행하면 JPA는 ParkingHistory 목록을 먼저 Query 한 후, 각 row마다 `getParkArea().getParkAreaName()` 같은 접근이 있을 때마다 **별도 쿼리로 parkArea 테이블을 조회**해요.
+ParkingHistory 테이블과 parkArea 테이블이 `FetchType.LAZY)` 로 매핑되어있는 상태에서, 위의 코드를 실행하면 JPA는 ParkingHistory 목록을 먼저 Query 한 후, 각 row마다`getParkArea().getParkAreaName()` 같은 접근이 있을때 별도로 Query를 생성해 parkArea 테이블을 조회한다.
 
+이를 방지하는 방법을 하나씩 알아보자.
+
+#### FetchType.EAGER
+```java
+@Entity  
+@Table(name = "parking_history")  
+public class ParkingHistory {  
+	...
+  
+    @ManyToOne(fetch = FetchType.EAGER)  
+    private ParkArea parkArea;  
+}
+```
 
 
 
