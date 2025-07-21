@@ -128,7 +128,7 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 }
 ```
 
-
+[참고 : Spring Docs](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.entity-graph)
 
 ### **🌱 장점**
 
