@@ -113,7 +113,54 @@ public class ParkingHistory {
 하지만 항상 연관된 데이터까지 로딩 되므로 성능저하가 발생할수있고, 어디서든 로딩이 되기때문에 `Query`의 예측이 어려워진다. 이방식을 사용할때는 반드시 연관데이터가 필요한경우나 연관 엔티티의 데이터가 적은경우가 적합하다. `N+1` 문제 해결만을 목적으로 사용하기는 적합한 방법이 아니다.
 
 #### @EntityGraph
+`EntityGraph`는 JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행하도록 한다.
 
+```java
+@Repository
+
+public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, Long> {
+    @EntityGraph(attributePaths = {"parkArea"})
+    List<ParkingHistory> findByCarNo4charAndInOutStatusCodeAndOutTimeIsNull(
+        Short carNo4char,
+        Byte inOutStatusCode,
+        LocalDateTime outTime
+    );
+}
+```
+
+### **🌱 장점**
+
+- 📄 코드가 매우 간결 (@EntityGraph 한 줄로 끝)
+    
+- ✨ JPA Repository 메서드와 결합하기 좋음
+    
+- 🔐 영속성 컨텍스트로 관리 가능
+    
+- 🔄 QueryDSL 없이도 가능 (설정만으로)
+    
+
+---
+
+### **🌵 단점**
+
+- ⛓️ 동적 조건에는 적합하지 않음
+    
+- ⚖️ 복잡한 연관 엔티티가 많으면 관리가 어렵고 지저분해질 수 있음
+    
+- 🔷 기본적으로 findByXXX처럼 정적 쿼리에만 사용
+    
+
+---
+
+### **🧭 추천 상황**
+
+  
+
+✅ 정적 쿼리를 많이 사용하는 서비스
+
+✅ 코드의 간결함과 선언적인 스타일이 중요한 프로젝트
+
+✅ QueryDSL 도입이 안 되어 있는 레거시 프로젝트
 
 
 맞아요 해영님, 이건 **전형적인 N+1 문제**가 발생한 로그예요 😢
