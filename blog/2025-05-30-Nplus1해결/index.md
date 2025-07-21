@@ -115,6 +115,8 @@ public class ParkingHistory {
 #### @EntityGraph
 `EntityGraph`는 JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행하도록 한다. 즉 `Fetch Join`을 적용할수있도록 JPA에서 지원하는 기능으로 `JPQL`으로 `Join`을 작성하지않고 사용이 가능하다.
 
+이방법은 Left Outer Join 만을 지원한다. 그러므로 다른 방식이 필요하다면 `JPQL`을 통해 직접 `JOIN`을 작성해야한다.
+
 ```java
 @Repository
 public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, Long> {
@@ -126,6 +128,10 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
     );
 }
 ```
+
+이로 인해 발생하는 결과는 아래 이미지와 같다.
+
+![](screen1.png)
 
 [참고 : Spring Docs](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.entity-graph)
 
