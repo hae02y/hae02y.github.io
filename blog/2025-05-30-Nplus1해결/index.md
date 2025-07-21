@@ -91,12 +91,10 @@ for (ParkingHistory history : historyList) {     history.getParkArea().getParkAr
 }
 ```
 
-ParkingHistory 테이블과 parkArea 테이블이 `FetchType.LAZY)` 로 매핑되어있는 상태에서, 위의 코드를 실행하면 JPA는 ParkingHistory 목록을 먼저 Query 한 후, 각 row마다`getParkArea().getParkAreaName()` 같은 접근이 있을때 별도로 Query를 생성해 parkArea 테이블을 조회한다.
+ParkingHistory 테이블과 parkArea 테이블이 `FetchType.LAZY)` 로 매핑되어있는 상태에서, 위의 코드를 실행하면 JPA는 ParkingHistory 목록을 먼저 Query 한 후, 각 row마다`getParkArea().getParkAreaName()` 같은 접근이 있을때 별도로 Query를 생성해 parkArea 테이블을 조회한다. 지금 부터 이를 방지하는 방법을 하나씩 알아보자.
 
-이를 방지하는 방법을 하나씩 알아보자.
 
 #### FetchType.EAGER
-
 첫번째로, FetchType을 `EAGER`로 설정하는 방법이 있다. 이를 통해서 연관된 `Entity`를 항상 즉시 로딩하도록 설정이 가능하고, 해당하는 테이블을 조회하는 `SQL` 실행 시 항상 `JOIN`을 통해 가져오도록 한다. 이방식을 사용하면 항상 연관데이터가 로딩되므로 `LazyInitializationException` 방지가 가능하다.
 
 ```java
@@ -138,7 +136,7 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 [참고 : Spring Docs](https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html#jpa.entity-graph)
 
 
-#### BatchSize
+#### BatchSize 설정
 
 `BatchSize`를 조절하는 방법도 있다. `JPA`의 `default_batch_fetch_size` 설정으로, 지연 로딩을 할 때 요청되는 연관 `Entity`를 모아서 `IN (?,?,…)`로 한 번에 조회하는 방법이다.
 
@@ -150,10 +148,7 @@ spring:
       hibernate.default_batch_fetch_size: 100
 ```
 
-이방법을 사용하면 코드수정이 아닌 설정 적용 만으로, `Lazy` 전략을 유지한채 동작하도록 할수있다. 또한 여러 엔티티 타입에 동시에 적용되도록 할수있다. 
-
-하지만 `Query`의 사이즈는 N/size + 1 회 발생하고, `Fetch Join`보다 성능상에서 떨어진다. 그리고 연관 데이터가 많다면 `IN` 절에 길이가 길어지는 
-
+실제 동작하는 코드는 다음과 같다.
 ```java
 List<ParkingHistory> histories = parkingHistoryRepository.findAll(predicate);
 
@@ -162,40 +157,18 @@ histories.forEach(history -> {
 });
 ```
 
-하지만 이방법을 사용하면 여
+이방법을 사용하면 코드수정이 아닌 설정 적용 만으로, `Lazy` 전략을 유지한채 동작하도록 할수있다. 또한 여러 엔티티 타입에 동시에 적용되도록 할수있다. 
+
+하지만 `Query`의 사이즈는 N/size + 1 회 발생하고, `Fetch Join`보다 성능상에서 떨어진다. 그리고 연관 데이터가 많다면 `IN` 절에 길이가 길어지는 단점이 있다.
+
+이방식은 코드 변경이 힘든 상황에서 레거시 시스템의 성능 개선을 위해 적용하거나, `Lazy`전략은 유지하면서 최소한의 최적화를 하는 경우에 사용하는 이점이 있다.
 
 
-### **🌱 장점**
+#### DTO 직접 조회
 
-- 🔧 코드 수정 없이 설정만으로 적용
-    
-- 🧊 LAZY 전략을 유지할 수 있음
-    
-- 🔄 여러 엔티티 타입에 동시에 적용 가능
-    
+이방법은 애초에 엔티티를 로딩하지 않고, 쿼리 결과를 DTO 형태로 바로 매핑하는 방법이다. JPA 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가져오는 방법이다.
 
----
 
-### **🌵 단점**
-
-- ⚖️ 쿼리가 여전히 N/batchSize + 1 회 발생
-    
-- 🐢 fetch join보다 성능이 떨어질 수 있음
-    
-- 🔷 연관 데이터가 너무 많으면 IN 절 길이 문제
-    
-
----
-
-### **🧭 추천 상황**
-
-  
-
-✅ 코드 변경이 힘든 레거시 시스템
-
-✅ Lazy 로딩을 유지하면서 최소한의 최적화를 하고 싶은 경우
-
-✅ fetchJoin을 적용하기 애매한 경우
 
 ## **✅ 1️⃣ QueryDSL +** 
 
@@ -257,55 +230,8 @@ JPA는 연관 엔티티를 Lazy Proxy 대신 실제 객체로 채워 넣습니�
 
 ---
 
-## **✅ 2️⃣** 
 
-## **@EntityGraph**
 
-  
-
-### **💡 원리**
-
-  
-
-JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도록 힌트를 주어, SQL에 JOIN을 붙여 실행합니다.
-
----
-
-### **🌱 장점**
-
-- 📄 코드가 매우 간결 (@EntityGraph 한 줄로 끝)
-    
-- ✨ JPA Repository 메서드와 결합하기 좋음
-    
-- 🔐 영속성 컨텍스트로 관리 가능
-    
-- 🔄 QueryDSL 없이도 가능 (설정만으로)
-    
-
----
-
-### **🌵 단점**
-
-- ⛓️ 동적 조건에는 적합하지 않음
-    
-- ⚖️ 복잡한 연관 엔티티가 많으면 관리가 어렵고 지저분해질 수 있음
-    
-- 🔷 기본적으로 findByXXX처럼 정적 쿼리에만 사용
-    
-
----
-
-### **🧭 추천 상황**
-
-  
-
-✅ 정적 쿼리를 많이 사용하는 서비스
-
-✅ 코드의 간결함과 선언적인 스타일이 중요한 프로젝트
-
-✅ QueryDSL 도입이 안 되어 있는 레거시 프로젝트
-
----
 
 ## **✅ 3️⃣ DTO 직접 조회**
 
@@ -315,9 +241,7 @@ JPA 메서드 레벨에서 특정 연관 엔티티를 EAGER처럼 로딩하도�
 
   
 
-애초에 엔티티를 로딩하지 않고, 쿼리 결과를 DTO 형태로 바로 매핑합니다.
 
-JPA 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가져옴.
 
   
 
@@ -358,44 +282,6 @@ JPA 영속성 컨텍스트에 올라가지 않으며 필요한 데이터만 가�
 ✅ 수정/삭제가 아닌 **조회 전용** API
 
 ✅ 대량 데이터 처리 및 성능이 중요한 상황
-
----
-
-## **✅ 4️⃣ BatchSize**
-
-  
-
-### **💡 원리**
-
-  
-
-JPA의 hibernate.default_batch_fetch_size 설정으로, 지연 로딩을 할 때 요청되는 연관 엔티티를 모아서 IN (?,?,…)로 한 번에 조회합니다.
-
----
-
-
-
----
-
-## **✅ 5️⃣ EAGER**
-
-  
-
-### **💡 원리**
-
-  
-
-연관 엔티티를 항상 즉시 로딩하도록 설정합니다.
-
-SQL 실행 시 반드시 JOIN을 붙여 가져옵니다.
-
----
-
-### **🌱 장점**
-
-- 🔄 항상 연관 데이터까지 로딩 → LazyInitializationException 방지
-    
-- 🔷 코드가 심플
 
 
 ---
