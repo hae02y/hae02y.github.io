@@ -140,8 +140,62 @@ public interface ParkingHistoryRepository extends JpaRepository<ParkingHistory, 
 
 #### BatchSize
 
-`BatchSize`를 조절하는 방법도 있다. `JPA`의 hibernate.default_batch_fetch_size 설정으로, 지연 로딩을 할 때 요청되는 연관 `Entity`를 모아서 `IN (?,?,…)`로 한 번에 조회하는 방법이다.
+`BatchSize`를 조절하는 방법도 있다. `JPA`의 `default_batch_fetch_size` 설정으로, 지연 로딩을 할 때 요청되는 연관 `Entity`를 모아서 `IN (?,?,…)`로 한 번에 조회하는 방법이다.
 
+application.yml 파일에 다음 설정을 추가하자.
+```yaml
+spring:
+  jpa:
+    properties:
+      hibernate.default_batch_fetch_size: 100
+```
+
+이방법을 사용하면 코드수정이 아닌 설정 적용 만으로, `Lazy` 전략을 유지한채 동작하도록 할수있다. 또한 여러 엔티티 타입에 동시에 적용되도록 할수있다. 
+
+하지만 `Query`의 사이즈는 N/size + 1 회 발생하고, `Fetch Join`보다 성능상에서 떨어진다. 그리고 연관 데이터가 많다면 `IN` 절에 길이가 길어지는 
+
+```java
+List<ParkingHistory> histories = parkingHistoryRepository.findAll(predicate);
+
+histories.forEach(history -> {
+    String name = history.getParkArea().getParkAreaName(); 
+});
+```
+
+하지만 이방법을 사용하면 여
+
+
+### **🌱 장점**
+
+- 🔧 코드 수정 없이 설정만으로 적용
+    
+- 🧊 LAZY 전략을 유지할 수 있음
+    
+- 🔄 여러 엔티티 타입에 동시에 적용 가능
+    
+
+---
+
+### **🌵 단점**
+
+- ⚖️ 쿼리가 여전히 N/batchSize + 1 회 발생
+    
+- 🐢 fetch join보다 성능이 떨어질 수 있음
+    
+- 🔷 연관 데이터가 너무 많으면 IN 절 길이 문제
+    
+
+---
+
+### **🧭 추천 상황**
+
+  
+
+✅ 코드 변경이 힘든 레거시 시스템
+
+✅ Lazy 로딩을 유지하면서 최소한의 최적화를 하고 싶은 경우
+
+✅ fetchJoin을 적용하기 애매한 경우
 
 ## **✅ 1️⃣ QueryDSL +** 
 
@@ -319,37 +373,7 @@ JPA의 hibernate.default_batch_fetch_size 설정으로, 지연 로딩을 할 때
 
 ---
 
-### **🌱 장점**
 
-- 🔧 코드 수정 없이 설정만으로 적용
-    
-- 🧊 LAZY 전략을 유지할 수 있음
-    
-- 🔄 여러 엔티티 타입에 동시에 적용 가능
-    
-
----
-
-### **🌵 단점**
-
-- ⚖️ 쿼리가 여전히 N/batchSize + 1 회 발생
-    
-- 🐢 fetch join보다 성능이 떨어질 수 있음
-    
-- 🔷 연관 데이터가 너무 많으면 IN 절 길이 문제
-    
-
----
-
-### **🧭 추천 상황**
-
-  
-
-✅ 코드 변경이 힘든 레거시 시스템
-
-✅ Lazy 로딩을 유지하면서 최소한의 최적화를 하고 싶은 경우
-
-✅ fetchJoin을 적용하기 애매한 경우
 
 ---
 
