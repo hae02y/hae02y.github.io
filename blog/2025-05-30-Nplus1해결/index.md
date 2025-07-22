@@ -35,7 +35,7 @@ public class Post {
 ```java
 List<Post> posts = postRepository.findAll();
 
-for (Post post : posts) {
+for (Post post : posts) {      
     System.out.println(post.getComments().size());
 }
 ```
@@ -87,7 +87,7 @@ Hibernate: select ... from parkarea_master where park_area_code=?
 
 ```java
 // List<ParkingHistory> 조회 후 
-for (ParkingHistory history : historyList) {     history.getParkArea().getParkAreaName();
+for (ParkingHistory history : historyList) {       history.getParkArea().getParkAreaName();
 }
 ```
 
@@ -237,4 +237,4 @@ public List<ParkingHistoryResponseDto> findInoutByCarNum(String carNum) {
 - 단순조회를 하는 경우라면 `QueryDSL+Fetch Join`
 
 
->  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다. 해결책이 명확히 정해져 있다기 보다 상황에 맞춰 적절한 선택을 하는것이 중요하다.
+>  N+1 문제는 단순히 JPA의 연관관계 이슈가 아니라, 데이터 접근 패턴이 비효율적으로 작성돼 쿼리가 N+1번 발생하는 성능 문제이다. 연관관계에서 주로 발생하지만, 연관관계가 아닌 경우에도 동일한 패턴으로 나타날 수 있다. 해결책이 명확히 정해져 있다기 보다 상황에 맞춰 적절한 선택을 하는것이 중요한것같다.
