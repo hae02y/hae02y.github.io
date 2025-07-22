@@ -333,5 +333,13 @@ NAME                                READY   STATUS             RESTARTS   AGE
 ansan-daemin-api-7578988667-ptkqw   0/1     InvalidImageName   0          15h
 ```
 
+
+#### ALB Health-check 문제
+
+Cluster IP를 기본값으로 설정해서 ALB에서 Health Check가 불가능함 
+
+ClusterIP -> NodePort로 변경함
+
+
 ### Ref.
 - [NCP 가이드](https://guide.ncloud-docs.com/docs/k8s-k8sprep)
