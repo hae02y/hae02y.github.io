@@ -1,6 +1,6 @@
 ---
 slug: makeblog2
-title: 블로그를 이사하려구요.(feat. 도큐사우르스)
+title: 블로그를 이사하려고 합니다.(feat. 도큐사우르스)
 authors:
   - haeyoung
 tags:

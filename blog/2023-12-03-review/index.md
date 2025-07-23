@@ -1,6 +1,6 @@
 ---
 slug: review-codestates
-title: 코드스테이츠 메인 프로젝트 회고에요.
+title: 코드스테이츠 메인 프로젝트 회고입니다.
 authors:
   - haeyoung
 tags:

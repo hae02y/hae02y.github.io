@@ -1,6 +1,6 @@
 ---
 slug: method-reference
-title: '"메서드 참조 : 코드는 짧아지지만 의미는 더 명확하게"'
+title: '"코드는 짧아지지만 의미는 더 명확하게" - 메서드참조'
 authors:
   - haeyoung
 tags:
