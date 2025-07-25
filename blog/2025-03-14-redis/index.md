@@ -1,6 +1,6 @@
 ---
 slug: redis
-title: Redis야 리프레시토큰줘
+title: Redis를 Redis답게 사용하는 방법
 authors:
   - haeyoung
 tags:

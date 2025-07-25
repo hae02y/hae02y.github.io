@@ -1,6 +1,6 @@
 ---
 slug: cookie
-title: JWT토큰을 보낸다면 쿠키일까요. 헤더일까요.
+title: JWT 쿠키 뜯어먹기
 authors:
   - haeyoung
 tags:

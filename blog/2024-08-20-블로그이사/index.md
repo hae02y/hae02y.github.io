@@ -96,7 +96,7 @@ tags:
 #### Blog or Docs
 Docusaurus 는 docs 와 blog 모드가 각각 존재하며, docs 는 기술 문서를 위한 포맷이다. 개발 블로그는 blog mode 만 있어도 충분했기 때문에 blog only 로 설정하여 docs 페이지를 제거해버릴까 고민했다. 하지만 이럴 경우 메인 랜딩 페이지가 없어지기 때문에 뭔가 아쉬웠다.
 
-![alt text](image-1.png)
+![alt text](blog/2024-08-20-블로그이사/image-1.png)
 
 고민 끝에 랜딩 페이지를 유지하기 위해 blog only 는 포기하고 docs 만 다른 형태로 바꿔주기로 했다.
 

@@ -1,6 +1,6 @@
 ---
 slug: mssql
-title: "\bMSSQL은 왜 이거 안될까요?"
+title: MSSQL 도입전에 알았으면 좋았을 것들...
 authors:
   - haeyoung
 tags:
