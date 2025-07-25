@@ -31,7 +31,7 @@ VPC 및 서브넷을 생성한다.
 ![](screen2.png)
 
 
-![](screen1.png)
+![myPage](screen1.png)
 
 
 #### BastionHost 생성
