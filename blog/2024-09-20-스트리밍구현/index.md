@@ -7,7 +7,7 @@ tags:
   - Java
   - ffmpeg
 ---
-회사에서 LPR 기반의 대시보드 구현 PoC를 진행하면서 대시보드에 CCTV 영상을 Live로 송출해야하는 요구사항이 있었다. 하지만 문제는 `RTSP` 프로토콜을 통해 제공되는 CCTV 영상이 브라우저에서 직접 재생되지 않아 다양한 접근 방식을 고민했었고, 이에대한 해결책을 기록하고자 작성하였다.
+회사에서 LPR 기반의 대시보드 구현 PoC를 진행하면서 대시보드에 CCTV 영상을 Live로 송출해야하는 요구사항이 있었다. 하지만 문제는 `RTSP` 프로토콜을 통해 제공되는 CCTV 영상이 브라우저에서 직접 재생되지 않아 다양한 접근 방식을 고민했었고, 이문제를 해결했던 내용을 기록하고자 작성하였다.
 
 이글에서는 아래 내용을 다루고자 한다.
 
@@ -55,10 +55,95 @@ public class ProxyController {
 
 프론트에서 `entry` : 현재시간, `cctvName` 을 받아 위에 구현한 Proxy서버가 CCTV/NVR로 요청을 보내 Header에 사용되는 key를 갱신하고, 해당 key로 다시한번 HLS를 위한 데이터를 API로 요청해 프론트에 넘겨 주는 방법으로 구현하였다. 이방법으로 CCTV의 정보나 `CORS`와 같은 부분이 해결되었다.
 
-하지만 문제는 금방 다시 드러났다. 현장에 구성된 `NVR`의 리소스가 굉장히 적어서 대시보드 이용자가 몇명만 늘어나도 부하로 인해 영상 프레임이 누락되거나, `NVR`이 재부팅 되버리는 문제가 발생하였다. `NVR`은 우리쪽에서 구축한게 아니다보니 직접적으로 다루는게 불가능했고, 다른 방법을 구상해야했다. 내가 생각한 방법은 CCTV에서 `RTSP`를 통해 직접 HLS를 생성하는 방법이였다.
+하지만 문제는 금방 다시 드러났다.`NVR`의 리소스가 굉장히 적었던게 문제였다. 우리쪽에 구성된 영상분석 서버에서는 해당 `NVR`에서 영상을 저장한뒤 영상분석을 진행하도록 하였는데, 여기서 사용되는 리소스와 대시보드에서 사용하는 리소스가 합쳐져 대시보드 이용자가 몇명만 늘어나도 부하로 인해 영상 프레임이 누락되거나, `NVR`이 재부팅 되버리는 문제가 발생하였다. `NVR`은 우리쪽에서 구축한게 아니다보니 직접적으로 다루는게 불가능했고, 다른 방법을 구상해야했다. 내가 생각한 방법은 CCTV에서 `RTSP`를 통해 직접 HLS를 생성하는 방법이였다.
 
 
 ### 두번째 시도
-위에서 설명했던것처럼 `RTSP` 변환을 통해 직접 클라이언트에서 사용하도록 변환하는 스트리밍 서버를 구축하는 방식으로 진행하기로 결정하였다. 이를 위해 자료를 리서치했고, 결과적으로 `ffmpeg`를 통해 `RTSP`를 HLS로 변환하여 사용하도록 구축하였다.
+위에서 설명했던것처럼 `RTSP` 변환을 통해 직접 클라이언트에서 사용하도록 변환하는 스트리밍 서버를 구축하는 방식으로 진행하기로 결정하였다. 이를 위해 자료를 리서치했고, 결과적으로 `ffmpeg`를 통해 `RTSP`를 HLS로 변환하여 사용하도록 구축하였다. 
+
+
+```java
+package com.example.demo.controller;  
+  
+@RestController  
+@RequestMapping("/rtsp/v1")  
+@Slf4j  
+public class RtspController {  
+  
+    private final CameraRegistry cameraRegistry;  
+  
+    public RtspController(CameraRegistry cameraRegistry) {  
+        this.cameraRegistry = cameraRegistry;  
+    }  
+  
+    private final Map<String, Process> cameraProcesses = new ConcurrentHashMap<>();  
+  
+  
+    @GetMapping("/cameras")  
+    public ResponseEntity<Map<String, String>> listCameras() {  
+        return ResponseEntity.ok(cameraRegistry.getAllCameras());  
+    }  
+  
+    @PostMapping("/start")  
+    public ResponseEntity<String> startStream(@RequestParam("cameraId") String cameraId) {  
+  
+        if (!cameraRegistry.contains(cameraId)) {  
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("해당하는 카메라가 없습니다. " + cameraId);  
+        }  
+  
+        if (cameraProcesses.containsKey(cameraId) && cameraProcesses.get(cameraId).isAlive()) {  
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("해당 카메라 스트리밍 진행중입니다. " + cameraId);  
+        }  
+  
+        File hlsDir = new File("/tmp/hls/" + cameraId);  
+        if (!hlsDir.exists()) {  
+            hlsDir.mkdirs();  
+        }  
+  
+        String rtspUrl = cameraRegistry.getCameraUrl(cameraId);  
+        String outputPath = String.format("/tmp/hls/%s/stream.m3u8", cameraId);  
+  
+        String[] command = {  
+                "ffmpeg",  
+                "-rtsp_transport", "tcp",  
+                "-i", rtspUrl,  
+                "-c:v", "libx264",  
+                "-preset", "ultrafast",  
+                "-tune", "zerolatency",  
+                "-f", "hls",  
+                "-hls_time", "1",  
+                "-hls_list_size", "3",  
+                "-hls_flags", "delete_segments",  
+                outputPath  
+        };  
+  
+        try {  
+            ProcessBuilder pb = new ProcessBuilder(command);  
+            pb.redirectErrorStream(true);  
+            pb.inheritIO();  
+            Process process = pb.start();  
+            cameraProcesses.put(cameraId, process);  
+            log.info("Started camera [{}] at [{}]", cameraId, rtspUrl);  
+            return ResponseEntity.ok("카메라 스트리밍이 시작되었습니다. " + cameraId);  
+        } catch (IOException e) {  
+            log.error("카메라 스트리밍이 실패하였습니다. {}", cameraId, e);  
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("카메라 스트리밍이 실패하였습니다. " + cameraId);  
+        }  
+    }  
+  
+    @PostMapping("/stop")  
+    public ResponseEntity<String> stopStream(@RequestParam("cameraId") String cameraId) {  
+        Process process = cameraProcesses.get(cameraId);  
+        if (process != null && process.isAlive()) {  
+            process.destroy();  
+            cameraProcesses.remove(cameraId);  
+            log.info("Stopped camera [{}]", cameraId);  
+            return ResponseEntity.ok("카메라 스트리밍이 정상적으로 중지되었습니다. " + cameraId);  
+        } else {  
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("카메라 스트리밍이 진행중이지 않습니다. " + cameraId);  
+        }  
+    }  
+}
+```
 
 https://velog.io/@penrose_15/Data%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0
