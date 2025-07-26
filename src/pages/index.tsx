@@ -4,6 +4,8 @@ import Layout from '@theme/Layout';
 import TerminalDialog from "@site/src/components/TerminalDialog";
 import FloatingTags from "@site/src/components/FloatingTags";
 import BouncyDev from "@site/src/components/BounceDev";
+import MacTerminal from '@site/src/components/MacTerminal';
+import TerminalDialog2 from '@site/src/components/TerminalDialog2';
 
 
 
@@ -20,7 +22,7 @@ function CamelSection() {
     return (
         <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
             <div className="h-full flex w-full flex-col">
-                <div className="lg:flex h-full bg-gradient-to-br from-white via-gray-200 to-gray-300 dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
+                <div className="lg:flex h-full dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
                     {/* 좌측: 3D Camel */}
                     <div
                         className="h-full w-full lg:h-full lg:w-1/2 flex items-center justify-center"
@@ -34,8 +36,8 @@ function CamelSection() {
                     >
 
                         <div className={`flex-col`}>
-                            {/*<BouncyDev />*/}
-                            <FloatingTags />
+                            <BouncyDev />
+                            {/* <FloatingTags /> */}
                         </div>
 
                     </div>
@@ -43,6 +45,21 @@ function CamelSection() {
             </div>
         </div>
     );
+}
+
+function HomepageContent() {
+
+    return (
+        <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
+            <div className="h-full flex w-full flex-col">
+                <div className="lg:flex h-full dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
+                    <div className="h-full font-mono w-full lg:h-full lg:w-1/2 flex items-center justify-center">
+                      <TerminalDialog2 />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default function Home() {
@@ -53,7 +70,8 @@ export default function Home() {
             description="정해영 기술블로그"
         >
             <main>
-                <CamelSection/>
+                {/* <CamelSection/> */}
+                <HomepageContent/>
             </main>
         </Layout>
     );

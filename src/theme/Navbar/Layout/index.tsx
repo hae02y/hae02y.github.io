@@ -36,7 +36,7 @@ export default function NavbarLayout({children}: Props) {
         description: 'The ARIA label for the main navigation',
       })}
       className={clsx(
-        'navbar',
+        // 'navbar',
         'navbar--fixed-top',
         hideOnScroll && [
             styles.navbar,

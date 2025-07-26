@@ -126,9 +126,6 @@
         @apply flex w-full items-center justify-center gap-4 text-sm;
     }
 
-    .navbar__items--right {
-        @apply hidden md:flex;
-    }
 }
 
 @layer components {

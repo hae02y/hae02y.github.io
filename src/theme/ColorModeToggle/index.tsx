@@ -15,7 +15,7 @@ export default function ColorModeToggle({ className, ...props }) {
     return (
         <button
             type="button"
-            className={clsx('clean-btn', className)}
+            // className={clsx('clean-btn', className)}
             onClick={() => setColorMode(isDarkMode ? 'light' : 'dark')}
             {...props}
         >

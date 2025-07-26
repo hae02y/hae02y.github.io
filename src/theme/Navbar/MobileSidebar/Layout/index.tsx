@@ -8,7 +8,7 @@ export default function NavbarMobileSidebarLayout({
   header,
   primaryMenu,
   secondaryMenu,
-}: Props): JSX.Element {
+}: Props){
   const {shown: secondaryMenuShown} = useNavbarSecondaryMenu();
   return (
     <div className="navbar-sidebar">

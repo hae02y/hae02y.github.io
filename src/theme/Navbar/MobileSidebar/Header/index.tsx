@@ -3,7 +3,7 @@ import {useNavbarMobileSidebar} from '@docusaurus/theme-common/internal';
 import {translate} from '@docusaurus/Translate';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
 import IconClose from '@theme/Icon/Close';
-import NavbarLogo from '@theme/Navbar/Logo';
+import Logo from '@theme/Navbar/Logo';
 
 function CloseButton() {
   const mobileSidebar = useNavbarMobileSidebar();
@@ -22,12 +22,12 @@ function CloseButton() {
   );
 }
 
-export default function NavbarMobileSidebarHeader(): JSX.Element {
+export default function NavbarMobileSidebarHeader() {
 
 
   return (
     <div className="navbar-sidebar__brand">
-      <a href={"/"} className={"px-3 py-1 border border-black font-mono uppercase text-sm transition-all bg-white text-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:hover:bg-white dark:hover:text-black"}>Main.</a>
+      <Logo></Logo>
         <NavbarColorModeToggle className="margin-left--md" />
       <CloseButton />
     </div>

@@ -12,6 +12,7 @@ import NavbarLogo from '@theme/Navbar/Logo';
 import NavbarSearch from '@theme/Navbar/Search';
 
 import styles from './styles.module.css';
+import Github from '@site/src/theme/Github';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -67,7 +68,7 @@ export default function NavbarContent() {
       left={
         // TODO stop hardcoding items?
         <>
-          {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
+          {/* {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />} */}
           <NavbarLogo />
           <div className="navbar__list">
             <NavbarItems items={leftItems} />
@@ -77,15 +78,13 @@ export default function NavbarContent() {
       right={
         // TODO stop hardcoding items?
         // Ask the user to add the respective navbar items => more flexible
-        <>
-          <NavbarItems items={rightItems} />
-          <NavbarColorModeToggle className={styles.colorModeToggle} />
-          {!searchBarItem && (
+        <div className='flex gap-1 lg:gap-2'>
+          <Github></Github>
+          <NavbarColorModeToggle/>
             <NavbarSearch>
               <SearchBar />
             </NavbarSearch>
-          )}
-        </>
+        </div>
       }
     />
   );

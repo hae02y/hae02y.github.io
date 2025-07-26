@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BounceDev() {
     return (
-        <div className="bg-[#f4f4f4] min-h-screen px-6 py-12 font-mono text-black">
+        <div className="font-mono">
             <p className="uppercase tracking-tight text-sm mb-2">해영님의 웹 공간</p>
 
             <h1 className="text-5xl font-bold leading-none mb-4">Hi, I'm Hae02y</h1>
