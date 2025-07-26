@@ -34,9 +34,9 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         line-height: 1.6;          /* 기본 1.5보다 넉넉하게 */
-        letter-spacing: 0.03em;    /* 자간을 살짝 벌림 */
+        letter-spacing: 0;         /* 자간 제거 */
         word-break: keep-all;      /* 한글 가독성 유지 */
-        word-spacing: 0.05em;      /* 단어 간격 살짝 */
+        word-spacing: 0;           /* 단어 간격 제거 */
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -46,6 +46,8 @@
     p , blockquote, pre {
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;
         letter-spacing: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     code {
@@ -132,6 +134,9 @@
 
     .markdown strong {
         @apply font-semibold;
+        font-family: 'Freesentation', 'Pretendard', sans-serif !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     .markdown th {
@@ -143,7 +148,7 @@
     }
 
     .markdown code {
-        @apply text-[11px] md:text-[12px] 2xl:text-[13px] text-orange-600 dark:text-orange-300 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+        @apply text-[11px] md:text-[12px] 2xl:text-[13px] text-blue-600 dark:text-orange-300 border-0 px-1;
     }
 
     .markdown p div code,
@@ -152,9 +157,17 @@
     .markdown li div code,
     .markdown th code,
     .markdown td code,
-    .markdown p code
+    .markdown p code,
+    .markdown li li code,
+    .markdown li li li code,
+    .markdown ol ol code,
+    .markdown ol ol ol code,
+    .markdown ul ol code,
+    .markdown ol ul code,
+    .markdown ol li code,
+    .markdown li code
     {
-        @apply text-[11px] md:text-[12px] 2xl:text-[12px] font-semibold;
+        @apply text-[11px] md:text-[12px] 2xl:text-[12px] font-medium;
     }
 
     .markdown h1 {
@@ -198,6 +211,20 @@
         @apply list-decimal;
     }
 
+    /* 2depth 이상의 중첩된 UL/OL 스타일 */
+    .markdown li ul,
+    .markdown li ol {
+        @apply pl-5 md:pl-6 mb-2 mt-1 text-[var(--primary)] text-sm md:text-base 2xl:text-[17px];
+    }
+
+    .markdown li ul {
+        @apply list-disc;
+    }
+
+    .markdown li ol {
+        @apply list-decimal;
+    }
+
     .markdown li {
         @apply mt-0 text-sm md:text-base 2xl:text-[17px];
     }
@@ -205,6 +232,25 @@
     .markdown li > p {
         @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
     }
+
+    /* 2depth 이상의 중첩된 리스트 스타일 */
+    .markdown li li {
+        @apply mt-1 text-sm md:text-base 2xl:text-[17px];
+    }
+
+    .markdown li li > p {
+        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
+    }
+
+    /* 3depth 이상의 중첩된 리스트 스타일 */
+    .markdown li li li {
+        @apply mt-1 text-sm md:text-base 2xl:text-[17px];
+    }
+
+    .markdown li li li > p {
+        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
+    }
+    
 
     .markdown aside {
         @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
@@ -389,81 +435,9 @@
 /*Freesentation*/
 @font-face {
     font-family: 'Freesentation';
-    font-weight: 100;
+    font-weight: 100 900;
     font-display: swap;
-    src: url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype')
-}
-
-/* Thin 100 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 100;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-1Thin.ttf') format('truetype');
-}
-
-/* ExtraLight 200 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 200;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-2ExtraLight.ttf') format('truetype');
-}
-
-/* Light 300 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 300;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-3Light.ttf') format('truetype');
-}
-
-/* Regular 400 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 400;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-4Regular.ttf') format('truetype');
-}
-
-/* Medium 500 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 500;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-5Medium.ttf') format('truetype');
-}
-
-/* SemiBold 600 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 600;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-6SemiBold.ttf') format('truetype');
-}
-
-/* Bold 700 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 700;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-7Bold.ttf') format('truetype');
-}
-
-/* ExtraBold 800 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 800;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-8ExtraBold.ttf') format('truetype');
-}
-
-/* Black 900 */
-@font-face {
-    font-family: 'Freesentation';
-    font-weight: 900;
-    font-display: swap;
-    src: url('/font/freesentation/Freesentation-9Black.ttf') format('truetype');
+    src: url('/font/freesentation/FreesentationVF.ttf') format('truetype-variations');
 }
 
 /*Pretendard*/
@@ -509,47 +483,22 @@
     src: local('Pretendard Regular'), url('/font/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Regular.woff') format('woff');
 }
 
-/*JetBrain*/
+/*JetBrain Variable Font - Regular*/
 @font-face {
     font-family: 'JetBrains Mono';
+    font-weight: 100 800;
     font-style: normal;
-    font-weight: 400;
-    src: local('JetBrains Mono Regular'), url('/font/jetBrain/JetBrainsMono-Regular.woff2') format('woff');
+    font-display: swap;
+    src: url('/font/jetBrain/JetBrainsMono[wght].ttf') format('truetype-variations');
 }
 
+/*JetBrain Variable Font - Italic*/
 @font-face {
     font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 100;
-    src: local('JetBrains Mono Thin'), url('/font/jetBrain/JetBrainsMono-Thin.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 300;
-    src: local('JetBrains Mono Light'), url('/font/jetBrain/JetBrainsMono-Light.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 500;
-    src: local('JetBrains Mono Medium'), url('/font/jetBrain/JetBrainsMono-Medium.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: local('JetBrains Mono Bold'), url('/font/jetBrain/JetBrainsMono-Bold.woff2') format('woff');
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-style: normal;
-    font-weight: 900;
-    src: local('JetBrains Mono ExtraBold'), url('/font/jetBrain/JetBrainsMono-ExtraBold.woff2') format('woff');
+    font-weight: 100 800;
+    font-style: italic;
+    font-display: swap;
+    src: url('/font/jetBrain/JetBrainsMono-Italic[wght].ttf') format('truetype-variations');
 }
 
 /*Cera Round Pro*/

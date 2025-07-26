@@ -99,7 +99,7 @@ ParkingHistory 테이블과 parkArea 테이블이 `FetchType.LAZY)` 로 매핑�
 
 ```java
 @Entity  
-@Table(name = "parking_history")  
+@Table(name = "parking_history")  
 public class ParkingHistory {  
 	...
   

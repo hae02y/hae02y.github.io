@@ -98,7 +98,6 @@ const config: Config = {
       searchParameters: {},
       searchPagePath: 'search',
     },
-    image: 'img/me.jpg',
     navbar: {
       title: 'hae02y',
       logo: {

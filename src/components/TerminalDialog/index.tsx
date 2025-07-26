@@ -16,7 +16,7 @@ export default function TerminalDialog() {
                     {/* 👤 프로필 이미지 */}
                     <div className="w-full h-full border border-gray-950 dark:border-white bg-white">
                         <img
-                            src="/img/me.jpg"
+                            src=""
                             alt="Profile"
                             className="w-full h-full contrast-125"
                         />
