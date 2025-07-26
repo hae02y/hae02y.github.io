@@ -1,6 +1,6 @@
 ---
-slug: 스트리밍 구현에서 만났던 문제
-title: Getter / Setter 알고쓰고있나요?
+slug: "\bstreaming"
+title: 스트리밍 구현에서 만났던 문제
 authors:
   - haeyoung
 tags:
