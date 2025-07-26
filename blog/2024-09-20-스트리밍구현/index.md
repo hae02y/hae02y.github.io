@@ -53,4 +53,7 @@ public class ProxyController {
 프론트에서 `entry` : 현재시간, `cctvName` 을 받아 위에 구현한 Proxy서버가 CCTV로 직접 요청을 보내 Header에 사용되는 key를 갱신하고, 해당 key로 다시한번 HLS를 위한 데이터를 API로 요청해 프론트에 넘겨 주는 방법으로 구현하였다.
 
 
+이방식으로 동작이 가능하도록 구현은 하였지만 클라이언트가 늘어날때마다 CCTV에 부하를 주는 방식이기때문에 개선이 필요하였다.
+
+
 https://velog.io/@penrose_15/Data%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0
