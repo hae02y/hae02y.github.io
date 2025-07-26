@@ -59,9 +59,9 @@ public class ProxyController {
 
 
 ### 두번째 시도
-위에서 설명했던것처럼 `RTSP` 변환을 통해 직접 클라이언트에서 사용하도록 변환하는 스트리밍 서버를 구축하는 방식으로 진행하기로 결정하였다. 이를 위해 자료를 리서치했고, 결과적으로 `ffmpeg`를 통해 `RTSP`를 HLS로 변환하여 사용하도록 구축하였다. 
+위에서 설명했던것처럼 `RTSP` 변환을 통해 직접 클라이언트에서 사용하도록 변환하는 스트리밍 서버를 구축하는 방식으로 진행하기로 결정하였다. 이를 위해 자료를 리서치했고, 결과적으로 `ffmpeg`를 통해 `RTSP`를 HLS로 변환하여 사용하도록 구축하였다.
 
-
+#### Streaming 구현 코드
 ```java
 package com.example.demo.controller;  
   
@@ -145,5 +145,9 @@ public class RtspController {
     }  
 }
 ```
+
+
+위와 같은 방법으로 컨트롤러를 구성하였다. 물론 패키징 구조가 있지만 해당 구조를 생략하고 컨트롤러에 직접 구현된 상태로 가져왔다.
+
 
 https://velog.io/@penrose_15/Data%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0
