@@ -79,7 +79,6 @@ export default function NavbarContent() {
         // TODO stop hardcoding items?
         // Ask the user to add the respective navbar items => more flexible
         <div className='flex gap-1 lg:gap-2'>
-          <Github></Github>
           <NavbarColorModeToggle/>
             <NavbarSearch>
               <SearchBar />

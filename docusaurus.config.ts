@@ -100,6 +100,7 @@ const config: Config = {
     },
     navbar: {
       title: 'hae02y',
+      hideOnScroll: true,
       logo: {
         alt: 'My Site Logo',
         src: 'img/sitelogo.png',

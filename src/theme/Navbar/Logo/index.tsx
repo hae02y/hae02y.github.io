@@ -28,7 +28,7 @@ export default function NavbarLogo(){
     : '/img/logo/whitemode.png';
 
   return (
-      <a className="btn" href={'/'}>
+      <a className="btn flex items-center" href={'/'}>
         <img 
           src={logoSrc} 
           alt="Logo" 

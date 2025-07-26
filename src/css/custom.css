@@ -128,6 +128,34 @@
         @apply flex w-full items-center justify-center gap-4 text-sm;
     }
 
+    /* 네비게이션 바 고정 스타일 */
+    .navbar--fixed-top {
+        @apply fixed top-0 left-0 right-0 z-50 bg-transparent !important;
+        background: transparent !important;
+        transition: transform 0.3s ease !important;
+    }
+
+    /* 네비게이션 바 내부 요소들도 투명하게 */
+    .navbar--fixed-top .navbar__inner {
+        background: transparent !important;
+    }
+
+    /* 네비게이션 바 숨김 */
+    .navbar--fixed-top.navbar--hideable.navbar--hidden {
+        @apply -translate-y-full;
+    }
+
+    /* 메인 콘텐츠 여백 조정 */
+    .main-wrapper {
+        padding-top: 25px; /* 네비게이션 바 높이만큼 여백 */
+        transition: padding-top 0.3s ease;
+    }
+
+    /* 네비게이션 바가 숨겨졌을 때 여백 제거 */
+    .main-wrapper.navbar-hidden {
+        padding-top: 0;
+    }
+
 }
 
 @layer components {
