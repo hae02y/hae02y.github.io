@@ -21,7 +21,7 @@ tags:
 
 다양한 방법을 찾아보다 간단한 방법을 발견했다. 가장 먼저 떠오른 접근 방식은 CCTV 장비에서 직접 제공하는 HLS 기능을 사용하는 방식이었다. 현장이 미국에 있고 PoC로 진행하다보니 현장 정보에 대해 제한된 부분이 많은 어려움이 있었지만 CCTV 자체에 Export하는 API를 지원함을 알아낼수있었다. `CCTV ID`, `Mac` 등을 통해 영상을 추출해낼수있는 방법이다. CCTV에 직접 요청하여 프론트로 중계하는 서버를 만들면 문제는 해결될것으로 보였다.
 
-#### 구현
+#### Proxy 구현 코드
 ```java
 @RestController  
 @RequestMapping("/proxy/v1")
@@ -31,13 +31,14 @@ public class ProxyController {
     private final WebClient webClient;  
   
     @GetMapping("/{cctvName}/master.m3u8")  
-    public Mono<ResponseEntity<String>> getM3u8Hill(@RequestParam("entry") String entry) {  
+    public Mono<ResponseEntity<String>> getM3u8Hill(@RequestParam("entry") String entry, @PathVariable String cctvName) {  
 
-		// Key값 갱신로직
+		// Header용 Key값 갱신로직
+		...
 			
         return webClient.get()  
                 .uri(...)  
-                .header(...)  
+                .header(...)
                 .retrieve()  
                 .bodyToMono(String.class)  
                 .map(response -> {  
@@ -49,6 +50,7 @@ public class ProxyController {
 }
 ```
 
+프론트에서 `entry` : 현재시간, `cctvName` 을 받아 위에 구현한 Proxy서버가 CCTV로 직접 요청을 보내 Header에 사용되는 key를 갱신하고, 해당 key로 다시한번 HLS를 위한 데이터를 API로 요청해 프론트에 넘겨 주는 방법으로 구현하였다.
 
 
 https://velog.io/@penrose_15/Data%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B3%A0%EC%B0%B0
