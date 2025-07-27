@@ -1,13 +1,13 @@
 ---
 slug: jwt-parserbuilder
-title: JJWT 라이브러리 parserbuilder 에러
+title: JJWT 라이브러리 parserbuilder 컴파일 오류 해결
 authors:
   - haeyoung
 tags:
   - Java
 ---
 
-#### parserBuilder()는 왜 사용이 안될까?
+JJWT라이브러리를 사용하던중 이전까지 사용하고있던 메서드에서 컴파일 오류가 발생하여 해결했던 경험을 공유하고자 한다.
 
 ```java
 import io.jsonwebtoken.JwtException  

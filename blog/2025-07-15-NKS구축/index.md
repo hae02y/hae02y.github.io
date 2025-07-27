@@ -48,9 +48,9 @@ NKS 클러스터가 Private 서브넷에 구성되어있어 노드가 Public Int
 ### BastionHost 설정
 #### KubeCtl 설치
 
-이번에 구축한 서버의 경우 `X86-64` 이고, 혹시 ARM 기반 으로 구축을 하는경우 아래 링크를 참고하자.
+이번에 구축한 서버의 경우 `X86-64` 이고, 혹시 ARM 기반 으로 구축을 하는경우 아래 링크를 참고하자.    
 
-- [kubectl 구축](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#installusingnativepackagemanagement)
+[kubectl 구축](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#installusingnativepackagemanagement)
 
 1. 최신 릴리스 다운로드
 ```bash
@@ -324,9 +324,9 @@ pipelines:
 
 
 
-### 내가 만난 문제
+### 마주쳤던 문제들
 
-#### Pull 이 안땡겨짐
+#### InvalidImageName 발생
 ```bash
 ncloud@server:~$ kubectl get pods
 NAME                                READY   STATUS             RESTARTS   AGE
@@ -336,9 +336,9 @@ ansan-daemin-api-7578988667-ptkqw   0/1     InvalidImageName   0          15h
 
 #### ALB Health-check 문제
 
-Cluster IP를 기본값으로 설정해서 ALB에서 Health Check가 불가능함 
+Cluster IP를 기본값으로 설정해서 ALB에서 Health Check가 불가능하였다. Cluster IP는 외부에서 접근할수없어, ALB에서 HealthCheck를 보낼수없기 때문이다. 이를 해결하기 위해 ClusterIP -> NodePort로 변경하여 해결하였다.
 
-ClusterIP -> NodePort로 변경함
+
 
 
 ### Ref.

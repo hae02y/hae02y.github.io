@@ -24,30 +24,34 @@ tags:
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
-        .headers().frameOptions().sameOrigin()  // 동일한 출처로 들어오는 요청만 렌더링 허용
+        .headers()
+        .frameOptions().sameOrigin()
         .and()
-        .csrf().disable() // csrf 허용 안 함
-        .cors().configurationSource(corsConfigurationSource())  // 직접 작성한 corsConfiguration 적용
+        .csrf()
+        .disable()
+        .cors()
+        .configurationSource(corsConfigurationSource())
         .and()
-    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)   // 세션을 짧게 가지고 가는 설정 추가 (무상태성 유지)
+    .sessionManagement()
+    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .formLogin().disable()  
-                // formLogin(주로 SSR 방식에서 사용됨) 허용 안 함 -> JSON 형식으로 전송할 것
                 .httpBasic().disable() 
-                // httpBasic(username, password를 헤더에 실어서 인증) 허용 안 함
                 .exceptionHandling()
-                .authenticationEntryPoint(new MemberAuthenticationEntryPoint()) // AuthenticationException 발생 시 호출
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint())
                 .accessDeniedHandler(new MemberAccessDeniedHandler())   
-                // 권한 없을 때 호출
                 .and()
                 .apply(new CustomFilterconfigurer())
                 .and()
-                        .authorizeHttpRequests(authorize -> authorize
-/** --------------- 접근 권한 설정 예시------------------- **/
-                        .antMatchers(HttpMethod.POST, "/members/signup").permitAll()
-                        .antMatchers(HttpMethod.PATCH, "/members/mypage/edit/**").hasRole("USER")
-                        .antMatchers(HttpMethod.PATCH, "/members/mypage/**").hasRole("USER")
-                        .antMatchers(HttpMethod.GET, "/members").hasRole("ADMIN")
+            .authorizeHttpRequests(authorize -> authorize
+            .antMatchers(HttpMethod.POST, "/members/signup")
+            .permitAll()
+            .antMatchers(HttpMethod.PATCH, "/members/mypage/edit/")
+            .hasRole("USER")
+            .antMatchers(HttpMethod.PATCH, "/members/mypage/")
+            .hasRole("USER")
+            .antMatchers(HttpMethod.GET, "/members")
+            .hasRole("ADMIN")
 
                 );
         return http.build();
@@ -62,13 +66,13 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 ![](dd3.png)
 
-1.  사용자는 **URL /auth/login** 로 **EMAIL** 과 **PASSWORD**를 **POST** 요청으로 보낸다
-2.  스프링 시큐리티의 핵심 로직으로 DB로 이메일과 패스워드를 인증하고 통과하면 **Access Token**과 **Refresh Token**을 발급한다.
-3.  사용자는 일반 데이터 요청을 **Access Token**과 함께 보낸다
-4.  서버는 **Access Token**을 검증하고 통과하면 데이터 응답을 보낸다
-5.  사용자가 만료된 **Access Token**을 이용해 요청을 보내면 서버는 재발행요청을 한다
-6.  재발행 요청은 만료된 **Access Token**과 유효한 **RefreshToken** 값을 **URL /auth/reissue 로 POST** 요청을 보낸다.
-7.  서버에서는 **RefreshToken**을 검증하고 다시 **AccessToken**과 **RefreshToken** 값을 사용자에게 넘겨준다
+1.  사용자는 URL /auth/login 로 EMAIL 과 PASSWORD를 POST 요청으로 보낸다
+2.  스프링 시큐리티의 핵심 로직으로 DB로 이메일과 패스워드를 인증하고 통과하면 Access Token과 Refresh Token을 발급한다.
+3.  사용자는 일반 데이터 요청을 Access Token과 함께 보낸다
+4.  서버는 Access Token을 검증하고 통과하면 데이터 응답을 보낸다
+5.  사용자가 만료된 Access Token을 이용해 요청을 보내면 서버는 재발행요청을 한다
+6.  재발행 요청은 만료된 Access Token과 유효한 RefreshToken 값을 URL /auth/reissue 로 POST 요청을 보낸다.
+7.  서버에서는 RefreshToken을 검증하고 다시 AccessToken과 RefreshToken 값을 사용자에게 넘겨준다
 
   
 jwt를 통해 로그인을 하게 되면. 사용자를 확인할때 access, refresh 토큰을 발급한다.  그리고 이것이 유효한지 확인하여, 사용자가 승인이되고 아니면 안되게 한다. JwtTokenizer 클래스에서 JWT 토큰을 만들어주는것이다.  엑세스토큰 만료기간도 여기서 설정한다. @value로 설정. 보통 억세스토큰 시간의 적정 시간은 1시간 이내로 하고, 중간보안은 6시간정도, 그이상은 약한 보안이다. 현재 시큐리티에서 제일 보완해야할 부분이다. claims 은 jwt에 저장된 정보로 보면되고, 디코딩할때 사용하는 것이다. 인코딩된 키로부터 키객체 생성..! `jwtAuthenticationFilter`를 통해서 jwt decode했을때 나오는 값등을 넣어 줄수 있다. `jwtVerificationFilter`는 토큰을 어떤식으로 검증할 것인지 확인해주는 필터이다. jwt를 검증할때 권한이 있는지 없는지를 확인. Bearer 값이 빠졌거나, authorization이 null 이거나 이런 값들을 추가해서 검증방식을 설정한다.
