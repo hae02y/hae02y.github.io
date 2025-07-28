@@ -9,7 +9,7 @@ tags:
   - NCP
   - Infra
 ---
-
+이번 프로젝트를 진행하면서 Naver Cloud Platform을 이용해 쿠버네티스를 구축하고 개발해야하는
 ### 구축 순서
 
 ```bash

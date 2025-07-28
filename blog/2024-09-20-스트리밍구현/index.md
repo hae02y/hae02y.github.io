@@ -216,6 +216,7 @@ function handleHLSError(hls, videoId, data) {
 
 
 
-### 대안
+### 결과
+
 
 
