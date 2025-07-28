@@ -156,27 +156,65 @@ public class RtspController {
 
 #### 프론트엔드 대응
 
-HLS를 백엔드에서 정상적으로 Response로 전달할수있게 됐다. 그럼 다음으로 프론트엔드에서 어떻게 구현했는지 알아보자.
+HLS를 백엔드에서 정상적으로 Response로 전달할수있게 됐다. 그럼 다음으로 프론트엔드에서 어떻게 구현했는지 알아보자. 목표는 여러대의 CCTV 스트리밍을 하나의 페이지에서 선택적으로 재생하고, 실시간 스트리밍 상황에서 오류 발생시 복구처리 하고, safari 나 chrome등 브라우저에 맞도록 해야했다. `hls.js`, `JQuery`, `Js`를 사용하여 구현하였다. 사용방법은 아래의 링크를 참고하자.    
+
+[hls.js Docs](https://github.com/video-dev/hls.js)
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 ```
 
 ```javascript
-function initHLS(cctvSrc, videoElement, videoId = 'video') {
 
-    if (window.hls) window.hls.destroy();
-    const hls = new Hls();
-    window.hls = hls;
-    hls.attachMedia(videoElement);
-    hls.on(Hls.Events.MEDIA_ATTACHED, () => hls.loadSource(cctvSrc));
-    hls.on(Hls.Events.ERROR, (event, data) => handleHLSError(hls, videoId, data));
+function selectCCTV(evt) {
+  const cctvNumber = $(evt.target).attr('id');
+  const cctvSrc = CCTV_MAP[cctvNumber];
+  if (!cctvSrc) {
+    console.warn("잘못된 CCTV 선택: " + cctvNumber);
+    return;
+  }
 
+  const video = document.getElementById('cctvContainer');
+  $('.cctvImage').show();
+
+  if (Hls.isSupported()) {
+    if (window.hls) window.hls.destroy();
+
+    const hls = new Hls();
+    window.hls = hls;
+
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MEDIA_ATTACHED, () => hls.loadSource(cctvSrc));
+    hls.on(Hls.Events.ERROR, (event, data) => handleHLSError(hls, 'video', data));
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = cctvSrc;
+    video.addEventListener('canplay', () => video.play());
+  }
+}
+
+function handleHLSError(hls, videoId, data) {
+  console.error(`HLS 오류 (${videoId}): ${data.type}, ${data.details}`);
+  if (data.fatal) {
+    switch (data.type) {
+      case Hls.ErrorTypes.NETWORK_ERROR:
+        console.log(`NETWORK_ERROR: 복구 시도 중...`);
+        hls.startLoad();
+        break;
+      case Hls.ErrorTypes.MEDIA_ERROR:
+        console.log(`MEDIA_ERROR: 복구 시도 중...`);
+        hls.recoverMediaError();
+        break;
+      default:
+        console.log(`치명적 오류: 스트리밍 종료`);
+        hls.destroy();
+        break;
+    }
+  }
 }
 ```
 
 
-[hls.js Docs](https://github.com/video-dev/hls.js)
+
 
 ### 대안
 
