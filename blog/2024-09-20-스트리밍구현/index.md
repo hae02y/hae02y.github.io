@@ -22,7 +22,7 @@ tags:
 다양한 방법을 찾아보다 간단한 방법을 발견했다. 가장 먼저 떠오른 접근 방식은 현장 CCTV 관리 프로그램, NVR에서 직접 제공하는 HLS API를 사용하는 방식이었다. 현장이 미국에 있고 PoC로 진행하다보니 현장 정보에 대해 제한된 부분이 많은 어려움이 있었지만 Export하는 API를 지원함을 알아낼수있었다. `CCTV ID`, `Mac` 등을 통해 `Key`를 발급받고 영상을 추출해낼수있는 방법이다. 이방식을 통해 프론트엔드에서 `hls.js` 와같은 라이브러리를 통해 진행을 하면 된다. 간단하게 flow chart를 그려보면 아래와 같다.
 
 ![](screen1.png)
-하지만 CCTV/NVR과 Frontend 사이에 도메인이 다르다보니 `CORS`가 발생하게 되고, `AuthKey`를 프론트에서 직접 요청하는 과정에서 보안적인 위험과 사용자에게 `URL`이 직접적으로 노출되어 문제가 발생할수있었고, 이를 위해 프록시 서버를 구축하는 방법을 고려하였다. 
+하지만 CCTV/NVR과 Frontend 사이에 도메인이 다르다보니 `CORS`가 발생하게 되고, `AuthKey`를 프론트에서 직접 요청하는 과정에서 보안적인 위험과 사용자에게 `URL`이 직접적으로 노출되어 문제가 발생할수있었고, 이를 위해 프록시 서버를 구축하는 방법을 고려하였다. 백엔드는 `Java` , `SpringBoot`, `Docker`로 진행하였다.
 
 #### Proxy 구현 코드
 ```java
@@ -158,8 +158,9 @@ public class RtspController {
 
 HLS를 백엔드에서 정상적으로 Response로 전달할수있게 됐다. 그럼 다음으로 프론트엔드에서 어떻게 구현했는지 알아보자. 목표는 여러대의 CCTV 스트리밍을 하나의 페이지에서 선택적으로 재생하고, 실시간 스트리밍 상황에서 오류 발생시 복구처리 하고, safari 나 chrome등 브라우저에 맞도록 해야했다. `hls.js`, `JQuery`, `Js`를 사용하여 구현하였다. 사용방법은 아래의 링크를 참고하자.    
 
-[hls.js Docs](https://github.com/video-dev/hls.js)
+[hls.js Docs](https://github.com/video-dev/hls.js) 
 
+  
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 ```
@@ -220,3 +221,6 @@ function handleHLSError(hls, videoId, data) {
 
 
 
+### Ref.
+- [Spring-Streaming-Server Github Repository](https://github.com/hae02y/Spring-Streaming-Server)
+- 
