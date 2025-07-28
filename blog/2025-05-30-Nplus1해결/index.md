@@ -87,7 +87,8 @@ Hibernate: select ... from parkarea_master where park_area_code=?
 
 ```java
 // List<ParkingHistory> 조회 후 
-for (ParkingHistory history : historyList) {       history.getParkArea().getParkAreaName();
+for (ParkingHistory history : historyList) {
+	history.getParkArea().getParkAreaName();
 }
 ```
 
