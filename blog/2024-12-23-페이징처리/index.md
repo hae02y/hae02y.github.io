@@ -1,6 +1,6 @@
 ---
 slug: pagination
-title: 페이지네이션에 대해 어디까지 알고있나요?
+title: 페이지네이션에 대해 깊게 고민해보자
 authors:
   - haeyoung
 tags:

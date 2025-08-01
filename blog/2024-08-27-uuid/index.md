@@ -1,6 +1,6 @@
 ---
 slug: uuid
-title: UUID를 PK로 사용해도 괜찮을까요?
+title: UUID를 PK로 사용하면 안됩니다.
 authors:
   - haeyoung
 tags:

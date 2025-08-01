@@ -1,6 +1,6 @@
 ---
 slug: method-reference
-title: '"코드는 짧아지지만 의미는 더 명확하게" - 메서드참조'
+title: 자바 메소드 참조 조금더 알고 사용하자.
 authors:
   - haeyoung
 tags:

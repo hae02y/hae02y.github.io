@@ -1,6 +1,6 @@
 ---
 slug: field
-title: 필드주입을 쓰면 안되는 이유를 아시나요?
+title: 필드주입을 쓰면 안되는 이유를 아시는지요.
 authors:
   - haeyoung
 tags:

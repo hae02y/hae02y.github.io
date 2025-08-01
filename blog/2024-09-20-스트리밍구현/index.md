@@ -1,6 +1,6 @@
 ---
 slug: "\bstreaming"
-title: ffmpeg를 이용한 스트리밍 서버 구축
+title: ffmpeg를 이용한 스트리밍 서버 구축기
 authors:
   - haeyoung
 tags:

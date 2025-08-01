@@ -1,6 +1,6 @@
 ---
 slug: code-review
-title: 부트캠프 동료분과 코드 리뷰를 했습니다.
+title: 부트캠프 동기와 함께하는 코드 리뷰
 authors:
   - haeyoung
 tags:

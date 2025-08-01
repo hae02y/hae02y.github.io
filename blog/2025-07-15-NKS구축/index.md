@@ -1,6 +1,6 @@
 ---
 slug: nks
-title: NKS를 구축해보아요.
+title: NCP와 함께하는 쿠버네티스 구축
 authors:
   - haeyoung
 tags:
