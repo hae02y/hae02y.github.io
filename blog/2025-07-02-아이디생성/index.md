@@ -117,7 +117,15 @@ public class User {
 | 2      | SELECT * FROM ... WHERE id = ? | JPA 내부 merge 경로에서 id 존재 여부 확인 |
 | 3      | INSERT INTO ...                | 실제 persist                    |
 
-프로시저 1회 + SELECT 1회 + INSERT 1회 이렇게 총 3번의 쿼리가 발생하게 된다. JpaRepository에서 save(entity)를 호출시, `JPA`는 해당 엔티티가 신규인지 판단하기 위해 `merge` 실행 과정중 `SELECT` 쿼리로 ID 존재여부를 확인하게 된다. 그리고 존재하지 않음을 확인하고 다시 persist()를 수행한다.    
+프로시저 1회 + SELECT 1회 + INSERT 1회 이렇게 총 3번의 쿼리가 발생하게 된다. JpaRepository에서 save(entity)를 호출시, `JPA`는 해당 엔티티가 신규인지 판단하기 위해 `merge` 실행 과정중 `SELECT` 쿼리로 ID 존재여부를 확인하게 된다. 그리고 존재하지 않음을 확인하고 다시 persist()를 수행한다. 
+
+```java
+if (isNew(entity)) {
+    persist(entity)
+} else {
+    merge(entity) → select → 없으면 persist
+}
+```
 
 - IDGeneratorUtil로 String id를 만들어 setId()
 - id != null이므로 JPA는 기존 객체라고 판단
@@ -127,11 +135,45 @@ public class User {
 
 우리가 `fn_sys_seq`를 통해 가져온 값은 이미 DB조회를 통해 최신 상태의 값으로 가져왔고 이를 테이블에서 확인할 필요는 없다. 
 
-- IDGeneratorUtil.make()로 ID 생성 (fn_sys_seq 프로시저 호출)
-- 생성한 ID를 엔티티에 직접 주입 (new User(id, ...))
-- JPA save() 호출 → id != null이므로 JPA는 merge() 수행
-- **불필요한 SELECT 쿼리 발생**
+### 해결방안
+JPA의 Entity 상태 판별 로직은 `SimpleJpaRepository` 내부의entityInformation.isNew() 를 기반으로 동작한다. 기본적으로 `@Id != null`이면 기존 엔티티(Detached)로 간주하며, 이로 인해 `merge()`를 통해 저장을 시도한다. 하지만 이 방식은 외부에서 ID를 미리 주입하는 전략과 충돌하게 되며, 결국 불필요한 `SELECT`가 발생하게 된다. `JPA` 가 save() 시 merge() 를 선택하는 이유는 단하나다. @ID != null 을 통해 기존 객체라고 판단하기 때문이다. 이 흐름을 바꾸기 위해 `JPA`에서는 Persistable 인터페이스를 제공한다. 이를 통해 `JPA`가 내부적으로 isNew()를 호출하도록 유도할수있다.
+
+```java
+public class User implements Persistable<String> {
+
+    @Id
+    private String usrSeq;
+
+    @Transient
+    private boolean isNew = true;
+
+    @Override
+    public String getId() {
+        return this.usrSeq;
+    }
+
+    @Override
+    public boolean isNew() {
+        return isNew;
+    }
+
+    @PostLoad
+    @PostPersist
+    private void markNotNew() {
+        this.isNew = false;
+    }
+}
+```
+
+이렇게 적용하여 객체 생성 직후에 isNew = true로 설정하여 persist()가 호출되도록 유도하고 `JPA`가 엔티티를 로딩하거나 저장한뒤에 @PostLoad, @PostPersist 이벤트를 통해 isNew = false로 변경하여 save()호출시 불필요한 `SELECT` 없이 바로 `INSERT`를 수행하게 한다. 적용 결과를 아래 표를 통해 살펴보자.
+
+|**단계**|**쿼리**|**설명**|
+|---|---|---|
+|1|CALL fn_sys_seq(…)|프로시저로 ID 생성|
+|2|INSERT INTO …|JPA가 persist()만 수행|
+이전과 달리 `SELECT` 가 발생하지 않으며, 기대한 대로 ID 생성과 `INSERT`만 수행된다.
 
 
-문자열을 수동으로 할당하고 save()를 호출하면, Hibernate는 해당 ID의 존재여부를 알기위해 `SELECT` 쿼리를 먼저 실행하고, 결과가 없을때 `INSERT`를 수행한다.
+### 마무리
 
+이번 경험을 통해 레거시 시스템의 ID 전략을 유지하면서도 JPA의 이점을 살릴 수 있는 방법을 고민하게 되었다.  특히 `Persistable` 인터페이스를 통해 JPA 내부의 ID 판별 방식을 우회함으로써, 불필요한 SELECT를 제거하고 효율적인 저장을 이룰 수 있었다.  단순히 ORM을 도입하는 것보다도, 시스템 특성에 맞게 커스터마이징하는 과정에서 더 많은 학습이 있었다.
