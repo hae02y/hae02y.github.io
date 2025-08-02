@@ -171,6 +171,8 @@ public class User implements Persistable<String> {
 |---|---|---|
 |1|CALL fn_sys_seq(…)|프로시저로 ID 생성|
 |2|INSERT INTO …|JPA가 persist()만 수행|
+
+
 이전과 달리 `SELECT` 가 발생하지 않으며, 기대한 대로 ID 생성과 `INSERT`만 수행된다.
 
 
