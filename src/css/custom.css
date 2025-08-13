@@ -35,7 +35,7 @@
         -moz-osx-font-smoothing: grayscale;
         line-height: 1.6;          /* 기본 1.5보다 넉넉하게 */
         letter-spacing: 0;         /* 자간 제거 */
-        word-break: keep-all;      /* 한글 가독성 유지 */
+        word-break: break-all;
         word-spacing: 0;           /* 단어 간격 제거 */
     }
 
