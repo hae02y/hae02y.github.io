@@ -33,3 +33,6 @@ tags:
 
 설계는 위의 이미지와 같이 동작하도록 작성하였다. Client가 LAMP를 통해 대시보드를 띄우고 Javascript로 `Ntfy` 와 `Websocket`으로 알림을 표출한다. 해당 알림은 Toast 형식으로 노출되었다가 사라진다.
 
+
+
+![](screen5.png)
