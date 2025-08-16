@@ -17,7 +17,7 @@ export default function MDXImg(props: Props) {
         <>
             {/* 이미지 박스 */}
             <div className="grid place-items-center w-full">
-                <div className="relative w-full sm:w-[75%] md:w-[50%] aspect-video justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
+                <div className="relative w-full aspect-video justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-lg rounded-lg">
                     <LazyImage
                         decoding="async"
                         loading="lazy"
