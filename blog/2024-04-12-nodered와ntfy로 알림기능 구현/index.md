@@ -10,7 +10,7 @@ tags:
 ---
 기존에 구축되어있던 레거시 프로젝트에 알림기능 추가가 필요하였다. 하지만 여러가지 이유로 일정이 정말 촉박했고, PHP로 구축된 Backend 서버를 직접 다룰수가 없는 상황 등으로 NodeRed, Ntfy를 통해 알림기능을 뚝딱 도입했던 경험을 작성해보려고 한다.
 
-### 도입 이유
+### 설계
 
 레거시 서버의 경우 Proxmox로 컨테이너화 되어있으며, LAMP 스택으로 PHP로 구성되어있고, Apache로 대시보드 정적 페이지를 서빙하고 있는 구조다. 이를 간단히 그려보면 아래 이미지와 같다.
 ![](screen1.png)
@@ -29,6 +29,7 @@ tags:
 
 설치는 이 [문서](https://nodered.org/docs/getting-started/local#prerequisites)를 참고하여 구축하였다. 이번 경우에는 Proxmox 기반이라 컨테이너에 글로벌로 설치하였지만, 도커 컨테이너 환경으로도 구축 가능하다. 
 
-![](screen2.png)
+![](screen3.png)
 
+설계는 위의 이미지와 같이 동작하도록 작성하였다. Client가 LAMP를 통해 대시보드를 띄우고 Javascript로 `Ntfy` 와 `Websocket`으로 알림을 표출한다. 해당 알림은 Toast 형식으로 노출되었다가 사라진다.
 
