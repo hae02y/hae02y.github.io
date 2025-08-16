@@ -27,3 +27,8 @@ tags:
 
 먼저 NodeRed 설치를 진행해보자.
 
+설치는 이 [문서](https://nodered.org/docs/getting-started/local#prerequisites)를 참고하여 구축하였다. 이번 경우에는 Proxmox 기반이라 컨테이너에 글로벌로 설치하였지만, 도커 컨테이너 환경으로도 구축 가능하다. 
+
+![](screen2.png)
+
+
