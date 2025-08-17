@@ -24,7 +24,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 animate-pulse rounded-md">
                     <div
                         className="animate-spin rounded-full border-2 border-gray-400 border-t-transparent"
-                        style={{ width: loaderSize, height: loaderSize }}
                     />
                 </div>
             )}
