@@ -35,7 +35,9 @@ tags:
 
 ## 서비스 구현
 
-설치를 완료후에 기본포트를 통해 접속하게 되면 아래와 같은 UI를 만날수있다. NodeRed에서 기본적인 개념을 알아보면 Flow와 Global이 있다. 이차이점은 아래의 표를 참고하자. 또한 간단한 기능들에 대해서도 표로 정리해보았다. 이내용들을 바탕으로 드래그앤드롭으로 노드를 생성하고 노드와 노드간 라인을 연결하여 다음 흐름을 설정할수있다. 
+### Node Red 구축
+
+설치를 완료후에 기본포트를 통해 접속하게 되면 아래와 같은 UI를 만날수있다. NodeRed에서 기본적인 개념을 알아보면 Flow와 Global이 있다. 이차이점은 아래에 간단한 기능들에 대해서 표로 정리해보았다. 이내용들을 바탕으로 드래그앤드롭으로 노드를 생성하고 노드와 노드간 라인을 연결하여 다음 흐름을 설정할수있다.
 
 ![](screen6.png)
 
@@ -65,7 +67,7 @@ tags:
 구성 완료된 내용은 아래 그림과 같다. 최초 실행시 Global 변수 세팅을 진행하고, 1분마다 트리거를 통해 `HTTP` Request를 생성한다. 이는 현재 우리 서비스의 API 서버에 주차면에 대한 정보를 요청하여 데이터를 가져오고 이과정에서 에러가 발생시 HTTP 응답코드 확인을 통해 Switch로 데이터를 저장하거나, 실패 알림을 보내도록 한다. 그리고 성공시 타업체 데이터 베이스에 접속하여 데이터를 가져온뒤, 비교 로직을 수행한다. 그리고 이과정에서도 에러 발생시 실패 알림을 발생시킨다. 만약 데이터 비교가 성공한다면, 주차장 별로 분할을 진행하고 주차장 별로 알림을 발생한다. `Ntfy`로 최종 알림을 전송하며, HTTP `POST`를 통해 전달한다.
 
 ![](screen7.png)
-Initiallize `Injection`을 통해서 `NodeRed`가 시작되면 Global Functions를 실행하도록 하였다. 그리고 Global Funtions에는 Global로 사용가능한 변수들을 정의하고 담아줬다. 아래의 예시는 `flow`에 담는 부분만 가져왔다. flow에 set을 통해 변수를 `key` : `value` 형태로 담아놓고 지금 탭의 어느 위치에서나 사용가능하도록 할수있다.
+Initiallize `Injection`을 통해서 `NodeRed`가 시작되면 Global Functions를 실행하도록 하였다. 그리고 Global Funtions에는 Global로 사용가능한 변수들을 정의하고 담아줬다. 아래의 예시는 `flow`에 담는 부분만 가져왔다. flow에 set을 통해 변수를 `key` : `value` 형태로 담아놓고 지금 탭의 어느 위치에서나 사용가능하도록 할수있다. 아래의 코드를 통해 간단하게 살펴보자.
 
 ```javascript
 var defaultAlertInterval = flow.get('alertInterval') || 5;
@@ -99,9 +101,96 @@ alertServer+=`dev_`;
 ```
 
 
+### Ntfy 구축
+
+ntfy 는 간단한 HTTP 기반 Pub-Sub 알림 서비스이다. 무료로  어떤 컴퓨터에서든 스크립트를 통해 휴대폰이나 데스크톱으로 알림을 보낼 수 있고, 오픈 소스로 셀프호스팅으로 구축해서 사용이 가능하다. 사용방법도 정말 간단해서 [문서](https://docs.ntfy.sh/install/)를 참고해서 구축한다면 쉽게 가능하다. 그리고 [깃허브 링크](https://github.com/binwiederhier/ntfy)를 통해서 확인도 가능하다.
+
+![alt text](image-1.png)
+
+설치 완료후 웹으로 접속하게 되면 다음과 같은 화면을 볼수있다. Ntfy를 살펴보기 전에 잠깐 NodeRed를 통해서 Ntfy로 전송하는 부분을 먼저 살펴보자. 아래의 코드를 통해서 확인 가능하다.
+
+```js
+
+var alertInfo = {
+    spaceNo: spaceNo,
+    alertInterval: alertInterval,
+    currentTime: currentTime,
+    lastAlertTime: lastAlertTime,
+    timeSinceLastAlert: currentTime - lastAlertTime,
+    alertNeeded: flow.get('envTest')===true || (currentTime - lastAlertTime > alertInterval * 60 * 1000)
+};
+
+if (alertInfo.alertNeeded) {
+    flow.set(lastAlertTimeKey, currentTime);
+    msg.url = alertServer+"ntfy에 등록한 Topic";
+    msg.headers = {
+        "title": encodeHeader(`제목`),
+        "priority": "urgent",
+        "tags": "rotating_light",
+        "click": "클릭시 이동할 위치"
+    };
+    return msg;
+} else {
+    return null;
+}
+```
+
+Ntfy는 Topic을 보내는 식으로 알림을 등록하는데 이때 HTTP를 통해 PUT / POST로 전송을 하면된다. 위에 작성된 코드를 통해서 Topic으로 Post방식으로 데이터를 전송하게 된다. 테스트를 해보려면 `curl` 명령어로 간단하게 가능하다.
+
+```bash
+curl -d "안녕하세요" ntfy URL/Topic이름
+```
+
+이렇게 해서 전달이 가능한데, 이때 기본적으로 작성시 전달되야하는 구조에 대해서 간단히 알아 보면 다음과 같다. 이미지 첨부도 가능하고, 태그도 부여할수있다.
+
+```js
+{
+    "id": "sPs71M8A2T",
+    "time": 1643935928,
+    "expires": 1643936928,
+    "event": "message",
+    "topic": "mytopic",
+    "priority": 5,
+    "tags": [
+        "warning",
+        "skull"
+    ],
+    "click": "https://homecam.mynet.lan/incident/1234",
+    "attachment": {
+        "name": "camera.jpg",
+        "type": "image/png",
+        "size": 33848,
+        "expires": 1643946728,
+        "url": "https://ntfy.sh/file/sPs71M8A2T.png"
+    },
+    "title": "Unauthorized access detected",
+    "message": "Movement detected in the yard. You better go check"
+}
+```
+
+![alt text](image.png)
+
+그럼 위의 이미지처럼 메세지가 정상적으로 올라오게된다. 이를 앱이나 데스크톱에서도 확인가능하고 API 연동을 통해 다양한 방식으로 구독이 가능하다. 지원하는 방식으로는 HTTP로 `Json`, `SSE` 연동이 가능하고 Websocket 도 연동 가능하다. 나는 특정 페이지에서 `Alert`로 동작해야하므로 Websocket을 통해 프론트엔드에 연결하였다. 프론트엔드에서 구현하는 방법도 아주 간단한데 일부만 아래에 작성해보았다.
+
+```js
+//웹소켓 연결 생성
+const ws = new WebSocket('wss://ntfy주소/topic이름/ws');
+
+//메세지 파싱
+ws.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    showNotification(data.message.replace(/\n/g, "<br />"));
+};
+
+//Toast로 알림 출력
+toastr.options = {
+  "closeButton": true,
+  ...
+  "timeOut": "30000",
+};
+toastr.error(message ? message : '알림이 켜졌습니다.');
+```
+
 ![](screen5.png)
-구현 결과 이와 같이 이쁘게 알림이 올라온다.
 
-## 정리
-
-만약 PHP에 알림 기능을 구현하거나 다른방식으로 구현을 진행했다면 시간이나 구현 난이도 면에서 아쉬웠을 상황에 좋은 기술을 도입해서 진행할수있어서 재미있었다. Node 기반의 NodeRed를 사용하면서 개발자가 굉장히 편리하게 사용할수있다는 생각이 들었고 재밌는 경험이였다.
+이렇게 쉽게 작성한 결과 위 이미지처럼 깔끔하게 알림이 표출된다. 구현까지 반나절정도 걸려서 완성했고 지금까지 정상적으로 동작하고있다. 만약 PHP에 알림 기능을 구현하거나 다른방식으로 구현을 진행했다면 시간이나 구현 난이도 면에서 공수가 꽤나 들어갔을 상황에 새로운 방법을 도입해서 시간을 아낄수있었다. 특히 NodeRed를 사용하면서 드래그앤 드롭으로 굉장히 편리하게 개발이 가능하고, 유지보수 시에 Javascript에 대한 이해도가 어느정도만 있다면 사용할수있다는 생각이 들었다. 중요도가 낮은 프로젝트에서 적은 리소스로 기능구현이라는 결과를 내고싶으면 NodeRed와 Ntfy 조합은 충분히 사용할만 한것같다.
