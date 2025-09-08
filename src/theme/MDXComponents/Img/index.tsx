@@ -16,7 +16,7 @@ export default function MDXImg(props: Props) {
     return (
         <>
             {/* 이미지 */}
-            <div className={`mb-5`}>
+            <div className={`mb-5 mt-5`}>
                 <LazyImage
                     decoding="async"
                     loading="lazy"

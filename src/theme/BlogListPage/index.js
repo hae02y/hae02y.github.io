@@ -26,7 +26,7 @@ function BlogListPageContent({items, metadata}) {
         <BlogLayout>
             <div className={`blog-header`}>
                 <h1 className={`text-center`}>Blog.</h1>
-                <Link to={'/blog/tags'}>태그</Link>
+                <Link className={`font-mono hover:underline`} to={'/blog/tags'}>All Tags.</Link>
             </div>
             <div className={`border-[0.3px] w-full border-gray-300`}></div>
             <div className="flex flex-col w-full">

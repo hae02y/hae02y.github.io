@@ -49,22 +49,21 @@ function Spacer() {
 
 export default function BlogPostItemHeaderInfo({
   className,
-}: Props): JSX.Element {
+}: Props) {
   const {metadata} = useBlogPost();
   const {date, readingTime} = metadata;
 
   const dateTimeFormat = useDateTimeFormat({
     year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
+    month: 'numeric',
+    day: 'numeric'
   });
 
   const formatDate = (blogDate: string) =>
     dateTimeFormat.format(new Date(blogDate));
 
   return (
-    <div className={`margin-vert--md text-gray-600 dark:text-gray-300 font-light`}>
+    <div className={`margin-vert--md text-gray-600 dark:text-gray-300 font-sans`}>
       <DateTime date={date} formattedDate={formatDate(date)} />
       {typeof readingTime !== 'undefined' && (
         <>
