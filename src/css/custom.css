@@ -160,6 +160,10 @@
 
 @layer components {
 
+    .markdown table {
+        @apply justify-items-center;
+    }
+
     .markdown strong {
         @apply font-semibold;
         font-family: 'Freesentation', 'Pretendard', sans-serif !important;

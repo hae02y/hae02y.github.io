@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 type LazyImageProps = {
-    src: string;
+    src?: string;
     alt?: string;
     className?: string;
     loaderSize?: number;

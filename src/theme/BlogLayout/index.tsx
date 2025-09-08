@@ -27,7 +27,7 @@ export default function BlogLayout(props: Props) {
                         <div className="main-class">
                             <main
                                 className={
-                                    `mx-auto max-w-[800px] px-4 w-full prose prose-lg`
+                                    `mx-auto max-w-[750px] 2xl:max-w-[900px] px-4 w-full prose prose-lg`
                                 }
                             >
                                 {children}

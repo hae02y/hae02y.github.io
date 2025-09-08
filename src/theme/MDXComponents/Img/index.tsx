@@ -15,18 +15,17 @@ export default function MDXImg(props: Props) {
 
     return (
         <>
-            {/* 이미지 박스 */}
-            <div className="grid place-items-center w-full">
-                <div className="relative w-full aspect-video justify-items-center items-center overflow-hidden border border-gray-300 bg-gray-100 shadow-sm rounded-lg">
-                    <LazyImage
-                        decoding="async"
-                        loading="lazy"
-                        {...props}
-                        className={transformImgClassName(props.className)}
-                        onClick={togglePopup}
-                        alt={props.alt ?? 'image'}
-                    />
-                </div>
+            {/* 이미지 */}
+            <div className={`mb-5`}>
+                <LazyImage
+                    decoding="async"
+                    loading="lazy"
+                    {...props}
+                    className={transformImgClassName(props.className)} // ✅ mx-auto
+                    onClick={togglePopup}
+                    alt={props.alt}
+                />
+                <p className={'text-center text-gray-400 font-free text-sm mt-1'}>{props.alt}</p>
             </div>
 
             {/* 팝업 확대 */}
@@ -38,7 +37,7 @@ export default function MDXImg(props: Props) {
                     <img
                         src={props.src}
                         alt={props.alt}
-                        onClick={(e) => e.stopPropagation()} // 클릭 막기
+                        onClick={(e) => e.stopPropagation()}
                         className="max-w-[90%] max-h-[90%] rounded shadow-lg"
                     />
                 </div>
