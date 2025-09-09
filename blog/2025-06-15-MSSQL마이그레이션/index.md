@@ -10,7 +10,7 @@ tags:
 ---
 Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전에 동적인 웹페이지의 탄생 배경을 먼저 알아보자.
 
-### 정적 웹페이지의 한계
+### 정적 웹페이지의 한계와 WAS
 
 ![대표적인 웹서버](screen1.png)
 
@@ -28,20 +28,37 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 
 이러한 점을 보완하기위해 다양한 방법이 나왔고, 그중 몇가지를 알아보자.
 
-첫번째로 웹서버에 스크립트 엔진을 내장시켜 하나의 프로세스에서 여러 요청을 처리하는 방법이다. 웹서버 내장 모듈 방식이라고 불린다.
-
-두번째로 사용자의 요청을 처리하는 프로그램을 WAS(Web Application Server)로 실행하는 방법이 있다. HTTP 기반의 백그라운드 프로세스로 사용자의 요청을 기다리다가 요청이 발생하면 내부에서 스레드로 처리하여 로직을 실행 한다.
+첫번째로 웹서버에 **스크립트 엔진을 내장**시켜 하나의 프로세스에서 여러 요청을 처리하는 방법이다. 웹서버 내장 모듈 방식이라고 불린다.
 
 ![WAS만 사용](screen6.png)
-
-세번째로 Reverse Proxy & 로드밸런싱 방법이 있다. 이방법은 웹서버가 클라이언트 대신 WAS의 앞단에서 트래픽을 관리하고 정적파일은 웹서버가 직접 내려주고, 동적요청은 WAS로 포워딩 하는 방식으로, 여러대의 WAS로 분산처리가 가능하다.
-
+두번째로 사용자의 요청을 처리하는 프로그램을 **WAS(Web Application Server)로 실행**하는 방법이 있다.  백그라운드 프로세스로 HTTP 기반의 사용자의 요청을 기다리다가 요청이 발생하면 내부에서 스레드로 처리하여 로직을 실행 한다.
 
 
+![WAS & WebServer 사용](screen7.png)
+
+세번째로 **Reverse Proxy & 로드밸런싱** 방법이 있다. 이방법은 웹서버가 클라이언트 대신 WAS의 앞단에서 트래픽을 관리하고 정적파일은 웹서버가 직접 내려주고, 동적요청은 WAS로 포워딩 하는 방식으로, 여러대의 WAS로 분산처리가 가능하다.
 
 
 ![WAS서버](screen2.png)
+그럼 WAS는 무엇일까? WAS는 웹에서 HTTP 프로토콜을 통해 사용자의 컴퓨터나 장치에 애플리케이션을 수행해주는 미들웨어로 주로 동적 서버 컨텐츠를 수행한다. 
 
+즉, DB 조회나 로직 처리를 요구하는 동적 컨텐츠를 제공하기 위해 만들어졌으며 웹 컨테이너, 서블릿 컨테이너 등의 이름으로 불린다. 
+
+여기서 Servlet이라는 개념이 등장한다. 서블릿은 1997년 자바 진영에서 웹개발을 위해 Servlet API를 정의했다. [tomcat docs](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/index.html), [orcale docs](https://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html), [jakarta docs](https://jakarta.ee/specifications/servlet/4.0/apidocs/) 등에서 확인이 가능하고 C언어 기반의 CGI를 대체할수있는 자바 웹 애플리케이션의 표준이라는 목적으로 탄생한 서블릿은 자바의 표준 컴포넌트로 자리잡았다.
+
+위의 이미지에 있는 Tomcat이나 Jetty와 같은 WAS 서버들이 `Servlet API`스펙의 구현체이다.`HttpServletRequest` , `HttpServletResponse` 와 같은 자바 인터페이스를 구현해서 자바 코드로 작성한 서블릿 / 스프링 같은 애플리케이션을 실행 시켜준다.
+
+자바진영에서는 경량 WAS로 Tomcat, Jetty 등을 사용하고, 엔터프라이즈 급으로 IBM WebSphere, JEUS, JBoss 등을 사용한다. 엔터프라이즈 급은 Servlet Container와 J2EE 엔터프라이즈 기능 전체를 구성한다.
+
+다른 진영에서는 `Servlet`을 사용하진 않지만 각 언어별로 표준 인터페이스를 구현하는 WAS가 존재하고 간단하게 살펴보면 다음과 같다.
+
+- Python : WSGI 스펙을 구현한 WAS 사용
+- Node.js : 자체 이벤트 루프 기반 HTTP 서버 내장, 대규모 서비스시 PM2, Nginx 등 함께 사용
+- Go : WAS기능 내장
+
+
+
+### Servlet을 알아보자
 
 > 클라이언트의 요청을 처리하고, 그 결과를 반환하는 자바로 만든 HTTP 애플리케이션의 표준 인터페이스
 
@@ -57,6 +74,15 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 - `HTTP`프로토콜 서비스를 지원하는 HttpServlet 클래스를 상속
 - TCP 위에서 동작하는 HTTP를 기반으로 요청/응답 처리 UDP 같은 비연결형보다 느리지만 신뢰성 제공
 
+
+```java
+GET /hello HTTP/1.1
+Host: example.com
+User-Agent: Chrome/...
+```
+
+
+![서블릿 동작 흐름도](screen8.png)
 **서블릿의 동작 흐름**
 1. 클라이언트 요청 (http://example.com/test)
 2. 웹 서버(Tomcat 등) → 해당 요청을 파싱
