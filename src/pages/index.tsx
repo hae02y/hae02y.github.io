@@ -2,20 +2,16 @@ import React, {Suspense} from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import TerminalDialog from "@site/src/components/TerminalDialog";
-import FloatingTags from "@site/src/components/FloatingTags";
 import BouncyDev from "@site/src/components/BounceDev";
-import MacTerminal from '@site/src/components/MacTerminal';
 import TerminalDialog2 from '@site/src/components/TerminalDialog2';
 
 
 
 function HomepageHeader() {
     const {siteConfig} = useDocusaurusContext();
-
     return (<header></header>
     );
 }
-
 
 function CamelSection() {
 

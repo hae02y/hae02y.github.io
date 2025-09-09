@@ -8,12 +8,12 @@ import styles from './styles.module.css';
 
 export default function BlogPostItemHeaderTitle({
   className,
-}: Props): JSX.Element {
+}: Props){
   const {metadata, isBlogPostPage} = useBlogPost();
   const {permalink, title} = metadata;
   const TitleHeading = isBlogPostPage ? 'h1' : 'h2';
   return (
-    <TitleHeading className={`${className}`}>
+    <TitleHeading className={`text-3xl`}>
       {isBlogPostPage ? title : <Link to={permalink}>{title}</Link>}
     </TitleHeading>
   );
