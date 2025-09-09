@@ -78,37 +78,19 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 아래의 그림을 통해 Spring이 없는 상태의 순수 서블릿의 동작 흐름을 살펴보자.
 ![순수 서블릿 동작 흐름도](screen9.png)
 
-1. **HTTP Request (사용자 → 서버)**
-    - 브라우저(클라이언트)가 http://example.com/hello 와 같은 요청 전달
-    - TCP/IP를 통해 톰캣(Tomcat) 같은 서블릿 컨테이너가 요청을 받음
-        
-2. **객체 생성 (HttpServletRequest, HttpServletResponse)**
-    - 컨테이너가 요청/응답을 다루기 위해 HttpServletRequest / HttpServletResponse 객체 생성
-    - 이 객체에는 요청 헤더, 파라미터, 바디 내용 등이 들어있고, 응답을 작성할 수 있는 출력 스트림도 포함
-        
-3. **서블릿 분석 (web.xml or 애노테이션 매핑 확인)**
-    - 컨테이너는 이 요청이 어떤 서블릿 클래스에 매핑되어야 하는지 확인
-    - 예전에는 web.xml에 `servlet-mapping`으로 적어뒀고, 지금은 @WebServlet("/hello") 같은 어노테이션으로 매핑
+브라우저에서 사용자가 http://example.com/hello라는 주소로 요청을 보낸다고 해보자. 이 순간 브라우저는 HTTP 프로토콜 규격에 맞는 요청 메시지를 만들어 네트워크를 통해 서버로 전달한다. 이 요청은 결국 TCP/IP를 타고 들어와 톰캣(Tomcat) 같은 서블릿 컨테이너가 수신하게 된다.
 
-4. **init() 실행 (최초 1회)**
-    - 해당 서블릿 클래스가 처음 로드될 때 한 번만 init() 메소드가 실행
-    - DB 연결이나 리소스 초기화 같은 준비 작업을 수행
-    - 이미 로드된 서블릿이면 다시 실행하지 않고 넘어감
-        
-5. **service() 실행 (요청마다)**
-    - 서블릿 컨테이너는 요청이 들어올 때마다 service(HttpServletRequest req, HttpServletResponse resp) 메서드를 호출.
-    - service()는 요청의 HTTP 메서드(GET, POST 등)를 확인
-        
-6. **doGet(), doPost() 실행**
-    - service()가 요청 타입을 보고 적절한 메서드를 호출
-        - GET 요청 → doGet()
-        - POST 요청 → doPost()
-        - PUT 요청 → doPut()
-        - DELETE 요청 → doDelete()
-    - 여기서 개발자가 작성한 로직이 실행 (resp.getWriter().write("Hello"); 같은 코드)
-        
-7. **HTTP Response (서버 → 사용자)**
-    - 최종적으로 HttpServletResponse 객체에 담긴 응답(HTML, JSON 등)이 네트워크를 통해 클라이언트 브라우저로 전달
+  컨테이너가 요청을 받으면 제일 먼저 개발자가 다룰 수 있도록 자바 객체를 만들어준다. 바로 HttpServletRequest와 HttpServletResponse이다. 요청 객체에는 클라이언트가 보낸 요청 라인, 헤더, 파라미터, 바디 데이터 등이 들어있고, 응답 객체에는 서버가 작성한 결과를 다시 클라이언트에게 보낼 수 있도록 출력 스트림이 포함되어 있다. 덕분에 개발자는 네트워크 소켓을 직접 건드리지 않고 객체 메서드 호출만으로 요청과 응답을 다룰 수 있다.
+
+  이제 컨테이너는 해당 요청이 어느 서블릿 클래스에 매핑되어야 하는지 확인한다. 예전에는 web.xml 파일에 servlet-mapping이라는 설정을 적어 두었고, 현대에는 @WebServlet("/hello") 같은 애노테이션을 사용해 특정 URL과 서블릿 클래스를 연결한다. 이 과정을 통해 어떤 서블릿이 이 요청을 처리할지 정해진다.
+
+  서블릿이 처음 호출되는 경우에는 준비 작업이 필요하다. 이때 한 번만 실행되는 것이 init() 메서드다. 서블릿이 메모리에 로드될 때 DB 연결이나 리소스 초기화 같은 작업을 여기서 처리한다. 이미 로드되어 있는 서블릿이라면 이 과정은 건너뛰고 곧바로 요청 처리로 넘어간다.
+
+  요청이 들어올 때마다 컨테이너는 서블릿의 service(HttpServletRequest req, HttpServletResponse resp) 메서드를 호출한다. 이 메서드는 들어온 요청이 어떤 HTTP 메서드인지(GET, POST, PUT, DELETE 등) 확인한 뒤에 적절한 메서드를 실행한다.
+
+  예를 들어 클라이언트가 GET 요청을 보냈다면 doGet()이, POST 요청이라면 doPost()가 실행된다. PUT과 DELETE 요청도 각각 doPut()과 doDelete()로 연결된다. 개발자는 이 메서드들 안에 비즈니스 로직을 작성한다. 예를 들어 resp.getWriter().write("Hello");와 같이 코드를 작성하면 클라이언트는 “Hello”라는 문자열을 응답으로 받게 된다.
+
+  마지막으로 서블릿에서 작성한 응답이 HttpServletResponse 객체에 담긴다. HTML, JSON, 혹은 다른 데이터일 수 있다. 이 응답은 다시 톰캣을 거쳐 TCP 소켓을 통해 네트워크로 전송되고, 최종적으로 클라이언트 브라우저가 이를 수신해 화면에 표시한다.
 
 
 그럼 서블릿을 사용함으로써 얻는 장점은 뭐가있을까?
@@ -120,7 +102,7 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 
 ### Servlet + Spring
 
-자그럼 여기 Spring MVC를 얹으면 어떻게 될까?
+자그럼 여기 Spring MVC를 얹어보자. 
 ![서블릿 + Spring](screen10.png)
 1. 클라이언트 요청 (브라우저 → 톰캣)
 2. 톰캣 FilterChain 통과 (ex. 보안, 로깅)
