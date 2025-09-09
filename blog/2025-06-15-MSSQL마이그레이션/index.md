@@ -161,7 +161,7 @@ HttpServletResponse res = new ResponseFacade(catalinaResponse);
 - RequestFacade / ResponseFacade : 개발자에게 노출되는 껍데기
 - catalinaRequest / catalinaResponse : 내부적으로 실제 동작하는 구현체
     
-#### 서블릿 매핑
+##### 서블릿 매핑
 톰캣은 URL 패턴(/hello)을 보고 어떤 서블릿이 처리해야 하는지 결정한다. 결과적으로 /hello 요청은 결국 DispatcherServlet이 처리하게 된다.
 
 - web.xml 설정
