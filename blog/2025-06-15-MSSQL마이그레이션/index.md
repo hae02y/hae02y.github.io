@@ -44,7 +44,7 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 
 즉, DB 조회나 로직 처리를 요구하는 동적 컨텐츠를 제공하기 위해 만들어졌으며 웹 컨테이너, 서블릿 컨테이너 등의 이름으로 불린다. 
 
-여기서 Servlet이라는 개념이 등장한다. 서블릿은 1997년 자바 진영에서 웹개발을 위해 Servlet API를 정의했다. [tomcat docs](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/index.html), [orcale docs](https://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html), [jakarta docs](https://jakarta.ee/specifications/servlet/4.0/apidocs/) 등에서 확인이 가능하고 C언어 기반의 CGI를 대체할수있는 자바 웹 애플리케이션의 표준이라는 목적으로 탄생한 서블릿은 자바의 표준 컴포넌트로 자리잡았다.
+여기서 Servlet이라는 개념이 등장한다. 서블릿은 1997년 자바 진영에서 웹개발을 위해 Servlet API를 정의했다. [tomcat docs](https://tomcat.apache.org/tomcat-5.5-doc/servletapi/index.html), [orcale docs](https://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html), [jakarta docs](https://jakarta.ee/specifications/servlet/4.0/apidocs/) 등에서 확인이 가능하고 C언어 기반의 CGI를 대체할수있는 자바 웹 애플리케이션의 표준이라는 목적으로 탄생한 서블릿은 자바의 표준 컴포넌트로 자리잡았다.(CGI가 꼭 C로만 만들어지는건 아님)
 
 위의 이미지에 있는 Tomcat이나 Jetty와 같은 WAS 서버들이 `Servlet API`스펙의 구현체이다.`HttpServletRequest` , `HttpServletResponse` 와 같은 자바 인터페이스를 구현해서 자바 코드로 작성한 서블릿 / 스프링 같은 애플리케이션을 실행 시켜준다.
 
@@ -111,17 +111,15 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
     - 최종적으로 HttpServletResponse 객체에 담긴 응답(HTML, JSON 등)이 네트워크를 통해 클라이언트 브라우저로 전달
 
 
-그럼 서블릿을 사용함으로 ㅅ
+그럼 서블릿을 사용함으로써 얻는 장점은 뭐가있을까?
 
 - 자바 언어의 이식성 → OS 독립적
-    
-- 멀티스레딩 지원 → 동시 요청 처리 가능
-    
+- 멀티스레딩 지원 → 동시 요청 처리 가능    
 - 명확한 API 제공 (HttpServletRequest, HttpServletResponse)
-    
 - 웹 애플리케이션 개발의 표준
 
-    
+### Servlet + Spring
+
 자그럼 여기 Spring MVC를 얹으면 어떻게 될까?
 ![서블릿 + Spring](screen10.png)
 1. 클라이언트 요청 (브라우저 → 톰캣)
@@ -144,8 +142,79 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 | 난이도     | 로우레벨, 번거로움                               | 추상화 ↑, 생산성 ↑                                          |
 
 
-```java
+### 전체 흐름 보기
+
+브라우저는 사용자가 주소창에 입력한 URL을 기반으로 **HTTP 요청 메시지**를 생성
+
+```
 GET /hello HTTP/1.1
 Host: example.com
 User-Agent: Chrome/...
 ```
+
+이 요청은 TCP/IP 소켓을 통해 서버의 80(HTTP) 또는 8080(Spring Boot 내장 톰캣 기본 포트)으로 전달된다.
+
+##### 톰캣 Connector가 요청 수신
+
+Spring Boot는 내부적으로 톰캣(서블릿 컨테이너)을 실행한다.
+
+톰캣의 **Connector**(예: Http11NioProtocol)가 8080 포트를 리스닝 중이고, 요청이 들어오면 소켓에서 데이터를 읽는다.
+- InputStream으로 Raw HTTP 데이터 수신
+- Request Line(GET /hello), Header(User-Agent 등), Body(JSON, Form 데이터 등) 파싱
+    
+
+##### HttpServletRequest / Response 객체 생성
+
+톰캣은 파싱한 데이터를 자바 객체로 추상화한다. 하지만 개발자가 직접 다루는 건 HttpServletRequest, HttpServletResponse 인터페이스이다. 그래서 톰캣은 **Facade 패턴**을 적용해 다음과 같은 객체를 만든다.
+
+```java 
+HttpServletRequest req = new RequestFacade(catalinaRequest);
+HttpServletResponse res = new ResponseFacade(catalinaResponse);
+```
+- RequestFacade / ResponseFacade : 개발자에게 노출되는 껍데기
+- catalinaRequest / catalinaResponse : 내부적으로 실제 동작하는 구현체
+    
+#### 서블릿 매핑
+톰캣은 URL 패턴(/hello)을 보고 어떤 서블릿이 처리해야 하는지 결정한다. 결과적으로 /hello 요청은 결국 DispatcherServlet이 처리하게 된다.
+
+- web.xml 설정
+- @WebServlet 어노테이션
+- Spring Boot : 자동으로 **DispatcherServlet**에 모든 요청이 매핑 `(/ pattern)`
+    
+
+##### DispatcherServlet 동작
+
+이제 요청은 Spring MVC 안으로 들어온다. DispatcherServlet은 스프링에서 가장 중요한 Front Controller 역할을 수행한다. 이 흐름을 살펴보면 아래와 같다.
+
+1. service() 실행 → doDispatch() 호출
+2. **HandlerMapping** : URL과 매핑된 컨트롤러 메서드 검색
+    ex) /hello → HelloController.hello()
+3. **HandlerAdapter** : 컨트롤러 실행 준비
+    - 파라미터 바인딩 (@RequestParam, @RequestBody)
+    - 데이터 변환
+4. **컨트롤러 실행** : 실제 비즈니스 로직 수행
+```java
+@GetMapping("/hello")
+public String hello() {
+    return "hello.html";
+}
+```
+5. **ViewResolver 처리**
+    - String 반환 시 : 템플릿 엔진(Thymeleaf 등)으로 HTML 렌더링
+    - @RestController 반환 시 : 객체 → JSON 직렬화
+        
+##### HttpServletResponse 채우기
+
+컨트롤러 결과가 나오면, DispatcherServlet은 응답을 HttpServletResponse에 작성한다. 예시는 아래와 같다.
+- 상태 코드 (200 OK)
+- 헤더 (Content-Type: text/html; charset=UTF-8)
+- 바디 (HTML, JSON 등)
+    
+
+##### 톰캣이 응답 전송
+
+응답이 준비되면 DispatcherServlet은 제어권을 톰캣에게 반환한다. 톰캣은 ResponseFacade 내부 버퍼에 있는 내용을 TCP 소켓의 OutputStream으로 `flush` 한다.
+
+##### 클라이언트 수신
+
+브라우저는 서버로부터 전달된 HTTP 응답을 받고, HTML이라면 화면에 렌더링하고, JSON이라면 개발자도구의 Network 탭에서 확인할 수 있게 된다.
