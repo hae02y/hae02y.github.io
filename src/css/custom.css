@@ -184,7 +184,7 @@
     }
 
     .markdown code {
-        @apply text-[11px] md:text-[12px] 2xl:text-[13px] text-blue-600 dark:text-orange-300 border-0 px-1;
+        @apply text-[13px] text-blue-600 dark:text-orange-300 border-0 px-1;
     }
 
     .markdown p div code,
@@ -203,40 +203,40 @@
     .markdown ol li code,
     .markdown li code
     {
-        @apply text-[11px] md:text-[12px] 2xl:text-[12px] font-medium;
+        @apply text-[12px] 2xl:text-[12px] font-medium;
     }
 
     .markdown h1 {
-        @apply text-3xl md:text-4xl font-bold text-[var(--primary)] mb-4 md:mb-3;
+        @apply text-4xl font-bold text-[var(--primary)] mb-4 md:mb-3;
     }
 
     .markdown h2 {
-        @apply text-2xl md:text-3xl font-semibold text-[var(--primary)] mt-12 mb-3;
+        @apply text-3xl font-semibold text-[var(--primary)] mt-12 mb-3;
     }
 
     .markdown h3 {
-        @apply text-xl md:text-2xl font-bold text-[var(--primary)] mt-10 mb-2;
+        @apply text-2xl font-bold text-[var(--primary)] mt-10 mb-2;
     }
 
     .markdown h4 {
-        @apply text-lg md:text-xl font-bold text-[var(--secondary)] mt-5 mb-2;
+        @apply text-xl font-bold text-[var(--secondary)] mt-5 mb-2;
     }
 
     .markdown h5 {
-        @apply text-sm md:text-base font-medium text-[var(--secondary)] mt-2 mb-1;
+        @apply text-base font-bold text-[var(--secondary)] mt-2 mb-1;
     }
 
     .markdown h6 {
-        @apply text-sm md:text-sm font-medium text-[var(--secondary)] mb-1;
+        @apply text-sm font-medium text-[var(--secondary)] mb-1;
     }
 
     .markdown p {
-        @apply text-sm md:text-base 2xl:text-[17px] text-[var(--primary)] mb-3;
+        @apply text-base 2xl:text-[17px] text-[var(--primary)] mb-3;
     }
 
     .markdown ul,
     .markdown ol {
-        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-sm md:text-base 2xl:text-[17px];
+        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-base 2xl:text-[17px];
     }
 
     .markdown ul {
@@ -250,7 +250,7 @@
     /* 2depth 이상의 중첩된 UL/OL 스타일 */
     .markdown li ul,
     .markdown li ol {
-        @apply pl-5 md:pl-6 mb-2 mt-1 text-[var(--primary)] text-sm md:text-base 2xl:text-[17px];
+        @apply pl-5 md:pl-6 mb-2 mt-1 text-[var(--primary)] text-base 2xl:text-[17px];
     }
 
     .markdown li ul {
@@ -262,29 +262,29 @@
     }
 
     .markdown li {
-        @apply mt-0 text-sm md:text-base 2xl:text-[17px];
+        @apply mt-0 text-base 2xl:text-[17px];
     }
 
     .markdown li > p {
-        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-base 2xl:text-[17px] text-[var(--primary)];
     }
 
     /* 2depth 이상의 중첩된 리스트 스타일 */
     .markdown li li {
-        @apply mt-1 text-sm md:text-base 2xl:text-[17px];
+        @apply mt-1 text-base 2xl:text-[17px];
     }
 
     .markdown li li > p {
-        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-base 2xl:text-[17px] text-[var(--primary)];
     }
 
     /* 3depth 이상의 중첩된 리스트 스타일 */
     .markdown li li li {
-        @apply mt-1 text-sm md:text-base 2xl:text-[17px];
+        @apply mt-1 text-base 2xl:text-[17px];
     }
 
     .markdown li li li > p {
-        @apply m-0 text-sm md:text-base 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-base 2xl:text-[17px] text-[var(--primary)];
     }
     
 
@@ -294,7 +294,7 @@
     }
 
     .markdown aside h3 {
-        @apply text-sm md:text-base 2xl:text-[17px] font-semibold mb-2 text-[var(--primary)];
+        @apply text-base 2xl:text-[17px] font-semibold mb-2 text-[var(--primary)];
     }
 
     .markdown aside > hr {
@@ -312,7 +312,7 @@
     }
 
     .markdown a {
-        @apply text-sm md:text-base text-gray-600 dark:text-gray-300 break-all;
+        @apply text-base text-gray-600 dark:text-gray-300 break-all;
     }
 
     .markdown a:hover {
