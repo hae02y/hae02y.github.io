@@ -114,9 +114,9 @@ Spring을 통해 코드를 작성하다가 `HttpServletRequest`와 `HttpServletR
 
 그 후 드디어 컨트롤러 메서드가 실행된다. 컨트롤러는 내부적으로 서비스(Service)를 호출하고, 서비스는 다시 리포지토리(Repository)를 거쳐 DB에 접근한다. 즉, 실제 비즈니스 로직은 이 단계에서 수행된다.
 
-비즈니스 로직이 끝나면 결과가 컨트롤러로 반환되고, 다시 DispatcherServlet으로 돌아온다. 반환값이 뷰 이름이라면 ViewResolver가 동작해서 JSP, Thymeleaf 같은 뷰를 찾아 렌더링한다. 만약 @RestController라면 반환 객체를 그대로 JSON으로 변환해 응답 본문에 담는다.
+비즈니스 로직이 끝나면 결과가 컨트롤러로 반환되고, 다시 DispatcherServlet으로 돌아온다. 반환값이 뷰 이름이라면 ViewResolver가 동작해서 JSP, Thymeleaf 같은 뷰를 찾아 렌더링한다. 만약 `@RestController`라면 반환 객체를 그대로 JSON으로 변환해 응답 본문에 담는다.
 
-마지막으로 DispatcherServlet은 완성된 응답을 HttpServletResponse에 작성한다. 이 응답 객체는 톰캣에 의해 TCP 소켓으로 flush되고, 최종적으로 클라이언트 브라우저가 수신하여 사용자 화면에 결과가 나타난다.
+마지막으로 DispatcherServlet은 완성된 응답을 HttpServletResponse에 작성한다. 이 응답 객체는 톰캣에 의해 TCP 소켓으로 `flush`되고, 최종적으로 클라이언트 브라우저가 수신하여 사용자 화면에 결과가 나타난다.
 
 이렇게 순수 서블릿으로 구현했을때 보다 Spring을 통해 추상화하여 편리하게 구현가능한 장점이있다. 이내용을 하단에 표로 정리해보았다.
 
@@ -129,7 +129,7 @@ Spring을 통해 코드를 작성하다가 `HttpServletRequest`와 `HttpServletR
 | 난이도     | 로우레벨, 번거로움                               | 추상화 ↑, 생산성 ↑                                          |
 
 
-### 전체 흐름 보기
+### 마지막으로 복습
 
 브라우저는 사용자가 주소창에 입력한 URL을 기반으로 **HTTP 요청 메시지**를 생성
 
