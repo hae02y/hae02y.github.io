@@ -1,14 +1,16 @@
 ---
-slug: Servlet 에 Deep Dive
-title: MSSQL을 마이그레이션 하자!
+slug: servlet
+title: Servlet에 숨참고 Deep Dive!
 authors:
   - haeyoung
 tags:
-  - API
   - Java
-  - Jpa
+  - Servlet
+  - WAS
 ---
-Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전에 동적인 웹페이지의 탄생 배경을 먼저 알아보자.
+Spring을 통해 코드를 작성하다가 `HttpServletRequest`와 `HttpServletResponse`은 어디서 온걸까 하는 의문이 생겼다. `HTTP`를 통해 전송된 내용이 톰캣과 같은 WAS를 통해 변환된다는 것 까지는 알고있었지만 자세하게 알아보고싶어 블로그 작성을 시작하게 되었다. 
+
+자 그럼 서블릿에 대해 깊이 알아보기 전에 정적페이지의 한계와 WAS의 등장이유에 알아보며 글을 시작해본다.
 
 ### 정적 웹페이지의 한계와 WAS
 
@@ -26,7 +28,7 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 
 프로그래밍 언어로 CGI 규격을 준수하는 코드를 작성하면, 웹서버는 클라이언트의 요청에 대해 개별로 프로세스를 생성하는 방식으로 동작한다. 하지만 이부분에서 CGI의 한계가 발생하는데 클라이언트의 요청이 많아지면 각 요청마다 독립 프로세스(멀티 프로세싱)를 생성하는 점이다.
 
-이러한 점을 보완하기위해 다양한 방법이 나왔고, 그중 몇가지를 알아보자.
+이러한 점을 보완하기위해 다양한 방법이 제시되었고, 그중 몇가지를 알아보자.
 
 첫번째로 웹서버에 **스크립트 엔진을 내장**시켜 하나의 프로세스에서 여러 요청을 처리하는 방법이다. 웹서버 내장 모듈 방식이라고 불린다.
 
@@ -64,7 +66,7 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 
 간단하게 말해 서블릿이란 **자바를 사용하여 웹을 만들기 위한 기술**이다. 웹서버가 파싱한 요청과 응답을 개발자가 작성한 클래스로 넘겨주고, 그 클래스가 비즈니스 로직을 수행하여 응답을 만들어낸다. Spring MVC도 결국 서블릿 위에 올라가는 프레임워크이고, 핵심 컨트롤러가 바로 `DispatcherServlet` 이다.
 
-먼저 서블릿의 특징 부터 살펴보자.
+먼저 서블릿의 특징과 장점을 나열해보면 다음과 같다.
 
 - 클라이언트의 요청에 대해 동적으로 작동하는 웹 어플리케이션 컴포넌트
 - Servlet API는 javax.servlet.* 또는 jakarta.servlet.* 패키지로 제공
@@ -73,7 +75,10 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
 - MVC 패턴에서 `Controller` 담당
 - `HTTP`프로토콜 서비스를 지원하는 HttpServlet 클래스를 상속
 - TCP 위에서 동작하는 HTTP를 기반으로 요청/응답 처리 UDP 같은 비연결형보다 느리지만 신뢰성 제공
-
+- 자바 언어의 이식성(OS 독립적) 
+- 멀티스레딩 지원 → 동시 요청 처리 가능    
+- 명확한 API 제공 (HttpServletRequest, HttpServletResponse)
+- 웹 애플리케이션 개발의 표준
 
 아래의 그림을 통해 Spring이 없는 상태의 순수 서블릿의 동작 흐름을 살펴보자.
 ![순수 서블릿 동작 흐름도](screen9.png)
@@ -93,27 +98,27 @@ Servlet에 대해 얼마나 알고있을까? 서블릿에 대해 공부하기전
   마지막으로 서블릿에서 작성한 응답이 HttpServletResponse 객체에 담긴다. HTML, JSON, 혹은 다른 데이터일 수 있다. 이 응답은 다시 톰캣을 거쳐 TCP 소켓을 통해 네트워크로 전송되고, 최종적으로 클라이언트 브라우저가 이를 수신해 화면에 표시한다.
 
 
-그럼 서블릿을 사용함으로써 얻는 장점은 뭐가있을까?
-
-- 자바 언어의 이식성 → OS 독립적
-- 멀티스레딩 지원 → 동시 요청 처리 가능    
-- 명확한 API 제공 (HttpServletRequest, HttpServletResponse)
-- 웹 애플리케이션 개발의 표준
-
 ### Servlet + Spring
 
 자그럼 여기 Spring MVC를 얹어보자. 
 ![서블릿 + Spring](screen10.png)
-1. 클라이언트 요청 (브라우저 → 톰캣)
-2. 톰캣 FilterChain 통과 (ex. 보안, 로깅)
-3. DispatcherServlet 실행 (Spring MVC 진입점)
-4. Handler Mapping → 어떤 컨트롤러 메서드 실행할지 결정
-5. Handler Adapter → 컨트롤러 호출 + 파라미터 바인딩
-6. Controller 실행 → Service 호출 → Repository → DB
-7. 결과 반환 → ViewResolver 또는 JSON 변환 → DispatcherServlet
-8. DispatcherServlet이 HttpServletResponse에 응답 작성 후 톰캣이 반환
+사용자가 브라우저에서 어떤 주소를 입력하면 가장 먼저 톰캣 같은 서블릿 컨테이너가 요청을 받는다. 요청은 단순히 컨트롤러 메서드로 직행하지 않고 여러 단계를 거치면서 처리된다.
 
-둘의 차이점을 간단하게 표로 정리해보자.
+먼저, 요청은 톰캣 내부의 FilterChain을 통과한다. 필터는 보안 검증, 로깅, CORS 처리 같은 공통 기능을 수행하기 위해 존재한다. 여러 개가 등록될 수 있으며, 체인 형태로 순서대로 실행된다. 필터는 서블릿보다 더 앞단에서 동작하기 때문에, 컨트롤러에 도달하기 전에 요청을 가로채거나 수정할 수 있다.
+
+필터를 통과한 요청은 이제 Spring MVC의 진입점인 DispatcherServlet으로 전달된다. DispatcherServlet은 모든 요청을 중앙에서 받아 Spring MVC의 핵심 처리 흐름으로 흘려보내는 역할을 한다.
+
+다음 단계는 HandlerMapping이다. 여기서 Spring은 들어온 요청 URL과 HTTP 메서드를 기준으로, 어떤 컨트롤러의 어떤 메서드를 실행해야 할지 결정한다. 예를 들어 /users라는 요청이 들어왔다면 @GetMapping("/users")가 붙은 메서드를 찾아내는 것이다.
+
+컨트롤러를 찾았으면 이제 HandlerAdapter가 실행된다. 이 단계에서는 컨트롤러 메서드를 실제로 호출할 수 있도록 준비한다. 파라미터 바인딩이 여기서 일어난다. 예를 들어 @RequestParam, @PathVariable, @RequestBody와 같은 애노테이션을 기반으로 클라이언트가 보낸 데이터를 메서드 파라미터 객체로 변환해준다.
+
+그 후 드디어 컨트롤러 메서드가 실행된다. 컨트롤러는 내부적으로 서비스(Service)를 호출하고, 서비스는 다시 리포지토리(Repository)를 거쳐 DB에 접근한다. 즉, 실제 비즈니스 로직은 이 단계에서 수행된다.
+
+비즈니스 로직이 끝나면 결과가 컨트롤러로 반환되고, 다시 DispatcherServlet으로 돌아온다. 반환값이 뷰 이름이라면 ViewResolver가 동작해서 JSP, Thymeleaf 같은 뷰를 찾아 렌더링한다. 만약 @RestController라면 반환 객체를 그대로 JSON으로 변환해 응답 본문에 담는다.
+
+마지막으로 DispatcherServlet은 완성된 응답을 HttpServletResponse에 작성한다. 이 응답 객체는 톰캣에 의해 TCP 소켓으로 flush되고, 최종적으로 클라이언트 브라우저가 수신하여 사용자 화면에 결과가 나타난다.
+
+이렇게 순수 서블릿으로 구현했을때 보다 Spring을 통해 추상화하여 편리하게 구현가능한 장점이있다. 이내용을 하단에 표로 정리해보았다.
 
 | 구분      | 순수 서블릿                                   | Spring MVC                                            |
 | ------- | ---------------------------------------- | ----------------------------------------------------- |
@@ -200,3 +205,11 @@ public String hello() {
 ##### 클라이언트 수신
 
 브라우저는 서버로부터 전달된 HTTP 응답을 받고, HTML이라면 화면에 렌더링하고, JSON이라면 개발자도구의 Network 탭에서 확인할 수 있게 된다.
+
+
+### 결과
+
+### Ref.
+[Servlet Spec](https://javaee.github.io/servlet-spec/downloads/servlet-4.0/servlet-4_0_FINAL.pdf)
+[geeks](https://www.geeksforgeeks.org/java/what-is-dispatcher-servlet-in-spring/)
+[stackoverflow](https://stackoverflow.com/questions/5930795/difference-between-servlet-and-web-service)
