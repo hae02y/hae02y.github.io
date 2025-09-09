@@ -65,6 +65,6 @@ fun validateToken(token: String): Boolean =
 }
 ```
 
----
-#### 참고
+
+#### Ref.
 - [JJWT github docs](https://github.com/jwtk/jjwt?tab=readme-ov-file#reading-a-jwt)
