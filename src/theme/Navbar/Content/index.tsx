@@ -50,7 +50,7 @@ function NavbarContentLayout({
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
-      <div className="navbar__items navbar__items--right mr-2">{right}</div>
+      <div className="navbar__items navbar__items--right mr-4">{right}</div>
     </div>
   );
 }
@@ -69,7 +69,9 @@ export default function NavbarContent() {
         // TODO stop hardcoding items?
         <>
           {/* {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />} */}
-          <NavbarLogo />
+          <div className="ml-4">
+            <NavbarLogo />
+          </div>
           <div className="navbar__list">
             <NavbarItems items={leftItems} />
           </div>
@@ -77,7 +79,6 @@ export default function NavbarContent() {
       }
       right={
         // TODO stop hardcoding items?
-        // Ask the user to add the respective navbar items => more flexible
         <div className='flex gap-1 lg:gap-2'>
           <NavbarColorModeToggle/>
             <NavbarSearch>
