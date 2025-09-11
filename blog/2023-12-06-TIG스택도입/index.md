@@ -37,13 +37,14 @@ TIG 스택은 메트릭 중심의 숫자형 시계열 데이터를 기반으로 
 
 ### 본론으로
 
-![TIG 예시](screen5.png)
-TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터링 환경이다.
-
 #### Telegraf
+![telegraf](screen7.png)
 Telegraf는 에이전트(agent) 역할을 수행한다. 쉽게 말해 서버 곳곳에서 돌아가며 CPU, Memory, Disk, 네트워크, ping 응답 같은 **시스템 지표**를 수집한다. 수집한 데이터는 메트릭 형태로 변환되어 InfluxDB로 전송된다.
 
 Telegraf의 장점은 수많은 플러그인(Inputs, Outputs, Processors, Aggregators)을 제공한다는 점이다. 즉, 단순히 시스템 리소스뿐 아니라 DB 모니터링, 애플리케이션 지표 수집, 심지어 외부 API 호출까지 커버할 수 있다.
+
+Telegraf를 사용하는 방법
+
 
 #### InfluxDB
 InfluxDB는 시계열(time-series) 데이터베이스다. 그럼 시계열 데이터베이스란 무엇일까? 일반적인 RDB와 달리 시간(time)을 기준으로 하는 데이터 처리에 최적화되어 있다. `TSDB`는 일정한 주기를 가지고 수집되는 대량의 데이터를 처리한다. 예시로 [Melon DevOps](https://www.slideshare.net/slideshow/custom-dev-ops-monitoring-system-in-melon/67348779) 구성사례를 확인할수있다.
@@ -51,6 +52,20 @@ InfluxDB는 시계열(time-series) 데이터베이스다. 그럼 시계열 데�
 
 CPU 사용률이나 메모리 사용량 같은 값은 매 초/분 단위로 쌓이기 때문에, 빠른 읽기·쓰기와 압축·보존정책이 중요하다. InfluxDB는 이런 요구사항을 해결해주는 저장소이며 `TSDB`중 가장 높은 점유율을 가지고있는데자료를 보면 2025년 9월기준 압도적으로 1위이다.
 ![db-engines 2025](screen4.png)
+
+글을 처음 작성할 당시 InfuxDB 2까지 지원을 했었는데 현재는 InfluxDB 3 Core 와 Enterprise 급의 새로운 버전이 나왔다. [공식 문서](https://docs.influxdata.com/influxdb/v2/)가 정말 잘 정리되어 있어 구축시 많은 참고를 할수있었다.
+
+#### Grafana
+![grafana dashboard](screen6.png)
+Grafana는 시각화 도구다. InfluxDB에 쌓인 수많은 숫자 데이터만 봐서는 감이 오지 않는다. Grafana를 통해 대시보드로 CPU/Memory 트렌드를 그래프로 확인하거나, 특정 조건이 발생했을 때 알람을 발송하도록 설정할 수 있다. Grafana는 시각화뿐만 아니라 **Alerting** 기능도 제공하기 때문에, 장애 발생 시 Teams/Slack 같은 협업 툴로 알림을 보낼 수 있다.
+
+다양한 기능은 [공식 문서](https://grafana.com/docs/)에 잘 정리되어있다. Grafana 자체 운용부터 Metics, Logs, Trace 까지 다양한 부분에서 지원하고, 현재 기준으로 V12.1이 최신 버전이다.
+
+
+
+![TIG 예시](screen5.png)
+TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터링 환경이다. 각각 환경을 살펴보면 
+
 
 Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성하는 방법도 있어서 간단하게 설명해보면 다음과 같다.
 
@@ -60,10 +75,7 @@ Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성
 - **Chronograf** : 시각화 도구
 - **kapacitor** : Real-time 스트리밍 데이터 전송 알람 엔진
 
-
-#### Grafana
-Grafana는 시각화 도구다. InfluxDB에 쌓인 수많은 숫자 데이터만 봐서는 감이 오지 않는다. Grafana를 통해 대시보드로 CPU/Memory 트렌드를 그래프로 확인하거나, 특정 조건이 발생했을 때 알람을 발송하도록 설정할 수 있다. Grafana는 시각화뿐만 아니라 **Alerting** 기능도 제공하기 때문에, 장애 발생 시 Teams/Slack 같은 협업 툴로 알림을 보낼 수 있다.
-
+이조합으로 사용하는것도 유용하지만 Chronograf를 Grafana로 대체하여 사용하는 조합이 더 많이 사용되는것으로 보인다.
 
 ### InfluxDB 좀더 알아보기
 
