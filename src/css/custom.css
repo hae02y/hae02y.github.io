@@ -471,58 +471,17 @@
 /*Freesentation*/
 @font-face {
     font-family: 'Freesentation';
-    font-weight: 100 900;
+    font-style: normal;
+    font-weight: 500 900;
     font-display: swap;
     src: url('/font/freesentation/FreesentationVF.ttf') format('truetype-variations');
 }
 
-/*Pretendard*/
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 900;
-    font-display: swap;
-    src: local('Pretendard Black'), url('/font/pretendard/woff2/Pretendard-Black.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Black.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 800;
-    font-display: swap;
-    src: local('Pretendard ExtraBold'), url('/font/pretendard/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-ExtraBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 700;
-    font-display: swap;
-    src: local('Pretendard Bold'), url('/font/pretendard/woff2/Pretendard-Bold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 600;
-    font-display: swap;
-    src: local('Pretendard SemiBold'), url('/font/pretendard/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 500;
-    font-display: swap;
-    src: local('Pretendard Medium'), url('/font/pretendard/woff2/Pretendard-Medium.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-display: swap;
-    src: local('Pretendard Regular'), url('/font/pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/font/pretendard/woff/Pretendard-Regular.woff') format('woff');
-}
 
 /*JetBrain Variable Font - Regular*/
 @font-face {
     font-family: 'JetBrains Mono';
-    font-weight: 100 800;
+    font-weight: 200 800;
     font-style: normal;
     font-display: swap;
     src: url('/font/jetBrain/JetBrainsMono[wght].ttf') format('truetype-variations');

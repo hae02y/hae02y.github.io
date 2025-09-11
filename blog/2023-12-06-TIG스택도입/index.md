@@ -34,10 +34,11 @@ TIG 스택은 메트릭 중심의 숫자형 시계열 데이터를 기반으로 
 ![ELK logo](screen8.png)
 문서 / 로그 중심으로 비정형 텍스트 데이터를 검색하고 Json 기반으로 색인하는 경우 유리하다. 즉 ELK는 기본적으로 로그/이벤트 분석 플랫폼이다. 로그분석이나, 문자열 검색, 로그 기반으로 추적/보안 및 대규모 운용 환경에서 로그 중앙집중화가 목적이라면 ELK 스택의 도입이 필요하다.
 
-이러한 이유로 **Telegraf + InfluxDB + Grafana** 도입을 결정했다. 그럼 간단하게 각각 어떤 내용을 담당하는지 알아보자
+
 
 
 ### 본론으로
+위에서 설명한 이유를 바탕으로 **Telegraf + InfluxDB + Grafana** 도입을 결정했다. 그럼 각각의 서비스가 어떤 부분을 담당하는지 알아보자.
 
 #### Telegraf
 ![telegraf](screen7.png)
@@ -47,6 +48,7 @@ Telegraf의 장점은 수많은 플러그인(Inputs, Outputs, Processors, Aggreg
 
 
 #### InfluxDB
+![influxDB logo](screen10.png)
 InfluxDB는 시계열(time-series) 데이터베이스다. 그럼 시계열 데이터베이스란 무엇일까? 일반적인 RDB와 달리 시간(time)을 기준으로 하는 데이터 처리에 최적화되어 있다. `TSDB`는 일정한 주기를 가지고 수집되는 대량의 데이터를 처리한다. 예시로 [Melon DevOps](https://www.slideshare.net/slideshow/custom-dev-ops-monitoring-system-in-melon/67348779) 구성사례를 확인할수있다.
 
 CPU 사용률이나 메모리 사용량 같은 값은 매 초/분 단위로 쌓이기 때문에, 빠른 읽기·쓰기와 압축·보존정책이 중요하다. InfluxDB는 이런 요구사항을 해결해주는 저장소이며 `TSDB`중 가장 높은 점유율을 가지고있는데자료를 보면 2025년 9월기준 압도적으로 1위이다.
@@ -70,13 +72,13 @@ Grafana는 시각화 도구다. InfluxDB에 쌓인 수많은 숫자 데이터만
 
 ### Stack으로 불리는 이유
 ![TIG 예시](screen5.png)
-TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터링 환경이다. 각각 환경을 살펴보자.
+TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터링 환경으로 위 그림과 같은 구성으로 시각화를 할수있다. 
 - **Telegraf** : Metrics와 Events를 수집하고 Reporting 하는 Module
 - **InfluxDB** : Time Series Database
 - **Grafana** : 데이터를 Visualize
 
 
-Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성하는 방법도 있어서 간단하게 설명해보면 다음과 같다.
+또한 Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성하는 방법도 있어서 간단하게 설명해보면 다음과 같다.
 
 ![Tick Stack](screen3.png)
 - **Telegraf** : Metrics와 Events를 수집하고 Reporting 하는 Module
@@ -88,8 +90,9 @@ Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성
 
 
 ### 구축과 세팅
-
-
+##### 서비스 세팅 환경
+- **InfluxDB Server :** `Proxmox` LXC Debian GNU/Linux 10
+- **Grafana Server :** `Proxmox` LXC Debian GNU/Linux 10
 
 
 ### 결론
