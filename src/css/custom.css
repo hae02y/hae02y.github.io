@@ -286,7 +286,7 @@
     .markdown li li li > p {
         @apply m-0 text-base 2xl:text-[17px] text-[var(--primary)];
     }
-    
+
 
     .markdown aside {
         @apply bg-gray-100 dark:bg-[#242526] border border-gray-300 dark:border-gray-600
@@ -496,45 +496,3 @@
     src: url('/font/jetBrain/JetBrainsMono-Italic[wght].ttf') format('truetype-variations');
 }
 
-/*Cera Round Pro*/
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Cera Round Pro Regular'), url('/font/ceraRound/CeraRoundProRegular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 100;
-    src: local('Cera Round Pro Thin'), url('/font/ceraRound/CeraRoundProThin.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 300;
-    src: local('Cera Round Pro Light'), url('/font/ceraRound/CeraRoundProLight.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 500;
-    src: local('Cera Round Pro Medium'), url('/font/ceraRound/CeraRoundProMedium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 700;
-    src: local('Cera Round Pro Bold'), url('/font/ceraRound/CeraRoundProBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Cera Round Pro';
-    font-style: normal;
-    font-weight: 900;
-    src: local('Cera Round Pro Black'), url('/font/ceraRound/CeraRoundProBlack.woff') format('woff');
-}
