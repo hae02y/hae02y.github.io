@@ -37,8 +37,7 @@ TIG 스택은 메트릭 중심의 숫자형 시계열 데이터를 기반으로 
 
 ### 본론으로
 
-![Tick Stack](screen3.png)
-
+![TIG 예시](screen5.png)
 TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터링 환경이다.
 
 #### Telegraf
@@ -50,9 +49,28 @@ Telegraf의 장점은 수많은 플러그인(Inputs, Outputs, Processors, Aggreg
 InfluxDB는 시계열(time-series) 데이터베이스다. 그럼 시계열 데이터베이스란 무엇일까? 일반적인 RDB와 달리 시간(time)을 기준으로 하는 데이터 처리에 최적화되어 있다. `TSDB`는 일정한 주기를 가지고 수집되는 대량의 데이터를 처리한다. 예시로 [Melon DevOps](https://www.slideshare.net/slideshow/custom-dev-ops-monitoring-system-in-melon/67348779) 구성사례를 확인할수있다.
 
 
-CPU 사용률이나 메모리 사용량 같은 값은 매 초/분 단위로 쌓이기 때문에, 빠른 읽기·쓰기와 압축·보존정책이 중요하다. InfluxDB는 이런 요구사항을 해결해주는 저장소다.
+CPU 사용률이나 메모리 사용량 같은 값은 매 초/분 단위로 쌓이기 때문에, 빠른 읽기·쓰기와 압축·보존정책이 중요하다. InfluxDB는 이런 요구사항을 해결해주는 저장소이며 `TSDB`중 가장 높은 점유율을 가지고있는데자료를 보면 2025년 9월기준 압도적으로 1위이다.
+![db-engines 2025](screen4.png)
+
+Influx Data사에서 자체적으로 제공하는 Tick Stack 조합으로 구성하는 방법도 있어서 간단하게 설명해보면 다음과 같다.
+
+![Tick Stack](screen3.png)
+- **Telegraf** : Metrics와 Events를 수집하고 Reporting 하는 Module
+- **InfluxDB** : Time Series Database
+- **Chronograf** : 시각화 도구
+- **kapacitor** : Real-time 스트리밍 데이터 전송 알람 엔진
 
 
-    
 #### Grafana
 Grafana는 시각화 도구다. InfluxDB에 쌓인 수많은 숫자 데이터만 봐서는 감이 오지 않는다. Grafana를 통해 대시보드로 CPU/Memory 트렌드를 그래프로 확인하거나, 특정 조건이 발생했을 때 알람을 발송하도록 설정할 수 있다. Grafana는 시각화뿐만 아니라 **Alerting** 기능도 제공하기 때문에, 장애 발생 시 Teams/Slack 같은 협업 툴로 알림을 보낼 수 있다.
+
+
+### InfluxDB 좀더 알아보기
+
+
+### 구축과 세팅
+
+
+
+
+### 결론
