@@ -94,5 +94,5 @@ TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터�
 - **InfluxDB Server :** `Proxmox` LXC Debian GNU/Linux 10
 - **Grafana Server :** `Proxmox` LXC Debian GNU/Linux 10
 
-
+사내에서 관리하는 Main Server는 IDC에 `Proxmox`를 통해 가상환경으로 구성되어, 2개의 서버에 각각 세팅을 진행했다. 
 ### 결론
