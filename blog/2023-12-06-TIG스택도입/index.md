@@ -131,10 +131,33 @@ influx setup \
   --retention 30d \
   --force
 ```
+- --username : 관리자 계정 ID
+- --password : 관리자 비밀번호
+- --org : 조직 이름
+- --bucket : 데이터 저장소 이름
+- --retention : 데이터 보관 기간 (예: 30일)
+- --force : 이미 세팅된 게 있어도 덮어쓰기
 
 이 방법으로 CLI를 통해 초기 세팅을 진행할수있지만 우리는 GUI로 쉽게 세팅을 진행해보자. InfluxDB의 웹GUI 기본 포트는 [8086으로 브라우저를 통해 접속](https://github.com/influxdata/telegraf/issues/8080) 가능하다. 
 
 ![GUI 접속 화면](screen12.png)
+
+"get Started" 클릭후 이름, 비밀번호, 조직명, 버킷명 등 입력하면 자동로그인 되고 InfluxDB 대시보드 접속이 완료 된다. 자세한 내용은 [공식 문서](https://www.influxdata.com/blog/getting-started-with-influxdb-2-0-scraping-metrics-running-telegraf-querying-data-and-writing-data/)를 참고하면 된다. 좀더 자세히 설명을 해볼까 했지만 문서가 너무 상세히 설명되어있어 링크 첨부로 생략한다.
+
+##### Telegraf 설치
+
+
+
+
+##### Grafana 설치
+
+**설치**
+```bash
+sudo apt-get install -y apt-transport-https software-properties-common
+sudo apt-get install -y adduser libfontconfig1
+wget https://dl.grafana.com/oss/release/grafana_10.2.3_amd64.deb
+sudo dpkg -i grafana_10.2.3_amd64.deb
+```
 
 
 
