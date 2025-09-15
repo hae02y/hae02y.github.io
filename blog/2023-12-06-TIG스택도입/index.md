@@ -95,4 +95,48 @@ TIG 스택은 이름 그대로 세 가지 구성 요소가 합쳐진 모니터�
 - **Grafana Server :** `Proxmox` LXC Debian GNU/Linux 10
 
 사내에서 관리하는 Main Server는 IDC에 `Proxmox`를 통해 가상환경으로 구성되어, 2개의 서버에 각각 세팅을 진행했다. 
+
+#### InfluxDB 설치
+
+**레포지토리 등록**
+```bash
+curl -sL https://repos.influxdata.com/influxdata-archive.key | sudo apt-key add -
+source /etc/lsb-release
+echo "deb https://repos.influxdata.com/ubuntu $DISTRIB_CODENAME stable" | \
+  sudo tee /etc/apt/sources.list.d/influxdb.list
+```
+
+**설치**
+```bash
+sudo apt-get update && sudo apt-get install influxdb2
+```
+
+**서비스 시작**
+```bash
+sudo systemctl enable influxdb
+sudo systemctl start influxdb
+```
+
+위의 단계까지 완료하고 `status`를 확인해보면 아래 이미지 처럼 `active`로 동작한다.
+
+![실행 결과](screen11.png)
+
+**추가설정**
+```bash
+influx setup \
+  --username test \
+  --password test123 \
+  --org test-org \
+  --bucket test-bucket \
+  --retention 30d \
+  --force
+```
+
+이 방법으로 CLI를 통해 초기 세팅을 진행할수있지만 우리는 GUI로 쉽게 세팅을 진행해보자. InfluxDB의 웹GUI 기본 포트는 [8086으로 브라우저를 통해 접속](https://github.com/influxdata/telegraf/issues/8080) 가능하다. 
+
+![GUI 접속 화면](screen12.png)
+
+
+
+
 ### 결론
