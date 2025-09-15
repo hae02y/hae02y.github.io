@@ -193,7 +193,7 @@ sudo systemctl start telegraf
 
 설치가 완료 되었으면 **기본설정**을 진행하면 된다. /etc/telegraf/telegraf.conf 를 편집해서 InfluxDB와 연결하는 작업을 진행하자.
 
-```toml
+```yml
 # 글로벌 에이전트 설정
 [agent]
   interval = "10s"        # 수집 주기
