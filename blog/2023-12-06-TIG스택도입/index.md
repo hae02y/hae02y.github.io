@@ -159,7 +159,15 @@ wget https://dl.grafana.com/oss/release/grafana_10.2.3_amd64.deb
 sudo dpkg -i grafana_10.2.3_amd64.deb
 ```
 
+**실행**
+```bash
+sudo systemctl enable grafana-server
+sudo systemctl start grafana-server
+```
+
+gra
 
 
+![grafana 메인화면](screen13.png)
 
 ### 결론
