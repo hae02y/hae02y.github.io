@@ -218,6 +218,8 @@ sudo systemctl start telegraf
   bucket = "test-bucket"
 ```
 
+수집 및 저장할 데이터는 플러그인 방식으로 동작하는데 [Github](https://github.com/influxdata/telegraf/tree/master/plugins)에서 플러그인을 확인할수있다. 예시에 작성한 cpu, mem, net 이외에도 많은 종류의 데이터를 확인 가능하므로 
+
 완료 후 정상적으로 연동 되었는지 확인을 진행해보자. 하단의 명령어를 실행하면 CPU, Memory 등의 메트릭이 터미널에 표출된다. 이데이터는 그대로 Grafana에서 시각화 가능하다. 
 
 ```bash
