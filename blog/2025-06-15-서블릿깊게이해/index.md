@@ -212,6 +212,6 @@ public String hello() {
 서블릿에 대해 깊게 알아볼수있는 좋은 기회였다. 자바와 스프링부트를 통해 작성하는 코드는 웹의 정말 일부분이라는 것을 다시한번 확인할수있었다. 부분이 아닌 전반을 알고 이해하는 개발자가 되자.
 
 ### Ref.
-[Servlet Spec](https://javaee.github.io/servlet-spec/downloads/servlet-4.0/servlet-4_0_FINAL.pdf)
-[geeks](https://www.geeksforgeeks.org/java/what-is-dispatcher-servlet-in-spring/)
-[stackoverflow](https://stackoverflow.com/questions/5930795/difference-between-servlet-and-web-service)
+- [Servlet Spec](https://javaee.github.io/servlet-spec/downloads/servlet-4.0/servlet-4_0_FINAL.pdf)
+- [geeks](https://www.geeksforgeeks.org/java/what-is-dispatcher-servlet-in-spring/)
+- [stackoverflow](https://stackoverflow.com/questions/5930795/difference-between-servlet-and-web-service)
