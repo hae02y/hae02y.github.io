@@ -144,11 +144,6 @@ influx setup \
 
 "get Started" 클릭후 이름, 비밀번호, 조직명, 버킷명 등 입력하면 자동로그인 되고 InfluxDB 대시보드 접속이 완료 된다. 자세한 내용은 [공식 문서](https://www.influxdata.com/blog/getting-started-with-influxdb-2-0-scraping-metrics-running-telegraf-querying-data-and-writing-data/)를 참고하면 된다. 좀더 자세히 설명을 해볼까 했지만 문서가 너무 상세히 설명되어있어 링크 첨부로 생략한다.
 
-##### Telegraf 설치
-
-
-
-
 ##### Grafana 설치
 
 **설치**
@@ -159,15 +154,77 @@ wget https://dl.grafana.com/oss/release/grafana_10.2.3_amd64.deb
 sudo dpkg -i grafana_10.2.3_amd64.deb
 ```
 
-**실행**
+**서비스 시작**
 ```bash
 sudo systemctl enable grafana-server
 sudo systemctl start grafana-server
 ```
 
-gra
+grafana 대시보드의 기본 포트는 `3000`번으로 접속이 가능하다. 브라우저를 통해 localhost:3000 으로 접속하면 이미지와 같은 대시보드가 표출된다.
 
+- 기본 계정 : admin / admin
+- 처음 로그인 시 새 비밀번호 설정 요구
 
 ![grafana 메인화면](screen13.png)
+
+
+##### Telegraf 설치
+기본적인 InfluxDB와 Grafana 설치까지 완료 하였으면 다음으로 Telegraf 구축을 진행해보자. Telegraf는 매트릭 수집 에이전트이므로 수집을 원하는 서버에 설치를 진행한다. 
+
+**레포지토리 동기화**
+```bash
+curl -sL https://repos.influxdata.com/influxdata-archive.key | sudo apt-key add -
+source /etc/lsb-release
+
+echo "deb https://repos.influxdata.com/ubuntu $DISTRIB_CODENAME stable" | \
+  sudo tee /etc/apt/sources.list.d/influxdb.list
+```
+
+**설치**
+```bash
+sudo apt-get update && sudo apt-get install telegraf
+```
+
+**서비스 시작**
+```bash
+sudo systemctl enable telegraf
+sudo systemctl start telegraf
+```
+
+설치가 완료 되었으면 **기본설정**을 진행하면 된다. /etc/telegraf/telegraf.conf 를 편집해서 InfluxDB와 연결하는 작업을 진행하자.
+
+```toml
+# 글로벌 에이전트 설정
+[agent]
+  interval = "10s"        # 수집 주기
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+
+# Input plugins (수집할 메트릭 정의)
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+
+[[inputs.mem]]
+[[inputs.disk]]
+[[inputs.net]]
+
+# Output plugins (수집한 데이터 저장할 곳)
+[[outputs.influxdb_v2]]
+  urls = ["http://localhost:8086"]
+  token = "여기에_InfluxDB_Token"
+  organization = "test-org"
+  bucket = "test-bucket"
+```
+
+완료 후 정상적으로 연동 되었는지 확인을 진행해보자. 하단의 명령어를 실행하면 CPU, Memory 등의 메트릭이 터미널에 표출된다. 이데이터는 그대로 Grafana에서 시각화 가능하다. 
+
+```bash
+telegraf --config /etc/telegraf/telegraf.conf --test
+```
+
+##### Grafana 와 InfluxDB 연동
+
 
 ### 결론
