@@ -210,7 +210,7 @@ const config: Config = {
       ],
     },
     prism: {
-      theme: prismThemes.github,
+      theme: prismThemes.oneLight,
       darkTheme: prismThemes.oneDark,
       additionalLanguages: [
         'markup', 'bash', 'clike', 'c', 'cpp', 'css', 'javascript',

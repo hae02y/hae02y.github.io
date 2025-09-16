@@ -184,7 +184,7 @@
     }
 
     .markdown code {
-        @apply text-[13px] text-blue-600 dark:text-orange-300 border-0 px-1;
+        @apply text-[13px] text-[#333232] dark:text-orange-300 border-0 px-1;
     }
 
     .markdown p div code,
@@ -481,7 +481,7 @@
 /*JetBrain Variable Font - Regular*/
 @font-face {
     font-family: 'JetBrains Mono';
-    font-weight: 300 800;
+    font-weight: 600 800;
     font-style: normal;
     font-display: swap;
     src: url('/font/jetBrain/JetBrainsMono[wght].ttf') format('truetype-variations');
