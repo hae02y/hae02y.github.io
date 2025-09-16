@@ -231,12 +231,12 @@
     }
 
     .markdown p {
-        @apply text-lg 2xl:text-[17px] text-[var(--primary)] mb-3;
+        @apply text-lg 2xl:text-lg text-[var(--primary)] mb-3;
     }
 
     .markdown ul,
     .markdown ol {
-        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-lg 2xl:text-[17px];
+        @apply pl-5 md:pl-6 mb-4 text-[var(--primary)] text-lg 2xl:text-lg;
     }
 
     .markdown ul {
@@ -250,7 +250,7 @@
     /* 2depth 이상의 중첩된 UL/OL 스타일 */
     .markdown li ul,
     .markdown li ol {
-        @apply pl-5 md:pl-6 mb-2 mt-1 text-[var(--primary)] text-lg 2xl:text-[17px];
+        @apply pl-5 md:pl-6 mb-2 mt-1 text-[var(--primary)] text-lg 2xl:text-lg;
     }
 
     .markdown li ul {
@@ -262,29 +262,29 @@
     }
 
     .markdown li {
-        @apply mt-0 text-lg 2xl:text-[17px];
+        @apply mt-0 text-lg 2xl:text-lg;
     }
 
     .markdown li > p {
-        @apply m-0 text-lg 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-lg 2xl:text-lg text-[var(--primary)];
     }
 
     /* 2depth 이상의 중첩된 리스트 스타일 */
     .markdown li li {
-        @apply mt-1 text-lg 2xl:text-[17px];
+        @apply mt-1 text-lg 2xl:text-lg;
     }
 
     .markdown li li > p {
-        @apply m-0 text-lg 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-lg 2xl:text-lg text-[var(--primary)];
     }
 
     /* 3depth 이상의 중첩된 리스트 스타일 */
     .markdown li li li {
-        @apply mt-1 text-lg 2xl:text-[17px];
+        @apply mt-1 text-lg 2xl:text-lg;
     }
 
     .markdown li li li > p {
-        @apply m-0 text-lg 2xl:text-[17px] text-[var(--primary)];
+        @apply m-0 text-lg 2xl:text-lg text-[var(--primary)];
     }
 
 
@@ -294,7 +294,7 @@
     }
 
     .markdown aside h3 {
-        @apply text-lg 2xl:text-[17px] font-semibold mb-2 text-[var(--primary)];
+        @apply text-lg 2xl:text-lg font-semibold mb-2 text-[var(--primary)];
     }
 
     .markdown aside > hr {
@@ -481,7 +481,7 @@
 /*JetBrain Variable Font - Regular*/
 @font-face {
     font-family: 'JetBrains Mono';
-    font-weight: 200 800;
+    font-weight: 300 800;
     font-style: normal;
     font-display: swap;
     src: url('/font/jetBrain/JetBrainsMono[wght].ttf') format('truetype-variations');
@@ -490,7 +490,7 @@
 /*JetBrain Variable Font - Italic*/
 @font-face {
     font-family: 'JetBrains Mono';
-    font-weight: 100 800;
+    font-weight: 300 800;
     font-style: italic;
     font-display: swap;
     src: url('/font/jetBrain/JetBrainsMono-Italic[wght].ttf') format('truetype-variations');
