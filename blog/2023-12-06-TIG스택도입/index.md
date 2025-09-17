@@ -228,5 +228,6 @@ telegraf --config /etc/telegraf/telegraf.conf --test
 
 ##### Grafana 와 InfluxDB 연동
 
+InfluxDB 자체에서도 대시보드 기능이 있지만 사용자가 원하는 만큼의 시각화를 제이제 Grafana 대시보드에서 InfluxDB와 연동을 진행해보자. 
 
 ### 결론
