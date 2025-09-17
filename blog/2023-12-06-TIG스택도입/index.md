@@ -218,7 +218,7 @@ sudo systemctl start telegraf
   bucket = "test-bucket"
 ```
 
-수집 및 저장할 데이터는 플러그인 방식으로 동작하는데 [Github](https://github.com/influxdata/telegraf/tree/master/plugins)에서 플러그인을 확인할수있다. 예시에 작성한 cpu, mem, net 이외에도 많은 종류의 데이터를 확인 가능하므로 
+수집 및 저장할 데이터는 플러그인 방식으로 동작하는데 [Github](https://github.com/influxdata/telegraf/tree/master/plugins)에서 플러그인을 확인할수있다. 예시에 작성한 cpu, mem, net 이외에도 많은 종류의 데이터를 지원하므로 필요한 리소스 플러그인을 확인후에 `config`에 추가하여 수집 하도록 하자.
 
 완료 후 정상적으로 연동 되었는지 확인을 진행해보자. 하단의 명령어를 실행하면 CPU, Memory 등의 메트릭이 터미널에 표출된다. 이데이터는 그대로 Grafana에서 시각화 가능하다. 
 
@@ -228,6 +228,40 @@ telegraf --config /etc/telegraf/telegraf.conf --test
 
 ##### Grafana 와 InfluxDB 연동
 
-InfluxDB 자체에서도 대시보드 기능이 있지만 사용자가 원하는 만큼의 시각화를 제이제 Grafana 대시보드에서 InfluxDB와 연동을 진행해보자. 
+InfluxDB 자체에서도 대시보드 기능이 있지만 사용자가 원하는 만큼의 시각화를 제공하지는 않는다. 그래서 우리는 이제 부터 Grafana 대시보드에서 InfluxDB와 연동을 통해 InfluxDB에 저장된 데이터를 Grafana에서 표출한다.
+
+순서는 아래의 이미지를 통해 하나씩 따라가면서 진행하면 된다. 먼저 Grafana 대시보드에 접속한다. 그리고 왼쪽의 메뉴에서 `Connections` > `Data Source` > Add data source 를 선택한다.
+
+![새연결 추가](screen15.png)
+
+그러면 위 처럼 다양한 데이터 소스가 보인다. 우리는 InfluxDB에 연결할 것이므로, InfluxDB를 선택 하면 된다.
+
+![InfluxDB 선택](screen16.png)
+
+Add new datasource를 클릭하면 상세한 연결 속성을 입력할수있다.
+
+![선택 상세](screen17.png)
+
+기본적으로 입력해야하는 설정은 다음과 같다.
+- Query language : Flux (InfluxDB 2.0 이상)
+- URL : InfluxDB 주소
+- Organazation : test-org(연결할 ORG)
+- Token : InfluxDB에서 발급받은 인증 토큰
+- Default Bucket : test-bucket(연결한 Bucket)
+
+이후 Save & Test 버튼을 클릭하고 연결 성공 메세지를 확인하면 된다.
+
+##### 대시보드 생성
+
+DB와 연결이 완료되었으면, 이제부터 **Flux 쿼리를 통해 데이터를 시각화**할수있다. Dashboards > new Dashboard > Add visualization 메뉴에서 InfluxDB 데이터 소스를 선택하고 쿼리를 작성한뒤, 그래프 / 게이지 / 테이블 등 원하는 시각화를 선택 후 저장한다. 
+
+```bash
+from(bucket: "test-bucket")
+  |> range(start: -1h)
+  |> filter(fn: (r) => r["_measurement"] == "sensor_data")
+  |> mean()
+```
 
 ### 결론
+
+모니터링 시스템에 대해 찾아보고 하나씩 구축해가면서 다양한 경험을 얻을 수있었다. 각 사용자 마다 요구하는 리소스가 달라 블로그 본문은 전체적인 구축 방법에 대해 설명했지만 우리회사에서 필요로 하던 내용을 모니터링 할수있게 구축하면서 큰 보람을 느꼈다. 지금은 개발팀 한쪽에 모니터링 시스템을 구축해 인프라 팀에서 해당 내용을 바탕으로 작업을 진행하는 방향으로 발전했다.
