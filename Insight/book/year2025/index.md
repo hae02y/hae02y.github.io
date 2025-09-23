@@ -9,12 +9,14 @@
 - [최고의 프롬프트 엔지니어링 강의 - 김진중](https://m.yes24.com/Goods/Detail/126690830)
 - [클린 아키텍처 - 로버트 C.마틴](https://link.coupang.com/a/crE1T4)
 - [AI엔지니어의 모든것 - AI엔지니어연구회](https://link.coupang.com/a/crMI6Z)
-- [비전공자도 이해할수있는 AI - 박상길](https://link.coupang.com/a/crMJpt)
 - [안드로이드 with Kotlin 앱 - 안귀정](https://link.coupang.com/a/crMKp3)
 - [업무시간을 반으로 줄이는 챗GPT 글쓰기 - 정태일](https://link.coupang.com/a/crMKD2)
+- [프로그래머의 뇌 - 펠리너헤르만스](https://product.kyobobook.co.kr/detail/S000001952236)
 
 ---
 
 ### ✍ 완료
 
 - [커리어스킬 - 존손메즈](https://www.yes24.com/Product/Goods/71829578?pid=123487&cosemkid=go15560997724514434&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_11903%EB%8F%84%EC%84%9C&utm_term=%EC%BB%A4%EB%A6%AC%EC%96%B4%EC%8A%A4%ED%82%AC&gad_source=1&gclid=Cj0KCQjw7dm-BhCoARIsALFk4v-nuudPlE86-kIsc72DXLRhlPOzDKoKF3eRt-bMgzVGKgZ6Ej9lgQAaArtzEALw_wcB)
+- [초보 웹 개발자를 위한 스프링5 프로그래밍 입문 - 최범균](https://product.kyobobook.co.kr/detail/S000001248954)
+- [비전공자도 이해할수있는 AI - 박상길](https://link.coupang.com/a/crMJpt)
