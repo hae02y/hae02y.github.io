@@ -17,7 +17,7 @@ export default function BlogLayout(props: Props) {
             <Layout {...layoutProps}>
                 {/* 상단 여백, 가운데 정렬, 좌우 패딩 */}
                 <div
-                    className="mx-auto min-w-full sm:min-w-[600px] md:min-w-[768px] lg:min-w-[1024px] xl:min-w-[1200px] mt-6 md:mt-10">
+                    className="mx-auto min-w-full sm:min-w-[700px] sm:max-w-[700px] mt-6 md:mt-10">
                     {/* 모바일에서는 flex-col, 데스크톱에서는 flex-row */}
 
                     {/* 메인 콘텐츠 영역 */}
