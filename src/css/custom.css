@@ -161,7 +161,7 @@
 @layer components {
 
     .markdown blockquote p {
-        @apply italic text-gray-700 leading-snug dark:text-gray-300;
+        @apply italic text-gray-700 leading-snug dark:text-gray-200;
     }
 
     .markdown table {
@@ -184,7 +184,7 @@
     }
 
     .markdown code {
-        @apply text-[13px] text-[#333232] dark:text-orange-300 border-0 px-1;
+        @apply text-[13px] text-gray-900 dark:text-orange-300 border-0 px-1;
     }
 
     .markdown p div code,
