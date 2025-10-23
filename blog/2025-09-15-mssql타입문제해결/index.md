@@ -128,7 +128,28 @@ jdbcTemplate.query("select * from sqlserver_with_java.dbo.books where book_type 
      });
 ```
 
+
 ## 보너스
 
-> NVARCHAR로 조회해야하는 경우는?
-> 
+### SQL Server에서 Session 확인 쿼리
+
+```sql
+SELECT r.session_id, r.status, r.command, r.wait_type, r.wait_time, r.blocking_session_id,  
+       t.text  
+FROM sys.dm_exec_requests r  
+         CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) t  
+WHERE r.session_id <> @@SPID;
+```
+![조회 결과](screen1.png)
+
+
+### NVARCHAR로 조회가 필요한 경우는?
+
+이경우에는 이전처럼 INDEX가 무시되거나, 성능저하가 발생하는 문제는 없을것이다. INDEX 가 NVARCHAR 인 컬럼에 VARCHAR 조건이 매핑된 경우라면, 우선순위에 따라 조건으로 들어온 Parameter 가 형변환이 일어나기 때문에 INDEX 에는 영향을 주지 않게 된다. 
+
+즉, NVARCHAR 의 경우에는 컬럼들이 모두 형변환이 일어나는 것이 아니라 파라미터만 VARCHAR 에서 NVARCHAR 로 형변환이 일어난 후 조건을 비교하기 때문에, INDEX 도 유지되고 성능에도 큰 문제가 되지 않는다. 
+
+
+### 마무리
+
+사소해 보이는 내용이라도 한번더 확인하고 점검하자.
