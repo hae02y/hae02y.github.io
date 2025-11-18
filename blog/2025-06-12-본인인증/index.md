@@ -48,7 +48,68 @@ tags:
 
 
 
-![인증흐름](screen5.png)유저가 웹사이트에서 인증 시작 요청을 하면 SCI 암호화 모듈을 통해 암호화된 `KEY`를 전달한다. 해당 키는 사이렌24에 요청을 위한 키이다. SCI 암호화 모듈을 통해 생성되는 값으로 응답 URL과 함께 유저에게 전달된다. 이내용은 암호화 된 값으로 `reqInfo`와 `retUrl`을 통해 SCI에서 정해놓은 양식으로 SCI에 팝업창으로 Form 양식으로 제출한다. 그리고 이후의 입력에 대한 내용은 SCI측의 로직으로 인증이 진행되고 인증이 성공하면 최초 요청에서 제출한 `retUrl`로 결과를 전달한다. 이때 `retUrl`을 클라이언트로 잡을수도 있었지만 그렇게 되면 팝업창내부에서 retInfo가 직접 노출된다. 또한 네이티브모바일에서는 `retUrl`이 따로 존재하지 않는다. 
+![인증흐름](screen5.png)
 
-이렇게 두가지 관점을 고려해서 `retUrl`을 서버쪽 엔드포인트로 잡았고 `retInfo`를 서버단에서 복호화 및 검증을 수행하여 결과를 팝업으로 다시 전달한다. 이때 `postMessage`를 사용해서 결과 값을 부모창으로 넘길수있게 구현하였다. 
+유저가 웹사이트에서 인증 시작 요청을 하면 SCI 암호화 모듈을 통해 암호화된 `KEY`를 전달한다. 해당 키는 사이렌24에 요청을 위한 키이다. SCI 암호화 모듈을 통해 생성되는 값으로 응답 URL과 함께 유저에게 전달된다. 이내용은 암호화 된 값으로 `reqInfo`와 `retUrl`을 통해 SCI에서 정해놓은 양식으로 SCI에 팝업창으로 Form 양식으로 제출한다. 
+
+그리고 이후의 입력에 대한 내용은 SCI측의 로직으로 인증이 진행되고 인증이 성공하면 최초 요청에서 제출한 `retUrl`로 결과를 전달한다. 이때 `retUrl`을 클라이언트로 잡을수도 있었지만 그렇게 되면 팝업창내부에서 retInfo가 직접 노출된다. 또한 네이티브 모바일에서는 `retUrl`이 따로 존재하지 않는다. 
+
+```java
+public DataResponse<?> decryptResponse(String retInfo) {  
+    
+    // ..복호화로직 진행
+  
+    String token = generateToken();  
+    redisTemplate.opsForValue().set(token, di, 10, TimeUnit.MINUTES);  
+  
+    VerificationResultResponseDto verificationResult = VerificationResultResponseDto.builder()  
+            .name(userName)  
+            .birthYMD(birthYMD)  
+            .sex(sex)  
+            .token(token)  
+            .phone(phone)  
+            .build();  
+  
+    return responseService.data(ResponseCode.SUCCESS,verificationResult);  
+}
+```
+
+이렇게 두가지 관점을 고려해서 `retUrl`을 서버쪽 엔드포인트로 잡았고 `retInfo`를 서버단에서 복호화 및 검증을 수행하여 결과를 팝업으로 다시 전달한다. 이때 전달되는 데이터는 DI를 직접 넘기지않고 새로운 `Key`를 발급해서 넘겨주고 `postMessage`를 사용해서 결과 값을 부모창으로 넘길수있게 구현하였다. 
+
+```html
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="UTF-8">  
+    <title>본인확인 결과</title>  
+</head>  
+<body>  
+<h3>본인확인 결과를 처리 중입니다...</h3>  
+  
+<script th:inline="javascript">  
+    const result = [[${result}]];  
+    if (window.opener) {  
+        window.opener.postMessage(result, "*");  
+        window.close();  
+    }  
+</script>  
+</body>  
+</html>
+```
+
+본인인증이 완료된 상황에서 다음 로직으로 넘어갈때 `Key`를 전달받아 해당하는 컨트롤러에서 검증을 진행한다. 이때 `Redis`를 사용해서 키를 저장하고 소비하며 기간은 10분으로 고정하여 만료시 인증 불가능 하도록 하였다. 예시로 회원가입 로직을 한번 살펴보자.
+
+```java
+public SignupResponseDto registerUser(SignupRequestDto request) {  
+  
+    String diKey = verifyTokenToDi(request.getToken());  
+  
+    if(findUserByDiKey(diKey) != null)  
+        throw new UserExistException("이미 등록된 사용자입니다.");  
+  
+    verifyUserId(request.getUserId());
+    
+    //... 로직 진행
+}
+```
 
