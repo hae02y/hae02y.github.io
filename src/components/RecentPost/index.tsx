@@ -1,13 +1,10 @@
 // src/components/RecentPosts.tsx
 import React from "react";
 import Link from "@docusaurus/Link";
-import {useAllPluginInstances} from '@docusaurus/plugin-content-blog/client';
+import {useBlogPosts} from '@docusaurus/plugin-content-blog/client';
 
 export default function RecentPosts() {
-    const allPlugins = useAllPluginInstances();
-    const blogContent = allPlugins["plugin-content-blog"]?.[0];
-
-    const recentPosts = blogContent?.blogPosts.slice(0, 3);
+    const recentPosts = useBlogPosts().slice(0, 3);
 
     if (!recentPosts) return null;
 

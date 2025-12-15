@@ -1,6 +1,7 @@
 import { useGLTF } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import type { Object3D } from "three";
 
 type Props = {
     x? : number;
@@ -9,7 +10,7 @@ type Props = {
 }
 
 const MovingCamel = ({x=0,y=-1,z=0} : Props) => {
-    const meshRef = useRef();
+    const meshRef = useRef<Object3D | null>(null);
     const { scene } = useGLTF("/img/glb/camel.glb"); // 낙타 3D 모델 로드
 
     useFrame(() => {
