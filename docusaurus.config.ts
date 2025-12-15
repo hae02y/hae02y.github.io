@@ -192,12 +192,7 @@ const config: Config = {
       searchPagePath: 'search',
     },
     navbar: {
-      title: 'hae02y',
       hideOnScroll: true,
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/sitelogo.png',
-      },
       items: [
         {to: '/me', label: 'Resume', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
