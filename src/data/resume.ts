@@ -40,7 +40,9 @@ export const resumeData: ResumeData = {
   intro: {
     headline: '반갑습니다,\n저는 정해영입니다',
     description:
-      '서울에서 3년차 백엔드 개발자로 일하고 있으며 아름다운 인터페이스와 애니메이션을 구현하는 것을 좋아합니다. 개발자의 가치는 비즈니스 가치를 구현하는데서 나온다고 믿습니다. 주도적으로 업무를 진행할 수 있는 환경을 선호합니다.',
+      `서울에서 3년차 백엔드 개발자로 일하고 있으며 
+      다양한 기술을 활용하여 비즈니스 가치를 구현하는 것을 좋아합니다. 
+      탄탄한 베이스를 바탕으로 주도적으로 업무를 진행할 수 있는 환경을 선호합니다.`,
   },
   profile: {
     name: 'haeyonug, jeoung',
@@ -53,13 +55,17 @@ export const resumeData: ResumeData = {
     {
       company: '(주)베스텔라랩',
       role: 'Backend Developer',
-      period: '2020. 08 - 현재',
+      period: '2023. 01 - 현재',
       projects: [
         {
           title: '통합워치마일 백엔드 개발',
           period: '2020. 08 - 현재',
           description: '토스페이먼츠 결제 연동용 JavaScript SDK 개발 및 유지보수',
-          tasks: ['일반 결제 JavaScript SDK 구현', '커넥트페이 JavaScript SDK 구현', 'npm 퍼블릭 패키지 배포'],
+          tasks: [
+            '일반 결제 JavaScript SDK 구현', 
+            '커넥트페이 JavaScript SDK 구현', 
+            'npm 퍼블릭 패키지 배포'
+          ],
           techStack: ['TypeScript', 'Jest', 'Rollup'],
         },
         {
