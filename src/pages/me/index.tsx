@@ -174,7 +174,7 @@ function HeroCard({intro, profile}: {intro: ResumeData['intro']; profile: Profil
 export default function Me() {
     const {intro, profile, skills, work, other, contact} = resumeData;
     return (
-        <Layout noNavbar>
+        <Layout>
             <style>{`
               @font-face {
                 font-family: 'Pretendard';
@@ -287,7 +287,6 @@ export default function Me() {
             <div className="resume-page flex flex-col min-h-[90vh]">
                 <div className="container py-10 space-y-10">
                     <HeroCard intro={intro} profile={profile}/>
-
                     <ExperienceList items={work}/>
                     <OtherSection items={other}/>
                     <SkillList categories={skills?.categories ?? []}/>
