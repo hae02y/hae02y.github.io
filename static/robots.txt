@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.hae02y.me/sitemap.xml
+Host: blog.hae02y.me

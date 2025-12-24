@@ -2,6 +2,56 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
+const siteUrl = 'https://blog.hae02y.me';
+const authorName = '정해영';
+const authorHandle = 'hae02y';
+const siteDescription = '정해영(hae02y)의 백엔드, 인프라, DevOps 기술 블로그';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'Hae02y Devlog',
+      alternateName: '정해영 기술블로그',
+      inLanguage: 'ko',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl}/search?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}#person`,
+      name: authorName,
+      alternateName: authorHandle,
+      jobTitle: 'Backend Engineer',
+      url: siteUrl,
+      image: `${siteUrl}/img/me.jpg`,
+      sameAs: ['https://github.com/hae02y', 'https://linkedin.com/in/hae02y', 'mailto:godud1118@gmail.com'],
+      worksFor: { '@type': 'Organization', name: 'VEStellaLab' },
+    },
+    {
+      '@type': 'Blog',
+      '@id': `${siteUrl}#blog`,
+      name: 'Hae02y Devlog',
+      url: `${siteUrl}/blog`,
+      inLanguage: 'ko',
+      author: { '@id': `${siteUrl}#person` },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Hae02y Devlog',
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/img/me.jpg`,
+        },
+      },
+    },
+  ],
+};
+
 const config: Config = {
   plugins: [
     [
@@ -25,14 +75,15 @@ const config: Config = {
     },
   ]
   ,
-  title: 'Hae02y',
-  tagline: 'Ver 0.0.1',
+  title: 'Hae02y Devlog',
+  tagline: '정해영(hae02y)의 Backend & Infra Devlog',
   favicon: 'img/sitelogo.ico',
   // Set the production url of your site here
-  url: 'https://hae02y.github.io',
+  url: siteUrl,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
+  trailingSlash: false,
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'hae02y', // Usually your GitHub org/user name.
@@ -139,6 +190,13 @@ const config: Config = {
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify(jsonLd),
+    },
+  ],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -167,6 +225,8 @@ const config: Config = {
           blogSidebarCount: 'ALL',
           postsPerPage: 10, // 페이지당 포스트 수 설정
           showReadingTime: true,
+          blogTitle: '정해영 기술블로그',
+          blogDescription: siteDescription,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
@@ -178,11 +238,25 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.7,
+          filename: 'sitemap.xml',
+          ignorePatterns: ['/tags/**'],
+        },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
+    image: 'img/me.jpg',
+    metadata: [
+      {name: 'description', content: siteDescription},
+      {name: 'keywords', content: '정해영, hae02y, 백엔드 개발자, Backend Engineer, 기술 블로그, Spring Boot, AWS'},
+      {name: 'author', content: `${authorName} (${authorHandle})`},
+      {property: 'og:locale', content: 'ko_KR'},
+      {name: 'google-site-verification', content: 'sAUHghg81eclefIthjNm4YeM-XmjlM5HeCADnR8dKOA'},
+    ],
     algolia: {
       appId: 'BJ0L9RUPZ0',
       apiKey: '9bd9504036390edaf8f3892263884bbc',
@@ -221,4 +295,3 @@ const config: Config = {
 };
 
 export default config;
-
