@@ -32,7 +32,7 @@ ArrayList의 이점은 get, set 메서드에서 나온다. LinkedList는 심지�
 
 ### 트리순회
 
-- 철학으로 가는길 -
+- 철학으로 가는길
 - Jsoup 사용 크롤링
 	- ref . [https://jsoup.org/download](https://jsoup.org/download)
 
