@@ -5,7 +5,7 @@ authors:
   - haeyoung
 tags:
   - oauth2
-  - Java
   - spring
+  - Kotlin
 ---
 
