@@ -109,3 +109,22 @@ public class IteratorExample {
 
 - DFS는 깊이우선탐색으로 트리의 루트에서 시작하여 첫번째 자식노드를 선택하고 선택된 노드가 자식을 가지고 있다면 첫번째 자식을 다시선택, 반복후 자식이 없는 노드에 도착하면 부모노드로 거슬러 올라가 다음자식이 있다면 그쪽으로 이동하는 식으로 동작한다.
 ![dfs 순서](screen2.png)
+### 방법1. 재귀적 방법
+
+```java
+private static void recursiveDFS(Node node) {  
+    if (node instanceof TextNode) {  
+        System.out.print(node);  
+    }  
+    for (Node child: node.childNodes()) {  
+        recursiveDFS(child);  
+    }  
+}
+```
+
+
+### 방법2. 반복적 방법
+
+반복적 방법으로 구현을 할때는 `Stack` 자료구조를 통해 구현이 가능하다. 스택의 메서드를 아래에 간단히 정리해보자.
+
+1. 
