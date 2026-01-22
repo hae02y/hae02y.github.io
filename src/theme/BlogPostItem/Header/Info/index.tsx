@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import {translate} from '@docusaurus/Translate';
 import {usePluralForm} from '@docusaurus/theme-common';
-import {useDateTimeFormat} from '@docusaurus/theme-common/internal';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import type {Props} from '@theme/BlogPostItem/Header/Info';
 
@@ -53,11 +52,15 @@ export default function BlogPostItemHeaderInfo({
   const {metadata} = useBlogPost();
   const {date, readingTime} = metadata;
 
-  const dateTimeFormat = useDateTimeFormat({
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric'
-  });
+  const dateTimeFormat = React.useMemo(
+    () =>
+      new Intl.DateTimeFormat('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }),
+    [],
+  );
 
   const formatDate = (blogDate: string) =>
     dateTimeFormat.format(new Date(blogDate));

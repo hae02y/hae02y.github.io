@@ -5,13 +5,17 @@ type Props = {
     color?: "yellow" | "red" | "green" | "blue";
     title?: string;
     message?: string;
+    onClick?: () => void;
+    showToast?: boolean;
 };
 
 const MacToastButton = ({
-                            color = "red",
-                            title = "Warning",
-                            message = "An unexpected error occurred.",
-                        }: Props) => {
+                             color = "red",
+                             title = "Warning",
+                             message = "An unexpected error occurred.",
+                             onClick,
+                             showToast = true,
+                         }: Props) => {
     const [open, setOpen] = React.useState(false);
 
     const bgColorClass =
@@ -23,15 +27,25 @@ const MacToastButton = ({
                     ? "bg-yellow-500"
                     : "bg-blue-500";
 
-    return (
-        <Toast.Provider swipeDirection="right">
-            {/* 버튼 */}
+    if (!showToast) {
+        return (
             <button
                 className={`w-5 h-5 ${bgColorClass} rounded-full cursor-pointer border border-black`}
-                onClick={() => setOpen(true)}
+                onClick={onClick}
+            ></button>
+        );
+    }
+
+    return (
+        <Toast.Provider swipeDirection="right">
+            <button
+                className={`w-5 h-5 ${bgColorClass} rounded-full cursor-pointer border border-black`}
+                onClick={() => {
+                    onClick?.();
+                    setOpen(true);
+                }}
             ></button>
 
-            {/* 토스트 */}
             <Toast.Root
                 className="border border-black bg-white text-black font-mono p-4 text-center text-sm uppercase"
                 open={open}

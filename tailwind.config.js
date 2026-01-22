@@ -10,7 +10,7 @@ module.exports = {
             fontFamily: {
                 brutal: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
                 sans: ['Pretendard', 'Cera Round Pro', 'sans-serif'],
-                free: ['Freesentation', 'Pretendard', 'sans-serif'],
+                free: ['Pretendard', 'sans-serif'],
                 mono: ['JetBrains Mono', 'Cera Round Pro', 'monospace']
             },
             colors: {

@@ -3,21 +3,27 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 import MacToastButton from "@site/src/components/MacToast";
 import "xterm/css/xterm.css";
 
-const MacTerminal = ({ title, version }) => {
+const MacTerminal = ({ title, version, onClose }) => {
     return (
         <BrowserOnly fallback={<div>Loading...</div>}>
-            {() => <MacTerminalClient title={title} version={version} />}
+            {() => (
+                <MacTerminalClient
+                    title={title}
+                    version={version}
+                    onClose={onClose}
+                />
+            )}
         </BrowserOnly>
     );
 };
 
-const MacTerminalClient = ({ title, version }) => {
+const MacTerminalClient = ({ title, version, onClose }) => {
     const containerRef = useRef(null);
     const termRef = useRef(null);
     const inputBuffer = useRef("");
 
     useEffect(() => {
-        let term, fitAddon;
+        let term, fitAddon, resizeObserver;
 
         const init = async () => {
             const { Terminal } = await import("xterm");
@@ -25,28 +31,36 @@ const MacTerminalClient = ({ title, version }) => {
 
             term = new Terminal({
                 cursorBlink: true,
-                fontFamily: "JetBrains Mono",
-                fontSize: 14,
-                lineHeight: 1,
+                fontFamily: "SF Mono, Menlo, JetBrains Mono, monospace",
+                fontSize: 13,
+                lineHeight: 1.1,
                 theme: {
-                    background: "#000000",
-                    foreground: "#FFFFFF",
-                    cursor: "#000000",
+                    background: "#0c0c0c",
+                    foreground: "#e7e7e7",
+                    cursor: "#e7e7e7",
                 },
             });
             fitAddon = new FitAddon();
 
             term.loadAddon(fitAddon);
             term.open(containerRef.current);
-            fitAddon.fit();
+            requestAnimationFrame(() => {
+                fitAddon.fit();
+            });
             term.focus();
 
             containerRef.current.addEventListener("click", () => {
                 term.focus();
             });
 
-            const prompt = `${title}@macbook:~$ `;
-            term.write(prompt);
+            resizeObserver = new ResizeObserver(() => {
+                fitAddon.fit();
+            });
+            resizeObserver.observe(containerRef.current);
+
+            const prompt = () =>
+                `\x1b[32m${title}\x1b[0m@\x1b[36mmacbook\x1b[0m:` +
+                `\x1b[35m~\x1b[0m$ `;
 
             const handleCommand = (input: string) => {
                 switch (input) {
@@ -55,13 +69,15 @@ const MacTerminalClient = ({ title, version }) => {
                         break;
 
                     case "help":
-                        term.writeln("\x1b[34m📖 Available commands:\x1b[0m");
-                        term.writeln("\x1b[34m  hello   - 인사\x1b[0m");
-                        term.writeln("\x1b[34m  clear   - 터미널 초기화\x1b[0m");
-                        term.writeln("\x1b[34m  help    - 명령어 목록\x1b[0m");
-                        term.writeln("\x1b[34m  git     - GitHub 링크 출력\x1b[0m");
-                        term.writeln("\x1b[34m  blog    - 블로그 링크 출력\x1b[0m");
-                        term.writeln("\x1b[34m  insight - 인사이트 링크 출력\x1b[0m");
+                        term.writeln("\x1b[90m----------------------------------------\x1b[0m");
+                        term.writeln("\x1b[1mAvailable commands\x1b[0m");
+                        term.writeln("\x1b[36m  hello\x1b[0m    - 인사");
+                        term.writeln("\x1b[36m  clear\x1b[0m    - 터미널 초기화");
+                        term.writeln("\x1b[36m  help\x1b[0m     - 명령어 목록");
+                        term.writeln("\x1b[36m  git\x1b[0m      - GitHub 링크 출력");
+                        term.writeln("\x1b[36m  blog\x1b[0m     - 블로그 링크 출력");
+                        term.writeln("\x1b[36m  insight\x1b[0m  - 인사이트 링크 출력");
+                        term.writeln("\x1b[90m----------------------------------------\x1b[0m");
                         break;
 
                     case "clear":
@@ -94,6 +110,9 @@ const MacTerminalClient = ({ title, version }) => {
                 }
             };
 
+            handleCommand("help");
+            term.write(prompt());
+
 
 
             term.onKey(({ key, domEvent }) => {
@@ -101,7 +120,7 @@ const MacTerminalClient = ({ title, version }) => {
                 if (char === "Enter") {
                     term.writeln("");
                     handleCommand(inputBuffer.current.trim());
-                    term.write(prompt);
+                    term.write(prompt());
                     inputBuffer.current = "";
                 } else if (char === "Backspace") {
                     if (inputBuffer.current.length > 0) {
@@ -120,25 +139,28 @@ const MacTerminalClient = ({ title, version }) => {
         init();
 
         return () => {
+            resizeObserver?.disconnect();
             termRef.current?.dispose();
         };
     }, [title]);
 
     return (
-        <div className="w-full h-full border border-black font-mono p-2 bg-white dark:bg-black text-black dark:text-white">
-            <div className="flex items-center justify-between mb-2 border-b border-black px-2 py-1">
-                <div className="flex gap-1">
-                    <MacToastButton color="red" />
-                    <MacToastButton color="green" />
-                    <MacToastButton color="yellow" />
+        <div className="terminal-frame">
+            <div className="terminal-titlebar">
+                <div className="terminal-lights">
+                    <MacToastButton color="red" onClick={onClose} showToast={false} />
+                    <MacToastButton color="green" showToast={false} />
+                    <MacToastButton color="yellow" showToast={false} />
                 </div>
-
+                <span className="terminal-title">{title} — zsh</span>
+                <span className="terminal-status">iTerm</span>
             </div>
 
             <div
-                ref={containerRef}
-                className="w-full h-[300px] bg-black text-white font-mono text-xs p-2 border-t border-black"
-            />
+                className="terminal-body"
+            >
+                <div ref={containerRef} className="terminal-screen" />
+            </div>
         </div>
     );
 };

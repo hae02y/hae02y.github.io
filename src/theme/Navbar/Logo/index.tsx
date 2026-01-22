@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import {Router} from "lucide-react";
+import React, {useEffect, useState} from 'react';
 
 export default function NavbarLogo(){
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -28,11 +27,14 @@ export default function NavbarLogo(){
     : '/img/logo/whitemode.png';
 
   return (
-      <a className="btn flex items-center" href={'/'}>
-        <img 
-          src={logoSrc} 
-          alt="Logo" 
-          className="h-20 w-auto object-contain"
+      <a
+        className="inline-flex items-center border-2 border-black dark:border-white bg-white dark:bg-black brutal-shadow px-3 py-2 transition-transform hover:-translate-y-0.5"
+        href={'/'}
+      >
+        <img
+          src={logoSrc}
+          alt="Logo"
+          className="h-8 w-auto object-contain"
         />
       </a>
   );

@@ -7,8 +7,7 @@ type Props = WrapperProps<typeof NavbarItemType>;
 
 export default function NavbarItemWrapper(props: any) {
     const baseButtonClasses =
-        "font-mono lowercase";
-    const themeButtonClasses =""
+        "navbar__link font-mono uppercase font-bold";
 
 
     const renderLink = (href: string) => (

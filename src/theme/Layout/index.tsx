@@ -51,7 +51,7 @@ export default function LayoutWrapper(props) {
 
     return (
         <div className="custom-layout">
-            <div className={`main-wrapper ${isNavbarHidden ? 'navbar-hidden' : ''}`}>
+            <div className={`layout-shell ${isNavbarHidden ? 'navbar-hidden' : ''}`}>
                 <OriginalLayout {...props} />
             </div>
         </div>

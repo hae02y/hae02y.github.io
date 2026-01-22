@@ -16,7 +16,7 @@ function HomepageHeader() {
 function CamelSection() {
 
     return (
-        <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
+        <div className="h-[calc(100dvh-64px)] dark:bg-[#23262C] flex overflow-hidden">
             <div className="h-full flex w-full flex-col">
                 <div className="lg:flex h-full dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
                     {/* 좌측: 3D Camel */}
@@ -46,7 +46,7 @@ function CamelSection() {
 function HomepageContent() {
 
     return (
-        <div className="h-[calc(100vh-4rem)] dark:bg-[#23262C] flex">
+        <div className="h-[calc(100dvh-64px)] dark:bg-[#23262C] flex overflow-hidden">
             <div className="h-full flex w-full flex-col">
                 <div className="lg:flex h-full dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
                     <div className="h-full font-mono w-full lg:h-full lg:w-1/2 flex items-center justify-center">
@@ -72,4 +72,3 @@ export default function Home() {
         </Layout>
     );
 }
-

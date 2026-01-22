@@ -6,77 +6,102 @@ import Link from '@docusaurus/Link';
 import BlogListPaginator from '@theme/BlogListPaginator';
 import {useDateTimeFormat} from "@docusaurus/theme-common/internal";
 
-// 스타일 정의
-export const blogStyles = {
-    tagLink:
-        'block md:inline-block break-words line-clamp-3 mb-6 text-sm text-blue-600 dark:text-blue-400 hover:underline transition-colors',
-    blogCard:
-        'flex justify-between items-start border-gray-200 dark:border-gray-700 py-6 group h-48',
-    date: 'text-sm text-gray-500 dark:text-gray-400 mb-1',
-    title:
-        'text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:underline',
-    description: 'text-sm md:text-base text-gray-700 dark:text-gray-300 break-all overflow-hidden line-clamp-2 mb-4',
-    thumbnail: 'w-28 h-full rounded-lg object-cover shrink-0',
-    pagination: 'mt-8 flex justify-center',
-};
-
 
 function BlogListPageContent({items, metadata}) {
     return (
         <BlogLayout>
-            <div className={`blog-header`}>
-                <h1 className={`text-center`}>Blog.</h1>
-                <Link className={`font-mono hover:underline`} to={'/blog/tags'}>All Tags.</Link>
-            </div>
-            <div className={`border-[0.3px] w-full border-gray-300`}></div>
-            <div className="flex flex-col w-full">
-                {items.map(({content}) => (
-                    <>
-                        <Link
-                            key={content.metadata.permalink}
-                            to={content.metadata.permalink}
-                            className={blogStyles.blogCard}
-                        >
-                            {console.log(content.metadata)}
-                            {/* 왼쪽 텍스트 영역 */}
-                            <div className="flex-1 pr-4 h-full">
-                                <h3 className={blogStyles.title}>{content.metadata.title}</h3>
-                                <p className={blogStyles.date}>
-                                    {useDateTimeFormat().format(new Date(content.metadata.date))} • {Math.ceil(content.metadata.readingTime)} min
-                                </p>
-                                <p className={blogStyles.description}>
-                                    {content.metadata.description || 'No description available.'}
-                                </p>
+            <div className="not-prose">
+                <section className="relative border-2 border-black dark:border-white bg-[#f7f7f2] dark:bg-[#161616] brutal-shadow overflow-hidden">
+                    <div className="brutal-grid absolute inset-0 opacity-40 pointer-events-none"></div>
+                    <div className="relative z-10 px-4 md:px-6 py-6">
+                        <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black px-3 py-2 font-mono text-[11px] uppercase tracking-[0.25em]">
+                            <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 border border-current"></span>
+                                <span>Blog Index</span>
                             </div>
-
-                            {/* 오른쪽 아이콘 이미지 (dark-link.svg) */}
-                            <div className="hidden md:w-28 h-full rounded-lg shrink-0 md:flex items-center justify-center">
-                                <img
-                                    src="/img/blog/dark-link.svg"
-                                    alt="링크 아이콘"
-                                    className="w-[50px] h-[50px] object-contain invert dark:invert-0"
-                                />
-                            </div>
-                        </Link>
-
-                        <div className="w-full flex flex-wrap gap-2 my-2">
-                            {content.metadata.tags?.map(tag => (
-                                <div
-                                    className={`w-fit rounded-full bg-[#D9D9D9] dark:bg-[#242526] bg-opacity-40 py-0.5 px-2.5 text-[11px] text-[#4F5968]`}>
-                                    <a href={`/blog/tags/${tag.label}`} key={tag}>
-                                        {tag.label}
-                                    </a>
-                                </div>
-                            ))}
+                            <span className="text-[10px]">Hae02y System Log</span>
                         </div>
+                        <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
+                            <div>
+                                <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black dark:text-white">
+                                    Blog.
+                                </h1>
+                                <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.35em] text-black/70 dark:text-white/70">
+                                    Notes. Systems. Shipping.
+                                </p>
+                            </div>
+                            <Link
+                                className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
+                                to="/blog/tags"
+                            >
+                                All Tags
+                                <span className="text-base">↗</span>
+                            </Link>
+                        </div>
+                    </div>
+                </section>
 
-                        <div className={`border-[0.3px] w-full border-gray-300`}></div>
-                    </>
-                ))}
-            </div>
+                <div className="mt-6 flex flex-col gap-6">
+                    {items.map(({content}, index) => (
+                        <React.Fragment key={content.metadata.permalink}>
+                            <article className="group border-2 border-black dark:border-white bg-white dark:bg-black brutal-shadow px-5 py-6 md:px-6 md:py-7 flex flex-col md:flex-row gap-4 md:gap-8 transition-transform duration-200 hover:-translate-y-1 hover:-rotate-1">
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-black/70 dark:text-white/70">
+                                        <span>0{index + 1}</span>
+                                        <span>•</span>
+                                        <span>
+                                            {useDateTimeFormat().format(new Date(content.metadata.date))}
+                                        </span>
+                                        <span>•</span>
+                                        <span>{Math.ceil(content.metadata.readingTime)} min</span>
+                                    </div>
+                                    <Link
+                                        to={content.metadata.permalink}
+                                        className="mt-3 block text-2xl md:text-3xl font-bold text-black dark:text-white group-hover:underline"
+                                    >
+                                        {content.metadata.title}
+                                    </Link>
+                                    <p className="mt-3 text-sm md:text-base text-black/70 dark:text-white/70 line-clamp-2">
+                                        {content.metadata.description || 'No description available.'}
+                                    </p>
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        {content.metadata.tags?.map((tag) => (
+                                            <Link
+                                                key={tag.label}
+                                                className="border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black dark:text-white transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                                                to={`/blog/tags/${tag.label}`}
+                                            >
+                                                {tag.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
 
-            <div className={blogStyles.pagination}>
-                <BlogListPaginator metadata={metadata}/>
+                                <div className="flex items-center justify-between md:flex-col md:items-end gap-4">
+                                    <Link
+                                        to={content.metadata.permalink}
+                                        className="border-2 border-black dark:border-white px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-black dark:text-white transition-transform group-hover:-translate-y-1"
+                                    >
+                                        Read
+                                    </Link>
+                                    <Link
+                                        to={content.metadata.permalink}
+                                        className="h-12 w-12 border-2 border-black dark:border-white flex items-center justify-center text-xl text-black dark:text-white transition-transform group-hover:-translate-y-1"
+                                        aria-label={`${content.metadata.title} 읽기`}
+                                    >
+                                        →
+                                    </Link>
+                                </div>
+                            </article>
+                        </React.Fragment>
+                    ))}
+                </div>
+
+                <div className="mt-10 flex justify-center">
+                    <div className="border-2 border-black dark:border-white bg-white dark:bg-black brutal-shadow px-4 py-3">
+                        <BlogListPaginator metadata={metadata}/>
+                    </div>
+                </div>
             </div>
         </BlogLayout>
     );

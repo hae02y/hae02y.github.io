@@ -1,4 +1,5 @@
 import React, {type ReactNode} from 'react';
+import clsx from 'clsx';
 import {useThemeConfig, ErrorCauseBoundary} from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
@@ -48,9 +49,9 @@ function NavbarContentLayout({
   right: ReactNode;
 }) {
   return (
-    <div className="navbar__inner">
-      <div className="navbar__items">{left}</div>
-      <div className="navbar__items navbar__items--right mr-4">{right}</div>
+    <div className={clsx('navbar__inner', styles.navbarInner)}>
+      <div className={clsx('navbar__items', styles.navbarItems)}>{left}</div>
+      <div className={clsx('navbar__items navbar__items--right', styles.navbarItemsRight)}>{right}</div>
     </div>
   );
 }
@@ -69,10 +70,10 @@ export default function NavbarContent() {
         // TODO stop hardcoding items?
         <>
           {/* {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />} */}
-          <div className="ml-4">
+          <div className="ml-2 md:ml-4">
             <NavbarLogo />
           </div>
-          <div className="navbar__list">
+          <div className={clsx('navbar__list', styles.navbarList)}>
             <NavbarItems items={leftItems} />
           </div>
         </>

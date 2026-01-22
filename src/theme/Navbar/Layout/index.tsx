@@ -38,6 +38,7 @@ export default function NavbarLayout({children}: Props) {
       className={clsx(
         // 'navbar',
         'navbar--fixed-top',
+        styles.brutalNavbar,
         hideOnScroll && [
             styles.navbar,
             styles.navbarHideable,

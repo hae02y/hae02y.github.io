@@ -17,17 +17,17 @@ export default function BlogLayout(props: Props) {
             <Layout {...layoutProps}>
                 {/* 상단 여백, 가운데 정렬, 좌우 패딩 */}
                 <div
-                    className="mx-auto min-w-full sm:min-w-[800px] sm:max-w-[800px] mt-6 md:mt-10">
+                    className="mx-auto px-4 mt-6 md:mt-10">
                     {/* 모바일에서는 flex-col, 데스크톱에서는 flex-row */}
 
                     {/* 메인 콘텐츠 영역 */}
                     <div
-                        className={`mx-auto px-4 w-full`}
+                        className={`mx-auto w-full`}
                     >
                         <div className="main-class">
                             <main
                                 className={
-                                    `mx-auto max-w-[750px] 2xl:max-w-[900px] px-4 w-full prose prose-lg`
+                                    `mx-auto max-w-[700px] px-4 w-full`
                                 }
                             >
                                 {children}
@@ -88,4 +88,3 @@ const TocPopover = ({toc}: { toc: any }) => {
         </Popover>
     );
 }
-

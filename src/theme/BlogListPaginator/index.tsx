@@ -18,24 +18,10 @@ export default function BlogListPaginator({ metadata }: Props){
         (_, i) => startPage + i
     );
 
-    const prevBlockPage = startPage - 1;
-    const nextBlockPage = endPage + 1;
-
     const toPageLink = (page: number) => (page === 1 ? '/blog' : `/blog/page/${page}`);
 
     return (
-        <nav className="flex justify-center mt-8 mb-8 gap-2 flex-wrap">
-            {/* 이전 블록으로 */}
-            {prevBlockPage >= 1 && (
-                <Link
-                    to={toPageLink(prevBlockPage)}
-                    className="px-3 py-1 border rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                    &lt;
-                </Link>
-            )}
-
-            {/* 현재 블록의 페이지들 */}
+        <nav className="flex justify-center gap-2 flex-wrap">
             {pagesToShow.map((page) => {
                 const isActive = page === currentPage;
                 return (
@@ -43,26 +29,16 @@ export default function BlogListPaginator({ metadata }: Props){
                         key={page}
                         to={toPageLink(page)}
                         className={clsx(
-                            'px-3 py-1 border rounded-md text-sm transition-colors',
+                            'border-2 border-black dark:border-white px-3 py-1 font-mono text-xs uppercase tracking-[0.2em] transition-transform',
                             isActive
                                 ? 'bg-black text-white dark:bg-white dark:text-black'
-                                : 'bg-white text-black dark:bg-black dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                                : 'bg-white text-black dark:bg-black dark:text-white hover:-translate-y-0.5'
                         )}
                     >
                         {page}
                     </Link>
                 );
             })}
-
-            {/* 다음 블록으로 */}
-            {nextBlockPage <= totalPages && (
-                <Link
-                    to={toPageLink(nextBlockPage)}
-                    className="px-3 py-1 border rounded-md text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                    &gt;
-                </Link>
-            )}
         </nav>
     );
 }
