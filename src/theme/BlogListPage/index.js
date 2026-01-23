@@ -69,7 +69,7 @@ function BlogListPageContent({items, metadata}) {
                                             <Link
                                                 key={tag.label}
                                                 className="border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black dark:text-white transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                                                to={`/blog/tags/${tag.label}`}
+                                                to={tag.permalink}
                                             >
                                                 {tag.label}
                                             </Link>
