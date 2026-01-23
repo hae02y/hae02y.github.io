@@ -398,6 +398,7 @@
     }
 
     .markdown p {
+        font-weight: 400;
         font-size: 16px;
         line-height: 1.7;
         margin: 0 0 1rem;
@@ -770,20 +771,10 @@
 }
 
 
-/*JetBrain Variable Font - Regular*/
 @font-face {
-    font-family: 'JetBrains Mono';
-    font-weight: 600 800;
+    font-family: 'Pretendard';
+    font-weight: 45 920; /* 가변 중량 대응 */
     font-style: normal;
-    font-display: swap;
-    src: url('/font/jetBrain/JetBrainsMono[wght].ttf') format('truetype-variations');
-}
-
-/*JetBrain Variable Font - Italic*/
-@font-face {
-    font-family: 'JetBrains Mono';
-    font-weight: 300 800;
-    font-style: italic;
-    font-display: swap;
-    src: url('/font/jetBrain/JetBrainsMono-Italic[wght].ttf') format('truetype-variations');
+    font-display: block;
+    src: url('/font/pretendard/woff2/PretendardVariable.woff2') format('woff2-variations');
 }

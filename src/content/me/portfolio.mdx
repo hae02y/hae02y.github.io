@@ -1,0 +1,10 @@
+import PortfolioSection from '@site/src/components/portfolio/PortfolioSection';
+import {portfolioSections} from '@site/src/data/portfolio-items';
+
+# 포트폴리오
+
+회사와 개인 프로젝트를 나눠 정리했습니다. 각 항목에서 상세 페이지로 이동할 수 있습니다.
+
+{portfolioSections.map((section) => (
+  <PortfolioSection key={section.title} section={section} />
+))}

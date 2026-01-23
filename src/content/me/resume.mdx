@@ -1,0 +1,41 @@
+import ExperienceTimeline from '@site/src/components/resume/ExperienceTimeline';
+import ProjectTimeline from '@site/src/components/resume/ProjectTimeline';
+import ActivitySection from '@site/src/components/resume/ActivitySection';
+import ResumeLinks from '@site/src/components/resume/ResumeLinks';
+import EducationSection from '@site/src/components/resume/EducationSection';
+import CertificationSection from '@site/src/components/resume/CertificationSection';
+import {experienceItems} from '@site/src/data/resume-experience';
+import {resumeProjects} from '@site/src/data/resume-projects';
+import {activityItems} from '@site/src/data/resume-activities';
+import {resumeLinks} from '@site/src/data/resume-links';
+import {educationItems} from '@site/src/data/resume-education';
+import {certificationItems} from '@site/src/data/resume-certifications';
+
+# 정해영
+godud1118@gmail.com
+
+원리를 이해하고 테스트로 증명하는 개발자입니다. 분산 환경 인증·인가 설계, AWS 기반 고가용성 아키텍처, 비동기 처리 최적화에 집중해왔습니다. 오픈소스·블로그·발표로 지식 공유를 이어가고 있으며 현재는 프리랜서로 C/Python 교육을 진행합니다.
+
+## 경력
+
+<ExperienceTimeline items={experienceItems} />
+
+## 프로젝트
+
+<ProjectTimeline projects={resumeProjects} />
+
+## 교육
+
+<EducationSection items={educationItems} />
+
+## 활동
+
+<ActivitySection items={activityItems} />
+
+## 자격증
+
+<CertificationSection items={certificationItems} />
+
+## 링크
+
+<ResumeLinks links={resumeLinks} />
