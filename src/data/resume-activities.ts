@@ -7,9 +7,9 @@ export type ActivityItem = {
 
 export const activityItems: ActivityItem[] = [
   {
-    title: '표준프레임워크 오픈커뮤니티',
-    subtitle: '오픈소스 기여',
-    tags: ['오픈소스'],
+    title: 'Codestates Software Developer 부트캠프',
+    subtitle: '부트캠프 수료',
+    tags: ['부트캠프'],
     bullets: [
       'StringBuffer -> StringBuilder 전환, try-with-resources 적용',
       'Pull Request: 읽기 로직 개선 #102, 코드 스타일 개선 #104',
