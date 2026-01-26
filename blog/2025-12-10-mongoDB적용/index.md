@@ -11,8 +11,9 @@ tags:
   - Kotlin
 ---
 
-- Config
 ```java
+//Config
+
 @Configuration  
 @EnableMongoAuditing  
 class MongoConfig {  
@@ -20,14 +21,16 @@ class MongoConfig {
 ```
 
 
-- Repository
 ```java
+//Repository
+
 interface MailContentsRepository : MongoRepository<MailContents, String> {  
 }
 ```
 
-- Entity(Document)
+
 ```java 
+//Entity(Document)
 @Document(collection = "mail_contents")  
 class MailContents(  
   
@@ -40,7 +43,6 @@ class MailContents(
   
     var category: MailCategory = MailCategory.NONE,  
   
-    @Column(name = "site_link")  
     var siteLink: String,  
   
     @CreatedDate  
@@ -51,9 +53,9 @@ class MailContents(
     )
 ```
 
-- application.yml
 
-연동은 2가지 방식으로 가능하다. 나는 첫번째 방식인 `URI`를 통해서 연동을 진행했다.
+
+`yaml` 에서 설정을 할때 2가지 방식으로 가능하다. 나는 첫번째 방식인 `URI`를 통해서 연동을 진행했다.
 
 ```yaml
 spring:  
