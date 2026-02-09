@@ -10,6 +10,41 @@ type ProjectTimelineProps = {
 export default function ProjectTimeline({projects}: ProjectTimelineProps) {
   if (!projects?.length) return null;
 
+  const renderBullet = (bullet: string) => {
+    const nodes: React.ReactNode[] = [];
+    const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIndex = 0;
+    let match: RegExpExecArray | null = null;
+
+    while ((match = linkPattern.exec(bullet)) !== null) {
+      const [fullMatch, text, url] = match;
+      const matchIndex = match.index;
+
+      if (matchIndex > lastIndex) {
+        nodes.push(bullet.slice(lastIndex, matchIndex));
+      }
+
+      nodes.push(
+        <a
+          key={`${matchIndex}-${text}`}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {text}
+        </a>
+      );
+
+      lastIndex = matchIndex + fullMatch.length;
+    }
+
+    if (lastIndex < bullet.length) {
+      nodes.push(bullet.slice(lastIndex));
+    }
+
+    return nodes.length ? nodes : bullet;
+  };
+
   return (
     <div className="resume-projects">
       {projects.map((project) => (
@@ -31,7 +66,7 @@ export default function ProjectTimeline({projects}: ProjectTimelineProps) {
           </div>
           <ul className="resume-project-list">
             {project.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
+              <li key={bullet}>{renderBullet(bullet)}</li>
             ))}
           </ul>
           {project.linkLabel && project.linkUrl ? (

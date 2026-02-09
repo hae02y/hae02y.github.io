@@ -1,5 +1,5 @@
 import React from 'react';
-import {ExternalLink, Github, Link as LinkIcon} from 'lucide-react';
+import {ExternalLink, Github, Link as LinkIcon, AtSignIcon, Linkedin} from 'lucide-react';
 import type {ResumeLink} from '@site/src/data/resume-links';
 
 type ResumeLinksProps = {
@@ -11,6 +11,8 @@ const iconMap = {
   blog: LinkIcon,
   medium: ExternalLink,
   link: LinkIcon,
+  email: AtSignIcon,
+  linkedIn : Linkedin,
 };
 
 export default function ResumeLinks({links}: ResumeLinksProps) {

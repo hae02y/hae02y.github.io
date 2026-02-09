@@ -9,7 +9,7 @@ export type ResumeProject = {
 
 export const resumeProjects: ResumeProject[] = [
   {
-    org: '개인',
+    org: '(주)베스텔라랩',
     period: '2025.08 - 진행 중',
     title: 'Event 기반 아키텍처와 Virtual Thread 최적화 프로젝트',
     bullets: [
@@ -20,7 +20,7 @@ export const resumeProjects: ResumeProject[] = [
     ],
   },
   {
-    org: '세종대학교',
+    org: '(주)베스텔라랩',
     period: '2024.09 - 2024.12',
     title: 'AWS 기반 고가용성 아키텍처 및 CI/CD 파이프라인 구축',
     bullets: [
@@ -31,7 +31,7 @@ export const resumeProjects: ResumeProject[] = [
     ],
   },
   {
-    org: 'NHN Academy',
+    org: '(주)베스텔라랩',
     period: '2024.02 - 2024.03',
     title: '분산 환경 인증·인가 시스템 설계',
     bullets: [

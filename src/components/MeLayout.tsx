@@ -92,6 +92,39 @@ export default function MeLayout({title, children}: MeLayoutProps) {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
+        [data-theme='dark'] .resume-page {
+          color: #334155;
+          background: #fff;
+        }
+        [data-theme='dark'] .resume-page h1,
+        [data-theme='dark'] .resume-page h2,
+        [data-theme='dark'] .resume-page h3,
+        [data-theme='dark'] .resume-page h4,
+        [data-theme='dark'] .resume-page h5 {
+          color: #0f172a;
+        }
+        [data-theme='dark'] .resume-page p,
+        [data-theme='dark'] .resume-page li,
+        [data-theme='dark'] .resume-page .resume-timeline-project-summary,
+        [data-theme='dark'] .resume-page .portfolio-detail-summary {
+          color: #334155;
+        }
+        [data-theme='dark'] .resume-page a,
+        [data-theme='dark'] .resume-page .resume-project-link {
+          color: #3a7bd5;
+        }
+        [data-theme='dark'] .resume-page a:hover,
+        [data-theme='dark'] .resume-page .resume-project-link:hover {
+          color: #00d2ff;
+        }
+        [data-theme='dark'] .resume-page .resume-project-card,
+        [data-theme='dark'] .resume-page .portfolio-card,
+        [data-theme='dark'] .resume-page .portfolio-timeline-card,
+        [data-theme='dark'] .resume-page .resume-certification-item,
+        [data-theme='dark'] .resume-page .portfolio-toc {
+          background: #fff;
+          border-color: #e2e8f0;
+        }
         .resume-container {
           width: 100%;
           max-width: 50rem;
@@ -162,7 +195,7 @@ export default function MeLayout({title, children}: MeLayoutProps) {
           justify-content: space-between;
           gap: 1rem;
         }
-        .resume-project-org { font-size: 1.02rem; font-weight: 700; color: #0f172a; }
+        .resume-project-org { font-size: 1.02rem; font-weight: 400; color: #64748b; }
         .resume-project-title {
           font-size: 1.05rem;
           font-weight: 600;
@@ -264,16 +297,28 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .resume-link-item:hover { color: #0f172a; }
         .resume-link-icon { width: 1rem; height: 1rem; color: #3a7bd5; }
         .resume-timeline { display: flex; flex-direction: column; gap: 2rem; }
-        .resume-timeline-item { display: flex; gap: 2rem; border-bottom: 1px solid #eee; padding-bottom: 2rem; }
-        .resume-timeline-item:last-child { border-bottom: 0; padding-bottom: 0; }
+        .resume-timeline-item { display: flex; gap: 2rem; padding-bottom: 2rem; }
+        .resume-timeline-item:last-child { padding-bottom: 0; }
         .resume-timeline-left { position: relative; flex: 0 0 14rem; padding-left: 1.8rem; }
         .resume-timeline-meta { display: flex; flex-direction: column; gap: 0.35rem; }
+        .resume-timeline-company-row {
+          display: flex;
+          align-items: baseline;
+          gap: 0.75rem;
+          flex-wrap: wrap;
+        }
         .resume-timeline-company {
-          font-size: 1.1rem;
+          font-size: 1.14rem;
           font-weight: 700;
           display: flex;
           align-items: center;
           gap: 0.5rem;
+        }
+        .resume-experience-total {
+          margin-left: 0.6rem;
+          font-size: 0.95rem;
+          font-weight: 400;
+          color: #475569;
         }
         .resume-timeline-icon {
           display: inline-block;
@@ -291,7 +336,62 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .resume-timeline-role { font-size: 0.95rem; font-weight: 600; color: #334155; }
         .resume-timeline-period { font-size: 0.9rem; color: #64748b; }
         .resume-timeline-highlight { font-size: 0.95rem; color: #334155; }
+        .resume-timeline-summary { font-size: 0.98rem; color: #334155; line-height: 1.5; }
         .resume-timeline-right { flex: 1; display: flex; flex-direction: column; gap: 1.5rem; }
+        .portfolio-company-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+        }
+        .portfolio-company-marker {
+          position: relative;
+          width: 1.2rem;
+          display: flex;
+          justify-content: center;
+        }
+        .portfolio-company-dot {
+          width: 0.55rem;
+          height: 0.55rem;
+          border-radius: 999px;
+          background: #3a7bd5;
+          margin-top: 0.35rem;
+        }
+        .portfolio-company-connector {
+          position: absolute;
+          top: 1.05rem;
+          bottom: -1.6rem;
+          width: 2px;
+          background: #d7e3f4;
+        }
+        .resume-experience-timeline { --experience-timeline-gap: 1.2rem; gap: 1.2rem; }
+        .resume-experience-timeline .resume-timeline-item { padding-bottom: 1.2rem; }
+        .resume-experience-timeline .resume-timeline-item:last-child { padding-bottom: 0; }
+        .resume-experience-timeline .portfolio-company-marker { align-self: stretch; }
+        .resume-experience-timeline .portfolio-company-connector {
+          bottom: calc(-1 * (var(--experience-timeline-gap) + 0.625rem));
+        }
+        .company-timeline-collapsed {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 1.4rem;
+          padding-left: 0.2rem;
+        }
+        .company-timeline-item {
+          position: relative;
+          display: grid;
+          grid-template-columns: 1.1rem minmax(0, 1fr);
+          column-gap: 0.75rem;
+          align-items: flex-start;
+        }
+        .company-timeline-dot {
+          width: 0.55rem;
+          height: 0.55rem;
+          border-radius: 999px;
+          background: #3a7bd5;
+          margin-top: 0.35rem;
+          flex-shrink: 0;
+        }
         .resume-timeline-project-group {
           display: flex;
           flex-direction: column;
@@ -354,6 +454,91 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         }
         .portfolio-section { margin-bottom: 3rem; }
         .portfolio-section h2 { margin-top: 0; }
+        .portfolio-section-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+        }
+        .portfolio-toc-wrapper {
+          position: fixed;
+          right: 0.4rem;
+          top: 9rem;
+          z-index: 10;
+        }
+        .portfolio-toc-handle {
+          width: 0.6rem;
+          height: 3.8rem;
+          border-radius: 999px;
+          background: linear-gradient(180deg, #e2e8f0 0%, #c7d2fe 100%);
+          border: 1px solid rgba(148, 163, 184, 0.6);
+          box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+          opacity: 0.95;
+        }
+        .portfolio-toc-wrapper:hover .portfolio-toc-handle,
+        .portfolio-toc-wrapper:focus-within .portfolio-toc-handle {
+          opacity: 1;
+          box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+        }
+        .portfolio-toc {
+          margin-top: 0.75rem;
+          max-height: calc(100vh - 12rem);
+          overflow: auto;
+          border-left: 1px solid #e2e8f0;
+          padding-left: 1.25rem;
+          font-size: 0.92rem;
+          color: #64748b;
+          background: rgba(255, 255, 255, 0.95);
+          padding-right: 0.25rem;
+          opacity: 0;
+          transform: translateX(8px);
+          pointer-events: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .portfolio-toc-wrapper:hover .portfolio-toc,
+        .portfolio-toc-wrapper:focus-within .portfolio-toc {
+          opacity: 1;
+          transform: translateX(0);
+          pointer-events: auto;
+        }
+        .portfolio-toc ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.45rem;
+        }
+        .portfolio-toc a {
+          color: inherit;
+          text-decoration: none;
+        }
+        .portfolio-toc a:hover {
+          color: #0f172a;
+        }
+        .portfolio-toc a.is-active {
+          color: #0f172a;
+          font-weight: 700;
+        }
+        .portfolio-toggle {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 999px;
+          border: 1px solid #e2e8f0;
+          background: #fff;
+          color: #0f172a;
+          font-size: 1.1rem;
+          font-weight: 700;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+        }
+        .portfolio-toggle:hover {
+          border-color: #94a3b8;
+          background: #f8fafc;
+        }
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -382,6 +567,55 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .portfolio-card-summary { margin: 0; font-size: 0.98rem; color: #334155; }
         .portfolio-card-meta { font-size: 0.9rem; color: #64748b; }
         .portfolio-card-link { font-weight: 600; }
+        @media (max-width: 960px) {
+          .portfolio-toc-wrapper { display: none; }
+        }
+        .portfolio-detail-meta {
+          font-size: 0.95rem;
+          color: #64748b;
+          margin-bottom: 0.35rem;
+        }
+        .portfolio-detail-summary {
+          margin: 0 0 0.75rem;
+          font-size: 1.02rem;
+          line-height: 1.62;
+          color: #334155;
+        }
+        .portfolio-timeline-card {
+          padding: 0.2rem 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+        .portfolio-timeline-card .resume-timeline-project-summary,
+        .portfolio-timeline-card .resume-timeline-project-tech {
+          margin: 0;
+        }
+        .resume-project-link-wrapper {
+          text-decoration: none;
+          color: inherit;
+        }
+        .resume-project-item:hover .portfolio-timeline-card {
+          background: #f8fafc;
+          border-radius: 0.75rem;
+        }
+        .resume-project-item:hover .resume-project-dot {
+          background: #2563eb;
+        }
+        .resume-project-link-wrapper:hover .resume-project-icon {
+          color: #2563eb;
+        }
+        .resume-timeline-item.is-collapsed {
+          padding-bottom: 1.1rem;
+          border-bottom: 1px solid #eef2f7;
+        }
+        .resume-timeline-item.is-collapsed:last-child {
+          border-bottom: 0;
+          padding-bottom: 0;
+        }
+        .resume-timeline-item.is-collapsed .resume-timeline-left {
+          flex: 1;
+        }
         @media (max-width: 960px) {
           .portfolio-grid { grid-template-columns: 1fr; }
         }
