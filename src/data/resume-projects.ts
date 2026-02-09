@@ -21,8 +21,41 @@ export const resumeProjects: ResumeProject[] = [
   },
   {
     org: '(주)베스텔라랩',
+    period: '2025.08 - 진행 중',
+    title: '클라우드 기반 내비게이션 서비스 백엔드 개발',
+    bullets: [
+      'Virtual Thread 기반 비동기 처리 및 JMH/JFR 성능 검증',
+      'S3 Event + Lambda 자동 문서 처리 파이프라인 구축',
+      'Markdown 변환 후 PGVector 임베딩, HTML 빌드 및 CDN 서빙',
+      'Spring AI 기반 RAG 챗봇 구현',
+    ],
+  },
+  {
+    org: '(주)베스텔라랩',
+    period: '2025.08 - 진행 중',
+    title: '클라우드 기반 내비게이션 서비스 백엔드 개발',
+    bullets: [
+      'Virtual Thread 기반 비동기 처리 및 JMH/JFR 성능 검증',
+      'S3 Event + Lambda 자동 문서 처리 파이프라인 구축',
+      'Markdown 변환 후 PGVector 임베딩, HTML 빌드 및 CDN 서빙',
+      'Spring AI 기반 RAG 챗봇 구현',
+    ],
+  },
+  {
+    org: '(주)베스텔라랩',
+    period: '2025.08 - 진행 중',
+    title: 'On-Premise 환경 내비게이션 서비스 백엔드 개발',
+    bullets: [
+      'Virtual Thread 기반 비동기 처리 및 JMH/JFR 성능 검증',
+      'S3 Event + Lambda 자동 문서 처리 파이프라인 구축',
+      'Markdown 변환 후 PGVector 임베딩, HTML 빌드 및 CDN 서빙',
+      'Spring AI 기반 RAG 챗봇 구현',
+    ],
+  },
+  {
+    org: '(주)베스텔라랩',
     period: '2024.09 - 2024.12',
-    title: 'AWS 기반 고가용성 아키텍처 및 CI/CD 파이프라인 구축',
+    title: '아이코딩 톡벗',
     bullets: [
       'ALB/ASG 기반 고가용성 구성 및 Blue/Green 배포',
       'Artillery 부하 테스트로 타임아웃/실패율 개선',
@@ -31,9 +64,10 @@ export const resumeProjects: ResumeProject[] = [
     ],
   },
   {
+    //파크옵스, LA PoC 
     org: '(주)베스텔라랩',
     period: '2024.02 - 2024.03',
-    title: '분산 환경 인증·인가 시스템 설계',
+    title: '글로벌 타겟팅 분석 대시보드 개발',
     bullets: [
       'Redis 기반 Refresh Token 관리 및 보안 옵션 강화',
       'Gateway 인가 최적화 및 RBAC 기반 접근 제어',
