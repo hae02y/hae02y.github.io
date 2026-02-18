@@ -207,6 +207,9 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .resume-project-list { margin: 0; padding: 0; list-style: none; font-size: 0.98rem; line-height: 1.5; }
         .resume-project-list li { position: relative; padding-left: 1rem; margin-bottom: 0.2rem; }
         .resume-project-list li:before { position: absolute; left: 0; content: "•"; color: #3a7bd5; }
+        .resume-project-techstack { font-size: 0.9rem; color: #64748b; margin-top: 0.2rem; }
+        .resume-project-group-list { display: flex; flex-direction: column; gap: 0.7rem; }
+        .resume-project-group-title { font-size: 0.95rem; font-weight: 600; color: #334155; margin-bottom: 0.2rem; }
         .resume-project-link { font-size: 0.92rem; color: #3a7bd5; font-weight: 600; }
         .resume-inline-icon {
           display: inline-flex;
@@ -240,6 +243,8 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .resume-activity-list { margin: 0; padding: 0; list-style: none; font-size: 0.98rem; line-height: 1.5; }
         .resume-activity-list li { position: relative; padding-left: 1rem; margin-bottom: 0.2rem; }
         .resume-activity-list li:before { position: absolute; left: 0; content: "•"; color: #3a7bd5; }
+        .resume-activity-group-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .resume-activity-group-title { font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0.2rem; }
         .resume-education {
           display: flex;
           flex-direction: column;

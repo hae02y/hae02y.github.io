@@ -73,7 +73,20 @@ export default function ActivitySection({items}: ActivitySectionProps) {
               </div>
             ) : null}
           </div>
-          {item.bullets?.length ? (
+          {item.bulletGroups?.length ? (
+            <div className="resume-activity-group-list">
+              {item.bulletGroups.map((group) => (
+                <div key={group.title} className="resume-activity-group">
+                  <div className="resume-activity-group-title">{group.title}</div>
+                  <ul className="resume-activity-list">
+                    {group.bullets.map((bullet) => (
+                      <li key={bullet}>{renderBullet(bullet)}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : item.bullets?.length ? (
             <ul className="resume-activity-list">
               {item.bullets.map((bullet) => (
                 <li key={bullet}>{renderBullet(bullet)}</li>

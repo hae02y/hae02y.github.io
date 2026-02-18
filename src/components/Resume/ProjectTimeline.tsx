@@ -61,14 +61,32 @@ export default function ProjectTimeline({projects}: ProjectTimelineProps) {
                 />
                 {project.title}
               </div>
+              {project.techStack ? (
+                <div className="resume-project-techstack">{project.techStack}</div>
+              ) : null}
             </div>
             <div className="resume-project-period">{project.period}</div>
           </div>
-          <ul className="resume-project-list">
-            {project.bullets.map((bullet) => (
-              <li key={bullet}>{renderBullet(bullet)}</li>
-            ))}
-          </ul>
+          {project.bulletGroups?.length ? (
+            <div className="resume-project-group-list">
+              {project.bulletGroups.map((group) => (
+                <div key={group.title} className="resume-project-group">
+                  <div className="resume-project-group-title">{group.title}</div>
+                  <ul className="resume-project-list">
+                    {group.bullets.map((bullet) => (
+                      <li key={bullet}>{renderBullet(bullet)}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : project.bullets?.length ? (
+            <ul className="resume-project-list">
+              {project.bullets.map((bullet) => (
+                <li key={bullet}>{renderBullet(bullet)}</li>
+              ))}
+            </ul>
+          ) : null}
           {project.linkLabel && project.linkUrl ? (
             <Link className="resume-project-link" to={project.linkUrl}>
               {project.linkLabel}

@@ -30,4 +30,9 @@ export const certificationItems: CertificationItem[] = [
     issuer: '정보통신기술자격검정',
     date: '2020.07',
   },
+  {
+    name: '컴퓨터활용능력 2급',
+    issuer: '대한상공회의소',
+    date: '2019.10',
+  },
 ];

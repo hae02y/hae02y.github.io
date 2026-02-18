@@ -2,7 +2,12 @@ export type ResumeAutomationItem = {
   org: string;
   period: string;
   title: string;
-  bullets: string[];
+  bullets?: string[];
+  bulletGroups?: {
+    title: string;
+    bullets: string[];
+  }[];
+  techStack?: string;
   linkLabel?: string;
   linkUrl?: string;
 };
@@ -10,35 +15,33 @@ export type ResumeAutomationItem = {
 export const resumeAutomation: ResumeAutomationItem[] = [
   {
     org: '(주)베스텔라랩',
-    period: '2025.08 - 진행 중',
-    title: 'Event 기반 아키텍처와 Virtual Thread 최적화 프로젝트',
-    bullets: [
-      'Virtual Thread 기반 비동기 처리 및 JMH/JFR 성능 검증',
-      'S3 Event + Lambda 자동 문서 처리 파이프라인 구축',
-      'Markdown 변환 후 PGVector 임베딩, HTML 빌드 및 CDN 서빙',
-      'Spring AI 기반 RAG 챗봇 구현',
+    period: '2025.10 - 현재',
+    title: '도면 데이터 변경 자동화 프로세스 구축',
+    techStack: 'Java, Spring Boot, Spring Security, Mybatis, MySQL, Thymeleaf, NCP',
+    bulletGroups: [
+      {
+        title: 'Figma 플러그인 기반 오류 검증 자동화',
+        bullets: [
+          '디자이너가 Figma로 작업한 도면을 데이터로 변환하는 과정에서 오류를 검증하는 플러그인을 설계·구현해 실무에 적용했고, 휴먼 에러 발생률을 평균 20%에서 0%로 감소시켰습니다.',
+        ],
+      },
+      {
+        title: '도면·내비게이션 데이터 검증 대시보드 구축',
+        bullets: [
+          '도면과 내비게이션 데이터의 등록 상태를 시각화해 확인할 수 있는 페이지를 설계·구현하여 비개발 인력도 가장 먼저 확인하는 내부 검증 화면을 구축했습니다.',
+          '오류 인지 및 정상화까지 5일 이상 걸리던 프로세스를 5분으로 단축했습니다.',
+        ],
+      },
     ],
   },
   {
     org: '(주)베스텔라랩',
-    period: '2024.09 - 2024.12',
-    title: 'AWS 기반 고가용성 아키텍처 및 CI/CD 파이프라인 구축',
+    period: '2025.10 - 현재',
+    title: 'TIG 스택 기반 모니터링 프로세스 구축',
+    techStack: 'Java, Spring Boot, Spring Security, Mybatis, MySQL, Thymeleaf, NCP',
     bullets: [
-      'ALB/ASG 기반 고가용성 구성 및 Blue/Green 배포',
-      'Artillery 부하 테스트로 타임아웃/실패율 개선',
-      'AMI 프리베이크 + 캐시로 빌드 시간 30% 단축',
-      'SonarCloud/JaCoCo 연동으로 코드 품질 개선',
-    ],
-  },
-  {
-    org: '(주)베스텔라랩',
-    period: '2024.02 - 2024.03',
-    title: '분산 환경 인증·인가 시스템 설계',
-    bullets: [
-      'Redis 기반 Refresh Token 관리 및 보안 옵션 강화',
-      'Gateway 인가 최적화 및 RBAC 기반 접근 제어',
-      'AOP 기반 서비스 내 인가 로직 구현',
-      'Test Coverage 80%+, Code Smell 92.12% 감소',
+      'Telegraf + InfluxDB + Grafana 스택으로 모니터링 시스템을 구축했습니다.',
+      '현장별 장애 상태를 파악할 수 있는 Infra Operation System을 설계하여 사내에서 운영하고 있습니다.',
     ],
   },
 ];
