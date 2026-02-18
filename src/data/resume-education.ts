@@ -7,7 +7,7 @@ export type EducationItem = {
 export const educationItems: EducationItem[] = [
   {
     school: '한양대학교 인공지능 융합대학원',
-    program: '인공지능융합전공 재학중 · 석사',
+    program: '인공지능융합전공 재학 · 석사',
     period: '2026.03 - 2028.02',
   },
   {

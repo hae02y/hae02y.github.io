@@ -62,4 +62,16 @@ export const activityItems: ActivityItem[] = [
       },
     ],
   },
+  {
+    title: '사이드 프로젝트',
+    tags: ['프로젝트'],
+    bulletGroups: [
+      {
+        title: '사이드 프로젝트 진행',
+        bullets: [
+          '다양한 사이드 프로젝트 진행',
+        ],
+      },
+    ],
+  },
 ];
