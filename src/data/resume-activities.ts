@@ -12,7 +12,6 @@ export type ActivityItem = {
 export const activityItems: ActivityItem[] = [
   {
     title: 'Codestates Software Developer 부트캠프',
-    subtitle: '부트캠프 수료',
     tags: ['부트캠프'],
     bulletGroups: [
       {
@@ -26,11 +25,10 @@ export const activityItems: ActivityItem[] = [
   },
   {
     title: '오픈소스 활동',
-    subtitle: '오픈소스 기여',
     tags: ['오픈소스'],
     bulletGroups: [
       {
-        title: '오픈소스 기여',
+        title: 'Google A2A',
         bullets: [
           'Google A2A(a2a-java) listTasks status wire string 처리 버그 수정 기여 [PR #578](https://github.com/a2aproject/a2a-java/pull/578)',
         ],
@@ -39,7 +37,6 @@ export const activityItems: ActivityItem[] = [
   },
   {
     title: '스터디 활동',
-    subtitle: '스터디 참여',
     tags: ['스터디'],
     bulletGroups: [
       {
@@ -54,7 +51,6 @@ export const activityItems: ActivityItem[] = [
   },
   {
     title: '블로그 활동',
-    subtitle: '블로그 운영',
     tags: ['블로그'],
     bulletGroups: [
       {

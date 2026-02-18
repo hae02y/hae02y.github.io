@@ -244,7 +244,7 @@ export default function MeLayout({title, children}: MeLayoutProps) {
         .resume-activity-list li { position: relative; padding-left: 1rem; margin-bottom: 0.2rem; }
         .resume-activity-list li:before { position: absolute; left: 0; content: "•"; color: #3a7bd5; }
         .resume-activity-group-list { display: flex; flex-direction: column; gap: 0.6rem; }
-        .resume-activity-group-title { font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0.2rem; }
+        .resume-activity-group-title { font-size: 0.95rem; font-weight: 400; color: #64748b; margin-bottom: 0.2rem; }
         .resume-education {
           display: flex;
           flex-direction: column;
