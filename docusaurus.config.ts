@@ -279,7 +279,7 @@ const config: Config = {
     navbar: {
       hideOnScroll: true,
       items: [
-        {to: '/me', label: 'Resume', position: 'left'},
+        // {to: '/me', label: 'Resume', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/hae02y',
