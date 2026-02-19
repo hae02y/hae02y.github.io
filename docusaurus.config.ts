@@ -73,8 +73,19 @@ const config: Config = {
         },
       };
     },
-  ]
-  ,
+    function portfolioRoutesPlugin() {
+      return {
+        name: 'portfolio-routes',
+        async contentLoaded({actions}) {
+          actions.addRoute({
+            path: '/me/:slug',
+            component: '@site/src/components/portfolio/PortfolioDetailPage',
+            exact: true,
+          });
+        },
+      };
+    },
+  ],
   title: 'Hae02y Devlog',
   tagline: '정해영(hae02y)의 Backend & Infra Devlog',
   favicon: 'img/sitelogo.ico',

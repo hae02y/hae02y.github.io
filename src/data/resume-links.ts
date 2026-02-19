@@ -1,23 +1,23 @@
 export type ResumeLink = {
   label: string;
   url: string;
-  icon?: 'github' | 'blog' | 'medium' | 'link';
+  icon?: 'github' | 'blog' | 'medium' | 'link' | 'email' | 'linkedIn';
 };
 
 export const resumeLinks: ResumeLink[] = [
   {
     label: 'GitHub',
-    url: 'https://github.com/',
+    url: 'https://github.com/hae02y',
     icon: 'github',
   },
   {
-    label: '티스토리',
-    url: 'https://',
-    icon: 'blog',
+    label: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/hae02y',
+    icon: 'linkedIn',
   },
   {
-    label: '미디엄',
-    url: 'https://medium.com/',
-    icon: 'medium',
+    label: '기술블로그',
+    url: 'https://blog.hae02y.me/',
+    icon: 'blog',
   },
 ];

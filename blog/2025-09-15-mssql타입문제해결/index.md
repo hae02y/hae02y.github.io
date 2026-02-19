@@ -55,7 +55,7 @@ WHERE PH.ticketNo = @P0 \n AND PH.useOk = 1"
 } ]
 ```
 
- 위의 내용에서 `(@P0 nvarchar(4000))` 부분을 살펴보자. SQL Server JDBC Driver는 `String` type의 파라미터를 유니코드 타입인 nvarchar(4000) 형식으로 전달한다. [MSSQL Data Type 우선순위](https://learn.microsoft.com/ko-kr/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-2017)를 보면 NVARCHAR가 VARCHAR / CHAR 보다 높기 때문에 `char(13)`컬럼에 대해 조회조건으로 `String` 파라미터를 사용하게 되면, NVARCHAR로 형변환이 일어나게 되고, 이상태로 조건을 비교한다. 이때 `PK` 에 걸려있는 `CHAR` INDEX도 무시된다. 
+ 위의 내용에서 `(@P0 nvarchar(4000))` 부분을 살펴보자. SQL Server JDBC Driver는 `String` type의 파라미터를 유니코드 타입인 nvarchar(4000) 형식으로 전달한다. [MSSQL Data Type 우선순위](https://learn.microsoft.com/ko-kr/sql/t-sql/data-types/data-type-precedence-transact-sql?view=sql-server-2017)를 보면 NVARCHAR가 VARCHAR / CHAR 보다 높기 때문에 `char(13)`컬럼에 대해 조회조건으로 `String` 파라미터를 사용하게 되면, NVARCHAR로 형변환이 일어나게 되고, 이상태로 조건을 비교한다. 이때 `PK` 에 걸려있는 `CHAR` INDEX도 무시된다. 
 
 1. CHAR - NVARCHAR 형변환 비용 발생
 2. NVARCHAR 변환으로 인한 INDEX 무시

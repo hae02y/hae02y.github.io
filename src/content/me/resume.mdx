@@ -1,3 +1,4 @@
+import ExperienceSummary from '@site/src/components/Resume/ExperienceSummary';
 import ExperienceTimeline from '@site/src/components/Resume/ExperienceTimeline';
 import ProjectTimeline from '@site/src/components/Resume/ProjectTimeline';
 import ActivitySection from '@site/src/components/Resume/ActivitySection';
@@ -5,6 +6,7 @@ import ResumeLinks from '@site/src/components/Resume/ResumeLinks';
 import EducationSection from '@site/src/components/Resume/EducationSection';
 import CertificationSection from '@site/src/components/Resume/CertificationSection';
 import {experienceItems} from '@site/src/data/resume-experience';
+import {resumeAutomation} from '@site/src/data/resume-automation';
 import {resumeProjects} from '@site/src/data/resume-projects';
 import {activityItems} from '@site/src/data/resume-activities';
 import {resumeLinks} from '@site/src/data/resume-links';
@@ -14,23 +16,28 @@ import {certificationItems} from '@site/src/data/resume-certifications';
 # 정해영
 godud1118@gmail.com
 
-원리를 이해하고 테스트로 증명하는 개발자입니다. 분산 환경 인증·인가 설계, AWS 기반 고가용성 아키텍처, 비동기 처리 최적화에 집중해왔습니다. 오픈소스·블로그·발표로 지식 공유를 이어가고 있으며 현재는 프리랜서로 C/Python 교육을 진행합니다.
+백엔드와 인프라 전반을 아우르며 시스템을 설계·개선해온 개발자로, 문제의 본질을 이해하고 구조적으로 해결하는 것을 중요하게 생각합니다. 
+실무에 적용 가능한 AI 기술을 포함해, 기술적 판단의 배경을 투명하게 공유하며 팀과 함께 성장하는 개발을 지향합니다.
 
-## 경력
+## 경력 <ExperienceSummary items={experienceItems} />
 
 <ExperienceTimeline items={experienceItems} />
 
-## 프로젝트
+## 주요 업무
 
 <ProjectTimeline projects={resumeProjects} />
 
-## 교육
+### 개발 생산성 · 업무 자동화
 
-<EducationSection items={educationItems} />
+<ProjectTimeline projects={resumeAutomation} />
 
 ## 활동
 
 <ActivitySection items={activityItems} />
+
+## 교육
+
+<EducationSection items={educationItems} />
 
 ## 자격증
 

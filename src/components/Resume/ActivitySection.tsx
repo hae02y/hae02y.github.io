@@ -9,6 +9,41 @@ type ActivitySectionProps = {
 export default function ActivitySection({items}: ActivitySectionProps) {
   if (!items?.length) return null;
 
+  const renderBullet = (bullet: string) => {
+    const nodes: React.ReactNode[] = [];
+    const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let lastIndex = 0;
+    let match: RegExpExecArray | null = null;
+
+    while ((match = linkPattern.exec(bullet)) !== null) {
+      const [fullMatch, text, url] = match;
+      const matchIndex = match.index;
+
+      if (matchIndex > lastIndex) {
+        nodes.push(bullet.slice(lastIndex, matchIndex));
+      }
+
+      nodes.push(
+        <a
+          key={`${matchIndex}-${text}`}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {text}
+        </a>
+      );
+
+      lastIndex = matchIndex + fullMatch.length;
+    }
+
+    if (lastIndex < bullet.length) {
+      nodes.push(bullet.slice(lastIndex));
+    }
+
+    return nodes.length ? nodes : bullet;
+  };
+
   return (
     <div className="resume-activities">
       {items.map((item) => (
@@ -38,10 +73,23 @@ export default function ActivitySection({items}: ActivitySectionProps) {
               </div>
             ) : null}
           </div>
-          {item.bullets?.length ? (
+          {item.bulletGroups?.length ? (
+            <div className="resume-activity-group-list">
+              {item.bulletGroups.map((group) => (
+                <div key={group.title} className="resume-activity-group">
+                  <div className="resume-activity-group-title">{group.title}</div>
+                  <ul className="resume-activity-list">
+                    {group.bullets.map((bullet) => (
+                      <li key={bullet}>{renderBullet(bullet)}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : item.bullets?.length ? (
             <ul className="resume-activity-list">
               {item.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
+                <li key={bullet}>{renderBullet(bullet)}</li>
               ))}
             </ul>
           ) : null}

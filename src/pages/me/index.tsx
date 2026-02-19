@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import {useLocation} from '@docusaurus/router';
 import ResumeContent from '@site/src/content/me/resume.mdx';
-import PortfolioContent from '@site/src/content/me/portfolio.mdx';
+import PortfolioList from '@site/src/components/portfolio/PortfolioList';
 import MeLayout from '@site/src/components/MeLayout';
 
 export default function Me() {
@@ -28,7 +28,7 @@ export default function Me() {
           Portfolio
         </Link>
       </div>
-      <div>{activeTab === 'portfolio' ? <PortfolioContent /> : <ResumeContent />}</div>
+      <div>{activeTab === 'portfolio' ? <PortfolioList /> : <ResumeContent />}</div>
     </MeLayout>
   );
 }
