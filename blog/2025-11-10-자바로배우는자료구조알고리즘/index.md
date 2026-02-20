@@ -184,6 +184,14 @@ LinearMap을 구현한뒤 HashMap, TreeMap과의 성능을 비교해보자. 그�
 Entry는 단지 키와 값의 컨테이너로 Map클래스에 중첩되어 있으므로 같은 타입 파라미터인 K,V를 사용한다. LinearMap의 핵심 로직은 `findEntry()`, `equals()`에 있다. put, get, remove와 같은 메서드는 `findEntry`를 호출하여 구현한다. 
 
 ```java
+public class MyLinearMap<K, V> implements Map<K, V> {  
+    private List<Entry> entries = new ArrayList<Entry>();
+    
+    ...
+}
+```
+
+```java
 private Entry findEntry(Object target) {  
     for (Entry entry: entries) {  
         if (equals(target, entry.getKey())) {  
@@ -201,8 +209,22 @@ private boolean equals(Object target, Object obj) {
 }
 ```
 
-equals 메서드의 실행시간은 target과 key에 의존하지만 엔트리 개수에 해당하는 n에는 의존하지 않는다. 즉 equals는 상수시간이다. 그리고 `findEntry` 메서드는 운좋으면 첫번째에 원하는 키를 찾을수도있지만, n(엔트리 개수)에 비례하므로 선형시간의 연산이된다. put,get,remove와 같은 메서드들이 `findEntry`를 사용한다고 했으므로, 이 메서드들은 선형시간의 연산이다. 
+equals 메서드의 실행시간은 target과 key에 의존하지만 엔트리 개수에 해당하는 n에는 의존하지 않는다. 즉 equals는 상수시간이다. 그리고 `findEntry` 메서드는 운좋으면 첫번째에 원하는 키를 찾을수도있지만, n(엔트리 개수)에 비례하므로 선형시간의 연산이된다. put,get,remove와 같은 메서드들이 `findEntry`를 사용한다고 했으므로, 이 메서드들은 **선형시간의** 연산이다. 전체적인 LinearMap의 구현은 [repository](https://github.com/hae02y/Blog-Code-Repo/blob/main/think-data-structures/src/main/java/org/example/MyLinearMap.java)를 확인해보자. 
 
+내가 만든 MyLinearMap의 선형시간을 개선하기 위해 `Hashing`을 사용해보자. 해싱은 임의의 길이를 가진 데이터를 고정된 길이의 고유한 데이터로 변환하는 방법이다. 
+![해싱](screen4.png)
+
+이전에 작성한 MyLinearMap의 성능을 향상시킨 버전인 MyBetterMap 클래스를 만들고 테스트해보자. 먼저 엔트리를 하나의 커다란 List에 저장하는 대신 다수의 작은 리스트로 쪼개고, 각 키에 대해서 해시코드를 사용해서 어느 리스트를 사용할지 선택하는 방식으로 구현한다.
+
+```java
+public class MyBetterMap<K, V> implements Map<K, V> {  
+    protected List<MyLinearMap<K, V>> maps;
+    
+    ...
+}
+```
+
+MyBetterMap에서는 내장된 맵에 따라 리스트를 나누므로 각 맵별로 엔트리 개수가 줄어든다. 이부분이 findEntry 메서드와 이를 호출하는 메서드의 속도를 빠르게 해준다. 
 
 
 다음으로 **Set** 인터페이스에 대해서 알아보자. 교집합 연산이 필요한 경우 Set을 사용할수있다. Set은 실제 교집합 연산을 제공하지는 않지만 교집합연산과 다른 집합 연산을 효율적으로 구현 할수있는 메서드를 제공한다. 
