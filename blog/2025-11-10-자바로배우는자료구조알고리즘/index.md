@@ -242,9 +242,7 @@ hashCode 메서드를 호출해서 정수를 얻고, Math.abs 메서드를 호�
 
 불변 객체의 예시로 String을 캡슐화하는 SillyString을 정의해보자
 ```java
-package org.example;  
-  
-public class SillyString {  
+  public class SillyString {  
     private final String innerString;  
   
     public SillyString(String innerString) {  
@@ -273,9 +271,60 @@ public class SillyString {
 
 SillyString클래스는 equals, hashCode를 오버라이드 하여 동작한다. 제대로 동작하려면 equals메서드는 hashCode메서드와 일치해야한다. 이는 두객체가 같다면(equals메서드가 true를 반환하면) 두객체의 해시코드 또한 같아야한다. 이는 단방향으로 두객체의 해시코드가 같더라도 그들이 같은 객체일 필요는 없다.
 
-위에서 구현한 해시함수는 정확하게 동작하지만 좋은 성능을 보장하진않는다. 왜냐하면 많은 서로다른 문자열을 위해 같은 해시코드를 반환하기 때문이다. 두 문자열에 같은 문자가 순서만 다르게 포함되어있다면 이들은 해시코드가 같아진다. 예시로 'ac', 'ca' , 'bb' 는 모두 같
+위에서 구현한 해시함수는 정확하게 동작하지만 좋은 성능을 보장하진않는다. 왜냐하면 많은 서로다른 문자열을 위해 같은 해시코드를 반환하기 때문이다. 두 문자열에 같은 문자가 순서만 다르게 포함되어있다면 이들은 해시코드가 같아진다. 예시로 'ac', 'ca' , 'bb' 는 모두 같은 해시코드를 같는다.
 
+많은 객체가 동일한 해시코드를 가지면 같은 하위 맵으로 몰리게 된다. 어떤 하위맵에 다른맵보다 많은 엔트리가 있으면 k개의 하위맵으로 인한 성능향상이 k보다 줄어들게 된다. 그래서 해시함수의 목표중 하나는 균등함이다. 즉 일정 범위에 있는 어떤 값으로 골고루 퍼지도록 해시코드가 생성되게 설계해야한다.
 
+String 클래스는 불변이고, innerString 변수가 final로 선언되어 SillyString 클래스 또한 불변이다. 일단 SillyString 객체가 생성되면 innerString 변수는 다른 String 객체를 참조할수없고 이변수가 참조하는 String 객체도 변경할수없다. 즉 항상 같은 해시코드를 같게 된다. 하지만 **가변 객체**라면 어떨까?
+
+```java
+public class SillyArray {  
+  
+    private final char[] array;  
+  
+    public SillyArray(char[] array) {  
+        this.array = array;  
+    }  
+  
+    public String toString() {  
+        return Arrays.toString(array);  
+    }  
+  
+    @Override  
+    public int hashCode() {  
+        int total = 0;  
+        for (int i = 0; i < array.length; i++) {  
+            total += array[i];  
+        }  
+        System.out.println("code : " + total);  
+        return total;  
+    }  
+  
+    @Override  
+    public boolean equals(Object obj) {  
+        return this.toString().equals(obj.toString());  
+    }  
+    
+    public void setChar(int i, char c) {
+	    this.array[i] = c;
+    }
+}
+```
+
+SillyArray클래스는 위와같다. 인스턴스 변수로 String이 아닌 문자 배열을 사용하는데, SillyArray클래스는 setChar 메서드를 통해 배열에 있는 문자를 변경할수있다. 간단한 예제를 살펴보자.
+
+```java
+SillyArray array = new SillyArray("abc".toCharArray());  
+MyBetterMap<SillyArray, Integer> map = new MyBetterMap<SillyArray, Integer>();  
+map.put(array, 1);  
+  
+array.setChar(0, 'd');  //값 변경
+map.get(array);
+```
+
+![결과](screen6.png)
+
+변경후 해시코드가 변경된다. 해시코드가 달라서 잘못된 하위맵을 조회할수도 있는것이다. 이러한 상황에서는 키가 맵에 있어도 찾을수없게된다. 일반적으로 해싱을 사용하는 자료구조에서 가변객체를 키로 사용하는것은 위험하다. 키가 맵에 있는동안 변형되지 않는다고 보장할수있거나 어떤 변화가 해시코드에 영향을 미치지않아야한다.
 
 
 다음으로 **Set** 인터페이스에 대해서 알아보자. 교집합 연산이 필요한 경우 Set을 사용할수있다. Set은 실제 교집합 연산을 제공하지는 않지만 교집합연산과 다른 집합 연산을 효율적으로 구현 할수있는 메서드를 제공한다. 
