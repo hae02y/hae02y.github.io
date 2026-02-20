@@ -211,9 +211,6 @@ private boolean equals(Object target, Object obj) {
 
 equals 메서드의 실행시간은 target과 key에 의존하지만 엔트리 개수에 해당하는 n에는 의존하지 않는다. 즉 equals는 상수시간이다. 그리고 `findEntry` 메서드는 운좋으면 첫번째에 원하는 키를 찾을수도있지만, n(엔트리 개수)에 비례하므로 선형시간의 연산이된다. put,get,remove와 같은 메서드들이 `findEntry`를 사용한다고 했으므로, 이 메서드들은 **선형시간의** 연산이다. 전체적인 LinearMap의 구현은 [repository](https://github.com/hae02y/Blog-Code-Repo/blob/main/think-data-structures/src/main/java/org/example/MyLinearMap.java)를 확인해보자. 
 
-내가 만든 MyLinearMap의 선형시간을 개선하기 위해 `Hashing`을 사용해보자. 해싱은 임의의 길이를 가진 데이터를 고정된 길이의 고유한 데이터로 변환하는 방법이다. 
-![해싱](screen4.png)
-
 이전에 작성한 MyLinearMap의 성능을 향상시킨 버전인 MyBetterMap 클래스를 만들고 테스트해보자. 먼저 엔트리를 하나의 커다란 List에 저장하는 대신 다수의 작은 리스트로 쪼개고, 각 키에 대해서 해시코드를 사용해서 어느 리스트를 사용할지 선택하는 방식으로 구현한다.
 
 ```java
@@ -225,6 +222,23 @@ public class MyBetterMap<K, V> implements Map<K, V> {
 ```
 
 MyBetterMap에서는 내장된 맵에 따라 리스트를 나누므로 각 맵별로 엔트리 개수가 줄어든다. 이부분이 findEntry 메서드와 이를 호출하는 메서드의 속도를 빠르게 해준다. 
+
+내가 만든 MyLinearMap의 선형시간을 개선하기 위해 `Hashing`을 사용해보자. 해싱은 임의의 길이를 가진 데이터를 고정된 길이의 고유한 데이터로 변환하는 방법이다. 이함수는 Object 객체를 인자로 받아 해시코드라는 정수로 반환한다. 중요한 점은 같은 Object 객체에 대해서 항상 같은 해시코드를 반환해야한다. 이렇게 해시코드를 사용하여 키를 저장하면, 키를 조회할때 항상 같은 해시코드를 얻게 된다.
+![해싱](screen4.png)
+자바에서 모든 Object 객체는 `hashCode`라는 메서드를 제공하여 해시함수를 계산한다. MyBetterMap에서는`chooseMap()` 메서드에서 해시코드를 사용한다. 이 메서드는 키에 대한 적합한 하위 맵을 고르는 헬퍼 메서드이다.
+
+![Object.hashCode](screen5.png)
+
+```java
+protected MyLinearMap<K, V> chooseMap(Object key) {  
+    int index = key==null ? 0 : Math.abs(key.hashCode()) % maps.size();  
+    return maps.get(index);  
+}
+```
+
+hashCode 메서드를 호출해서 정수를 얻고, Math.abs 메서드를 호출해서 절대값을 만든뒤 나머지 연산을 통해 결과가 0에서 `map.size()-1` 사이의 값임을 보장한다. 이에따라 index는 항상 maps의 유효한 인덱스가 되고, chooseMap은 선택한 맵의 참조를 반환한다. 이에 대한 성능은 n개의 엔트리를 k개의 하위 맵으로 나누면 맵당 엔트리는 평균 n/k개가 된다. 키를 조회할때 해시코드를 계산해야하는데 이때 시간이 조금 추가된다. 그다음에 키에 맞는 하위맵을 검색한다. 이를 통해 MyBetterMap은 MyLinear맵에 비해 k배 빨라졌다. 하지만 실행시간은 여전히 n에 비례하므로 **선형시간**이다.
+
+
 
 
 다음으로 **Set** 인터페이스에 대해서 알아보자. 교집합 연산이 필요한 경우 Set을 사용할수있다. Set은 실제 교집합 연산을 제공하지는 않지만 교집합연산과 다른 집합 연산을 효율적으로 구현 할수있는 메서드를 제공한다. 
