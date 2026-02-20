@@ -168,7 +168,7 @@ private static void iterativeDFS(Node root) {
 
 인덱스는 조회 연산이다. 가장 단순한 구현은 페이지의 컬렉션이다. 검색어가 주어지면 페이지의 내용을 반복 조사하여 검색어를 포함하는 페이지를 선택하는 방법이다. 하지만 실행시간이 모든 페이지의 전체 단어수에 비례하여 매우 느리다. 
 
-#### Map과 Set 자료구조
+#### Map 과 Set 자료구조
 
 이보다 나은 대안으로 Map 자료구조를 활용해보자. Map은 키-값 쌍의 컬렉션으로 키와 키에 해당하는 값을 찾는 빠른 방법을 제공한다. 자바의 Map 인터페이스는 맵을 구현하는데 필요한 메서드를 정의한다. 자바 Map 인터페이스는 몇가지의 구현을 제공하는데 이중 **HashMap**, **TreeMap** 두 클래스를 집중적으로 알아볼 것이다.
 
@@ -237,6 +237,43 @@ protected MyLinearMap<K, V> chooseMap(Object key) {
 ```
 
 hashCode 메서드를 호출해서 정수를 얻고, Math.abs 메서드를 호출해서 절대값을 만든뒤 나머지 연산을 통해 결과가 0에서 `map.size()-1` 사이의 값임을 보장한다. 이에따라 index는 항상 maps의 유효한 인덱스가 되고, chooseMap은 선택한 맵의 참조를 반환한다. 이에 대한 성능은 n개의 엔트리를 k개의 하위 맵으로 나누면 맵당 엔트리는 평균 n/k개가 된다. 키를 조회할때 해시코드를 계산해야하는데 이때 시간이 조금 추가된다. 그다음에 키에 맞는 하위맵을 검색한다. 이를 통해 MyBetterMap은 MyLinear맵에 비해 k배 빨라졌다. 하지만 실행시간은 여전히 n에 비례하므로 **선형시간**이다.
+
+해싱에 대해서 조금더 깊이 알아보자. 해시함수의 근본적인 요구사항은 같은 객체는 매번 같은 해시코드를 만들어야한다는 것이다. 불변객체(Immutable Object)일때는 상대적으로 쉽지만, 가변객체(Mutable Object)일때는 좀더 고민이 필요하다.
+
+불변 객체의 예시로 String을 캡슐화하는 SillyString을 정의해보자
+```java
+package org.example;  
+  
+public class SillyString {  
+    private final String innerString;  
+  
+    public SillyString(String innerString) {  
+        this.innerString = innerString;  
+    }  
+  
+    public String toString() {  
+        return innerString;  
+    }  
+  
+    @Override  
+    public int hashCode() {  
+        int total = 0;  
+        for(int i=0;i<innerString.length();i++) {  
+            total += innerString.charAt(i);  
+        }  
+        return total;  
+    }  
+  
+    @Override  
+    public boolean equals(Object obj) {  
+        return this.toString().equals(obj.toString());  
+    }  
+}
+```
+
+SillyString클래스는 equals, hashCode를 오버라이드 하여 동작한다. 제대로 동작하려면 equals메서드는 hashCode메서드와 일치해야한다. 이는 두객체가 같다면(equals메서드가 true를 반환하면) 두객체의 해시코드 또한 같아야한다. 이는 단방향으로 두객체의 해시코드가 같더라도 그들이 같은 객체일 필요는 없다.
+
+위에서 구현한 해시함수는 정확하게 동작하지만 좋은 성능을 보장하진않는다. 왜냐하면 많은 서로다른 문자열을 위해 같은 해시코드를 반환하기 때문이다. 두 문자열에 같은 문자가 순서만 다르게 포함되어있다면 이들은 해시코드가 같아진다. 예시로 'ac', 'ca' , 'bb' 는 모두 같
 
 
 
