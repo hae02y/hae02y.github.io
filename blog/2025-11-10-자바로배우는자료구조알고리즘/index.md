@@ -175,13 +175,34 @@ private static void iterativeDFS(Node root) {
 - `get(key)` : 키를 조사하여 관련된 값을 반환
 - `put(key,value)` :  Map에 새로운 키-값을 추가하거나 이미 있는 키면 값을 업데이트 한다.
 
-먼저 LinearMap을 구현한뒤 HashMap, TreeMap과의 성능을 비교해보자. 그전에 `Entry`에 대해서 알아보자. 엔트리는 아래와 같이 설명할수있다.
+LinearMap을 구현한뒤 HashMap, TreeMap과의 성능을 비교해보자. 그전에 `Entry`에 대해서 알아보자. 엔트리는 아래와 같이 설명할수있다.
 
 > Java의 Map.Entry는 `Map` 인터페이스 내부에 정의된 중첩 인터페이스(Inner Interface)로, Map에 저장되는 키-값(Key-Value) 쌍 그 자체를 다루는 객체이다. `entrySet()` 메서드를 통해 Map의 각 요소를 쌍으로 순회하거나, 키와 값을 정렬 및 조작하는 데 주로 사용된다.
 
 ![Map인터페이스내부의 Entry](screen3.png)
 
-Entry는 단지 키와 값의 컨테이너로 Map클래스에 중첩되어 있으므로 같은 타입 파라미터인 K,V를 사용한다.
+Entry는 단지 키와 값의 컨테이너로 Map클래스에 중첩되어 있으므로 같은 타입 파라미터인 K,V를 사용한다. LinearMap의 핵심 로직은 `findEntry()`, `equals()`에 있다. put, get, remove와 같은 메서드는 `findEntry`를 호출하여 구현한다. 
+
+```java
+private Entry findEntry(Object target) {  
+    for (Entry entry: entries) {  
+        if (equals(target, entry.getKey())) {  
+            return entry;  
+        }  
+    }  
+    return null;  
+    }  
+
+private boolean equals(Object target, Object obj) {  
+    if (target == null) {  
+        return obj == null;  
+    }  
+    return target.equals(obj);  
+}
+```
+
+equals 메서드의 실행시간은 target과 key에 의존하지만 엔트리 개수에 해당하는 n에는 의존하지 않는다. 즉 equals는 상수시간이다. 그리고 `findEntry` 메서드는 운좋으면 첫번째에 원하는 키를 찾을수도있지만, n(엔트리 개수)에 비례하므로 선형시간의 연산이된다. put,get,remove와 같은 메서드들이 `findEntry`를 사용한다고 했으므로, 이 메서드들은 선형시간의 연산이다. 
+
 
 
 다음으로 **Set** 인터페이스에 대해서 알아보자. 교집합 연산이 필요한 경우 Set을 사용할수있다. Set은 실제 교집합 연산을 제공하지는 않지만 교집합연산과 다른 집합 연산을 효율적으로 구현 할수있는 메서드를 제공한다. 
