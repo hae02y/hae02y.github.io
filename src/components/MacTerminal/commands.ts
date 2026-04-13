@@ -1,4 +1,4 @@
-import type { CommandDef, CommandContext, CommandResult } from './types';
+import type { CommandDef } from './types';
 
 // ── ANSI helpers ──
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
@@ -10,6 +10,34 @@ const gray = (s: string) => `\x1b[90m${s}\x1b[0m`;
 const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
 const link = (url: string, label?: string) =>
   `\x1b]8;;${url}\x1b\\${label ?? url}\x1b]8;;\x1b\\`;
+
+// ── Welcome banner ──
+export const welcomeBanner: string[] = [
+  '',
+  cyan('               ___..----.._'),
+  cyan('      __..--""             "-.'),
+  cyan("     /             ') _      \\"),
+  cyan('    /          _.-"  ` \\      \\'),
+  cyan('   /         ,"  ,.--. `\\     |'),
+  cyan('  /         /   /    `.  \\    |'),
+  cyan(' |         ;   ;      |  |    \\'),
+  cyan(' |         |   |      ;  |     \\'),
+  cyan(' \\         \\   \\    /  /       |'),
+  cyan('  \\         `.  `--"  /        |'),
+  cyan('   `.         "-.__.-"    _   /'),
+  cyan('     "-._                / `-"'),
+  cyan('         ""--..__      .'  ),
+  cyan('                |"""""'),
+  cyan('                |'),
+  cyan('            ____|____'),
+  cyan('           /    |    \\'),
+  cyan('          /     |     \\'),
+  cyan('         "------+------"'),
+  '',
+  `  ${bold('Welcome to hae02y\'s terminal!')}`,
+  `  ${gray("Type '")}${cyan('help')}${gray("' for available commands.")}`,
+  '',
+];
 
 // ── Navigation paths ──
 const NAV_PATHS: Record<string, string> = {

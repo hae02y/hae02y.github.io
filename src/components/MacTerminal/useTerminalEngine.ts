@@ -8,10 +8,6 @@ interface TerminalEngineOptions {
   getContext: () => CommandContext;
 }
 
-// Visible prompt length (characters without ANSI codes)
-// "title@macbook:~$ " → title.length + "@macbook:~$ ".length
-const promptVisibleLength = (title: string) => title.length + 12;
-
 export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) {
   const inputBuffer = useRef('');
   const historyBuffer = useRef<string[]>([]);

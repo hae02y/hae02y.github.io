@@ -4,8 +4,8 @@ import { useHistory } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import MacToastButton from "@site/src/components/MacToast";
 import { useTerminalEngine } from "./useTerminalEngine";
-import { commandRegistry } from "./commands";
-import type { CommandContext, Profile, SkillCategory, Experience, Link } from "./types";
+import { commandRegistry, welcomeBanner } from "./commands";
+import type { Profile, SkillCategory, Experience, Link } from "./types";
 import "xterm/css/xterm.css";
 
 interface MacTerminalProps {
@@ -98,22 +98,9 @@ const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
       resizeObserver = new ResizeObserver(() => fitAddon.fit());
       resizeObserver.observe(containerRef.current!);
 
-      // Show help on init
-      const helpCmd = commandRegistry.get("help");
-      const result = helpCmd?.handler([], {
-        term,
-        title,
-        profile: customFields.profile,
-        skills: customFields.skills,
-        experience: customFields.experience,
-        links: customFields.links,
-        navigate,
-        openExternal,
-      });
-      if (result && result.lines) {
-        for (const line of result.lines) {
-          term.writeln(line);
-        }
+      // Show welcome banner on init
+      for (const line of welcomeBanner) {
+        term.writeln(line);
       }
       term.write(prompt());
 
