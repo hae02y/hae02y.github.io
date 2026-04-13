@@ -4,6 +4,8 @@ title: 제목
 authors:
   - haeyoung
 tags:
+  - cloud
+  - gcp
 ---
 
 GCP계층 구조
