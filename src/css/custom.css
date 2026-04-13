@@ -512,32 +512,34 @@
 
     .markdown code {
         font-size: 0.85em;
-        background: #f1f1f1;
+        background: #f0f2f5;
         padding: 0.08rem 0.22rem;
-        border-radius: 4px;
+        border-radius: 5px;
         font-family: 'Pretendard', sans-serif !important;
         font-weight: 500;
     }
 
     [data-theme="dark"] .markdown code {
-        background: #202020;
+        background: #3a3f4b;
     }
 
     .markdown pre {
-        background: #f1f1f1;
-        border: 1px solid #e1e1e1;
-        border-radius: 8px;
+        background: #fafbfc;
+        border: 1px solid #e2e6ea;
+        border-radius: 12px;
         padding: 0.95rem;
         margin: 1.25rem 0;
         font-size: 14.5px;
         line-height: 1.65;
         overflow: auto;
         font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     [data-theme="dark"] .markdown pre {
-        background: #1b1b1b;
-        border-color: #2d2d2d;
+        background: #282c34;
+        border-color: #3e4451;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     }
 
     .markdown pre code {
