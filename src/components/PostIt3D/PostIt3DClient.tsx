@@ -9,15 +9,17 @@ interface Props {
 
 export function PostIt3DClient({ onClick }: Props) {
   const { colorMode } = useColorMode();
-  const [size, setSize] = useState({ width: 340, height: 220 });
+  const [size, setSize] = useState({ width: 520, height: 400 });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth < 768) {
-        setSize({ width: 280, height: 180 });
+      if (window.innerWidth < 640) {
+        setSize({ width: 320, height: 260 });
+      } else if (window.innerWidth < 1024) {
+        setSize({ width: 420, height: 340 });
       } else {
-        setSize({ width: 340, height: 220 });
+        setSize({ width: 520, height: 400 });
       }
     };
     updateSize();
@@ -34,9 +36,9 @@ export function PostIt3DClient({ onClick }: Props) {
     <div style={{ width: size.width, height: size.height }}>
       <Canvas
         shadows
-        camera={{ position: [0, 0, 3.5], fov: 40 }}
+        camera={{ position: [0, 0, 4], fov: 35 }}
         dpr={[1, 2]}
-        gl={{ alpha: true }}
+        gl={{ alpha: true, antialias: true }}
         style={{ background: 'transparent' }}
       >
         <PostItScene onClick={onClick} darkMode={colorMode === 'dark'} />
