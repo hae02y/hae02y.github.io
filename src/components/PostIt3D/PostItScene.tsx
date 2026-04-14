@@ -20,7 +20,6 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
       const y = pos.getY(i);
-      // Subtle concave curl — stronger at corners
       pos.setZ(i, 0.015 * (x * x + y * y));
     }
     pos.needsUpdate = true;
@@ -38,7 +37,6 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
 
   return (
     <>
-      {/* Lighting */}
       <ambientLight intensity={darkMode ? 0.6 : 0.5} />
       <directionalLight
         position={[2, 4, 3]}
@@ -47,9 +45,8 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
         shadow-mapSize={[512, 512]}
       />
 
-      {/* Postit group */}
       <group ref={groupRef} position={[0, 0.1, 0]}>
-        {/* Paper surface */}
+        {/* Paper */}
         <mesh
           geometry={paperGeometry}
           castShadow
@@ -84,22 +81,21 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
           />
         </mesh>
 
-        {/* Title text */}
+        {/* Title */}
         <Text
           position={[0, 0.35, 0.02]}
-          fontSize={0.14}
+          fontSize={0.13}
           maxWidth={2.0}
           textAlign="center"
           color="#1b1b1b"
           anchorX="center"
           anchorY="middle"
-          font="/font/pretendard/woff2/PretendardVariable.woff2"
-          fontWeight={700}
+          fontWeight="bold"
         >
           hi im hae02y, backend developer
         </Text>
 
-        {/* Body text */}
+        {/* Body */}
         <Text
           position={[0, -0.05, 0.02]}
           fontSize={0.1}
@@ -109,7 +105,6 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
           anchorX="center"
           anchorY="middle"
           lineHeight={1.5}
-          font="/font/pretendard/woff2/PretendardVariable.woff2"
         >
           {'how are you?\nthank you for visiting here :)'}
         </Text>
@@ -121,13 +116,11 @@ export default function PostItScene({ onClick, darkMode = false }: PostItScenePr
           color="#666666"
           anchorX="center"
           anchorY="middle"
-          font="/font/pretendard/woff2/PretendardVariable.woff2"
         >
-          click to open terminal →
+          click to open terminal
         </Text>
       </group>
 
-      {/* Ground shadow */}
       <ContactShadows
         position={[0, -1.1, 0]}
         opacity={0.4}
