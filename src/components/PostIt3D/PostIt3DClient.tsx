@@ -7,9 +7,10 @@ interface Props {
   onClick: () => void;
 }
 
-export default function PostIt3DClient({ onClick }: Props) {
+export function PostIt3DClient({ onClick }: Props) {
   const { colorMode } = useColorMode();
   const [size, setSize] = useState({ width: 340, height: 220 });
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const updateSize = () => {
@@ -21,8 +22,13 @@ export default function PostIt3DClient({ onClick }: Props) {
     };
     updateSize();
     window.addEventListener('resize', updateSize);
+    setReady(true);
     return () => window.removeEventListener('resize', updateSize);
   }, []);
+
+  if (!ready) {
+    return <div style={{ width: size.width, height: size.height }} />;
+  }
 
   return (
     <div style={{ width: size.width, height: size.height }}>
