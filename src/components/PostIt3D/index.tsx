@@ -51,7 +51,7 @@ export default function PostIt3D({ onClick }: PostIt3DProps) {
           borderRadius: '2px 2px 2px 24px',
           padding: '44px 32px 32px',
           cursor: 'pointer',
-          fontFamily: "'Caveat', cursive",
+          fontFamily: "'Architects Daughter', cursive",
           color: '#2a2a2a',
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${isHover ? 'translateZ(12px) scale(1.02)' : ''}`,
           transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
