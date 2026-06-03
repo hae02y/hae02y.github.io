@@ -6,6 +6,7 @@ import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 10;
 
+
 export function generateStaticParams() {
   const allPosts = getAllPostsMeta();
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);

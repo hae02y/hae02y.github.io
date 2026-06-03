@@ -1,7 +1,6 @@
 import { getAllDocsSlugs, getDocsPage } from '@/lib/docs';
 import DocsPageClient from './DocsPageClient';
 
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllDocsSlugs().map(slug => ({ slug }));

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
 import type { Metadata } from 'next';
 
+
 export function generateStaticParams() {
   return getAllTags().map(tag => ({
     tag: encodeURIComponent(tag.label),

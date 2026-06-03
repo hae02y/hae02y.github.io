@@ -3,12 +3,14 @@ import { getAllPosts, getPostBySlug, getPostDirName } from '@/lib/blog';
 import BlogPostContent from '@/components/blog/BlogPostContent';
 import type { Metadata } from 'next';
 
+
 export function generateStaticParams() {
   return getAllPosts().map(post => ({ slug: post.slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getPostBySlug(params.slug);
+  const slug = decodeURIComponent(params.slug);
+  const post = getPostBySlug(slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -17,10 +19,11 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+  const slug = decodeURIComponent(params.slug);
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const dirName = getPostDirName(params.slug);
+  const dirName = getPostDirName(slug);
 
   return (
     <div className="mx-auto px-4 mt-6 md:mt-10">

@@ -3,7 +3,8 @@ import remarkGfm from 'remark-gfm';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // output: 'export' only in production build (CI sets NODE_ENV=production)
+  ...(process.env.NODE_ENV === 'production' ? { output: 'export' } : {}),
   trailingSlash: false,
   images: {
     unoptimized: true,

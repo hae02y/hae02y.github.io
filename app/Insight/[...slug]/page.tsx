@@ -3,7 +3,6 @@ import { getAllInsightSlugs, getInsightPage } from '@/lib/docs';
 import DocContent from '@/components/docs/DocContent';
 import type { Metadata } from 'next';
 
-export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllInsightSlugs().map(slug => ({ slug }));
