@@ -12,9 +12,23 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const slug = decodeURIComponent(params.slug);
   const post = getPostBySlug(slug);
   if (!post) return {};
+  const siteUrl = 'https://blog.hae02y.me';
   return {
     title: post.title,
     description: post.description,
+    keywords: [...post.tags, '정해영', 'hae02y', '기술블로그'],
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ['정해영'],
+      tags: post.tags,
+      url: `${siteUrl}/blog/${post.slug}`,
+    },
+    alternates: {
+      canonical: `${siteUrl}/blog/${post.slug}`,
+    },
   };
 }
 
