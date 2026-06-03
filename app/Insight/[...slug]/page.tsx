@@ -3,18 +3,22 @@ import { getAllInsightSlugs, getInsightPage } from '@/lib/docs';
 import DocContent from '@/components/docs/DocContent';
 import type { Metadata } from 'next';
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllInsightSlugs().map(slug => ({ slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string[] } }): Metadata {
-  const page = getInsightPage(params.slug);
+  const decoded = params.slug.map(s => decodeURIComponent(s));
+  const page = getInsightPage(decoded);
   if (!page) return {};
   return { title: page.title };
 }
 
 export default function InsightDetailPage({ params }: { params: { slug: string[] } }) {
-  const page = getInsightPage(params.slug);
+  const decoded = params.slug.map(s => decodeURIComponent(s));
+  const page = getInsightPage(decoded);
   if (!page) notFound();
 
   return (

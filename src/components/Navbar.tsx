@@ -17,9 +17,6 @@ export default function Navbar() {
   const [lastY, setLastY] = useState(0);
   const [mounted, setMounted] = useState(false);
 
-  // Hide navbar on /me routes
-  if (pathname.startsWith('/me')) return null;
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -33,6 +30,9 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [lastY]);
+
+  // Hide navbar on /me routes — AFTER all hooks
+  if (pathname.startsWith('/me')) return null;
 
   return (
     <nav
