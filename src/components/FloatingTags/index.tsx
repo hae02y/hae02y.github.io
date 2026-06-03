@@ -6,12 +6,6 @@ const getRandomShift = () => Math.floor(Math.random() * 30 - 15);
 
 export default function FloatingTags() {
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    const blogPluginData = useGlobalData();
-    console.log(blogPluginData);
-    // const blogData = globalData['docusaurus-plugin-content-docs'].default;
-    // console.log(blogData);
-    // const tags : BlogTags = blogData?.blogTags; // 태그 객체
-
     const myTags = [
         '#Java',
         '#SpringBoot',

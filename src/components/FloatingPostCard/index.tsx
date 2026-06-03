@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import Link from '@docusaurus/Link';
+import Link from 'next/link';
 
 export default function FloatingPostCard({ title, permalink, date }: {
     title: string;
@@ -18,7 +18,7 @@ export default function FloatingPostCard({ title, permalink, date }: {
                 ease: "easeInOut"
             }}
         >
-            <Link to={permalink} className="block text-white hover:text-blue-400 transition">
+            <Link href={permalink} className="block text-white hover:text-blue-400 transition">
                 <p className="font-semibold">{title}</p>
                 <p className="text-sm text-gray-300">{date}</p>
             </Link>

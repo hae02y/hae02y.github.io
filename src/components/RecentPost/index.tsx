@@ -1,29 +1,27 @@
-// src/components/RecentPosts.tsx
-import React from "react";
-import Link from "@docusaurus/Link";
-import {useBlogPosts} from '@docusaurus/plugin-content-blog/client';
+import React from 'react';
+import Link from 'next/link';
 
-export default function RecentPosts() {
-    const recentPosts = useBlogPosts().slice(0, 3);
+type RecentPost = {
+  title: string;
+  permalink: string;
+  date: string;
+};
 
-    if (!recentPosts) return null;
+interface RecentPostsProps {
+  posts?: RecentPost[];
+}
 
-    return (
-        <div className="mt-10 space-y-4">
-            <h2 className="text-xl font-bold text-gray-800 dark:text-white">최근 게시물</h2>
-            <ul className="space-y-2">
-                {recentPosts.map(({metadata}) => (
-                    <li key={metadata.permalink}>
-                        <Link
-                            to={metadata.permalink}
-                            className="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
-                        >
-                            {metadata.title}
-                        </Link>
-                        <div className="text-sm text-gray-400">{new Date(metadata.date).toLocaleDateString()}</div>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+export default function RecentPosts({ posts = [] }: RecentPostsProps) {
+  if (!posts.length) return null;
+
+  return (
+    <div className="space-y-3">
+      {posts.map(post => (
+        <Link key={post.permalink} href={post.permalink} className="block hover:underline">
+          <div className="text-sm font-semibold">{post.title}</div>
+          <div className="text-xs text-gray-500">{post.date}</div>
+        </Link>
+      ))}
+    </div>
+  );
 }

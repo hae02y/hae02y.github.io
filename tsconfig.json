@@ -36,6 +36,10 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/_pages_old",
+    "src/_theme_old",
+    "_docusaurus.config.ts.bak",
+    "_sidebars.ts.bak"
   ]
 }

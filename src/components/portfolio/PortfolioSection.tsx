@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
+import Link from 'next/link';
 
 export type PortfolioItem = {
   title: string;
@@ -41,7 +41,7 @@ export default function PortfolioSection({section}: PortfolioSectionProps) {
                 <div className="portfolio-card-meta">{metaParts.join(' · ')}</div>
               ) : null}
               {item.href ? (
-                <Link className="portfolio-card-link" to={item.href}>
+                <Link className="portfolio-card-link" href={item.href ?? '#'}>
                   상세 보기 →
                 </Link>
               ) : null}

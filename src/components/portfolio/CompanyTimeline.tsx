@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
+import Link from 'next/link';
 import {BriefcaseBusiness, FolderKanban} from 'lucide-react';
 
 type CompanyTimelineProject = {
@@ -121,7 +121,7 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
                   <Link
                     key={`${item.company}-${project.title}`}
                     className="resume-project-item resume-project-link-wrapper"
-                    to={project.href}
+                    href={project.href ?? '#'}
                     id={project.id}
                   >
                     {content}
