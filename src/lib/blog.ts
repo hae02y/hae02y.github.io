@@ -58,6 +58,29 @@ export function getAuthorData(): Record<string, Author> {
   return cachedAuthors;
 }
 
+function extractDescription(content: string): string {
+  return content
+    // Remove code blocks (```...```)
+    .replace(/```[\s\S]*?```/g, '')
+    // Remove inline code (`...`)
+    .replace(/`[^`]+`/g, '')
+    // Remove images ![alt](url)
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    // Remove links but keep text [text](url) → text
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    // Remove headings ###
+    .replace(/^#{1,6}\s+/gm, '')
+    // Remove bold/italic markers
+    .replace(/\*{1,3}([^*]+)\*{1,3}/g, '$1')
+    // Remove HTML tags
+    .replace(/<[^>]+>/g, '')
+    // Collapse whitespace
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 200)
+    .trim();
+}
+
 function parseBlogDir(dirName: string): { date: string; dirSlug: string } | null {
   const match = dirName.match(/^(\d{4}-\d{2}-\d{2})-(.+)$/);
   if (!match) return null;
@@ -90,7 +113,7 @@ export function getAllPosts(): BlogPost[] {
       slug: data.slug || parsed.dirSlug,
       title: data.title || parsed.dirSlug,
       date: parsed.date,
-      description: data.description || content.slice(0, 200).replace(/[#*\n]/g, '').trim(),
+      description: data.description || extractDescription(content),
       authors: data.authors || [],
       tags: data.tags || [],
       content,

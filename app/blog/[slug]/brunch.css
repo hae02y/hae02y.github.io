@@ -229,47 +229,146 @@
 }
 
 /* Code — inline */
-.brunch-content code {
-  font-family: 'SF Mono', 'Fira Code', Menlo, monospace;
-  font-size: 0.85em;
-  background: #f4f4f7;
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
-  color: #e06c75;
-  font-weight: 400;
+.brunch-content .inline-code {
+  font-family: 'SF Mono', 'Fira Code', Menlo, monospace !important;
+  font-size: 0.85em !important;
+  background: #f0f2f5 !important;
+  padding: 0.2rem 0.45rem !important;
+  border-radius: 4px !important;
+  color: #d63384 !important;
+  font-weight: 500 !important;
+  white-space: nowrap;
 }
 
-[data-theme="dark"] .brunch-content code {
-  background: #2a2d35;
-  color: #e5c07b;
+[data-theme="dark"] .brunch-content .inline-code {
+  background: #2a2d35 !important;
+  color: #e5c07b !important;
 }
 
 /* Code — block */
-.brunch-content pre {
-  margin: 2rem -1.5rem;
-  padding: 1.2rem 1.5rem;
-  background: #fafafa;
-  border: none;
-  border-radius: 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  overflow-x: auto;
-  font-size: 14px;
-  line-height: 1.7;
-  font-family: 'SF Mono', 'Fira Code', Menlo, monospace;
-}
-
-[data-theme="dark"] .brunch-content pre {
+.brunch-content .code-block-wrapper {
+  margin: 1.8rem -1.5rem;
   background: #1e1e2e;
-  border-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2a2a3a;
 }
 
-.brunch-content pre code {
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.2rem;
+  background: #16161e;
+  border-bottom: 1px solid #2a2a3a;
+}
+
+.code-block-lang {
+  font-family: 'SF Mono', monospace;
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.code-block-copy {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.72rem;
+  color: #888;
+  background: none;
+  border: 1px solid #3a3a4a;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.code-block-copy:hover {
+  color: #ccc;
+  border-color: #666;
+}
+
+.code-block-body {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.code-block-body.code-collapsed {
+  max-height: calc(1.65em * 5 + 2rem + 10px);
+}
+
+.code-block-body.code-collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: linear-gradient(transparent, #1e1e2e);
+  pointer-events: none;
+}
+
+.code-block-body pre {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.code-block-body code {
   background: transparent !important;
   padding: 0 !important;
-  color: inherit;
-  font-size: inherit;
-  border-radius: 0;
+  color: inherit !important;
+  font-size: inherit !important;
+  border-radius: 0 !important;
+  white-space: pre !important;
+}
+
+.code-line-number {
+  display: inline-block;
+  width: 2.5rem;
+  text-align: right;
+  margin-right: 1rem;
+  color: #4a4a5a;
+  user-select: none;
+  font-size: 0.8em;
+}
+
+.code-block-toggle {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+  background: #16161e;
+  border: none;
+  border-top: 1px solid #2a2a3a;
+  cursor: pointer;
+  transition: color 0.15s;
+  text-align: center;
+}
+
+.code-block-toggle:hover {
+  color: #ccc;
+}
+
+/* Blockquote — styled */
+.brunch-content .brunch-blockquote {
+  margin: 2rem 0 !important;
+  padding: 1.2rem 1.5rem !important;
+  border-left: 3px solid #ddd !important;
+  background: transparent !important;
+  color: #666 !important;
+  font-size: 1.02rem !important;
+  font-style: italic;
+  line-height: 1.8 !important;
+}
+
+[data-theme="dark"] .brunch-content .brunch-blockquote {
+  border-left-color: #444 !important;
+  color: #aaa !important;
 }
 
 /* Images */
@@ -445,10 +544,9 @@
     line-height: 1.85;
   }
 
-  .brunch-content pre {
+  .brunch-content .code-block-wrapper {
     margin: 1.5rem -1rem;
-    padding: 1rem;
-    font-size: 13px;
+    border-radius: 0;
   }
 
   .brunch-content img {
