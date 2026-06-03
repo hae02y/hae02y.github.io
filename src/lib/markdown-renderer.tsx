@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useTheme } from 'next-themes';
+import ImageViewer from '@/components/blog/ImageViewer';
 
 function rewriteImageSrc(src: string | undefined, dirName?: string): string {
   if (!src) return '';
@@ -84,12 +85,10 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        img: ({ src, alt, ...props }) => (
-          <img
+        img: ({ src, alt }) => (
+          <ImageViewer
             src={rewriteImageSrc(src, dirName)}
             alt={alt || ''}
-            loading="lazy"
-            {...props}
           />
         ),
         code: ({ children, className, ...props }) => {
