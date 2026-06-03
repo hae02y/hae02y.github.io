@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Highlight, themes } from 'prism-react-renderer';
+import { useTheme } from 'next-themes';
 
 function rewriteImageSrc(src: string | undefined, dirName?: string): string {
   if (!src) return '';
@@ -14,33 +15,39 @@ function rewriteImageSrc(src: string | undefined, dirName?: string): string {
 
 const COLLAPSE_THRESHOLD = 5;
 
-function CodeBlock({ children, className }: { children: string; className?: string }) {
+const CodeBlock = memo(function CodeBlock({ children, className }: { children: string; className?: string }) {
   const language = className?.replace('language-', '') || 'text';
   const code = String(children).replace(/\n$/, '');
   const lines = code.split('\n');
   const isLong = lines.length > COLLAPSE_THRESHOLD;
   const [expanded, setExpanded] = useState(!isLong);
   const [copied, setCopied] = useState(false);
+  const { theme } = useTheme();
 
-  const handleCopy = async () => {
+  const isDark = theme === 'dark';
+  const codeTheme = isDark ? themes.oneDark : themes.oneLight;
+
+  const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
+  }, [code]);
+
+  const toggleExpand = useCallback(() => {
+    setExpanded(prev => !prev);
+  }, []);
 
   return (
-    <div className="code-block-wrapper">
-      {/* Header */}
+    <div className={`code-block-wrapper ${isDark ? 'code-dark' : 'code-light'}`}>
       <div className="code-block-header">
         <span className="code-block-lang">{language}</span>
         <button onClick={handleCopy} className="code-block-copy">
-          {copied ? '복사됨' : '복사'}
+          {copied ? '✓ 복사됨' : '복사'}
         </button>
       </div>
 
-      {/* Code */}
       <div className={`code-block-body ${!expanded ? 'code-collapsed' : ''}`}>
-        <Highlight theme={themes.oneDark} code={code} language={language as any}>
+        <Highlight theme={codeTheme} code={code} language={language as any}>
           {({ style, tokens, getLineProps, getTokenProps }) => (
             <pre style={{ ...style, margin: 0, padding: '1rem 1.2rem', background: 'transparent', fontSize: '13.5px', lineHeight: 1.65, overflowX: 'auto' }}>
               <code>
@@ -58,17 +65,21 @@ function CodeBlock({ children, className }: { children: string; className?: stri
         </Highlight>
       </div>
 
-      {/* Expand/Collapse */}
       {isLong && (
-        <button onClick={() => setExpanded(!expanded)} className="code-block-toggle">
-          {expanded ? `접기 ▲` : `펼치기 (${lines.length}줄) ▼`}
+        <button onClick={toggleExpand} className="code-block-toggle">
+          {expanded ? '접기 ▲' : `펼치기 (${lines.length}줄) ▼`}
         </button>
       )}
     </div>
   );
+});
+
+interface MarkdownRendererProps {
+  content: string;
+  dirName?: string;
 }
 
-export function renderMarkdown(content: string, dirName?: string) {
+export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirName }: MarkdownRendererProps) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -102,4 +113,9 @@ export function renderMarkdown(content: string, dirName?: string) {
       {content}
     </ReactMarkdown>
   );
+});
+
+// Keep backward compat
+export function renderMarkdown(content: string, dirName?: string) {
+  return <MarkdownRenderer content={content} dirName={dirName} />;
 }
