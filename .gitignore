@@ -37,5 +37,6 @@ sketch
 build/
 out/
 .next/
+public/blog/
 .env.local
 .env*.local
