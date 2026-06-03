@@ -1,6 +1,6 @@
 import React from 'react';
 import {ExternalLink, Github, Link as LinkIcon, AtSignIcon, Linkedin} from 'lucide-react';
-import type {ResumeLink} from '@site/src/data/resume-links';
+import type {ResumeLink} from '@/data/resume-links';
 
 type ResumeLinksProps = {
   links: ResumeLink[];

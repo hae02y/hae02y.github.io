@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
+import Link from 'next/link';
 import {FolderKanban} from 'lucide-react';
-import type {ResumeProject} from '@site/src/data/resume-projects';
+import type {ResumeProject} from '@/data/resume-projects';
 
 type ProjectTimelineProps = {
   projects: ResumeProject[];
@@ -88,7 +88,7 @@ export default function ProjectTimeline({projects}: ProjectTimelineProps) {
             </ul>
           ) : null}
           {project.linkLabel && project.linkUrl ? (
-            <Link className="resume-project-link" to={project.linkUrl}>
+            <Link className="resume-project-link" href={project.linkUrl}>
               {project.linkLabel}
             </Link>
           ) : null}

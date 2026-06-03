@@ -1,7 +1,6 @@
 import {useState} from 'react';
-import {Dialog, DialogContent} from '@site/src/components/ui/dialog';
+import {Dialog, DialogContent} from '@/components/ui/dialog';
 import {motion, useAnimation} from 'framer-motion';
-import useGlobalData, {usePluginData} from "@docusaurus/core/lib/client/exports/useGlobalData";
 
 const getRandomShift = () => Math.floor(Math.random() * 30 - 15);
 

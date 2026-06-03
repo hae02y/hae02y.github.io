@@ -35,3 +35,7 @@ sketch
 .docusaurus
 
 build/
+out/
+.next/
+.env.local
+.env*.local

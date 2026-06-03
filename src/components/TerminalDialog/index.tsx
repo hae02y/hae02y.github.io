@@ -1,13 +1,13 @@
 import React, {ReactNode, useState} from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '@site/src/components/ui/dialog';
-import MacTerminal from '@site/src/components/MacTerminal';
-import { useColorMode } from '@docusaurus/theme-common';
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import MacTerminal from '@/components/MacTerminal';
+import { useTheme } from 'next-themes';
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 
 export default function TerminalDialog() {
     const [open, setOpen] = useState(false);
-    const { colorMode } = useColorMode(); // light / dark
+    const { theme: colorMode } = useTheme(); // light / dark
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>

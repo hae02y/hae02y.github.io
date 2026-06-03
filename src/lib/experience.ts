@@ -1,4 +1,4 @@
-import type {ExperienceItem} from '@site/src/data/resume-experience';
+import type { ExperienceItem } from '@/data/resume-experience';
 
 const PERIOD_RANGE_REGEX = /(\d{4})\.(\d{2})\s*-\s*(\d{4})\.(\d{2})/;
 const PERIOD_CURRENT_REGEX = /(\d{4})\.(\d{2})\s*-\s*재직중/;
@@ -16,7 +16,7 @@ const parsePeriodRange = (period: string) => {
     if (Number.isNaN(endYear) || Number.isNaN(endMonth)) return null;
     const start = toMonthIndex(startYear, startMonth);
     const end = toMonthIndex(endYear, endMonth);
-    return start <= end ? {start, end} : {start: end, end: start};
+    return start <= end ? { start, end } : { start: end, end: start };
   }
 
   const currentMatch = period.match(PERIOD_CURRENT_REGEX);
@@ -27,16 +27,16 @@ const parsePeriodRange = (period: string) => {
     const now = new Date();
     const start = toMonthIndex(startYear, startMonth);
     const end = toMonthIndex(now.getFullYear(), now.getMonth() + 1);
-    return start <= end ? {start, end} : {start: end, end: start};
+    return start <= end ? { start, end } : { start: end, end: start };
   }
 
   return null;
 };
 
-const mergeRanges = (ranges: Array<{start: number; end: number}>) => {
+const mergeRanges = (ranges: Array<{ start: number; end: number }>) => {
   if (!ranges.length) return [];
   const sorted = [...ranges].sort((a, b) => a.start - b.start);
-  const merged: Array<{start: number; end: number}> = [sorted[0]];
+  const merged: Array<{ start: number; end: number }> = [sorted[0]];
 
   for (let i = 1; i < sorted.length; i += 1) {
     const current = sorted[i];
@@ -44,7 +44,7 @@ const mergeRanges = (ranges: Array<{start: number; end: number}>) => {
     if (current.start <= last.end + 1) {
       last.end = Math.max(last.end, current.end);
     } else {
-      merged.push({...current});
+      merged.push({ ...current });
     }
   }
 
@@ -62,8 +62,8 @@ const formatTotalExperience = (totalMonths: number) => {
 
 export const getTotalExperienceLabel = (items: ExperienceItem[]) => {
   const ranges = items
-    .map((item) => (item.period ? parsePeriodRange(item.period) : null))
-    .filter((range): range is {start: number; end: number} => Boolean(range));
+    .map(item => (item.period ? parsePeriodRange(item.period) : null))
+    .filter((range): range is { start: number; end: number } => Boolean(range));
   const mergedRanges = mergeRanges(ranges);
   const totalMonths = mergedRanges.reduce((sum, range) => sum + (range.end - range.start + 1), 0);
   return formatTotalExperience(totalMonths);

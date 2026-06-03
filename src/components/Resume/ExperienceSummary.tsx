@@ -1,6 +1,6 @@
 import React from 'react';
-import type {ExperienceItem} from '@site/src/data/resume-experience';
-import {getTotalExperienceLabel} from '@site/src/lib/experience';
+import type {ExperienceItem} from '@/data/resume-experience';
+import {getTotalExperienceLabel} from '@/lib/experience';
 
 type ExperienceSummaryProps = {
   items: ExperienceItem[];

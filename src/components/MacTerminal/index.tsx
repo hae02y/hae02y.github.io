@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useCallback } from "react";
-import BrowserOnly from "@docusaurus/BrowserOnly";
-import { useHistory } from "@docusaurus/router";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import MacToastButton from "@site/src/components/MacToast";
-import { useTerminalEngine } from "./useTerminalEngine";
-import { commandRegistry, welcomeBanner } from "./commands";
-import type { Profile, SkillCategory, Experience, Link } from "./types";
-import "xterm/css/xterm.css";
+'use client';
+
+import { useEffect, useRef, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import { siteConfig } from '@/config/site';
+import MacToastButton from '@/components/MacToast';
+import { useTerminalEngine } from './useTerminalEngine';
+import { commandRegistry, welcomeBanner } from './commands';
+import type { Profile, SkillCategory, Experience, Link as TermLink } from './types';
+import 'xterm/css/xterm.css';
 
 interface MacTerminalProps {
   title: string;
@@ -14,53 +15,40 @@ interface MacTerminalProps {
   onClose?: () => void;
 }
 
-const MacTerminal = ({ title, version, onClose }: MacTerminalProps) => {
-  return (
-    <BrowserOnly fallback={<div>Loading...</div>}>
-      {() => (
-        <MacTerminalClient title={title} version={version} onClose={onClose} />
-      )}
-    </BrowserOnly>
-  );
-};
-
-const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
+export default function MacTerminal({ title, version, onClose }: MacTerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const termRef = useRef<import("xterm").Terminal | null>(null);
-  const history = useHistory();
-  const { siteConfig } = useDocusaurusContext();
+  const termRef = useRef<import('xterm').Terminal | null>(null);
+  const router = useRouter();
 
-  const customFields = siteConfig.customFields as {
-    profile: Profile;
-    skills: { categories: SkillCategory[] };
-    experience: Experience[];
-    links: Link[];
-  };
+  const profile = siteConfig.profile as Profile;
+  const skills = siteConfig.skills as { categories: SkillCategory[] };
+  const experience = siteConfig.experience as Experience[];
+  const links = siteConfig.terminalLinks as TermLink[];
 
   const navigate = useCallback(
     (path: string) => {
       onClose?.();
-      setTimeout(() => history.push(path), 100);
+      setTimeout(() => router.push(path), 100);
     },
-    [history, onClose],
+    [router, onClose],
   );
 
   const openExternal = useCallback((url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(url, '_blank', 'noopener,noreferrer');
   }, []);
 
   const getContext = useCallback(
-    (): CommandContext => ({
+    (): any => ({
       term: termRef.current!,
       title,
-      profile: customFields.profile,
-      skills: customFields.skills,
-      experience: customFields.experience,
-      links: customFields.links,
+      profile,
+      skills,
+      experience,
+      links,
       navigate,
       openExternal,
     }),
-    [title, customFields, navigate, openExternal],
+    [title, profile, skills, experience, links, navigate, openExternal],
   );
 
   const { handleKey, prompt } = useTerminalEngine({
@@ -72,8 +60,8 @@ const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
     let resizeObserver: ResizeObserver | undefined;
 
     const init = async () => {
-      const { Terminal } = await import("xterm");
-      const { FitAddon } = await import("xterm-addon-fit");
+      const { Terminal } = await import('xterm');
+      const { FitAddon } = await import('xterm-addon-fit');
 
       const term = new Terminal({
         cursorBlink: true,
@@ -81,9 +69,9 @@ const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
         fontSize: 13,
         lineHeight: 1.1,
         theme: {
-          background: "#0c0c0c",
-          foreground: "#e7e7e7",
-          cursor: "#e7e7e7",
+          background: '#0c0c0c',
+          foreground: '#e7e7e7',
+          cursor: '#e7e7e7',
         },
       });
       const fitAddon = new FitAddon();
@@ -93,18 +81,16 @@ const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
       requestAnimationFrame(() => fitAddon.fit());
       term.focus();
 
-      containerRef.current!.addEventListener("click", () => term.focus());
+      containerRef.current!.addEventListener('click', () => term.focus());
 
       resizeObserver = new ResizeObserver(() => fitAddon.fit());
       resizeObserver.observe(containerRef.current!);
 
-      // Show welcome banner on init
       for (const line of welcomeBanner) {
         term.writeln(line);
       }
       term.write(prompt());
 
-      // Wire key handler
       term.onKey(({ key, domEvent }) => {
         handleKey(key, domEvent, term);
       });
@@ -131,12 +117,9 @@ const MacTerminalClient = ({ title, version, onClose }: MacTerminalProps) => {
         <span className="terminal-title">{title} — zsh</span>
         <span className="terminal-status">iTerm</span>
       </div>
-
       <div className="terminal-body">
         <div ref={containerRef} className="terminal-screen" />
       </div>
     </div>
   );
-};
-
-export default MacTerminal;
+}
