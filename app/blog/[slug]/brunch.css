@@ -394,6 +394,8 @@
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  overflow-x: auto !important;
+  max-width: 100%;
 }
 
 .code-block-body code {
@@ -403,6 +405,16 @@
   font-size: inherit !important;
   border-radius: 0 !important;
   white-space: pre !important;
+}
+
+/* Prevent code blocks from pushing page width */
+.brunch-content .code-block-wrapper {
+  overflow: hidden;
+  max-width: calc(100% + 3rem);
+}
+
+.brunch-article {
+  overflow-x: hidden;
 }
 
 /* Blockquote — styled */

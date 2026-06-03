@@ -6,6 +6,7 @@ import type { BlogPost } from '@/lib/blog';
 import { MarkdownRenderer } from '@/lib/markdown-renderer';
 import Comments from '@/components/Comments';
 import ReadingProgress from './ReadingProgress';
+import { siteConfig } from '@/config/site';
 
 interface BlogPostContentProps {
   post: BlogPost;
@@ -56,10 +57,10 @@ export default function BlogPostContent({ post, dirName }: BlogPostContentProps)
         <footer className="brunch-footer">
           <div className="brunch-divider"><span /></div>
           <div className="brunch-author">
-            <img src="/img/me.jpg" alt="정해영" className="brunch-author-img" />
+            <img src={siteConfig.author.image} alt={siteConfig.author.name} className="brunch-author-img" />
             <div>
-              <p className="brunch-author-name">정해영</p>
-              <p className="brunch-author-desc">백엔드 개발자 @VEStellaLab</p>
+              <p className="brunch-author-name">{siteConfig.author.name}</p>
+              <p className="brunch-author-desc">{siteConfig.author.bio} @{siteConfig.author.company}</p>
             </div>
           </div>
           <div className="brunch-tags" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
