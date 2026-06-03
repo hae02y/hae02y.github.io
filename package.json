@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && node scripts/generate-feeds.mjs",
+    "dev": "node scripts/copy-blog-images.mjs && next dev",
+    "build": "node scripts/copy-blog-images.mjs && next build && node scripts/generate-feeds.mjs",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

@@ -40,8 +40,9 @@ export default function Navbar() {
       style={{ height: 64, background: 'transparent' }}
     >
       <div className="flex items-center justify-between h-full max-w-5xl mx-auto px-4">
-        <Link href="/" className="font-mono text-sm uppercase tracking-[0.2em] text-[var(--primary)] hover:opacity-70">
-          Hae02y.
+        <Link href="/" className="flex items-center gap-1 hover:opacity-80">
+          <img src="/img/logo/whitemode.png" alt="Hae02y" className="h-8 block dark:hidden" />
+          <img src="/img/logo/darkmode.png" alt="Hae02y" className="h-8 hidden dark:block" />
         </Link>
 
         <div className="flex items-center gap-1">

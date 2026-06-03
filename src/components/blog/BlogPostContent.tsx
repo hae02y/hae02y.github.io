@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import type { BlogPost } from '@/lib/blog';
 import Comments from '@/components/Comments';
 
@@ -11,64 +12,115 @@ interface BlogPostContentProps {
 }
 
 export default function BlogPostContent({ post, dirName }: BlogPostContentProps) {
+  const router = useRouter();
   const [MarkdownContent, setMarkdownContent] = useState<React.ComponentType | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
+    month: 'long',
+    day: 'numeric',
   });
 
   useEffect(() => {
-    // Dynamically render markdown content
     import('@/lib/markdown-renderer').then(mod => {
       const Component = () => mod.renderMarkdown(post.content, dirName);
       setMarkdownContent(() => Component);
     });
   }, [post.content, dirName]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(h > 0 ? (window.scrollY / h) * 100 : 0);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <article>
-      {/* Header */}
-      <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-black dark:text-white leading-tight">
-          {post.title}
-        </h1>
-        <div className="mt-4 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-black/70 dark:text-white/70">
-          <span>{dateFormatter.format(new Date(post.date))}</span>
-          <span>•</span>
-          <span>{post.readingTime} min read</span>
-        </div>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {post.tags.map(tag => (
-            <Link
-              key={tag}
-              href={`/blog/tags/${encodeURIComponent(tag)}`}
-              className="border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black dark:text-white transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-            >
-              {tag}
-            </Link>
-          ))}
-        </div>
-      </header>
+    <>
+      {/* Reading progress bar */}
+      <div
+        className="fixed top-0 left-0 h-[2px] bg-black dark:bg-white z-[100] transition-all duration-75"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
-      {/* Content */}
-      <div className="markdown">
-        {MarkdownContent ? <MarkdownContent /> : (
-          <div className="animate-pulse space-y-4">
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
+      <article className="brunch-article">
+        {/* Hero header */}
+        <header className="brunch-header">
+          <div className="brunch-header-inner">
+            <div className="brunch-meta">
+              <span>{dateFormatter.format(new Date(post.date))}</span>
+              <span className="brunch-meta-dot" />
+              <span>{post.readingTime}분 분량</span>
+            </div>
+            <h1 className="brunch-title">{post.title}</h1>
+            {post.description && (
+              <p className="brunch-subtitle">{post.description}</p>
+            )}
+            <div className="brunch-tags">
+              {post.tags.map(tag => (
+                <Link
+                  key={tag}
+                  href={`/blog/tags/${encodeURIComponent(tag)}`}
+                  className="brunch-tag"
+                >
+                  #{tag}
+                </Link>
+              ))}
+            </div>
           </div>
-        )}
-      </div>
+        </header>
 
-      {/* Comments */}
-      {post.comments && (
-        <div className="mt-12">
-          <Comments />
+        {/* Divider */}
+        <div className="brunch-divider">
+          <span />
         </div>
-      )}
-    </article>
+
+        {/* Content */}
+        <div className="brunch-content">
+          {MarkdownContent ? <MarkdownContent /> : (
+            <div className="brunch-loading">
+              <div /><div /><div />
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <footer className="brunch-footer">
+          <div className="brunch-divider"><span /></div>
+
+          <div className="brunch-author">
+            <img src="/img/me.jpg" alt="정해영" className="brunch-author-img" />
+            <div>
+              <p className="brunch-author-name">정해영</p>
+              <p className="brunch-author-desc">백엔드 개발자 @VEStellaLab</p>
+            </div>
+          </div>
+
+          <div className="brunch-tags" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
+            {post.tags.map(tag => (
+              <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}`} className="brunch-tag">
+                #{tag}
+              </Link>
+            ))}
+          </div>
+
+          <button
+            onClick={() => router.push('/blog')}
+            className="brunch-back"
+          >
+            ← 목록으로 돌아가기
+          </button>
+
+          {post.comments && (
+            <div className="brunch-comments">
+              <Comments />
+            </div>
+          )}
+        </footer>
+      </article>
+    </>
   );
 }
