@@ -91,8 +91,10 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
             alt={alt || ''}
           />
         ),
-        code: ({ children, className, ...props }) => {
-          const isBlock = className?.startsWith('language-');
+        code: ({ children, className, node, ...props }) => {
+          // Block code: has language- class OR is inside <pre> (multi-line)
+          const isBlock = className?.startsWith('language-') ||
+            String(children).includes('\n');
           if (isBlock) {
             return <CodeBlock className={className}>{String(children)}</CodeBlock>;
           }
