@@ -2,30 +2,11 @@
 
 import React from 'react';
 import CompanyTimeline from '@/components/portfolio/CompanyTimeline';
-
-type ProjectItem = {
-  id: string;
-  title: string;
-  summary: string;
-  role: string;
-  period: string;
-  techStack: string;
-  href: string;
-};
-
-type CompanyTimelineData = {
-  companyId: string;
-  company: string;
-  period: string;
-  role?: string;
-  summary?: string;
-  projects: ProjectItem[];
-  order?: number;
-};
+import type { CompanyTimelineData, PortfolioItemData } from '@/lib/portfolio';
 
 type PortfolioListProps = {
   companyTimelineItems?: CompanyTimelineData[];
-  soloItems?: ProjectItem[];
+  soloItems?: PortfolioItemData[];
 };
 
 export default function PortfolioList({ companyTimelineItems = [], soloItems = [] }: PortfolioListProps) {
