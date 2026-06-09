@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="morning routine objects">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff7da"/>
+      <stop offset="1" stop-color="#e7f0d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="920" cy="140" r="82" fill="#f8c46c" opacity="0.5"/>
+  <rect x="220" y="250" width="230" height="220" rx="28" fill="#ffffff" opacity="0.72"/>
+  <rect x="520" y="270" width="320" height="36" rx="18" fill="#7c8f67" opacity="0.32"/>
+  <rect x="520" y="340" width="260" height="36" rx="18" fill="#7c8f67" opacity="0.24"/>
+  <rect x="520" y="410" width="180" height="36" rx="18" fill="#7c8f67" opacity="0.2"/>
+  <text x="80" y="540" fill="#40513b" font-family="Georgia, serif" font-size="54" opacity="0.72">small routine</text>
+</svg>
