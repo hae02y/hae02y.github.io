@@ -65,13 +65,15 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
 
       const term = new Terminal({
         cursorBlink: true,
-        fontFamily: "SF Mono, Menlo, JetBrains Mono, monospace",
-        fontSize: 13,
-        lineHeight: 1.1,
+        fontFamily: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
+        fontSize: 14,
+        lineHeight: 1.35,
+        scrollback: 1000,
         theme: {
-          background: '#0c0c0c',
-          foreground: '#e7e7e7',
-          cursor: '#e7e7e7',
+          background: '#0b0d10',
+          foreground: '#e7edf3',
+          cursor: '#8bd5ff',
+          selectionBackground: '#2d4f67',
         },
       });
       const fitAddon = new FitAddon();
@@ -109,13 +111,13 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
   return (
     <div className="terminal-frame">
       <div className="terminal-titlebar">
-        <div className="terminal-lights">
+        <div className="terminal-lights" aria-label="window controls">
           <MacToastButton color="red" onClick={onClose} showToast={false} />
-          <MacToastButton color="green" showToast={false} />
           <MacToastButton color="yellow" showToast={false} />
+          <MacToastButton color="green" showToast={false} />
         </div>
-        <span className="terminal-title">{title} — zsh</span>
-        <span className="terminal-status">iTerm</span>
+        <span className="terminal-title">{title}@macbook: ~</span>
+        <span className="terminal-status">{version}</span>
       </div>
       <div className="terminal-body">
         <div ref={containerRef} className="terminal-screen" />

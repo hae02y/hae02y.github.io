@@ -16,7 +16,7 @@ export default function TerminalDialog2() {
       <PostIt3D onClick={() => setOpen(true)} />
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContentBare className="w-[94vw] h-[90vh] max-h-[90vh] max-w-3xl overflow-hidden bg-transparent flex">
+        <DialogContentBare className="w-[min(94vw,920px)] h-[min(82vh,640px)] min-h-[420px] overflow-hidden bg-transparent flex">
           <VisuallyHidden>
             <DialogTitle className="text-lg">title</DialogTitle>
           </VisuallyHidden>
