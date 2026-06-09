@@ -38,5 +38,6 @@ build/
 out/
 .next/
 public/blog/
+public/Insight/
 .env.local
 .env*.local
