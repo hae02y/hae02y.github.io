@@ -10,13 +10,63 @@
 
 /* Header */
 .brunch-header {
+  position: relative;
+  overflow: hidden;
   padding: 3rem 1.5rem 2rem;
   text-align: center;
 }
 
+.brunch-header-hero {
+  display: flex;
+  min-height: 420px;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 4rem;
+}
+
+.brunch-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #f6f1ea;
+}
+
+.brunch-hero-backdrop-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  filter: blur(24px) saturate(115%);
+  opacity: 0.62;
+}
+
+.brunch-hero-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.28), transparent 36%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.86) 62%, #fff 100%);
+}
+
 .brunch-header-inner {
+  position: relative;
+  z-index: 1;
   max-width: 680px;
   margin: 0 auto;
+}
+
+[data-theme="dark"] .brunch-hero-backdrop {
+  background: #12100f;
+}
+
+[data-theme="dark"] .brunch-hero-backdrop-image {
+  opacity: 0.42;
+}
+
+[data-theme="dark"] .brunch-hero-backdrop-overlay {
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255, 255, 255, 0.08), transparent 38%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.76) 62%, #000 100%);
 }
 
 .brunch-meta {
@@ -800,6 +850,11 @@
     padding: 2rem 1rem 1.5rem;
   }
 
+  .brunch-header-hero {
+    min-height: 340px;
+    padding: 4rem 1rem 3rem;
+  }
+
   .brunch-title {
     font-size: 1.7rem;
   }
@@ -840,6 +895,10 @@
 @media (min-width: 769px) {
   .brunch-header {
     padding: 4rem 2rem 2.5rem;
+  }
+
+  .brunch-header-hero {
+    padding: 5.5rem 2rem 4.5rem;
   }
 
   .brunch-title {

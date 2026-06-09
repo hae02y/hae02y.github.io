@@ -13,6 +13,7 @@ interface InsightPostContentProps {
 
 export default function InsightPostContent({ page, readingTime }: InsightPostContentProps) {
   const router = useRouter();
+  const hasHeroImage = Boolean(page.heroImage);
   const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -24,14 +25,14 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
       <ReadingProgress />
 
       <article className="brunch-article">
-        <header className={`brunch-header ${page.heroImage ? 'relative isolate overflow-hidden' : ''}`}>
+        <header className={`brunch-header ${hasHeroImage ? 'brunch-header-hero' : ''}`}>
           {page.heroImage && (
-            <div className="absolute inset-0 -z-10 h-[420px] opacity-45 dark:opacity-30">
-              <img src={page.heroImage} alt="" className="h-full w-full scale-110 object-cover blur-2xl" />
-              <div className="absolute inset-0 bg-gradient-to-b from-white/55 via-white/85 to-white dark:from-black/45 dark:via-black/80 dark:to-black" />
+            <div className="brunch-hero-backdrop" aria-hidden="true">
+              <img src={page.heroImage} alt="" className="brunch-hero-backdrop-image" />
+              <div className="brunch-hero-backdrop-overlay" />
             </div>
           )}
-          <div className="brunch-header-inner relative z-10">
+          <div className="brunch-header-inner">
             <div className="brunch-meta">
               <span>Insight</span>
               {page.date && (
