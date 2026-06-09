@@ -1,7 +1,7 @@
 ---
-title: 내 속도로 살아간다는 말
-description: 비교를 줄이고 나의 리듬을 찾는 일.
-date: 2026-06-10
+title: 입원.퇴원.
+description: 
+date: 2026-06-08
 tags: [속도, 삶, 기준]
 ---
 
