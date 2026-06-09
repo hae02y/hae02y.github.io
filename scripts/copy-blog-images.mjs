@@ -1,46 +1,51 @@
 /**
- * Copies blog post images from blog/ directories to public/blog/
- * so Next.js can serve them as static files.
+ * Copies markdown-adjacent images to public/ so Next.js can serve them.
  *
  * blog/2025-07-15-NKS구축/screen1.png → public/blog/2025-07-15-NKS구축/screen1.png
+ * Insight/book/year2025/cover.png → public/Insight/book/year2025/cover.png
  */
 import fs from 'fs';
 import path from 'path';
 
-const BLOG_DIR = path.join(process.cwd(), 'blog');
-const PUBLIC_BLOG_DIR = path.join(process.cwd(), 'public', 'blog');
-
 const IMAGE_EXTS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.bmp', '.avif']);
 
-function copyBlogImages() {
-  if (!fs.existsSync(BLOG_DIR)) return;
+const SOURCES = [
+  { name: 'blog', sourceDir: path.join(process.cwd(), 'blog'), publicDir: path.join(process.cwd(), 'public', 'blog') },
+  { name: 'Insight', sourceDir: path.join(process.cwd(), 'Insight'), publicDir: path.join(process.cwd(), 'public', 'Insight') },
+];
 
-  const dirs = fs.readdirSync(BLOG_DIR, { withFileTypes: true })
-    .filter(d => d.isDirectory());
+function copyImages({ name, sourceDir, publicDir }) {
+  if (!fs.existsSync(sourceDir)) return 0;
 
   let count = 0;
 
-  for (const dir of dirs) {
-    const srcDir = path.join(BLOG_DIR, dir.name);
-    const files = fs.readdirSync(srcDir);
+  function walk(currentDir) {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
 
-    for (const file of files) {
-      const ext = path.extname(file).toLowerCase();
-      if (!IMAGE_EXTS.has(ext)) continue;
+    for (const entry of entries) {
+      const sourcePath = path.join(currentDir, entry.name);
 
-      const destDir = path.join(PUBLIC_BLOG_DIR, dir.name);
-      if (!fs.existsSync(destDir)) {
-        fs.mkdirSync(destDir, { recursive: true });
+      if (entry.isDirectory()) {
+        walk(sourcePath);
+        continue;
       }
 
-      const src = path.join(srcDir, file);
-      const dest = path.join(destDir, file);
-      fs.copyFileSync(src, dest);
+      const ext = path.extname(entry.name).toLowerCase();
+      if (!IMAGE_EXTS.has(ext)) continue;
+
+      const relativePath = path.relative(sourceDir, sourcePath);
+      const destPath = path.join(publicDir, relativePath);
+      fs.mkdirSync(path.dirname(destPath), { recursive: true });
+      fs.copyFileSync(sourcePath, destPath);
       count++;
     }
   }
 
-  console.log(`Copied ${count} blog images to public/blog/`);
+  walk(sourceDir);
+  console.log(`Copied ${count} ${name} images to ${path.relative(process.cwd(), publicDir)}/`);
+  return count;
 }
 
-copyBlogImages();
+for (const source of SOURCES) {
+  copyImages(source);
+}

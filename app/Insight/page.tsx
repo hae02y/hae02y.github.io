@@ -60,6 +60,11 @@ export default function InsightPage() {
                       </div>
                     )}
                   </div>
+                  {post.heroImage && (
+                    <div className="hidden md:block h-24 w-32 shrink-0 overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 opacity-70 transition-opacity group-hover:opacity-100">
+                      <img src={post.heroImage} alt="" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    </div>
+                  )}
                   <span className="hidden md:block text-2xl text-black/25 dark:text-white/25 transition-transform group-hover:translate-x-1">
                     →
                   </span>

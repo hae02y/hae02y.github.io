@@ -7,9 +7,10 @@ import { Highlight, themes } from 'prism-react-renderer';
 import { useTheme } from 'next-themes';
 import ImageViewer from '@/components/blog/ImageViewer';
 
-function rewriteImageSrc(src: string | undefined, dirName?: string): string {
+function rewriteImageSrc(src: string | undefined, dirName?: string, assetBasePath?: string): string {
   if (!src) return '';
   if (src.startsWith('http') || src.startsWith('/')) return src;
+  if (assetBasePath) return `${assetBasePath}/${src}`;
   if (dirName) return `/blog/${dirName}/${src}`;
   return src;
 }
@@ -78,16 +79,17 @@ const CodeBlock = memo(function CodeBlock({ children, className }: { children: s
 interface MarkdownRendererProps {
   content: string;
   dirName?: string;
+  assetBasePath?: string;
 }
 
-export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirName }: MarkdownRendererProps) {
+export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirName, assetBasePath }: MarkdownRendererProps) {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
         img: ({ src, alt }) => (
           <ImageViewer
-            src={rewriteImageSrc(src, dirName)}
+            src={rewriteImageSrc(src, dirName, assetBasePath)}
             alt={alt || ''}
           />
         ),
@@ -117,6 +119,6 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
 });
 
 // Keep backward compat
-export function renderMarkdown(content: string, dirName?: string) {
-  return <MarkdownRenderer content={content} dirName={dirName} />;
+export function renderMarkdown(content: string, dirName?: string, assetBasePath?: string) {
+  return <MarkdownRenderer content={content} dirName={dirName} assetBasePath={assetBasePath} />;
 }

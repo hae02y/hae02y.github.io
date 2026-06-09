@@ -10,6 +10,8 @@ export type DocPage = {
   description?: string;
   date?: string;
   tags?: string[];
+  assetBasePath?: string;
+  heroImage?: string;
 };
 
 export type InsightPostMeta = {
@@ -20,6 +22,7 @@ export type InsightPostMeta = {
   date?: string;
   tags: string[];
   readingTime: number;
+  heroImage?: string;
 };
 
 export type DocSidebarItem = {
@@ -96,7 +99,28 @@ function normalizeTags(value: unknown): string[] {
   return [];
 }
 
-function getDocPage(baseDir: string, slugParts: string[]): DocPage | undefined {
+function resolveAssetSrc(src: string | undefined, assetBasePath?: string): string | undefined {
+  if (!src) return undefined;
+  if (src.startsWith('http') || src.startsWith('/')) return src;
+  if (!assetBasePath) return src;
+  return `${assetBasePath}/${src}`;
+}
+
+function extractFirstImage(content: string, assetBasePath?: string): string | undefined {
+  const match = content.match(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/);
+  return resolveAssetSrc(match?.[1], assetBasePath);
+}
+
+function getAssetBasePath(baseDir: string, filePath: string, publicBasePath?: string): string | undefined {
+  if (!publicBasePath) return undefined;
+
+  const relativeDir = path.relative(baseDir, path.dirname(filePath));
+  if (!relativeDir || relativeDir === '.') return publicBasePath;
+
+  return `${publicBasePath}/${relativeDir.split(path.sep).map(encodeURIComponent).join('/')}`;
+}
+
+function getDocPage(baseDir: string, slugParts: string[], publicBasePath?: string): DocPage | undefined {
   // Try slug/index.md first, then slug.md
   const candidates = [
     path.join(baseDir, ...slugParts, 'index.md'),
@@ -107,6 +131,9 @@ function getDocPage(baseDir: string, slugParts: string[]): DocPage | undefined {
     if (fs.existsSync(filePath)) {
       const raw = fs.readFileSync(filePath, 'utf-8');
       const { data, content } = matter(raw);
+      const assetBasePath = getAssetBasePath(baseDir, filePath, publicBasePath);
+      const heroImage = resolveAssetSrc(data.heroImage || data.image, assetBasePath) || extractFirstImage(content, assetBasePath);
+
       return {
         slug: slugParts,
         title: data.title || extractTitle(content) || slugParts[slugParts.length - 1],
@@ -114,6 +141,8 @@ function getDocPage(baseDir: string, slugParts: string[]): DocPage | undefined {
         description: data.description || extractDescription(content),
         date: data.date ? String(data.date) : undefined,
         tags: normalizeTags(data.tags),
+        assetBasePath,
+        heroImage,
       };
     }
   }
@@ -154,7 +183,7 @@ export const getAllDocsSlugs = () => getAllDocSlugs(DOCS_DIR);
 // Insight/ section
 const INSIGHT_DIR = path.join(process.cwd(), 'Insight');
 export const getInsightSidebar = () => scanDocsDir(INSIGHT_DIR);
-export const getInsightPage = (slug: string[]) => getDocPage(INSIGHT_DIR, slug);
+export const getInsightPage = (slug: string[]) => getDocPage(INSIGHT_DIR, slug, '/Insight');
 export const getAllInsightSlugs = () => getAllDocSlugs(INSIGHT_DIR);
 export const getAllInsightPosts = (): InsightPostMeta[] => {
   const posts: InsightPostMeta[] = [];
@@ -173,6 +202,7 @@ export const getAllInsightPosts = (): InsightPostMeta[] => {
     };
 
     if (page.date) post.date = page.date;
+    if (page.heroImage) post.heroImage = page.heroImage;
     posts.push(post);
   }
 

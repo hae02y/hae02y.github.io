@@ -28,6 +28,11 @@ export type BlogPost = {
 
 export type BlogPostMeta = Omit<BlogPost, 'content'>;
 
+export type BlogPostNavigation = {
+  previous?: BlogPostMeta;
+  next?: BlogPostMeta;
+};
+
 function getAuthors(): Record<string, Author> {
   const authorsPath = path.join(BLOG_DIR, 'authors.yml');
   if (!fs.existsSync(authorsPath)) return {};
@@ -131,6 +136,39 @@ export function getAllPostsMeta(): BlogPostMeta[] {
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return getAllPosts().find(p => p.slug === slug);
+}
+
+export function getAdjacentPosts(slug: string): BlogPostNavigation {
+  const posts = getAllPostsMeta();
+  const index = posts.findIndex(post => post.slug === slug);
+  if (index === -1) return {};
+
+  return {
+    previous: posts[index + 1],
+    next: posts[index - 1],
+  };
+}
+
+export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
+  const posts = getAllPostsMeta();
+  const current = posts.find(post => post.slug === slug);
+  if (!current || current.tags.length === 0) return [];
+
+  const currentTags = new Set(current.tags.map(tag => tag.toLowerCase()));
+
+  return posts
+    .filter(post => post.slug !== slug)
+    .map(post => ({
+      post,
+      overlap: post.tags.filter(tag => currentTags.has(tag.toLowerCase())).length,
+    }))
+    .filter(item => item.overlap > 0)
+    .sort((a, b) => {
+      if (a.overlap !== b.overlap) return b.overlap - a.overlap;
+      return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
+    })
+    .slice(0, limit)
+    .map(item => item.post);
 }
 
 export function getPostsByTag(tag: string): BlogPostMeta[] {

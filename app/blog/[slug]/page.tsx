@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getAllPosts, getPostBySlug, getPostDirName } from '@/lib/blog';
+import { getAdjacentPosts, getAllPosts, getPostBySlug, getPostDirName, getRelatedPosts } from '@/lib/blog';
 import BlogPostContent from '@/components/blog/BlogPostContent';
 import type { Metadata } from 'next';
 import './brunch.css';
@@ -38,6 +38,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   if (!post) notFound();
 
   const dirName = getPostDirName(slug);
+  const navigation = getAdjacentPosts(slug);
+  const relatedPosts = getRelatedPosts(slug);
 
-  return <BlogPostContent post={post} dirName={dirName} />;
+  return <BlogPostContent post={post} dirName={dirName} navigation={navigation} relatedPosts={relatedPosts} />;
 }
