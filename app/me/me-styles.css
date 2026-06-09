@@ -206,6 +206,9 @@
 
 .portfolio-detail-meta { font-size: 0.95rem; color: #64748b; margin-bottom: 0.35rem; }
 .portfolio-detail-summary { margin: 0 0 0.75rem; font-size: 1.02rem; line-height: 1.62; color: #334155; }
+.portfolio-detail { margin-top: 1.5rem; }
+.portfolio-detail-sections { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+.portfolio-detail-sections .resume-project-card h2 { margin: 0; font-size: 1.2rem; }
 
 @media (max-width: 960px) {
   .resume-timeline-item { flex-direction: column; }

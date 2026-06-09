@@ -433,72 +433,160 @@ export const meConfig = {
         summary: '전국 지자체와 공공기관에 관제·스마트시티 솔루션을 공급해온 IT 전문기업입니다.',
         projects: [
           {
+            slug: 'noc-datacenter-ops',
             title: '통합관제센터 데이터센터 구축 및 운영',
             summary: '지자체 관제센터의 서버/네트워크 인프라를 구축하고 안정적인 운영 환경을 마련했습니다.',
             role: 'Network Engineer',
             techStack: 'Linux, Cisco Switch, Firewall, VPN, Storage, Hyper-V',
             start: '2020-08',
             end: '2023-04',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['전국 지자체/공공기관 관제센터 데이터센터 구축 및 운영을 담당했습니다.', '핵심 네트워크 장비 운용과 보안 정책 관리를 수행했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['논산시청 통합관제센터 서버/네트워크 인프라 구축', 'Cisco L3/L2 스위치 및 방화벽 운영', '장애 이력 기록 및 운영 표준 수립'],
+              },
+            ],
           },
           {
+            slug: 'network-upgrade-10g',
             title: '통합관제센터 10Gbps 네트워크 업그레이드',
             summary: '1Gbps 폐쇄망을 10Gbps로 업그레이드하여 스트리밍 품질과 응답성을 크게 개선했습니다.',
             role: 'Network Engineer',
             techStack: 'Cisco L3/L2 Switch, VPN, Firewall',
             start: '2022-01',
             end: '2022-06',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['관제센터 네트워크 대역폭 업그레이드를 설계하고 구축했습니다.', '스트리밍 품질과 응답성 향상을 위한 네트워크 튜닝을 수행했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['1Gbps에서 10Gbps로 업그레이드하여 영상 스트리밍 품질과 응답성을 개선했습니다.', '장비 구성 및 운영 정책을 정비해 안정적인 서비스 제공 기반을 마련했습니다.'],
+              },
+            ],
           },
           {
+            slug: 'security-ops-standard',
             title: '네트워크 보안 정책 및 운영 표준화',
             summary: '방화벽 정책과 트래픽 관리 표준을 수립해 보안 운영 품질을 높였습니다.',
             role: 'Network Engineer',
             techStack: 'Firewall, VPN, Cisco, Linux',
             start: '2021-01',
             end: '2023-04',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['네트워크 보안 정책 수립 및 운영 프로세스 정비를 수행했습니다.', '장애/보안 이력 관리 체계를 정착시켰습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['방화벽 설정 및 포트 트래픽 관리 표준 수립', '주요 장비 운용 정책 정리 및 보안 운영 기록 정착'],
+              },
+            ],
           },
         ],
       },
     ] satisfies PortfolioCompanyConfig[],
     solo: [
       {
+        slug: 'yeosu-bike-trip',
         title: '여수로 - 자전거와 함께 떠나는 여수 여행',
         summary: '여수 여행 추천 서비스를 개발하며 핵심 백엔드 로직과 성능 개선을 수행했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, PostgreSQL, Docker, AWS',
         start: '2024-03',
         end: '2024-07',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['한국관광공사 공모전 참가용 여행 추천 서비스 백엔드를 설계했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['여정 추천, 미션 경험치 등 핵심 비즈니스 로직 구현', 'S3 이미지 처리 및 성능 개선'],
+          },
+        ],
       },
       {
+        slug: 'jandi-garden',
         title: '잔디정원 - 당신도 GitHub 정원사',
         summary: 'SSR 기반 커뮤니티 서비스 MVP를 구축하고 Kotlin 전환과 데이터 마이그레이션을 진행했습니다.',
         role: 'Side Project',
         techStack: 'Kotlin, Java, Spring Boot, Spring Security, JPA, MySQL, Thymeleaf',
         start: '2025-03',
         end: 'present',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['커뮤니티 운영을 위한 SSR 웹 서비스 백엔드를 설계하고 MVP를 구현했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['REST API 기반 Kotlin 전환 및 데이터베이스 마이그레이션', '핵심 도메인 설계 및 인증/인가 구조 구현'],
+          },
+        ],
       },
       {
+        slug: 'studyground',
         title: '스터디그라운드 - 자격증 조회',
         summary: '공공 API 기반 자격증 정보와 커뮤니티를 결합한 서비스의 데이터 파이프라인을 구축했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, Spring Batch, MySQL, AWS',
         start: '2023-09',
         end: '2023-10',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['자격증 정보, 일정, 커뮤니티 기능을 결합한 서비스를 설계했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['외부 API 트래픽을 고려한 Batch 설계', '북마크/검색 성능 최적화 및 CI/CD 자동화'],
+          },
+        ],
       },
       {
+        slug: 'togedog',
         title: '투게독 - 당신의 반려견과 함께',
         summary: '반려동물 SNS 서비스의 인증/회원 도메인과 배포 구조를 설계했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, MySQL, Redis, Docker, AWS',
         start: '2023-10',
         end: '2023-12',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['반려동물 기록/공유 SNS의 핵심 백엔드 로직을 구현했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['JWT · OAuth2 기반 인증 및 회원 API 구축', 'S3 이미지 처리 및 CI/CD 자동화 적용'],
+          },
+        ],
       },
       {
+        slug: 'digital-drawing-tool',
         title: '디지털 도면 시각화 Tool',
         summary: '주차장 도면과 요소를 실시간 시각화하는 내부 도구를 단독 개발했습니다.',
         role: 'Side Project',
         techStack: 'JavaScript, Thymeleaf, jQuery, Java, Spring Boot',
         start: '2025-01',
         end: '2025-03',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['도면 데이터 검증을 위한 시각화 도구를 설계하고 구현했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['실시간 도면 렌더링으로 데이터 품질 검증 효율 향상', '사내 업무에 적용해 도면 검증 프로세스 개선'],
+          },
+        ],
       },
     ] satisfies PortfolioProjectConfig[],
   },

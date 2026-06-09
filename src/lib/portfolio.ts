@@ -2,12 +2,15 @@ import { meConfig, type PortfolioProjectConfig } from '@/config/me';
 
 export type PortfolioItemData = {
   id: string;
+  slug: string;
   title: string;
   summary: string;
   role: string;
   techStack: string;
   period: string;
-  href?: string;
+  href: string;
+  details?: PortfolioProjectConfig['details'];
+  company?: string;
 };
 
 export type CompanyTimelineData = {
@@ -61,15 +64,30 @@ const compareProjects = (a: PortfolioProjectConfig, b: PortfolioProjectConfig) =
   return a.title.localeCompare(b.title, 'ko');
 };
 
-const mapProject = (project: PortfolioProjectConfig): PortfolioItemData => ({
-  id: toDomId(project.title),
+const mapProject = (project: PortfolioProjectConfig, company?: string): PortfolioItemData => ({
+  id: toDomId(project.slug),
+  slug: project.slug,
   title: project.title,
   summary: project.summary,
   role: project.role,
   techStack: project.techStack,
   period: formatPeriod(project.start, project.end),
-  ...(project.href ? { href: project.href } : {}),
+  href: project.href ?? `/me/${project.slug}`,
+  ...(project.details ? { details: project.details } : {}),
+  ...(company ? { company } : {}),
 });
+
+export function getAllPortfolioProjects(): PortfolioItemData[] {
+  const companyProjects = meConfig.portfolio.companies.flatMap(company =>
+    company.projects.map(project => mapProject(project, company.company))
+  );
+  const soloProjects = meConfig.portfolio.solo.map(project => mapProject(project, '개인 프로젝트'));
+  return [...companyProjects, ...soloProjects];
+}
+
+export function getPortfolioProjectBySlug(slug: string): PortfolioItemData | undefined {
+  return getAllPortfolioProjects().find(project => project.slug === slug);
+}
 
 export function getPortfolioData(): PortfolioData {
   const companyTimelineItems = meConfig.portfolio.companies
@@ -79,14 +97,14 @@ export function getPortfolioData(): PortfolioData {
       period: company.period,
       ...(company.role ? { role: company.role } : {}),
       ...(company.summary ? { summary: company.summary } : {}),
-      projects: [...company.projects].sort(compareProjects).map(mapProject),
+      projects: [...company.projects].sort(compareProjects).map(project => mapProject(project, company.company)),
       order: company.order,
     }))
     .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
 
   const soloItems = [...meConfig.portfolio.solo]
     .sort(compareProjects)
-    .map(project => ({ ...mapProject(project), id: toDomId(`solo-${project.title}`) }));
+    .map(project => ({ ...mapProject(project, '개인 프로젝트'), id: toDomId(`solo-${project.slug}`) }));
 
   return { companyTimelineItems, soloItems };
 }
