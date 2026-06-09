@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import { getAllInsightSlugs, getInsightPage } from '@/lib/docs';
-import DocContent from '@/components/docs/DocContent';
+import InsightPostContent from '@/components/insight/InsightPostContent';
 import type { Metadata } from 'next';
+import readingTime from 'reading-time';
+import '../../blog/[slug]/brunch.css';
 
 
 export function generateStaticParams() {
@@ -12,7 +14,10 @@ export function generateMetadata({ params }: { params: { slug: string[] } }): Me
   const decoded = params.slug.map(s => decodeURIComponent(s));
   const page = getInsightPage(decoded);
   if (!page) return {};
-  return { title: page.title };
+  return {
+    title: page.title,
+    description: page.description,
+  };
 }
 
 export default function InsightDetailPage({ params }: { params: { slug: string[] } }) {
@@ -20,9 +25,5 @@ export default function InsightDetailPage({ params }: { params: { slug: string[]
   const page = getInsightPage(decoded);
   if (!page) notFound();
 
-  return (
-    <div className="mx-auto px-4 mt-6 md:mt-10 max-w-3xl">
-      <DocContent page={page} />
-    </div>
-  );
+  return <InsightPostContent page={page} readingTime={Math.ceil(readingTime(page.content).minutes)} />;
 }

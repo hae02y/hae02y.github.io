@@ -1,51 +1,75 @@
 import Link from 'next/link';
-import { getInsightSidebar } from '@/lib/docs';
+import { getAllInsightPosts } from '@/lib/docs';
 import type { Metadata } from 'next';
-import type { DocSidebarItem } from '@/lib/docs';
 
 export const metadata: Metadata = {
   title: 'Insight',
-  description: '인사이트 모음',
+  description: '정해영의 생각과 감성적인 기록',
 };
 
-function SidebarItem({ item, basePath }: { item: DocSidebarItem; basePath: string }) {
-  return (
-    <div className="mb-4">
-      <Link
-        href={`${basePath}/${item.slug.join('/')}`}
-        className="text-lg font-semibold text-[var(--primary)] hover:underline"
-      >
-        {item.title}
-      </Link>
-      {item.children && (
-        <ul className="ml-4 mt-2 space-y-1">
-          {item.children.map(child => (
-            <li key={child.slug.join('/')}>
-              <Link
-                href={`${basePath}/${child.slug.join('/')}`}
-                className="text-sm text-[var(--secondary)] hover:text-[var(--primary)]"
-              >
-                {child.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
 export default function InsightPage() {
-  const sidebar = getInsightSidebar();
+  const posts = getAllInsightPosts();
+  const dateFormatter = new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
 
   return (
-    <div className="mx-auto px-4 mt-6 md:mt-10 max-w-3xl">
-      <h1 className="text-3xl font-bold mb-8 text-[var(--primary)]">Insight</h1>
-      <div className="space-y-2">
-        {sidebar.map(item => (
-          <SidebarItem key={item.slug.join('/')} item={item} basePath="/Insight" />
-        ))}
-      </div>
+    <div className="mx-auto px-4 mt-8 md:mt-14">
+      <main className="mx-auto max-w-[760px] w-full">
+        <section className="border-b border-black/10 dark:border-white/15 pb-10 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-black/40 dark:text-white/40">
+            Essay Index
+          </p>
+          <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-[-0.05em] text-black dark:text-white">
+            Insight
+          </h1>
+          <p className="mx-auto mt-5 max-w-[520px] text-base md:text-lg leading-8 text-black/55 dark:text-white/55 break-keep">
+            기술 밖에서 떠오른 생각, 오래 남은 문장, 일과 삶 사이의 감정을 천천히 발행합니다.
+          </p>
+        </section>
+
+        <section className="mt-10 flex flex-col gap-5">
+          {posts.map((post, index) => (
+            <article key={post.href} className="group border-b border-black/10 dark:border-white/10 pb-7 transition-colors hover:border-black/30 dark:hover:border-white/30">
+              <Link href={post.href} className="block rounded-2xl px-1 py-2 transition-colors hover:bg-black/[0.025] dark:hover:bg-white/[0.035]">
+                <div className="flex items-start gap-5">
+                  <span className="mt-1 font-mono text-xs text-black/30 dark:text-white/30">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-black/40 dark:text-white/40">
+                      {post.date && <span>{dateFormatter.format(new Date(post.date))}</span>}
+                      {post.date && <span>/</span>}
+                      <span>{post.readingTime} min read</span>
+                    </div>
+                    <h2 className="mt-3 text-2xl md:text-3xl font-semibold leading-snug tracking-[-0.035em] text-black dark:text-white group-hover:underline decoration-black/30 dark:decoration-white/40 underline-offset-4 break-keep">
+                      {post.title}
+                    </h2>
+                    <p className="mt-3 text-sm md:text-base leading-7 text-black/55 dark:text-white/55 line-clamp-2 break-keep">
+                      {post.description}
+                    </p>
+                    {post.tags.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {post.tags.map(tag => (
+                          <span key={tag} className="rounded-full border border-black/10 dark:border-white/15 px-3 py-1 text-xs text-black/40 dark:text-white/40">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <span className="hidden md:block text-2xl text-black/25 dark:text-white/25 transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
+              </Link>
+            </article>
+          ))}
+        </section>
+      </main>
+      <footer className="h-[60px]" />
     </div>
   );
 }

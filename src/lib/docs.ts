@@ -1,12 +1,25 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import readingTime from 'reading-time';
 
 export type DocPage = {
   slug: string[];
   title: string;
   content: string;
   description?: string;
+  date?: string;
+  tags?: string[];
+};
+
+export type InsightPostMeta = {
+  slug: string[];
+  href: string;
+  title: string;
+  description: string;
+  date?: string;
+  tags: string[];
+  readingTime: number;
 };
 
 export type DocSidebarItem = {
@@ -58,6 +71,31 @@ function scanDocsDir(baseDir: string, relativePath: string[] = []): DocSidebarIt
   return items;
 }
 
+function extractTitle(content: string): string | undefined {
+  const heading = content.match(/^#\s+(.+)$/m);
+  return heading?.[1]?.trim();
+}
+
+function extractDescription(content: string): string {
+  return content
+    .replace(/^---[\s\S]*?---/, '')
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[>*_`#-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 140)
+    .trim();
+}
+
+function normalizeTags(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map(String);
+  if (typeof value === 'string') return value.split(',').map(tag => tag.trim()).filter(Boolean);
+  return [];
+}
+
 function getDocPage(baseDir: string, slugParts: string[]): DocPage | undefined {
   // Try slug/index.md first, then slug.md
   const candidates = [
@@ -71,9 +109,11 @@ function getDocPage(baseDir: string, slugParts: string[]): DocPage | undefined {
       const { data, content } = matter(raw);
       return {
         slug: slugParts,
-        title: data.title || slugParts[slugParts.length - 1],
+        title: data.title || extractTitle(content) || slugParts[slugParts.length - 1],
         content,
-        description: data.description,
+        description: data.description || extractDescription(content),
+        date: data.date ? String(data.date) : undefined,
+        tags: normalizeTags(data.tags),
       };
     }
   }
@@ -116,3 +156,30 @@ const INSIGHT_DIR = path.join(process.cwd(), 'Insight');
 export const getInsightSidebar = () => scanDocsDir(INSIGHT_DIR);
 export const getInsightPage = (slug: string[]) => getDocPage(INSIGHT_DIR, slug);
 export const getAllInsightSlugs = () => getAllDocSlugs(INSIGHT_DIR);
+export const getAllInsightPosts = (): InsightPostMeta[] => {
+  const posts: InsightPostMeta[] = [];
+
+  for (const slug of getAllInsightSlugs()) {
+    const page = getInsightPage(slug);
+    if (!page) continue;
+
+    const post: InsightPostMeta = {
+      slug,
+      href: `/Insight/${slug.map(encodeURIComponent).join('/')}`,
+      title: page.title,
+      description: page.description || '천천히 곱씹어 볼 생각의 기록입니다.',
+      tags: page.tags || [],
+      readingTime: Math.ceil(readingTime(page.content).minutes),
+    };
+
+    if (page.date) post.date = page.date;
+    posts.push(post);
+  }
+
+  return posts.sort((a, b) => {
+    if (a.date && b.date) return new Date(b.date).getTime() - new Date(a.date).getTime();
+    if (a.date) return -1;
+    if (b.date) return 1;
+    return a.title.localeCompare(b.title, 'ko');
+  });
+};
