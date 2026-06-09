@@ -48,6 +48,7 @@ export type ResumeLink = {
 };
 
 export type PortfolioProjectConfig = {
+  slug: string;
   title: string;
   summary: string;
   role: string;
@@ -55,6 +56,7 @@ export type PortfolioProjectConfig = {
   start?: string;
   end?: string;
   href?: string;
+  details?: BulletGroup[];
 };
 
 export type PortfolioCompanyConfig = {
@@ -79,9 +81,15 @@ export const meConfig = {
   resume: {
     experiences: [
       {
+        company: '(주)맨인블록',
+        role: '선임연구원 · 백엔드/AI 개발',
+        period: '2026.03 - 재직중',
+        description: ' Visoin-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션 을 서비스하는 스마트 모빌리티 스타트업입니다.',
+      },
+      {
         company: '(주)베스텔라랩',
         role: '선임연구원 · 백엔드 개발',
-        period: '2024.01 - 재직중',
+        period: '2024.01 - 2026.03',
         description: ' Visoin-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션 을 서비스하는 스마트 모빌리티 스타트업입니다.',
       },
       {
@@ -293,44 +301,126 @@ export const meConfig = {
         summary: 'Vision-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션을 서비스하는 스마트 모빌리티 스타트업입니다.',
         projects: [
           {
+            slug: 'ansan-parking-system',
             title: '안산도시공사 MLOps 개발',
             summary: '클린 아키텍처 기반 멀티모듈 전환과 비동기 처리 구조를 도입해 확장성과 운영 안정성을 강화했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, MyBatis, MySQL, Thymeleaf, NCP, Kubernetes, GitHub Actions',
             start: '2025-10',
             end: 'present',
+            details: [
+              {
+                title: 'Summary',
+                bullets: [
+                  '도메인 분리 기반 멀티모듈 아키텍처로 중복 코드 제거 및 확장성을 높였습니다.',
+                  '비동기, 배치, 메시지 큐 구조로 트래픽 대응력과 처리 안정성을 강화했습니다.',
+                ],
+              },
+              {
+                title: 'Highlights',
+                bullets: [
+                  'Spring Security 인증/인가 구조를 재정립해 API 보안 수준을 강화했습니다.',
+                  'JPA 도입으로 MyBatis 레거시를 개선하고 유지보수성을 높였습니다.',
+                  'CI/CD 자동화로 배포 안정성과 운영 효율성을 개선했습니다.',
+                ],
+              },
+              {
+                title: 'Impact',
+                bullets: ['영상분석 AI 연동 결과 반영률 100% 증가', '서비스 안정성 기반으로 DAU 지속 상승'],
+              },
+            ],
           },
           {
+            slug: 'watchmile-backend-ops',
             title: '워치마일(주차내비게이션) 서비스 백엔드 개발',
             summary: '온프레미스/PHP 레거시를 AWS 기반 클라우드 아키텍처로 마이그레이션하며 표준 API와 운영 대시보드를 구축했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, MyBatis, MySQL, Thymeleaf, Python, FastAPI, AWS',
             start: '2024-06',
             end: 'present',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['온프레미스/레거시 워치마일 서비스를 클라우드 기반으로 전환했습니다.', '외부 주차 관제 업체 및 파트너 연동 API를 표준화했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['JWT 기반 인증 적용 및 RESTful API 설계/문서화', '운영사 전용 배포 대시보드 설계 및 구현', 'FCM 기반 실시간 푸시 알림 서비스 구축', '신규 현장 도면 데이터 표준화 및 DB 적재 프로세스 개선'],
+              },
+              {
+                title: 'Impact',
+                bullets: ['배포 리드타임 60일에서 14일로 단축'],
+              },
+            ],
           },
           {
+            slug: 'icoding-talkbot-textbook',
             title: '아이코딩 톡벗(디지털 교과서) 백엔드 개발',
             summary: '실시간 퀴즈와 계정 관리 기능을 갖춘 디지털 교과서 백엔드/프론트 구조를 설계했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, JPA, MySQL, MyBatis, TypeScript, React, Zustand, TanStack Query, Docker, NCP',
             start: '2024-09',
             end: '2025-01',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['인증/인가와 실시간 퀴즈 진행 로직을 포함한 백엔드 아키텍처를 구축했습니다.', '서비스별 독립 모듈화로 확장 가능한 구조를 설계했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['JWT 기반 인증/인가 및 세션 상태 관리 모듈 구현', 'WebSocket 기반 퀴즈 진행/브로드캐스트 로직 개발', 'R2DBC 비동기 DB 연동 모듈화 및 트랜잭션 최적화', 'NCP Kubernetes 환경 자동 배포 파이프라인 구축'],
+              },
+              {
+                title: 'Impact',
+                bullets: ['K-PaaS 클라우드 서비스 확인제 인증 통과'],
+              },
+            ],
           },
           {
+            slug: 'la-joes-auto-park-poc',
             title: '도면 데이터 변경 자동화 프로세스 구축',
             summary: 'LPR/스트리밍 데이터를 결합한 주차 관제 대시보드를 구축해 실시간 운영 시나리오를 검증했습니다.',
             role: 'Backend 설계 및 개발 · Web Frontend 개발',
             techStack: 'Java, Spring Boot, MySQL, JavaScript, jQuery, Bootstrap, Hls.js, Nginx, FFmpeg',
             start: '2024-02',
             end: '2024-06',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['SVG 기반 도면 시각화와 실시간 스트리밍 통합 관제 UI를 구현했습니다.', 'CCTV 스트림 안정성을 위한 변환/복구 로직을 설계했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['주차 슬롯과 Spot ID 매핑 및 JSON 실시간 반영', '차량 입출차 이력/번호판 메타데이터 테이블 및 팝업 구성', 'HLS.js 기반 스트리밍 재생 안정화 및 오류 복구 처리', 'RTSP에서 HLS로 변환하는 서버 및 Failover 로직 구현'],
+              },
+              {
+                title: 'Impact',
+                bullets: ['LPR + 스트리밍 통합 관제 PoC 사례 확보'],
+              },
+            ],
           },
           {
+            slug: 'parkops-dashboard-i18n',
             title: '파크옵스(다국화 주차장 모니터링) 대시보드 개발',
             summary: 'SVG 기반 도면과 다국어 전환을 지원하는 관제 대시보드를 구축해 사용자 경험을 고도화했습니다.',
             role: 'Web Frontend 설계 및 개발',
             techStack: 'React, TypeScript, Axios, TailwindCSS, Redux, Nginx, MySQL, Directus',
             start: '2024-04',
             end: '2024-10',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['SVG 기반 주차 도면 시각화 및 상태 모니터링 UI를 구현했습니다.', '다국어 전환과 리소스 lazy load 국제화 시스템을 구축했습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['Role 기반 메뉴/화면 접근 제어 및 상태 관리 로직 구현', 'Directus API 쿼리 빌더와 인증 토큰 인터셉터 개발', '웹 접근성/보안 헤더/시맨틱 마크업 개선'],
+              },
+              {
+                title: 'Impact',
+                bullets: ['GS 인증 1등급 획득'],
+              },
+            ],
           },
         ],
       },
