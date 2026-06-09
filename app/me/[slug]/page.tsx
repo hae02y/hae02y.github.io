@@ -23,7 +23,7 @@ export default function PortfolioDetailPage({ params }: { params: { slug: string
   if (!project) notFound();
 
   return (
-    <div className="resume-page" style={{ marginTop: '-64px', paddingTop: 0 }}>
+    <div className="resume-page">
       <main className="resume-container">
         <Link href="/me?tab=portfolio" className="resume-project-link">
           ← 포트폴리오로 돌아가기

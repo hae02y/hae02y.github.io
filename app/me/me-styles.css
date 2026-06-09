@@ -41,7 +41,7 @@
 [data-theme='dark'] .resume-page .resume-certification-item,
 [data-theme='dark'] .resume-page .portfolio-toc { background: #fff; border-color: #e2e8f0; }
 
-.resume-container { width: 100%; max-width: 50rem; margin: auto; padding: 2.5rem 2rem 0; }
+.resume-container { width: 100%; max-width: 50rem; margin: 0 auto; padding: 2rem 2rem 0; }
 
 .me-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
 .me-tab {

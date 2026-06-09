@@ -13,7 +13,7 @@ function MeContent({ portfolioData }: { portfolioData: PortfolioData }) {
   const activeTab = searchParams.get('tab') === 'portfolio' ? 'portfolio' : 'resume';
 
   return (
-    <div className="resume-page" style={{ marginTop: '-64px', paddingTop: 0 }}>
+    <div className="resume-page">
       <div className="resume-container">
         <div className="me-tabs">
           <Link
