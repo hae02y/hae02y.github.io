@@ -1,6 +1,6 @@
 import React from 'react';
 import {BriefcaseBusiness} from 'lucide-react';
-import type {ExperienceItem} from '@/data/resume-experience';
+import type {ExperienceItem} from '@/config/me';
 
 type ExperienceTimelineProps = {
   items: ExperienceItem[];

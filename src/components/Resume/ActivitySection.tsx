@@ -1,6 +1,6 @@
 import React from 'react';
 import {Users} from 'lucide-react';
-import type {ActivityItem} from '@/data/resume-activities';
+import type {ActivityItem} from '@/config/me';
 
 type ActivitySectionProps = {
   items: ActivityItem[];

@@ -1,5 +1,5 @@
 import React from 'react';
-import type {ExperienceItem} from '@/data/resume-experience';
+import type {ExperienceItem} from '@/config/me';
 import {getTotalExperienceLabel} from '@/lib/experience';
 
 type ExperienceSummaryProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {BadgeCheck} from 'lucide-react';
-import type {CertificationItem} from '@/data/resume-certifications';
+import type {CertificationItem} from '@/config/me';
 
 type CertificationSectionProps = {
   items: CertificationItem[];

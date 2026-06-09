@@ -1,4 +1,4 @@
-import type { ExperienceItem } from '@/data/resume-experience';
+import type { ExperienceItem } from '@/config/me';
 
 const PERIOD_RANGE_REGEX = /(\d{4})\.(\d{2})\s*-\s*(\d{4})\.(\d{2})/;
 const PERIOD_CURRENT_REGEX = /(\d{4})\.(\d{2})\s*-\s*재직중/;

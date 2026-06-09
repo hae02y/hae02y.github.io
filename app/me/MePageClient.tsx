@@ -5,12 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
+import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
-
-type PortfolioData = {
-  companyTimelineItems: any[];
-  soloItems: any[];
-};
 
 function MeContent({ portfolioData }: { portfolioData: PortfolioData }) {
   const searchParams = useSearchParams();

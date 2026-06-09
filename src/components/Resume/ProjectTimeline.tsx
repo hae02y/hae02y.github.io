@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {FolderKanban} from 'lucide-react';
-import type {ResumeProject} from '@/data/resume-projects';
+import type {ResumeProject} from '@/config/me';
 
 type ProjectTimelineProps = {
   projects: ResumeProject[];

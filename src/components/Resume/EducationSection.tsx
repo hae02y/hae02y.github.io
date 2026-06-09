@@ -1,6 +1,6 @@
 import React from 'react';
 import {GraduationCap} from 'lucide-react';
-import type {EducationItem} from '@/data/resume-education';
+import type {EducationItem} from '@/config/me';
 
 type EducationSectionProps = {
   items: EducationItem[];
