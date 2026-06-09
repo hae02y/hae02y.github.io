@@ -64,6 +64,7 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
       const { FitAddon } = await import('xterm-addon-fit');
 
       const term = new Terminal({
+        convertEol: true,
         cursorBlink: true,
         fontFamily: "'JetBrains Mono', 'SF Mono', Menlo, monospace",
         fontSize: 14,
@@ -80,12 +81,24 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
 
       term.loadAddon(fitAddon);
       term.open(containerRef.current!);
-      requestAnimationFrame(() => fitAddon.fit());
+
+      const fit = () => {
+        try {
+          fitAddon.fit();
+        } catch {
+          // xterm can briefly report zero dimensions while the dialog animates in.
+        }
+      };
+
+      requestAnimationFrame(() => {
+        fit();
+        requestAnimationFrame(fit);
+      });
       term.focus();
 
       containerRef.current!.addEventListener('click', () => term.focus());
 
-      resizeObserver = new ResizeObserver(() => fitAddon.fit());
+      resizeObserver = new ResizeObserver(fit);
       resizeObserver.observe(containerRef.current!);
 
       for (const line of welcomeBanner) {
