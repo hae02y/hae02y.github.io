@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import MacToastButton from '@/components/MacToast';
 import { useTerminalEngine } from './useTerminalEngine';
-import { commandRegistry, welcomeBanner } from './commands';
+import { welcomeBanner } from './commands';
 import type { Profile, SkillCategory, Experience, Link as TermLink } from './types';
 import 'xterm/css/xterm.css';
 
@@ -58,10 +58,18 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
 
   useEffect(() => {
     let resizeObserver: ResizeObserver | undefined;
+    let disposed = false;
+    let animationFrame: number | undefined;
+    let settleTimeout: ReturnType<typeof setTimeout> | undefined;
+    let keyDisposable: { dispose: () => void } | undefined;
+    let clickHandler: (() => void) | undefined;
+    let terminal: import('xterm').Terminal | undefined;
 
     const init = async () => {
       const { Terminal } = await import('xterm');
       const { FitAddon } = await import('xterm-addon-fit');
+
+      if (disposed || !containerRef.current) return;
 
       const term = new Terminal({
         convertEol: true,
@@ -78,9 +86,15 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
         },
       });
       const fitAddon = new FitAddon();
+      terminal = term;
 
       term.loadAddon(fitAddon);
       term.open(containerRef.current!);
+
+      if (disposed) {
+        term.dispose();
+        return;
+      }
 
       const fit = () => {
         try {
@@ -90,23 +104,28 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
         }
       };
 
-      requestAnimationFrame(() => {
-        fit();
-        requestAnimationFrame(fit);
-      });
+      const scheduleFit = () => {
+        if (animationFrame !== undefined) return;
+        animationFrame = requestAnimationFrame(() => {
+          animationFrame = undefined;
+          if (!disposed) fit();
+        });
+      };
+
+      scheduleFit();
+      settleTimeout = setTimeout(scheduleFit, 160);
       term.focus();
 
-      containerRef.current!.addEventListener('click', () => term.focus());
+      clickHandler = () => term.focus();
+      containerRef.current!.addEventListener('click', clickHandler);
 
-      resizeObserver = new ResizeObserver(fit);
+      resizeObserver = new ResizeObserver(scheduleFit);
       resizeObserver.observe(containerRef.current!);
 
-      for (const line of welcomeBanner) {
-        term.writeln(line);
-      }
+      term.write(`${welcomeBanner.join('\r\n')}\r\n`);
       term.write(prompt());
 
-      term.onKey(({ key, domEvent }) => {
+      keyDisposable = term.onKey(({ key, domEvent }) => {
         handleKey(key, domEvent, term);
       });
 
@@ -116,10 +135,18 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
     init();
 
     return () => {
+      disposed = true;
+      if (animationFrame !== undefined) cancelAnimationFrame(animationFrame);
+      if (settleTimeout !== undefined) clearTimeout(settleTimeout);
       resizeObserver?.disconnect();
-      termRef.current?.dispose();
+      keyDisposable?.dispose();
+      if (clickHandler && containerRef.current) {
+        containerRef.current.removeEventListener('click', clickHandler);
+      }
+      terminal?.dispose();
+      termRef.current = null;
     };
-  }, [title]);
+  }, [title, handleKey, prompt]);
 
   return (
     <div className="terminal-frame">
