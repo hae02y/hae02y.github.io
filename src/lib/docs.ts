@@ -25,6 +25,8 @@ export type InsightPostMeta = {
   heroImage?: string;
 };
 
+const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif', '.svg']);
+
 export type DocSidebarItem = {
   title: string;
   slug: string[];
@@ -111,6 +113,14 @@ function extractFirstImage(content: string, assetBasePath?: string): string | un
   return resolveAssetSrc(match?.[1], assetBasePath);
 }
 
+function hashString(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = ((hash << 5) - hash + value.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
 function getAssetBasePath(baseDir: string, filePath: string, publicBasePath?: string): string | undefined {
   if (!publicBasePath) return undefined;
 
@@ -174,6 +184,34 @@ function getAllDocSlugs(baseDir: string, relativePath: string[] = []): string[][
   return slugs;
 }
 
+function getAllImageAssets(baseDir: string, publicBasePath: string, relativePath: string[] = []): string[] {
+  const fullPath = path.join(baseDir, ...relativePath);
+  if (!fs.existsSync(fullPath)) return [];
+
+  const entries = fs.readdirSync(fullPath, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name));
+  const images: string[] = [];
+
+  for (const entry of entries) {
+    if (entry.name.startsWith('.')) continue;
+
+    if (entry.isDirectory()) {
+      images.push(...getAllImageAssets(baseDir, publicBasePath, [...relativePath, entry.name]));
+      continue;
+    }
+
+    if (entry.isFile() && IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      images.push(`${publicBasePath}/${[...relativePath, entry.name].map(encodeURIComponent).join('/')}`);
+    }
+  }
+
+  return images;
+}
+
+function pickDeterministicImage(key: string, images: string[]): string | undefined {
+  if (images.length === 0) return undefined;
+  return images[hashString(key) % images.length];
+}
+
 // docs/ section
 const DOCS_DIR = path.join(process.cwd(), 'docs');
 export const getDocsSidebar = () => scanDocsDir(DOCS_DIR);
@@ -187,10 +225,13 @@ export const getInsightPage = (slug: string[]) => getDocPage(INSIGHT_DIR, slug, 
 export const getAllInsightSlugs = () => getAllDocSlugs(INSIGHT_DIR);
 export const getAllInsightPosts = (): InsightPostMeta[] => {
   const posts: InsightPostMeta[] = [];
+  const fallbackImages = getAllImageAssets(INSIGHT_DIR, '/Insight');
 
   for (const slug of getAllInsightSlugs()) {
     const page = getInsightPage(slug);
     if (!page) continue;
+    const bodyImage = extractFirstImage(page.content, page.assetBasePath);
+    const fallbackImage = pickDeterministicImage(slug.join('/'), fallbackImages);
 
     const post: InsightPostMeta = {
       slug,
@@ -202,7 +243,7 @@ export const getAllInsightPosts = (): InsightPostMeta[] => {
     };
 
     if (page.date) post.date = page.date;
-    if (page.heroImage) post.heroImage = page.heroImage;
+    post.heroImage = bodyImage || fallbackImage || page.heroImage;
     posts.push(post);
   }
 
