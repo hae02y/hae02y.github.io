@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -58,7 +58,7 @@
     }
 
     code {
-        font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
+        font-family: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !important;
     }
 
     h1 {
@@ -234,7 +234,7 @@
         border-color: rgba(0,0,0,0.28) !important;
     }
     .terminal-title {
-        font-family: 'SF Mono', 'Menlo', 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
         color: #d9e2ec;
         position: absolute;
         left: 50%;
@@ -242,7 +242,7 @@
         white-space: nowrap;
     }
     .terminal-status {
-        font-family: 'SF Mono', 'Menlo', 'JetBrains Mono', monospace;
+        font-family: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
         font-size: 0.62rem;
         letter-spacing: 0.12em;
         color: #6f7c8a;
@@ -391,7 +391,7 @@
         font-size: 14.5px;
         line-height: 1.65;
         overflow: auto;
-        font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-family: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
         box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     [data-theme="dark"] .markdown pre {

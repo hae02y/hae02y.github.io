@@ -301,7 +301,7 @@
 
 /* Code — inline */
 .brunch-content .inline-code {
-  font-family: 'SF Mono', 'Fira Code', Menlo, monospace !important;
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace !important;
   font-size: 0.85em !important;
   background: #f0f2f5 !important;
   padding: 0.2rem 0.45rem !important;
@@ -335,7 +335,7 @@
 }
 
 .code-light .code-block-lang {
-  font-family: 'SF Mono', monospace;
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
   font-size: 0.7rem;
   color: #888;
   text-transform: uppercase;
@@ -397,7 +397,7 @@
 }
 
 .code-dark .code-block-lang {
-  font-family: 'SF Mono', monospace;
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
   font-size: 0.7rem;
   color: #888;
   text-transform: uppercase;
@@ -461,6 +461,7 @@
 }
 
 .code-block-body pre {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace !important;
   margin: 0 !important;
   border: none !important;
   border-radius: 0 !important;
@@ -470,6 +471,7 @@
 }
 
 .code-block-body code {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, monospace !important;
   background: transparent !important;
   padding: 0 !important;
   color: inherit !important;
