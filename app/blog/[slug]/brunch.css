@@ -25,6 +25,11 @@
 }
 
 .brunch-header-hero .brunch-header-inner {
+  display: flex;
+  width: min(100%, 720px);
+  min-height: 230px;
+  flex-direction: column;
+  justify-content: center;
   max-width: 760px;
   padding: 2rem 1.75rem;
   border-radius: 2rem;
@@ -872,6 +877,8 @@
   }
 
   .brunch-header-hero .brunch-header-inner {
+    width: 100%;
+    min-height: 210px;
     padding: 1.5rem 1rem;
     border-radius: 1.5rem;
   }

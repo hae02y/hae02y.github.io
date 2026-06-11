@@ -8,7 +8,7 @@ export const siteConfig = {
     handle: 'hae02y',
     jobTitle: 'Backend Engineer',
     company: 'Meninblox',
-    bio: '백엔드 개발자',
+    bio: 'Software Builder',
     email: 'godud1118@gmail.com',
     image: '/img/me.jpg',
   },
