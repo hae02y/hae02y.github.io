@@ -41,8 +41,8 @@ export default function Navbar() {
     >
       <div className="flex items-center justify-between h-full max-w-5xl mx-auto px-4">
         <Link href="/" className="flex items-center gap-1 hover:opacity-80">
-          <img src="/img/logo/whitemode.png" alt="Hae02y" className="h-8 block dark:hidden" />
-          <img src="/img/logo/darkmode.png" alt="Hae02y" className="h-8 hidden dark:block" />
+          <img src="/img/logo/whitemode.png" alt="Hae02y" className="h-9 md:h-10 block dark:hidden" />
+          <img src="/img/logo/darkmode.png" alt="Hae02y" className="h-9 md:h-10 hidden dark:block" />
         </Link>
 
         <div className="flex items-center gap-1">

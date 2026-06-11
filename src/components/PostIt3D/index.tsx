@@ -51,7 +51,7 @@ export default function PostIt3D({ onClick }: PostIt3DProps) {
           borderRadius: '2px 2px 2px 24px',
           padding: '44px 32px 32px',
           cursor: 'pointer',
-          fontFamily: "'Architects Daughter', cursive",
+          fontFamily: "'Caveat', cursive",
           color: '#2a2a2a',
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${isHover ? 'translateZ(12px) scale(1.02)' : ''}`,
           transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
@@ -108,59 +108,60 @@ export default function PostIt3D({ onClick }: PostIt3DProps) {
         ))}
 
         {/* Title */}
-        <p
+        <div
           style={{
-            fontSize: 28,
+            fontSize: 38,
             fontWeight: 700,
-            margin: '0 0 4px',
-            lineHeight: 1.2,
-            transform: 'rotate(-1deg)',
-            letterSpacing: '0.5px',
+            margin: '0 0 2px',
+            lineHeight: 1.05,
+            color: '#2f2816',
+            transform: 'rotate(-1.6deg)',
+            letterSpacing: '-0.2px',
           }}
         >
           hi, i'm hae02y
-        </p>
+        </div>
 
         {/* Subtitle */}
-        <p
+        <div
           style={{
-            fontSize: 20,
-            margin: '0 0 20px',
-            color: '#4a4a3a',
-            transform: 'rotate(0.5deg)',
-            letterSpacing: '0.3px',
+            fontSize: 27,
+            margin: '2px 0 18px 4px',
+            color: '#5c512a',
+            transform: 'rotate(0.8deg)',
+            letterSpacing: '-0.1px',
           }}
         >
           backend developer.
-        </p>
+        </div>
 
         {/* Body */}
-        <p
+        <div
           style={{
-            fontSize: 17,
-            margin: '0 0 24px',
-            color: '#3a3a30',
-            lineHeight: 1.7,
-            transform: 'rotate(-0.3deg)',
+            fontSize: 23,
+            margin: '0 0 22px 1px',
+            color: '#443b20',
+            lineHeight: 1.34,
+            transform: 'rotate(-0.5deg)',
           }}
         >
           how are you?
           <br />
           thank you for visiting here :)
-        </p>
+        </div>
 
         {/* Click hint */}
-        <p
+        <div
           style={{
-            fontSize: 14,
+            fontSize: 19,
             margin: 0,
-            color: '#8a8a60',
+            color: '#827437',
             fontStyle: 'italic',
-            transform: 'rotate(0.8deg)',
+            transform: 'rotate(1deg)',
           }}
         >
           {'> click to open terminal'}
-        </p>
+        </div>
 
         {/* Corner curl effect */}
         <div
