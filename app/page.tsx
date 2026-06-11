@@ -10,13 +10,9 @@ const TerminalDialog2 = dynamic(
 export default function Home() {
   return (
     <main>
-      <div className="h-[calc(100dvh-64px)] dark:bg-[#23262C] flex overflow-hidden">
-        <div className="h-full flex w-full flex-col">
-          <div className="lg:flex h-full dark:from-[#1B1B1D] dark:bg-[#1B1B1D]">
-            <div className="h-full font-mono w-full lg:h-full flex items-center justify-center lg:justify-start lg:pl-[12%]">
-              <TerminalDialog2 />
-            </div>
-          </div>
+      <div className="h-[calc(100dvh-64px)] overflow-hidden dark:bg-[#1B1B1D]">
+        <div className="mx-auto flex h-full w-full max-w-5xl items-center justify-center px-4 font-mono md:justify-start">
+          <TerminalDialog2 />
         </div>
       </div>
     </main>
