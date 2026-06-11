@@ -1,15 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Dialog, DialogContentBare, DialogTitle } from '@/components/ui/dialog';
 import PostIt3D from '@/components/PostIt3D';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
-const MacTerminal = dynamic(() => import('@/components/MacTerminal'), { ssr: false });
+const loadMacTerminal = () => import('@/components/MacTerminal');
+const MacTerminal = dynamic(loadMacTerminal, { ssr: false });
 
 export default function TerminalDialog2() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      void loadMacTerminal();
+    }, 200);
+
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>

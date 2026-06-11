@@ -101,4 +101,33 @@ export const siteConfig = {
     { name: 'Email', url: 'mailto:godud1118@gmail.com', icon: 'Mail' },
     { name: 'LinkedIn', url: 'https://linkedin.com/in/hae02y', icon: 'Linkedin' },
   ],
+  terminal: {
+    helpTitle: 'Available commands',
+    paths: {
+      blog: '/blog',
+      insight: '/Insight',
+      home: '/',
+      me: '/me',
+    },
+    helpGroups: [
+      ['whoami', 'skills', 'experience', 'projects'],
+      ['cd', 'open'],
+      ['git', 'blog', 'insight'],
+      ['hello', 'clear', 'help'],
+    ],
+    commands: [
+      { name: 'whoami', usage: 'whoami', description: '자기소개' },
+      { name: 'skills', usage: 'skills', description: '기술 스택' },
+      { name: 'experience', usage: 'experience', description: '경력 사항' },
+      { name: 'projects', usage: 'projects', description: '프로젝트 목록' },
+      { name: 'cd', usage: 'cd <path>', description: '페이지 이동 (blog, insight, home, me)' },
+      { name: 'open', usage: 'open <url>', description: '외부 URL 열기' },
+      { name: 'git', usage: 'git', description: 'GitHub 링크' },
+      { name: 'blog', usage: 'blog', description: '블로그 링크' },
+      { name: 'insight', usage: 'insight', description: '인사이트 링크' },
+      { name: 'hello', usage: 'hello', description: '인사' },
+      { name: 'clear', usage: 'clear', description: '터미널 초기화' },
+      { name: 'help', usage: 'help', description: '이 도움말' },
+    ],
+  },
 };

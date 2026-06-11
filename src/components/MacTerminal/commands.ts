@@ -1,4 +1,5 @@
 import type { CommandDef } from './types';
+import { siteConfig } from '@/config/site';
 
 // ── ANSI helpers ──
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
@@ -32,48 +33,44 @@ export const welcomeBanner: string[] = [
   '',
 ];
 
-// ── Navigation paths ──
-const NAV_PATHS: Record<string, string> = {
-  blog: '/blog',
-  insight: '/Insight',
-  home: '/',
-  me: '/me',
+const terminalConfig = siteConfig.terminal;
+const commandMeta = new Map(terminalConfig.commands.map((command) => [command.name, command]));
+const getCommandMeta = (name: string) => {
+  const meta = commandMeta.get(name);
+  if (!meta) throw new Error(`Missing terminal command config: ${name}`);
+  return meta;
 };
+const commandDescription = (name: string) => getCommandMeta(name).description;
 
 // ── Command definitions ──
 
 const helpCmd: CommandDef = {
   name: 'help',
-  description: '명령어 목록',
+  description: commandDescription('help'),
   handler: (_args, _ctx) => {
+    const usageWidth = Math.max(...terminalConfig.commands.map((command) => command.usage.length));
     const lines = [
       gray('────────────────────────────────────────'),
-      bold('Available commands'),
+      bold(terminalConfig.helpTitle),
       '',
-      `  ${cyan('whoami')}       자기소개`,
-      `  ${cyan('skills')}       기술 스택`,
-      `  ${cyan('experience')}   경력 사항`,
-      `  ${cyan('projects')}     프로젝트 목록`,
-      '',
-      `  ${cyan('cd <path>')}    페이지 이동 (blog, insight, home, me)`,
-      `  ${cyan('open <url>')}   외부 URL 열기`,
-      '',
-      `  ${cyan('git')}          GitHub 링크`,
-      `  ${cyan('blog')}         블로그 링크`,
-      `  ${cyan('insight')}      인사이트 링크`,
-      '',
-      `  ${cyan('hello')}        인사`,
-      `  ${cyan('clear')}        터미널 초기화`,
-      `  ${cyan('help')}         이 도움말`,
-      gray('────────────────────────────────────────'),
     ];
+
+    terminalConfig.helpGroups.forEach((group, groupIndex) => {
+      if (groupIndex > 0) lines.push('');
+      group.forEach((name) => {
+        const meta = getCommandMeta(name);
+        lines.push(`  ${cyan(meta.usage.padEnd(usageWidth))}   ${meta.description}`);
+      });
+    });
+
+    lines.push(gray('────────────────────────────────────────'));
     return { lines };
   },
 };
 
 const helloCmd: CommandDef = {
   name: 'hello',
-  description: '인사',
+  description: commandDescription('hello'),
   handler: (_args, ctx) => ({
     lines: [green(`✅ Hello, ${ctx.title}!`)],
   }),
@@ -81,7 +78,7 @@ const helloCmd: CommandDef = {
 
 const clearCmd: CommandDef = {
   name: 'clear',
-  description: '터미널 초기화',
+  description: commandDescription('clear'),
   handler: (_args, ctx) => {
     ctx.term.clear();
   },
@@ -89,7 +86,7 @@ const clearCmd: CommandDef = {
 
 const gitCmd: CommandDef = {
   name: 'git',
-  description: 'GitHub 링크',
+  description: commandDescription('git'),
   handler: () => ({
     lines: [cyan(`🌐 GitHub: ${link('https://github.com/hae02y')}`)],
   }),
@@ -97,7 +94,7 @@ const gitCmd: CommandDef = {
 
 const blogCmd: CommandDef = {
   name: 'blog',
-  description: '블로그 링크',
+  description: commandDescription('blog'),
   handler: () => ({
     lines: [magenta(`📝 Blog: ${link('https://blog.hae02y.me/blog')}`)],
   }),
@@ -105,7 +102,7 @@ const blogCmd: CommandDef = {
 
 const insightCmd: CommandDef = {
   name: 'insight',
-  description: '인사이트 링크',
+  description: commandDescription('insight'),
   handler: () => ({
     lines: [yellow(`🔍 Insight: ${link('https://blog.hae02y.me/Insight')}`)],
   }),
@@ -115,7 +112,7 @@ const insightCmd: CommandDef = {
 
 const whoamiCmd: CommandDef = {
   name: 'whoami',
-  description: '자기소개',
+  description: commandDescription('whoami'),
   handler: (_args, ctx) => {
     const { profile, links } = ctx;
     const github = links.find((l) => l.name === 'GitHub');
@@ -133,7 +130,7 @@ const whoamiCmd: CommandDef = {
 
 const skillsCmd: CommandDef = {
   name: 'skills',
-  description: '기술 스택',
+  description: commandDescription('skills'),
   handler: (_args, ctx) => {
     const lines = [''];
     for (const cat of ctx.skills.categories) {
@@ -147,7 +144,7 @@ const skillsCmd: CommandDef = {
 
 const experienceCmd: CommandDef = {
   name: 'experience',
-  description: '경력 사항',
+  description: commandDescription('experience'),
   handler: (_args, ctx) => {
     const lines = [''];
     for (const exp of ctx.experience) {
@@ -163,7 +160,7 @@ const experienceCmd: CommandDef = {
 
 const projectsCmd: CommandDef = {
   name: 'projects',
-  description: '프로젝트 목록',
+  description: commandDescription('projects'),
   handler: (_args, ctx) => {
     const lines = [''];
     for (const exp of ctx.experience) {
@@ -186,16 +183,16 @@ const projectsCmd: CommandDef = {
 
 const cdCmd: CommandDef = {
   name: 'cd',
-  description: '페이지 이동 (blog, insight, home, me)',
+  description: commandDescription('cd'),
   handler: (args, ctx) => {
     const target = args[0]?.toLowerCase();
     if (!target) {
-      const available = Object.keys(NAV_PATHS).join(', ');
+      const available = Object.keys(terminalConfig.paths).join(', ');
       return { lines: [yellow(`Usage: cd <${available}>`)] };
     }
-    const path = NAV_PATHS[target];
+    const path = terminalConfig.paths[target as keyof typeof terminalConfig.paths];
     if (!path) {
-      const available = Object.keys(NAV_PATHS).join(', ');
+      const available = Object.keys(terminalConfig.paths).join(', ');
       return {
         lines: [
           red(`❌ Unknown path: ${target}`),
@@ -210,7 +207,7 @@ const cdCmd: CommandDef = {
 
 const openCmd: CommandDef = {
   name: 'open',
-  description: '외부 URL 열기',
+  description: commandDescription('open'),
   handler: (args, ctx) => {
     const url = args[0];
     if (!url) {
