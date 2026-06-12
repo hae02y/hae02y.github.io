@@ -2,11 +2,9 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { siteConfig } from '@/config/site';
 import MacToastButton from '@/components/MacToast';
 import { useTerminalEngine } from './useTerminalEngine';
 import { welcomeBanner } from './commands';
-import type { Profile, SkillCategory, Experience, Link as TermLink } from './types';
 import 'xterm/css/xterm.css';
 
 interface MacTerminalProps {
@@ -19,11 +17,6 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
   const containerRef = useRef<HTMLDivElement>(null);
   const termRef = useRef<import('xterm').Terminal | null>(null);
   const router = useRouter();
-
-  const profile = siteConfig.profile as Profile;
-  const skills = siteConfig.skills as { categories: SkillCategory[] };
-  const experience = siteConfig.experience as Experience[];
-  const links = siteConfig.terminalLinks as TermLink[];
 
   const navigate = useCallback(
     (path: string) => {
@@ -41,14 +34,10 @@ export default function MacTerminal({ title, version, onClose }: MacTerminalProp
     (): any => ({
       term: termRef.current!,
       title,
-      profile,
-      skills,
-      experience,
-      links,
       navigate,
       openExternal,
     }),
-    [title, profile, skills, experience, links, navigate, openExternal],
+    [title, navigate, openExternal],
   );
 
   const { handleKey, prompt } = useTerminalEngine({

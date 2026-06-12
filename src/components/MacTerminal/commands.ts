@@ -1,5 +1,6 @@
 import type { CommandDef } from './types';
 import { siteConfig } from '@/config/site';
+import { meConfig, type ResumeProject } from '@/config/me';
 
 // ── ANSI helpers ──
 const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
@@ -35,6 +36,37 @@ const getCommandMeta = (name: string) => {
   return meta;
 };
 const commandDescription = (name: string) => getCommandMeta(name).description;
+const resume = meConfig.resume;
+const resumeLinkByIcon = new Map(resume.links.map((item) => [item.icon, item]));
+
+const getProjectBullets = (project: ResumeProject): string[] => {
+  if (project.bullets?.length) return project.bullets;
+  return project.bulletGroups?.flatMap((group) => group.bullets) ?? [];
+};
+
+const allResumeProjects = [...resume.projects, ...resume.automation];
+const portfolioProjects = [
+  ...meConfig.portfolio.companies.flatMap((company) => company.projects),
+  ...meConfig.portfolio.solo,
+];
+
+const collectTechNames = () => {
+  const counts = new Map<string, number>();
+  const stacks = [
+    ...allResumeProjects.map((project) => project.techStack),
+    ...portfolioProjects.map((project) => project.techStack),
+  ].filter(Boolean);
+
+  for (const stack of stacks) {
+    for (const tech of stack.split(',').map((item) => item.trim()).filter(Boolean)) {
+      counts.set(tech, (counts.get(tech) ?? 0) + 1);
+    }
+  }
+
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([tech]) => tech);
+};
+
+const pickTechs = (source: string[], preferred: string[], limit: number) => preferred.filter((tech) => source.includes(tech)).slice(0, limit);
 
 // ── Command definitions ──
 
@@ -107,21 +139,22 @@ const insightCmd: CommandDef = {
 const whoamiCmd: CommandDef = {
   name: 'whoami',
   description: commandDescription('whoami'),
-  handler: (_args, ctx) => {
-    const { profile, links } = ctx;
-    const github = links.find((l) => l.name === 'GitHub');
+  handler: () => {
+    const currentRole = resume.experiences[0]?.role ?? 'Backend Developer';
+    const github = resumeLinkByIcon.get('github');
+    const blog = resumeLinkByIcon.get('blog');
     const lines = [
       '',
       gray('  ┌─ profile'),
-      `  │ ${bold('hae02y')} ${gray('/')} ${cyan('Haeyoung Jeong')}`,
+      `  │ ${bold('hae02y')} ${gray('/')} ${cyan(meConfig.profile.name)}`,
       gray('  │'),
-      `  │ ${gray('role')}    ${profile.title}`,
-      `  │ ${gray('focus')}   backend systems & infra`,
-      `  │ ${gray('stack')}   Spring Boot · AWS · Kubernetes`,
-      `  │ ${gray('mail')}    ${cyan(profile.email)}`,
+      `  │ ${gray('role')}    ${currentRole}`,
+      `  │ ${gray('focus')}   backend systems · infra · practical AI`,
+      `  │ ${gray('mail')}    ${cyan(meConfig.profile.email)}`,
       `  │ ${gray('github')}  ${cyan(link(github?.url ?? 'https://github.com/hae02y', 'github.com/hae02y'))}`,
-      gray('  └─ I build reliable APIs, automate infra,'),
-      gray('     and leave notes for the next version of me.'),
+      `  │ ${gray('blog')}    ${cyan(link(blog?.url ?? 'https://blog.hae02y.me', 'blog.hae02y.me'))}`,
+      gray('  └─ ' + meConfig.profile.summary[0]),
+      gray('     ' + meConfig.profile.summary[1]),
       '',
     ];
     return { lines, animate: true };
@@ -131,29 +164,42 @@ const whoamiCmd: CommandDef = {
 const skillsCmd: CommandDef = {
   name: 'skills',
   description: commandDescription('skills'),
-  handler: (_args, ctx) => {
-    const lines = [''];
-    for (const cat of ctx.skills.categories) {
-      const label = cat.name.padEnd(10);
-      lines.push(`  ${yellow(label)} ${cat.skills.join(', ')}`);
-    }
-    lines.push('');
-    return { lines, animate: true };
+  handler: () => {
+    const techs = collectTechNames();
+    const categories = [
+      ['Backend', pickTechs(techs, ['Java', 'Kotlin', 'Spring Boot', 'Spring Security', 'JPA', 'MyBatis', 'QueryDSL', 'FastAPI'], 8)],
+      ['Infra', pickTechs(techs, ['AWS', 'NCP', 'Kubernetes', 'Docker', 'Nginx', 'Traefik', 'Jenkins', 'GitHub Actions', 'Bitbucket Pipeline'], 8)],
+      ['Data', pickTechs(techs, ['MySQL', 'PostgreSQL', 'Redis', 'InfluxDB', 'MariaDB', 'MSSQL'], 6)],
+      ['Frontend', pickTechs(techs, ['TypeScript', 'React', 'React.js', 'TailwindCSS', 'Thymeleaf', 'jQuery', 'Zustand', 'Redux'], 8)],
+    ].filter(([, items]) => items.length > 0) as [string, string[]][];
+
+    return {
+      lines: [
+        '',
+        gray('  ┌─ skills from /me resume'),
+        ...categories.map(([label, items]) => `  │ ${yellow(label.padEnd(8))} ${items.join(', ')}`),
+        gray('  └─ source: src/config/me.ts'),
+        '',
+      ],
+      animate: true,
+    };
   },
 };
 
 const experienceCmd: CommandDef = {
   name: 'experience',
   description: commandDescription('experience'),
-  handler: (_args, ctx) => {
-    const lines = [''];
-    for (const exp of ctx.experience) {
-      lines.push(`  ${bold(exp.company)} — ${cyan(exp.position)} ${gray(`(${exp.period})`)}`);
-      for (const resp of exp.responsibilities) {
-        lines.push(`    ${green('▸')} ${resp.title}`);
-      }
-      lines.push('');
-    }
+  handler: () => {
+    const lines = ['', gray('  ┌─ experience from /me')];
+
+    resume.experiences.forEach((exp, index) => {
+      if (index > 0) lines.push(gray('  │'));
+      lines.push(`  │ ${bold(exp.company)} ${gray(`(${exp.period})`)}`);
+      lines.push(`  │ ${cyan(exp.role)}`);
+      if (exp.description) lines.push(`  │ ${gray(exp.description.trim())}`);
+    });
+
+    lines.push(gray('  └─ type `projects` for work highlights'), '');
     return { lines, animate: true };
   },
 };
@@ -161,20 +207,19 @@ const experienceCmd: CommandDef = {
 const projectsCmd: CommandDef = {
   name: 'projects',
   description: commandDescription('projects'),
-  handler: (_args, ctx) => {
-    const lines = [''];
-    for (const exp of ctx.experience) {
-      for (const resp of exp.responsibilities) {
-        lines.push(`  ${cyan('▸')} ${bold(resp.title)}`);
-        lines.push(`    ${gray(resp.technologies.join(', '))}`);
-        for (const detail of resp.details) {
-          lines.push(`    ${detail}`);
-        }
-        lines.push('');
-      }
-    }
-    lines.push(`  ${gray('More at')} ${cyan(link('https://blog.hae02y.me/me', '/me'))}`);
-    lines.push('');
+  handler: () => {
+    const lines = ['', gray('  ┌─ selected projects from /me')];
+
+    allResumeProjects.slice(0, 6).forEach((project, index) => {
+      const firstBullet = getProjectBullets(project)[0];
+      if (index > 0) lines.push(gray('  │'));
+      lines.push(`  │ ${cyan('▸')} ${bold(project.title)}`);
+      lines.push(`  │   ${gray(`${project.org} · ${project.period}`)}`);
+      if (project.techStack) lines.push(`  │   ${yellow(project.techStack)}`);
+      if (firstBullet) lines.push(`  │   ${firstBullet}`);
+    });
+
+    lines.push(gray('  └─ More at ') + cyan(link('https://blog.hae02y.me/me', '/me')), '');
     return { lines, animate: true };
   },
 };
