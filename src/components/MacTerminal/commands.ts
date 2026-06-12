@@ -112,10 +112,16 @@ const whoamiCmd: CommandDef = {
     const github = links.find((l) => l.name === 'GitHub');
     const lines = [
       '',
-      `  ${gray('Name:')}     ${bold(profile.name)}`,
-      `  ${gray('Title:')}    ${profile.title}`,
-      `  ${gray('Email:')}    ${cyan(profile.email)}`,
-      `  ${gray('GitHub:')}   ${cyan(link(github?.url ?? 'https://github.com/hae02y'))}`,
+      gray('  ┌─ profile'),
+      `  │ ${bold('hae02y')} ${gray('/')} ${cyan('Haeyoung Jeong')}`,
+      gray('  │'),
+      `  │ ${gray('role')}    ${profile.title}`,
+      `  │ ${gray('focus')}   backend systems & infra`,
+      `  │ ${gray('stack')}   Spring Boot · AWS · Kubernetes`,
+      `  │ ${gray('mail')}    ${cyan(profile.email)}`,
+      `  │ ${gray('github')}  ${cyan(link(github?.url ?? 'https://github.com/hae02y', 'github.com/hae02y'))}`,
+      gray('  └─ I build reliable APIs, automate infra,'),
+      gray('     and leave notes for the next version of me.'),
       '',
     ];
     return { lines, animate: true };
