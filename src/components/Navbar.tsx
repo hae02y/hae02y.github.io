@@ -46,20 +46,27 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-1">
-          {NAV_ITEMS.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-2 font-mono text-xs uppercase tracking-[0.2em] text-[var(--primary)] hover:opacity-70"
-            >
-              {item.label}.
-            </Link>
-          ))}
+          {NAV_ITEMS.map(item => {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={`border-b px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)] transition-opacity hover:opacity-70 ${
+                  active ? 'border-[var(--primary)] opacity-100' : 'border-transparent opacity-55'
+                }`}
+              >
+                {item.label}.
+              </Link>
+            );
+          })}
           <a
             href="https://github.com/hae02y"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 font-mono text-xs uppercase tracking-[0.2em] text-[var(--primary)] hover:opacity-70"
+            className="border-b border-transparent px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)] opacity-55 transition-opacity hover:opacity-70"
           >
             GitHub.
           </a>
