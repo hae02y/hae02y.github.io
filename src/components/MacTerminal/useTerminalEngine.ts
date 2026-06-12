@@ -23,6 +23,37 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
     [title],
   );
 
+  const getCompletionHint = useCallback((current: string) => {
+    if (!current.trim() || current.includes(' ')) return '';
+
+    const matches = commandNames.filter((name) => name.startsWith(current));
+    if (matches.length === 0) return '';
+    if (matches.length === 1 && matches[0] !== current) return `${matches[0].slice(current.length)}  ⇥ tab`;
+    if (matches.length > 1) return '  ⇥ tab';
+    return '';
+  }, []);
+
+  const renderInputLine = useCallback(
+    (term: Terminal) => {
+      const current = inputBuffer.current;
+      const hint = getCompletionHint(current);
+
+      term.write(`\r\x1b[2K${prompt()}${current}`);
+      if (!hint) return;
+
+      term.write(`\x1b[90m${hint}\x1b[0m`);
+      term.write(`\x1b[${hint.length}D`);
+    },
+    [getCompletionHint, prompt],
+  );
+
+  const commitInputLine = useCallback(
+    (term: Terminal) => {
+      term.write(`\r\x1b[2K${prompt()}${inputBuffer.current}`);
+    },
+    [prompt],
+  );
+
   // ── Typing animation ──
   const writeAnimated = useCallback(
     async (term: Terminal, lines: string[]) => {
@@ -55,25 +86,13 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
     [],
   );
 
-  // ── Clear current input line ──
-  const clearLine = useCallback(
-    (term: Terminal) => {
-      const len = inputBuffer.current.length;
-      if (len > 0) {
-        term.write('\b \b'.repeat(len));
-      }
-    },
-    [],
-  );
-
   // ── Replace current line content ──
   const replaceLine = useCallback(
     (term: Terminal, newValue: string) => {
-      clearLine(term);
-      term.write(newValue);
       inputBuffer.current = newValue;
+      renderInputLine(term);
     },
-    [clearLine],
+    [renderInputLine],
   );
 
   // ── Tab autocomplete ──
@@ -85,21 +104,17 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
       if (matches.length === 0) return;
 
       if (matches.length === 1) {
-        const rest = matches[0].slice(current.length);
-        term.write(rest);
-        inputBuffer.current += rest;
-        // Add space after completed command for convenience
-        term.write(' ');
-        inputBuffer.current += ' ';
+        inputBuffer.current = `${matches[0]} `;
+        renderInputLine(term);
       } else {
         // Show all matches
+        commitInputLine(term);
         term.writeln('');
         term.writeln(matches.map((m) => `  \x1b[36m${m}\x1b[0m`).join('    '));
-        term.write(prompt());
-        term.write(current);
+        renderInputLine(term);
       }
     },
-    [prompt],
+    [commitInputLine, renderInputLine],
   );
 
   // ── Arrow key history ──
@@ -141,6 +156,7 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
   const executeCommand = useCallback(
     async (term: Terminal) => {
       const raw = inputBuffer.current.trim();
+      commitInputLine(term);
       inputBuffer.current = '';
       historyIndex.current = -1;
       term.writeln('');
@@ -180,7 +196,7 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
 
       term.write(prompt());
     },
-    [prompt, getContext, writeAnimated],
+    [prompt, getContext, writeAnimated, commitInputLine],
   );
 
   // ── Main key handler ──
@@ -197,6 +213,7 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
       // Ctrl shortcuts
       if (ctrlKey) {
         if (charKey === 'c') {
+          commitInputLine(term);
           term.writeln('^C');
           inputBuffer.current = '';
           historyIndex.current = -1;
@@ -205,8 +222,8 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
         }
         if (charKey === 'l') {
           term.clear();
-          term.write(prompt());
           inputBuffer.current = '';
+          term.write(prompt());
           return;
         }
         return;
@@ -219,8 +236,8 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
 
         case 'Backspace':
           if (inputBuffer.current.length > 0) {
-            term.write('\b \b');
             inputBuffer.current = inputBuffer.current.slice(0, -1);
+            renderInputLine(term);
           }
           break;
 
@@ -245,13 +262,13 @@ export function useTerminalEngine({ title, getContext }: TerminalEngineOptions) 
         default:
           // Only printable single characters
           if (charKey.length === 1) {
-            term.write(charKey);
             inputBuffer.current += charKey;
+            renderInputLine(term);
           }
           break;
       }
     },
-    [prompt, executeCommand, handleTab, handleArrowUp, handleArrowDown],
+    [prompt, executeCommand, handleTab, handleArrowUp, handleArrowDown, commitInputLine, renderInputLine],
   );
 
   return { handleKey, prompt, executeCommand };
