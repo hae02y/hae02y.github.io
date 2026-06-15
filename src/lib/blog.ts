@@ -82,8 +82,9 @@ function extractDescription(content: string): string {
     // Collapse whitespace
     .replace(/\s+/g, ' ')
     .trim()
-    .slice(0, 200)
-    .trim();
+    .slice(0, 100)
+    .trim()
+    + '…';
 }
 
 function parseBlogDir(dirName: string): { date: string; dirSlug: string } | null {
