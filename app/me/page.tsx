@@ -6,7 +6,7 @@ const siteUrl = 'https://blog.hae02y.me';
 
 export const metadata: Metadata = {
   title: '정해영 | 백엔드 개발자 이력서 & 포트폴리오',
-  description: '정해영(hae02y) 백엔드 개발자 이력서. VEStellaLab 선임연구원. Java, Spring Boot, AWS, Kubernetes 기반 시스템 설계 및 개발. 3년차 백엔드 개발자.',
+  description: '정해영(hae02y) 백엔드 개발자 이력서. Java, Spring Boot, AWS, Kubernetes 기반 시스템 설계 및 개발.',
   keywords: ['정해영', '정해영 개발자', '정해영 이력서', 'hae02y', '백엔드 개발자', 'Backend Developer', 'VEStellaLab', 'Spring Boot', 'Java'],
   openGraph: {
     title: '정해영 | 백엔드 개발자 이력서',
