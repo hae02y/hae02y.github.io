@@ -111,6 +111,11 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
             {children}
           </a>
         ),
+        table: ({ children }) => (
+          <div className="table-wrapper">
+            <table>{children}</table>
+          </div>
+        ),
       }}
     >
       {content}

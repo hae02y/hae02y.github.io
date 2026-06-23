@@ -37,9 +37,6 @@ export default function BlogListPage() {
                   <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black dark:text-white">
                     Blog.
                   </h1>
-                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.35em] text-black/70 dark:text-white/70">
-                    Notes. Systems. Shipping.
-                  </p>
                 </div>
                 <Link
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
