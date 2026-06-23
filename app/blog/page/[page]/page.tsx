@@ -69,12 +69,13 @@ export default function BlogPageN({ params }: { params: { page: string } }) {
                 className="group border-2 border-black dark:border-white bg-white dark:bg-black brutal-shadow px-5 py-6 md:px-6 md:py-7 flex flex-col md:flex-row gap-4 md:gap-8 transition-transform duration-200 hover:-translate-y-1 hover:-rotate-1"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-black/70 dark:text-white/70">
-                    <span>0{index + 1}</span>
-                    <span>•</span>
-                    <span>{dateFormatter.format(new Date(post.date))}</span>
-                    <span>•</span>
-                    <span>{post.readingTime} min</span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="border-2 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.15em]">
+                      {dateFormatter.format(new Date(post.date))}
+                    </span>
+                    <span className="border-2 border-black/30 dark:border-white/30 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-black/60 dark:text-white/60">
+                      {post.readingTime} min
+                    </span>
                   </div>
                   <Link
                     href={`/blog/${post.slug}`}
