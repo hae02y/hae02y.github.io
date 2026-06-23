@@ -25,7 +25,7 @@ export default function InsightPage() {
             Insight
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-sm leading-7 text-black/55 break-keep dark:text-white/55 md:mt-5 md:max-w-[560px] md:text-lg md:leading-8">
-            기술 밖에서 떠오른 생각, 오래 남은 문장, 일과 삶 사이의 감정을 천천히 발행합니다.
+            코드 바깥의 기록들.
           </p>
         </section>
 

@@ -62,7 +62,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
           {relatedPosts.length > 0 && (
             <section className="brunch-related" aria-labelledby="related-posts-title">
               <p className="brunch-section-kicker">Related Flow</p>
-              <h2 id="related-posts-title" className="brunch-section-title">같은 흐름의 글</h2>
+              <h2 id="related-posts-title" className="brunch-section-title">같이보기</h2>
               <div className="brunch-related-list">
                 {relatedPosts.map((related, index) => (
                   <Link key={related.slug} href={`/blog/${related.slug}`} className="brunch-related-item">
