@@ -142,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="alternate" type="application/rss+xml" title="정해영 기술블로그 RSS" href="/rss.xml" />
         <link rel="alternate" type="application/atom+xml" title="정해영 기술블로그 Atom" href="/atom.xml" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-        <meta name="naver-site-verification" content="YOUR_NAVER_VERIFICATION_CODE" />
+        <meta name="naver-site-verification" content="b0b393149cbaa4e924b020c1ae71ea17d4b94db1" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
