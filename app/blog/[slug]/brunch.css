@@ -916,23 +916,31 @@
   }
 
   .brunch-content {
-    padding: 0 1rem 2rem;
+    padding: 0 1.25rem 2rem;
     font-size: 16px;
     line-height: 1.85;
   }
 
   .brunch-content .code-block-wrapper {
-    margin: 1.5rem -1rem;
-    border-radius: 0;
+    margin: 1.5rem -0.25rem;
+    border-radius: 6px;
   }
 
-  .brunch-content img {
-    margin: 2rem -1rem;
-    max-width: calc(100% + 2rem);
+  .brunch-content .brunch-figure {
+    margin: 1.5rem 0;
+  }
+
+  .brunch-content .brunch-img {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .brunch-content .table-wrapper {
+    margin: 1.5rem -0.25rem;
   }
 
   .brunch-footer {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 
   .brunch-post-nav {
