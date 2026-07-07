@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getAllInsightPosts } from '@/lib/docs';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 6;
@@ -7,6 +8,9 @@ const POSTS_PER_PAGE = 6;
 export const metadata: Metadata = {
   title: 'Insight',
   description: '코드 바깥의 기록들.',
+  alternates: {
+    canonical: `${siteConfig.url}/Insight`,
+  },
 };
 
 export default function InsightPage() {

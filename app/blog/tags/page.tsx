@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { getAllTags } from '@/lib/blog';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Tags',
   description: '블로그 태그 목록',
+  alternates: {
+    canonical: `${siteConfig.url}/blog/tags`,
+  },
 };
 
 export default function BlogTagsListPage() {

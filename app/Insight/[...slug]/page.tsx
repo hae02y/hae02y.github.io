@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getAllInsightSlugs, getInsightPage } from '@/lib/docs';
 import InsightPostContent from '@/components/insight/InsightPostContent';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 import readingTime from 'reading-time';
 import '../../blog/[slug]/brunch.css';
@@ -17,6 +18,9 @@ export function generateMetadata({ params }: { params: { slug: string[] } }): Me
   return {
     title: page.title,
     description: page.description,
+    alternates: {
+      canonical: `${siteConfig.url}/Insight/${decoded.map(encodeURIComponent).join('/')}`,
+    },
   };
 }
 

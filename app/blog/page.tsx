@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import { getPaginatedPosts } from '@/lib/blog';
 import BlogPaginator from '@/components/blog/BlogPaginator';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: '블로그',
   description: '정해영 기술블로그 - 모든 포스트',
+  alternates: {
+    canonical: `${siteConfig.url}/blog`,
+  },
 };
 
 export default function BlogListPage() {

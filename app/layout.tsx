@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   creator: '정해영',
   publisher: '정해영',
   alternates: {
-    canonical: siteConfig.url,
     types: {
       'application/rss+xml': `${siteConfig.url}/rss.xml`,
       'application/atom+xml': `${siteConfig.url}/atom.xml`,

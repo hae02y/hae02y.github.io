@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 
@@ -12,7 +13,12 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { tag: string } }): Metadata {
   const tag = decodeURIComponent(params.tag);
-  return { title: `${tag} 태그 포스트` };
+  return {
+    title: `${tag} 태그 포스트`,
+    alternates: {
+      canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}`,
+    },
+  };
 }
 
 export default function BlogTagPostsPage({ params }: { params: { tag: string } }) {

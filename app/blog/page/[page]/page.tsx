@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllPostsMeta, getPaginatedPosts } from '@/lib/blog';
 import BlogPaginator from '@/components/blog/BlogPaginator';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 10;
@@ -16,7 +17,13 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
-  return { title: `블로그 - 페이지 ${params.page}` };
+  const pageNum = Number(params.page);
+  return {
+    title: `블로그 - 페이지 ${params.page}`,
+    alternates: {
+      canonical: pageNum === 1 ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog/page/${params.page}`,
+    },
+  };
 }
 
 export default function BlogPageN({ params }: { params: { page: string } }) {

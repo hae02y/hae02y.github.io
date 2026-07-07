@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllInsightPosts } from '@/lib/docs';
+import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 6;
@@ -14,7 +15,13 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
-  return { title: `Insight — 페이지 ${params.page}` };
+  const pageNum = Number(params.page);
+  return {
+    title: `Insight — 페이지 ${params.page}`,
+    alternates: {
+      canonical: pageNum === 1 ? `${siteConfig.url}/Insight` : `${siteConfig.url}/Insight/page/${params.page}`,
+    },
+  };
 }
 
 export default function InsightPageN({ params }: { params: { page: string } }) {
