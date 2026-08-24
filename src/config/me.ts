@@ -256,6 +256,7 @@ export const meConfig = {
             bullets: [
               'Docusaurus + Obsidian 기반 [개발 기술 블로그](https://blog.hae02y.me/)를 구성하고, 기술 콘텐츠를 운영했습니다.',
               '누적 23만 방문 [IT 기술 블로그](https://togll.tistory.com/)를 운영하고있습니다. 네트워크엔지니어로 근무 하면서부터 글쓰기/정리를 꾸준히 했습니다.',
+              '[브런치스토리](https://brunch.co.kr/@hae02y) 작가로 활동하며, 개발과 일상을 주제로 에세이를 연재하고 있습니다.',
             ],
           },
         ],

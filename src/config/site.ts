@@ -20,6 +20,7 @@ export const siteConfig = {
   links: {
     github: 'https://github.com/hae02y',
     linkedin: 'https://linkedin.com/in/hae02y',
+    brunch: 'https://brunch.co.kr/@hae02y',
   },
   profile: {
     name: 'Haeyoung,Jeong',
@@ -100,6 +101,7 @@ export const siteConfig = {
     { name: 'GitHub', url: 'https://github.com/hae02y', icon: 'Github' },
     { name: 'Email', url: 'mailto:godud1118@gmail.com', icon: 'Mail' },
     { name: 'LinkedIn', url: 'https://linkedin.com/in/hae02y', icon: 'Linkedin' },
+    { name: 'Brunch', url: 'https://brunch.co.kr/@hae02y', icon: 'BookOpen' },
   ],
   terminal: {
     helpTitle: 'Available commands',
@@ -112,7 +114,7 @@ export const siteConfig = {
     helpGroups: [
       ['whoami', 'skills', 'experience', 'projects'],
       ['cd', 'open'],
-      ['git', 'blog', 'insight'],
+      ['git', 'blog', 'insight', 'brunch'],
       ['hello', 'clear', 'help'],
     ],
     commands: [
@@ -125,6 +127,7 @@ export const siteConfig = {
       { name: 'git', usage: 'git', description: 'GitHub 링크' },
       { name: 'blog', usage: 'blog', description: '블로그 링크' },
       { name: 'insight', usage: 'insight', description: '인사이트 링크' },
+      { name: 'brunch', usage: 'brunch', description: '브런치스토리 작가 페이지' },
       { name: 'hello', usage: 'hello', description: '인사' },
       { name: 'clear', usage: 'clear', description: '터미널 초기화' },
       { name: 'help', usage: 'help', description: '이 도움말' },

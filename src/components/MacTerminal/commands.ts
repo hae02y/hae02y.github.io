@@ -9,6 +9,7 @@ const magenta = (s: string) => `\x1b[35m${s}\x1b[0m`;
 const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
 const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
 const gray = (s: string) => `\x1b[90m${s}\x1b[0m`;
+const brunchGreen = (s: string) => `\x1b[38;5;114m${s}\x1b[0m`;
 const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
 const link = (url: string, label?: string) =>
   `\x1b]8;;${url}\x1b\\${label ?? url}\x1b]8;;\x1b\\`;
@@ -134,6 +135,14 @@ const insightCmd: CommandDef = {
   }),
 };
 
+const brunchCmd: CommandDef = {
+  name: 'brunch',
+  description: commandDescription('brunch'),
+  handler: () => ({
+    lines: [brunchGreen(`✍️  Brunch: ${link(siteConfig.links.brunch, 'brunch.co.kr/@hae02y')}`)],
+  }),
+};
+
 // ── New: Info commands ──
 
 const whoamiCmd: CommandDef = {
@@ -153,6 +162,7 @@ const whoamiCmd: CommandDef = {
       `  │ ${gray('mail')}    ${cyan(meConfig.profile.email)}`,
       `  │ ${gray('github')}  ${cyan(link(github?.url ?? 'https://github.com/hae02y', 'github.com/hae02y'))}`,
       `  │ ${gray('blog')}    ${cyan(link(blog?.url ?? 'https://blog.hae02y.me', 'blog.hae02y.me'))}`,
+      `  │ ${gray('brunch')}  ${brunchGreen(link(siteConfig.links.brunch, 'brunch.co.kr/@hae02y'))}`,
       gray('  └─ ' + meConfig.profile.summary[0]),
       gray('     ' + meConfig.profile.summary[1]),
       '',
@@ -275,6 +285,7 @@ const allCommands: CommandDef[] = [
   gitCmd,
   blogCmd,
   insightCmd,
+  brunchCmd,
   whoamiCmd,
   skillsCmd,
   experienceCmd,
