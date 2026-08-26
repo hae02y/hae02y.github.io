@@ -7,7 +7,7 @@ import type { Metadata } from 'next';
 
 export function generateStaticParams() {
   return getAllTags().map(tag => ({
-    tag: encodeURIComponent(tag.label),
+    tag: tag.label,
   }));
 }
 

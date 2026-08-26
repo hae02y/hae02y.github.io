@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getAllPortfolioProjects, getPortfolioProjectBySlug } from '@/lib/portfolio';
+import { siteConfig } from '@/config/site';
 import '../me-styles.css';
 
 export function generateStaticParams() {
@@ -15,6 +16,14 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${project.title} | 포트폴리오`,
     description: project.summary,
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      url: `${siteConfig.url}/me/${project.slug}/`,
+    },
+    alternates: {
+      canonical: `${siteConfig.url}/me/${project.slug}/`,
+    },
   };
 }
 

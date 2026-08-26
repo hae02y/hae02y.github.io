@@ -1,33 +1,41 @@
-import { getAllPosts } from './blog';
+import { getAllPosts, getAllTags } from './blog';
+import { getAllInsightPosts } from './docs';
+import { getAllPortfolioProjects } from './portfolio';
 import { siteConfig } from '@/config/site';
+
+const BLOG_POSTS_PER_PAGE = 10;
+const INSIGHT_POSTS_PER_PAGE = 6;
+
+function sitemapUrl(path: string, priority: string, changefreq: string, lastmod = new Date().toISOString()) {
+  return `
+  <url>
+    <loc>${siteConfig.url}${path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
 
 export function generateSitemapXml(): string {
   const posts = getAllPosts();
-  const now = new Date().toISOString();
-
-  const staticPages = [
-    { url: '/', priority: '1.0', changefreq: 'daily' },
-    { url: '/blog/', priority: '0.9', changefreq: 'daily' },
-    { url: '/blog/tags/', priority: '0.6', changefreq: 'weekly' },
-    { url: '/me/', priority: '0.8', changefreq: 'monthly' },
-    { url: '/Insight/', priority: '0.7', changefreq: 'weekly' },
-  ];
+  const tags = getAllTags();
+  const insightPosts = getAllInsightPosts();
+  const portfolioProjects = getAllPortfolioProjects();
+  const blogPages = Math.ceil(posts.length / BLOG_POSTS_PER_PAGE);
+  const insightPages = Math.ceil(Math.max(insightPosts.length - 1, 0) / INSIGHT_POSTS_PER_PAGE);
 
   const urls = [
-    ...staticPages.map(p => `
-  <url>
-    <loc>${siteConfig.url}${p.url}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${p.changefreq}</changefreq>
-    <priority>${p.priority}</priority>
-  </url>`),
-    ...posts.map(post => `
-  <url>
-    <loc>${siteConfig.url}/blog/${post.slug}/</loc>
-    <lastmod>${new Date(post.date).toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>`),
+    sitemapUrl('/', '1.0', 'daily'),
+    sitemapUrl('/blog/', '0.9', 'daily'),
+    sitemapUrl('/blog/tags/', '0.6', 'weekly'),
+    sitemapUrl('/me/', '0.8', 'monthly'),
+    sitemapUrl('/Insight/', '0.7', 'weekly'),
+    ...posts.map(post => sitemapUrl(`/blog/${post.slug}/`, '0.8', 'monthly', new Date(post.date).toISOString())),
+    ...Array.from({ length: Math.max(blogPages - 1, 0) }, (_, i) => sitemapUrl(`/blog/page/${i + 2}/`, '0.5', 'weekly')),
+    ...tags.map(tag => sitemapUrl(tag.permalink.endsWith('/') ? tag.permalink : `${tag.permalink}/`, '0.5', 'weekly')),
+    ...insightPosts.map(post => sitemapUrl(post.href.endsWith('/') ? post.href : `${post.href}/`, '0.6', 'monthly', post.date ? new Date(post.date).toISOString() : undefined)),
+    ...Array.from({ length: Math.max(insightPages - 1, 0) }, (_, i) => sitemapUrl(`/Insight/page/${i + 2}/`, '0.5', 'weekly')),
+    ...portfolioProjects.map(project => sitemapUrl(project.href.endsWith('/') ? project.href : `${project.href}/`, '0.6', 'monthly')),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>

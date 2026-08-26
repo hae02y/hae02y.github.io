@@ -13,6 +13,15 @@ const SITE_TITLE = 'Hae02y Devlog';
 const SITE_DESC = '정해영(hae02y)의 백엔드, 인프라, DevOps 기술 블로그';
 const AUTHOR = '정해영';
 
+function escapeXml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 function getAllPosts() {
   if (!fs.existsSync(BLOG_DIR)) return [];
   const dirs = fs.readdirSync(BLOG_DIR, { withFileTypes: true })
@@ -38,8 +47,59 @@ function getAllPosts() {
   }).filter(Boolean);
 }
 
-// Sitemap
-function generateSitemap(posts) {
+function getPriority(url) {
+  if (url === '/') return '1.0';
+  if (url === '/blog/') return '0.9';
+  if (url === '/me/') return '0.8';
+  if (url.startsWith('/blog/') && !url.startsWith('/blog/tags/') && !url.startsWith('/blog/page/')) return '0.8';
+  if (url === '/Insight/') return '0.7';
+  if (url.startsWith('/Insight/') || url.startsWith('/me/')) return '0.6';
+  return '0.5';
+}
+
+function getChangeFrequency(url) {
+  if (url === '/' || url === '/blog/') return 'daily';
+  if (url === '/blog/tags/' || url.startsWith('/blog/page/') || url.startsWith('/Insight/page/')) return 'weekly';
+  return 'monthly';
+}
+
+function shouldIndexRoute(url) {
+  if (url === '/') return true;
+  if (url === '/blog/page/1/' || url === '/Insight/page/1/') return false;
+  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/me/');
+}
+
+function collectHtmlPages(dir, routes = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === '_next' || entry.name === 'static') continue;
+
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      collectHtmlPages(entryPath, routes);
+      continue;
+    }
+
+    if (entry.name !== 'index.html') continue;
+
+    const html = fs.readFileSync(entryPath, 'utf-8');
+    if (html.includes('id="__next_error__"') || html.includes('name="robots" content="noindex"')) continue;
+
+    const relativeDir = path.relative(OUT_DIR, path.dirname(entryPath));
+    const url = relativeDir === '' ? '/' : `/${relativeDir.split(path.sep).join('/')}/`;
+    if (!shouldIndexRoute(url)) continue;
+
+    routes.push({
+      url: encodeURI(url),
+      lastmod: fs.statSync(entryPath).mtime.toISOString(),
+      priority: getPriority(url),
+      freq: getChangeFrequency(url),
+    });
+  }
+
+  return routes;
+}
+
+function getFallbackSitemapEntries(posts) {
   const now = new Date().toISOString();
   const statics = [
     { url: '/', priority: '1.0', freq: 'daily' },
@@ -49,10 +109,16 @@ function generateSitemap(posts) {
     { url: '/Insight/', priority: '0.7', freq: 'weekly' },
   ];
 
-  const urls = [
-    ...statics.map(p => `  <url>\n    <loc>${SITE_URL}${p.url}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`),
-    ...posts.map(p => `  <url>\n    <loc>${SITE_URL}/blog/${p.slug}/</loc>\n    <lastmod>${new Date(p.date).toISOString()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`),
+  return [
+    ...statics.map(p => ({ ...p, lastmod: now })),
+    ...posts.map(p => ({ url: `/blog/${p.slug}/`, lastmod: new Date(p.date).toISOString(), freq: 'monthly', priority: '0.8' })),
   ];
+}
+
+function generateSitemap(entries) {
+  const urls = entries
+    .sort((a, b) => a.url.localeCompare(b.url))
+    .map(p => `  <url>\n    <loc>${escapeXml(`${SITE_URL}${p.url}`)}</loc>\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`);
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`;
 }
@@ -113,11 +179,13 @@ console.log(`Found ${posts.length} blog posts`);
 
 if (!fs.existsSync(OUT_DIR)) {
   console.log('out/ directory not found, writing to public/ instead');
-  fs.writeFileSync(path.join('public', 'sitemap.xml'), generateSitemap(posts));
+  fs.writeFileSync(path.join('public', 'sitemap.xml'), generateSitemap(getFallbackSitemapEntries(posts)));
   fs.writeFileSync(path.join('public', 'rss.xml'), generateRss(posts));
   fs.writeFileSync(path.join('public', 'atom.xml'), generateAtom(posts));
 } else {
-  fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), generateSitemap(posts));
+  const sitemapEntries = collectHtmlPages(OUT_DIR);
+  console.log(`Found ${sitemapEntries.length} public pages`);
+  fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), generateSitemap(sitemapEntries));
   fs.writeFileSync(path.join(OUT_DIR, 'rss.xml'), generateRss(posts));
   fs.writeFileSync(path.join(OUT_DIR, 'atom.xml'), generateAtom(posts));
 }
