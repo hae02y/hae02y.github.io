@@ -18,14 +18,14 @@ function MeContent({ portfolioData }: { portfolioData: PortfolioData }) {
         <div className="me-tabs">
           <Link
             className={`me-tab${activeTab === 'resume' ? ' is-active' : ''}`}
-            href="/me?tab=resume"
+            href="/me/?tab=resume"
             aria-current={activeTab === 'resume' ? 'page' : undefined}
           >
             Resume
           </Link>
           <Link
             className={`me-tab${activeTab === 'portfolio' ? ' is-active' : ''}`}
-            href="/me?tab=portfolio"
+            href="/me/?tab=portfolio"
             aria-current={activeTab === 'portfolio' ? 'page' : undefined}
           >
             Portfolio

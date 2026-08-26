@@ -34,7 +34,7 @@ export default function PortfolioDetailPage({ params }: { params: { slug: string
   return (
     <div className="resume-page">
       <main className="resume-container">
-        <Link href="/me?tab=portfolio" className="resume-project-link">
+        <Link href="/me/?tab=portfolio" className="resume-project-link">
           ← 포트폴리오로 돌아가기
         </Link>
 

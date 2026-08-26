@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 const NAV_ITEMS = [
-  { href: '/blog', label: 'Blog' },
-  { href: '/Insight', label: 'Insight' },
-  { href: '/me', label: 'Me', newTab: true },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/Insight/', label: 'Insight' },
+  { href: '/me/', label: 'Me', newTab: true },
 ];
 
 export default function Navbar() {
@@ -48,7 +48,8 @@ export default function Navbar() {
 
         <div className="flex min-w-0 items-center gap-0 sm:gap-1">
           {NAV_ITEMS.map(item => {
-            const active = !item.newTab && (pathname === item.href || pathname.startsWith(`${item.href}/`));
+            const itemPath = item.href.replace(/\/$/, '');
+            const active = !item.newTab && (pathname === item.href || pathname === itemPath || pathname.startsWith(`${itemPath}/`));
 
             return (
               <Link

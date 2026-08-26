@@ -58,13 +58,13 @@ export default function BlogTagPostsPage({ params }: { params: { tag: string } }
                 <div className="flex flex-wrap gap-2">
                 <Link
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
-                  href="/blog"
+                  href="/blog/"
                 >
                   Blog <span className="text-base">↗</span>
                 </Link>
                 <Link
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
-                  href="/blog/tags"
+                  href="/blog/tags/"
                 >
                   All Tags <span className="text-base">↗</span>
                 </Link>

@@ -63,9 +63,9 @@ export default function FloatingTags() {
                     </p>
                     <p>―――</p>
                     <div className={`flex gap-6`}>
-                        <a href="/me" className="font-mono text-blue-600 underline">Resume</a>
-                        <a href="/blog" className="font-mono text-blue-600 underline">Blog</a>
-                        <a href="/insight" className="font-mono text-blue-600 underline">Insight</a>
+                        <a href="/me/" className="font-mono text-blue-600 underline">Resume</a>
+                        <a href="/blog/" className="font-mono text-blue-600 underline">Blog</a>
+                        <a href="/Insight/" className="font-mono text-blue-600 underline">Insight</a>
                     </div>
                 </div>
             </div>

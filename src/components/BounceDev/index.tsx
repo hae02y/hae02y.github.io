@@ -14,7 +14,7 @@ export default function BounceDev() {
             </p>
 
             <a
-                href="/blog"
+                href="/blog/"
                 className="text-blue-600 underline hover:text-black transition-colors"
             >
                 → 블로그 보러가기
