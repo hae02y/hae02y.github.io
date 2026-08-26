@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: '정해영 | 백엔드 개발자 이력서',
     description: '정해영(hae02y) 백엔드 개발자. Java, Spring Boot, AWS 기반 시스템 설계 및 개발.',
-    url: `${siteUrl}/me`,
+    url: `${siteUrl}/me/`,
     images: [{ url: `${siteUrl}/img/me.jpg`, alt: '정해영 프로필' }],
   },
   alternates: {
-    canonical: `${siteUrl}/me`,
+    canonical: `${siteUrl}/me/`,
   },
 };
 

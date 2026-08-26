@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: siteConfig.url,
+    canonical: `${siteConfig.url}/`,
   },
 };
 

@@ -6,11 +6,11 @@ export function generateSitemapXml(): string {
   const now = new Date().toISOString();
 
   const staticPages = [
-    { url: '', priority: '1.0', changefreq: 'daily' },
-    { url: '/blog', priority: '0.9', changefreq: 'daily' },
-    { url: '/blog/tags', priority: '0.6', changefreq: 'weekly' },
-    { url: '/me', priority: '0.8', changefreq: 'monthly' },
-    { url: '/Insight', priority: '0.7', changefreq: 'weekly' },
+    { url: '/', priority: '1.0', changefreq: 'daily' },
+    { url: '/blog/', priority: '0.9', changefreq: 'daily' },
+    { url: '/blog/tags/', priority: '0.6', changefreq: 'weekly' },
+    { url: '/me/', priority: '0.8', changefreq: 'monthly' },
+    { url: '/Insight/', priority: '0.7', changefreq: 'weekly' },
   ];
 
   const urls = [
@@ -23,7 +23,7 @@ export function generateSitemapXml(): string {
   </url>`),
     ...posts.map(post => `
   <url>
-    <loc>${siteConfig.url}/blog/${post.slug}</loc>
+    <loc>${siteConfig.url}/blog/${post.slug}/</loc>
     <lastmod>${new Date(post.date).toISOString()}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -42,8 +42,8 @@ export function generateRssFeed(): string {
   const items = posts.map(post => `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${siteConfig.url}/blog/${post.slug}</link>
-      <guid isPermaLink="true">${siteConfig.url}/blog/${post.slug}</guid>
+      <link>${siteConfig.url}/blog/${post.slug}/</link>
+      <guid isPermaLink="true">${siteConfig.url}/blog/${post.slug}/</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <description><![CDATA[${post.description}]]></description>
       ${post.tags.map(t => `<category>${t}</category>`).join('\n      ')}
@@ -53,7 +53,7 @@ export function generateRssFeed(): string {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${siteConfig.title}</title>
-    <link>${siteConfig.url}/blog</link>
+    <link>${siteConfig.url}/blog/</link>
     <description>${siteConfig.description}</description>
     <language>ko</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -69,8 +69,8 @@ export function generateAtomFeed(): string {
   const entries = posts.map(post => `
   <entry>
     <title><![CDATA[${post.title}]]></title>
-    <link href="${siteConfig.url}/blog/${post.slug}"/>
-    <id>${siteConfig.url}/blog/${post.slug}</id>
+    <link href="${siteConfig.url}/blog/${post.slug}/"/>
+    <id>${siteConfig.url}/blog/${post.slug}/</id>
     <updated>${new Date(post.date).toISOString()}</updated>
     <summary><![CDATA[${post.description}]]></summary>
     <author><name>${siteConfig.author.name}</name></author>
@@ -80,7 +80,7 @@ export function generateAtomFeed(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>${siteConfig.title}</title>
-  <link href="${siteConfig.url}/blog"/>
+  <link href="${siteConfig.url}/blog/"/>
   <link href="${siteConfig.url}/atom.xml" rel="self"/>
   <id>${siteConfig.url}</id>
   <updated>${new Date().toISOString()}</updated>

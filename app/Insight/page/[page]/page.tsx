@@ -19,7 +19,7 @@ export function generateMetadata({ params }: { params: { page: string } }): Meta
   return {
     title: `Insight — 페이지 ${params.page}`,
     alternates: {
-      canonical: pageNum === 1 ? `${siteConfig.url}/Insight` : `${siteConfig.url}/Insight/page/${params.page}`,
+      canonical: pageNum === 1 ? `${siteConfig.url}/Insight/` : `${siteConfig.url}/Insight/page/${params.page}/`,
     },
   };
 }

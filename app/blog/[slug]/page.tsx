@@ -24,10 +24,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       publishedTime: new Date(post.date).toISOString(),
       authors: ['정해영'],
       tags: post.tags,
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/blog/${post.slug}/`,
     },
     alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}`,
+      canonical: `${siteUrl}/blog/${post.slug}/`,
     },
   };
 }

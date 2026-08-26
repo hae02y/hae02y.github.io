@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: siteConfig.url,
+    url: `${siteConfig.url}/`,
     siteName: siteConfig.title,
     title: '정해영 | 백엔드 개발자 기술블로그',
     description: '정해영 개발자 블로그. Backend, AI, Infra, DevOps, Cloud.',
@@ -77,7 +77,7 @@ const jsonLd = {
     {
       '@type': 'WebSite',
       '@id': `${siteConfig.url}#website`,
-      url: siteConfig.url,
+      url: `${siteConfig.url}/`,
       name: '정해영 기술블로그 | Hae02y Devlog',
       alternateName: ['정해영 블로그', 'hae02y', 'Hae02y Devlog'],
       description: '정해영(hae02y) 백엔드 개발자의 기술 블로그',
@@ -93,7 +93,7 @@ const jsonLd = {
       alternateName: ['hae02y', 'Haeyoung Jeong'],
       jobTitle: 'Backend Engineer',
       description: 'Java, Spring Boot, AWS, Kubernetes 기반 백엔드 개발자',
-      url: siteConfig.url,
+      url: `${siteConfig.url}/`,
       image: {
         '@type': 'ImageObject',
         url: `${siteConfig.url}/img/me.jpg`,
@@ -122,7 +122,7 @@ const jsonLd = {
       '@id': `${siteConfig.url}#blog`,
       name: '정해영 기술블로그',
       description: '백엔드, 인프라, DevOps 기술 블로그',
-      url: `${siteConfig.url}/blog`,
+      url: `${siteConfig.url}/blog/`,
       inLanguage: 'ko',
       author: { '@id': `${siteConfig.url}#person` },
       publisher: {
@@ -133,8 +133,8 @@ const jsonLd = {
     },
     {
       '@type': 'ProfilePage',
-      '@id': `${siteConfig.url}/me#profilepage`,
-      url: `${siteConfig.url}/me`,
+      '@id': `${siteConfig.url}/me/#profilepage`,
+      url: `${siteConfig.url}/me/`,
       name: '정해영 이력서',
       mainEntity: { '@id': `${siteConfig.url}#person` },
     },

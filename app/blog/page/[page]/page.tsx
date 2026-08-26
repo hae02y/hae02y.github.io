@@ -21,7 +21,7 @@ export function generateMetadata({ params }: { params: { page: string } }): Meta
   return {
     title: `블로그 - 페이지 ${params.page}`,
     alternates: {
-      canonical: pageNum === 1 ? `${siteConfig.url}/blog` : `${siteConfig.url}/blog/page/${params.page}`,
+      canonical: pageNum === 1 ? `${siteConfig.url}/blog/` : `${siteConfig.url}/blog/page/${params.page}/`,
     },
   };
 }

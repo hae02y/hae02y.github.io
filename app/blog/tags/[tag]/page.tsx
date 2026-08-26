@@ -16,7 +16,7 @@ export function generateMetadata({ params }: { params: { tag: string } }): Metad
   return {
     title: `${tag} 태그 포스트`,
     alternates: {
-      canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}`,
+      canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}/`,
     },
   };
 }

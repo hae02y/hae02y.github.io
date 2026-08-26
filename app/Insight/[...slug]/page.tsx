@@ -19,7 +19,7 @@ export function generateMetadata({ params }: { params: { slug: string[] } }): Me
     title: page.title,
     description: page.description,
     alternates: {
-      canonical: `${siteConfig.url}/Insight/${decoded.map(encodeURIComponent).join('/')}`,
+      canonical: `${siteConfig.url}/Insight/${decoded.map(encodeURIComponent).join('/')}/`,
     },
   };
 }

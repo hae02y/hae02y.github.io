@@ -42,16 +42,16 @@ function getAllPosts() {
 function generateSitemap(posts) {
   const now = new Date().toISOString();
   const statics = [
-    { url: '', priority: '1.0', freq: 'daily' },
-    { url: '/blog', priority: '0.9', freq: 'daily' },
-    { url: '/blog/tags', priority: '0.6', freq: 'weekly' },
-    { url: '/me', priority: '0.8', freq: 'monthly' },
-    { url: '/Insight', priority: '0.7', freq: 'weekly' },
+    { url: '/', priority: '1.0', freq: 'daily' },
+    { url: '/blog/', priority: '0.9', freq: 'daily' },
+    { url: '/blog/tags/', priority: '0.6', freq: 'weekly' },
+    { url: '/me/', priority: '0.8', freq: 'monthly' },
+    { url: '/Insight/', priority: '0.7', freq: 'weekly' },
   ];
 
   const urls = [
     ...statics.map(p => `  <url>\n    <loc>${SITE_URL}${p.url}</loc>\n    <lastmod>${now}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`),
-    ...posts.map(p => `  <url>\n    <loc>${SITE_URL}/blog/${p.slug}</loc>\n    <lastmod>${new Date(p.date).toISOString()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`),
+    ...posts.map(p => `  <url>\n    <loc>${SITE_URL}/blog/${p.slug}/</loc>\n    <lastmod>${new Date(p.date).toISOString()}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`),
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`;
@@ -61,8 +61,8 @@ function generateSitemap(posts) {
 function generateRss(posts) {
   const items = posts.slice(0, 20).map(p => `    <item>
       <title><![CDATA[${p.title}]]></title>
-      <link>${SITE_URL}/blog/${p.slug}</link>
-      <guid isPermaLink="true">${SITE_URL}/blog/${p.slug}</guid>
+      <link>${SITE_URL}/blog/${p.slug}/</link>
+      <guid isPermaLink="true">${SITE_URL}/blog/${p.slug}/</guid>
       <pubDate>${new Date(p.date).toUTCString()}</pubDate>
       <description><![CDATA[${p.description}]]></description>
       ${p.tags.map(t => `<category>${t}</category>`).join('\n      ')}
@@ -72,7 +72,7 @@ function generateRss(posts) {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${SITE_TITLE}</title>
-    <link>${SITE_URL}/blog</link>
+    <link>${SITE_URL}/blog/</link>
     <description>${SITE_DESC}</description>
     <language>ko</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -86,8 +86,8 @@ ${items.join('\n')}
 function generateAtom(posts) {
   const entries = posts.slice(0, 20).map(p => `  <entry>
     <title><![CDATA[${p.title}]]></title>
-    <link href="${SITE_URL}/blog/${p.slug}"/>
-    <id>${SITE_URL}/blog/${p.slug}</id>
+    <link href="${SITE_URL}/blog/${p.slug}/"/>
+    <id>${SITE_URL}/blog/${p.slug}/</id>
     <updated>${new Date(p.date).toISOString()}</updated>
     <summary><![CDATA[${p.description}]]></summary>
     <author><name>${AUTHOR}</name></author>
@@ -97,7 +97,7 @@ function generateAtom(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>${SITE_TITLE}</title>
-  <link href="${SITE_URL}/blog"/>
+  <link href="${SITE_URL}/blog/"/>
   <link href="${SITE_URL}/atom.xml" rel="self"/>
   <id>${SITE_URL}</id>
   <updated>${new Date().toISOString()}</updated>

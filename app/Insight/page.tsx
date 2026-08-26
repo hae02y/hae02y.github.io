@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Insight',
   description: '코드 바깥의 기록들.',
   alternates: {
-    canonical: `${siteConfig.url}/Insight`,
+    canonical: `${siteConfig.url}/Insight/`,
   },
 };
 

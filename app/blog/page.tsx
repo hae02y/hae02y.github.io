@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: '블로그',
   description: '정해영 기술블로그 - 모든 포스트',
   alternates: {
-    canonical: `${siteConfig.url}/blog`,
+    canonical: `${siteConfig.url}/blog/`,
   },
 };
 

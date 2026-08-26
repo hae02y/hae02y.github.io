@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Tags',
   description: '블로그 태그 목록',
   alternates: {
-    canonical: `${siteConfig.url}/blog/tags`,
+    canonical: `${siteConfig.url}/blog/tags/`,
   },
 };
 
