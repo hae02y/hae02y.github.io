@@ -42,7 +42,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
             )}
             <div className="brunch-tags">
               {post.tags.map(tag => (
-                <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}`} className="brunch-tag">
+                <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}/`} className="brunch-tag">
                   #{tag}
                 </Link>
               ))}
@@ -65,7 +65,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
               <h2 id="related-posts-title" className="brunch-section-title">같이보기</h2>
               <div className="brunch-related-list">
                 {relatedPosts.map((related, index) => (
-                  <Link key={related.slug} href={`/blog/${related.slug}`} className="brunch-related-item">
+                  <Link key={related.slug} href={`/blog/${related.slug}/`} className="brunch-related-item">
                     <span className="brunch-related-number">{String(index + 1).padStart(2, '0')}</span>
                     <span className="brunch-related-body">
                       <span className="brunch-related-title">{related.title}</span>
@@ -82,13 +82,13 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
           {(navigation.previous || navigation.next) && (
             <nav className="brunch-post-nav" aria-label="이전 다음 글">
               {navigation.previous ? (
-                <Link href={`/blog/${navigation.previous.slug}`} className="brunch-post-nav-card brunch-post-nav-prev">
+                <Link href={`/blog/${navigation.previous.slug}/`} className="brunch-post-nav-card brunch-post-nav-prev">
                   <span className="brunch-post-nav-label">← 이전 글</span>
                   <span className="brunch-post-nav-title">{navigation.previous.title}</span>
                 </Link>
               ) : <span />}
               {navigation.next ? (
-                <Link href={`/blog/${navigation.next.slug}`} className="brunch-post-nav-card brunch-post-nav-next">
+                <Link href={`/blog/${navigation.next.slug}/`} className="brunch-post-nav-card brunch-post-nav-next">
                   <span className="brunch-post-nav-label">다음 글 →</span>
                   <span className="brunch-post-nav-title">{navigation.next.title}</span>
                 </Link>
@@ -107,12 +107,12 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
           </div>
           <div className="brunch-tags" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
             {post.tags.map(tag => (
-              <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}`} className="brunch-tag">
+              <Link key={tag} href={`/blog/tags/${encodeURIComponent(tag)}/`} className="brunch-tag">
                 #{tag}
               </Link>
             ))}
           </div>
-          <button onClick={() => router.push('/blog')} className="brunch-back">
+          <button onClick={() => router.push('/blog/')} className="brunch-back">
             ← 목록으로 돌아가기
           </button>
           {post.comments && (

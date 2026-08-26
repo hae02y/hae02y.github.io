@@ -71,7 +71,7 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
               <p className="brunch-author-desc">{siteConfig.author.bio} @{siteConfig.author.company}</p>
             </div>
           </div>
-          <button onClick={() => router.push('/Insight')} className="brunch-back">
+          <button onClick={() => router.push('/Insight/')} className="brunch-back">
             ← 인사이트 목록으로 돌아가기
           </button>
         </footer>

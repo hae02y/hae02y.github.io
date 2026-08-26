@@ -1,8 +1,8 @@
 export const siteConfig = {
   title: 'Hae02y Devlog',
-  tagline: '정해영(hae02y)의 Backend & Infra Devlog',
+  tagline: '개발자 정해영(hae02y)의 Backend & Infra Devlog',
   url: 'https://blog.hae02y.me',
-  description: '정해영(hae02y)의 백엔드, 인프라, DevOps 기술 블로그',
+  description: '정해영(hae02y) 백엔드 개발자의 이력서, 포트폴리오, 백엔드·인프라·DevOps 기술 블로그',
   author: {
     name: '정해영',
     handle: 'hae02y',
@@ -106,10 +106,10 @@ export const siteConfig = {
   terminal: {
     helpTitle: 'Available commands',
     paths: {
-      blog: '/blog',
-      insight: '/Insight',
+      blog: '/blog/',
+      insight: '/Insight/',
       home: '/',
-      me: '/me',
+      me: '/me/',
     },
     helpGroups: [
       ['whoami', 'skills', 'experience', 'projects'],

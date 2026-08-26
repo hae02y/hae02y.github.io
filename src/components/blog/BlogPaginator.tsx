@@ -18,7 +18,7 @@ export default function BlogPaginator({ totalPages, currentPage }: BlogPaginator
     (_, i) => startPage + i,
   );
 
-  const toPageLink = (page: number) => (page === 1 ? '/blog' : `/blog/page/${page}`);
+  const toPageLink = (page: number) => (page === 1 ? '/blog/' : `/blog/page/${page}/`);
 
   return (
     <nav className="flex justify-center gap-2 flex-wrap">
