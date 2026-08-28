@@ -80,6 +80,8 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
       independent: '개인 활동',
       tocKicker: '프로필 지도',
       tocTitle: '목차',
+      collapse: '접기',
+      expand: '펼치기',
       resumeHeadings: {
         experience: '경력',
         keyWork: '주요 업무',
@@ -135,6 +137,8 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
       independent: 'Independent',
       tocKicker: 'Profile Map',
       tocTitle: 'On this page',
+      collapse: 'Collapse',
+      expand: 'Expand',
       resumeHeadings: {
         experience: 'Experience',
         keyWork: 'Key Work',

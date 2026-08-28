@@ -12,6 +12,8 @@ type PortfolioListProps = {
     independent: string;
     tocKicker: string;
     tocTitle: string;
+    collapse: string;
+    expand: string;
   };
 };
 
@@ -23,6 +25,8 @@ export default function PortfolioList({
     independent: 'Independent',
     tocKicker: 'Profile Map',
     tocTitle: 'On this page',
+    collapse: 'Collapse',
+    expand: 'Expand',
   },
 }: PortfolioListProps) {
   const [isExpanded, setIsExpanded] = React.useState(true);
@@ -80,7 +84,9 @@ export default function PortfolioList({
               onClick={() => setIsExpanded(prev => !prev)}
               aria-pressed={isExpanded}
             >
-              {isExpanded ? '-' : '+'}
+              <span className="portfolio-toggle-dot" aria-hidden="true" />
+              <span>{isExpanded ? labels.collapse : labels.expand}</span>
+              <span className={`portfolio-toggle-icon${isExpanded ? ' is-expanded' : ''}`} aria-hidden="true" />
             </button>
           </div>
           <CompanyTimeline items={companyTimelineItems} showProjects={isExpanded} />
@@ -95,7 +101,9 @@ export default function PortfolioList({
       {tocItems.length ? (
         <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
           <div className="portfolio-toc-tab" aria-hidden="true">
-            {labels.tocTitle}
+            <span />
+            <span />
+            <span />
           </div>
           <aside className="portfolio-toc">
             <div className="portfolio-toc-kicker">{labels.tocKicker}</div>

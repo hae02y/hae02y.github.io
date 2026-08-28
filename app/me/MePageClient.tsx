@@ -38,6 +38,8 @@ function MeContent({
     independent: 'Independent',
     tocKicker: 'Profile Map',
     tocTitle: 'On this page',
+    collapse: 'Collapse',
+    expand: 'Expand',
   },
 }: MePageClientProps) {
   const searchParams = useSearchParams();
@@ -84,6 +86,8 @@ function MeContent({
                 independent: labels.independent,
                 tocKicker: labels.tocKicker,
                 tocTitle: labels.tocTitle,
+                collapse: labels.collapse,
+                expand: labels.expand,
               }}
             />
           ) : (

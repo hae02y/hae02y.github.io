@@ -7,5 +7,7 @@ export type AboutPageLabels = {
   independent: string;
   tocKicker: string;
   tocTitle: string;
+  collapse: string;
+  expand: string;
   resumeHeadings?: ResumePageLabels;
 };

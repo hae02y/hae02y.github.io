@@ -65,11 +65,11 @@ export default function ResumePage({
       <h3>{labels.automation}</h3>
       <ProjectTimeline projects={resume.automation} />
 
-      <h2>{labels.activities}</h2>
-      <ActivitySection items={resume.activities} />
-
       <h2>{labels.education}</h2>
       <EducationSection items={resume.education} />
+
+      <h2>{labels.activities}</h2>
+      <ActivitySection items={resume.activities} />
 
       <h2>{labels.certifications}</h2>
       <CertificationSection items={resume.certifications} />
