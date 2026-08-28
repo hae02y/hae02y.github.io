@@ -30,7 +30,7 @@ export default function PortfolioList({
   labels = {
     professional: 'Professional',
     independent: 'Independent',
-    tocKicker: 'Profile Map',
+    tocKicker: 'Navigate',
     tocTitle: 'On this page',
     collapse: 'Collapse',
     expand: 'Expand',

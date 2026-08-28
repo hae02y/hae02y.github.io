@@ -36,7 +36,7 @@ function MeContent({
     portfolio: 'Portfolio',
     professional: 'Professional',
     independent: 'Independent',
-    tocKicker: 'Profile Map',
+    tocKicker: 'Navigate',
     tocTitle: 'On this page',
     collapse: 'Collapse',
     expand: 'Expand',
