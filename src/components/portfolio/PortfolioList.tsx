@@ -4,6 +4,13 @@ import React from 'react';
 import CompanyTimeline from '@/components/portfolio/CompanyTimeline';
 import type { CompanyTimelineData, PortfolioItemData } from '@/lib/portfolio';
 
+type TocItem = {
+  id: string;
+  label: string;
+  level: 'section' | 'child';
+  indexLabel?: string;
+};
+
 type PortfolioListProps = {
   companyTimelineItems?: CompanyTimelineData[];
   soloItems?: PortfolioItemData[];
@@ -46,9 +53,19 @@ export default function PortfolioList({
     projects,
   }));
 
-  const tocItems = [
-    ...companyTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
-    ...soloTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
+  const tocItems: TocItem[] = [
+    ...(companyTimelineItems.length
+      ? [
+          { id: 'portfolio-company', label: labels.professional, level: 'section' as const, indexLabel: '01' },
+          ...companyTimelineItems.map(item => ({ id: item.companyId, label: item.company, level: 'child' as const })),
+        ]
+      : []),
+    ...(soloTimelineItems.length
+      ? [
+          { id: 'portfolio-solo', label: labels.independent, level: 'section' as const, indexLabel: companyTimelineItems.length ? '02' : '01' },
+          ...soloTimelineItems.map(item => ({ id: item.companyId, label: item.company, level: 'child' as const })),
+        ]
+      : []),
   ].filter(item => item.label && item.id);
 
   React.useEffect(() => {
@@ -123,14 +140,14 @@ export default function PortfolioList({
             <div className="portfolio-toc-title">{labels.tocTitle}</div>
             <nav>
               <ul>
-                {tocItems.map((item, index) => (
-                  <li key={item.id}>
+                {tocItems.map((item) => (
+                  <li key={item.id} className={`portfolio-toc-item is-${item.level}`}>
                     <a
                       href={`#${item.id}`}
                       className={activeTocId === item.id ? 'is-active' : undefined}
                       onClick={() => setActiveTocId(item.id)}
                     >
-                      <span className="portfolio-toc-index">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="portfolio-toc-index">{item.indexLabel ?? ''}</span>
                       <span className="portfolio-toc-label">{item.label}</span>
                     </a>
                   </li>

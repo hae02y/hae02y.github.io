@@ -257,7 +257,12 @@
 .portfolio-toc a:hover { color: #0f172a; background: #f8fafc; transform: translateX(2px); }
 .portfolio-toc a.is-active { color: #0f172a; background: #f1f5f9; font-weight: 750; }
 .portfolio-toc a.is-active:before { background: #3a7bd5; box-shadow: 0 0 0 4px #dbeafe; }
+.portfolio-toc-item.is-section:not(:first-child) { margin-top: 0.5rem; }
+.portfolio-toc-item.is-section a { color: #334155; font-weight: 800; }
+.portfolio-toc-item.is-child a { min-height: 1.8rem; padding-left: 0.4rem; font-size: 0.88rem; }
+.portfolio-toc-item.is-child a:before { width: 0.34rem; height: 0.34rem; background: #dbe2ea; }
 .portfolio-toc-index { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em; color: #94a3b8; }
+.portfolio-toc-item.is-section .portfolio-toc-index { color: #3a7bd5; }
 .portfolio-toc a.is-active .portfolio-toc-index { color: #3a7bd5; }
 .portfolio-toc-label { min-width: 0; line-height: 1.35; word-break: keep-all; overflow-wrap: break-word; }
 
