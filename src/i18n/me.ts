@@ -14,6 +14,7 @@ const en = new Map<string, string>([
   ['프로젝트', 'Project'],
 
   ['(주)맨인블록', 'Meninblox'],
+  ['맨인블록', 'MENINBLOX'],
   ['(주)베스텔라랩', 'VEStellaLab'],
   ['(주)조은기술', 'Joeun Technology'],
   ['베스텔라랩', 'VEStellaLab'],
@@ -21,6 +22,7 @@ const en = new Map<string, string>([
   ['선임연구원 · 백엔드/AI 개발', 'Senior Researcher · Backend / AI Development'],
   ['선임연구원 · 백엔드 개발', 'Senior Researcher · Backend Development'],
   ['주임 · 네트워크엔지니어', 'Assistant Manager · Network Engineer'],
+  ['MENINBLOX는 의료 특화 LLM MediKoGPT와 초개인화 운동 관리 플랫폼 Ailix를 기반으로 의료 행정 자동화와 글로벌 헬스케어 서비스를 확장하는 의료 AI 스타트업입니다.', 'MENINBLOX is a medical AI startup expanding healthcare administration automation and global healthcare services through the medical-specialized LLM MediKoGPT and the hyper-personalized fitness platform Ailix.'],
   ['Vision-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션을 서비스하는 스마트 모빌리티 스타트업입니다.', 'A smart mobility startup providing Vision-AI-based indoor precise positioning and non-GPS parking navigation services.'],
   [' Visoin-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션 을 서비스하는 스마트 모빌리티 스타트업입니다.', 'A smart mobility startup providing Vision-AI-based indoor precise positioning and non-GPS parking navigation services.'],
   ['전국 50여 곳 이상의 지자체와 공공기관에 관제·스마트시티 솔루션을 공급해온 IT 전문기업입니다.', 'An IT service company that supplied control center and smart-city solutions to more than 50 local governments and public institutions across Korea.'],

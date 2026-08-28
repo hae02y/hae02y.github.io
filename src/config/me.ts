@@ -86,13 +86,13 @@ export const meConfig = {
         company: '(주)맨인블록',
         role: '선임연구원 · 백엔드/AI 개발',
         period: '2026.03 - 재직중',
-        description: ' Visoin-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션 을 서비스하는 스마트 모빌리티 스타트업입니다.',
+        description: 'MENINBLOX는 의료 특화 LLM MediKoGPT와 초개인화 운동 관리 플랫폼 Ailix를 기반으로 의료 행정 자동화와 글로벌 헬스케어 서비스를 확장하는 의료 AI 스타트업입니다.',
       },
       {
         company: '(주)베스텔라랩',
         role: '선임연구원 · 백엔드 개발',
         period: '2024.01 - 2026.03',
-        description: ' Visoin-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션 을 서비스하는 스마트 모빌리티 스타트업입니다.',
+        description: 'Vision-AI 기반 실내 정밀 측위 및 Non-GPS 주차 내비게이션을 서비스하는 스마트 모빌리티 스타트업입니다.',
       },
       {
         company: '(주)조은기술',
@@ -295,6 +295,15 @@ export const meConfig = {
   },
   portfolio: {
     companies: [
+      {
+        id: 'meninblox',
+        order: 0,
+        company: '맨인블록',
+        period: '2026-03 ~ 현재',
+        role: '선임연구원 · 백엔드/AI 개발',
+        summary: 'MENINBLOX는 의료 특화 LLM MediKoGPT와 초개인화 운동 관리 플랫폼 Ailix를 기반으로 의료 행정 자동화와 글로벌 헬스케어 서비스를 확장하는 의료 AI 스타트업입니다.',
+        projects: [],
+      },
       {
         id: 'vestellalab',
         order: 1,

@@ -118,8 +118,8 @@
 /* Education & Certifications */
 .resume-education { display: grid; grid-template-columns: 1fr; gap: 0.7rem; }
 .resume-certifications { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem 1.4rem; }
-.resume-education-item { display: grid; grid-template-columns: 2.3rem minmax(0, 1fr); gap: 0.8rem; align-items: center; border: 1px solid #e2e8f0; border-radius: 0.9rem; padding: 0.85rem 1rem; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); }
-.resume-education-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.3rem; height: 2.3rem; border-radius: 0.75rem; color: #3a7bd5; background: #eff6ff; box-shadow: inset 0 0 0 1px #dbeafe; }
+.resume-education-item { display: grid; grid-template-columns: 2.3rem minmax(0, 1fr); gap: 0.8rem; align-items: center; border: 1px solid #e2e8f0; border-radius: 0.9rem; padding: 0.85rem 1rem; background: #fff; }
+.resume-education-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.3rem; height: 2.3rem; border-radius: 0.75rem; color: #3a7bd5; border: 1px solid #e2e8f0; }
 .resume-education-content { min-width: 0; display: flex; flex-direction: column; gap: 0.25rem; }
 .resume-education-header { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
 .resume-certification-item { display: flex; flex-direction: column; gap: 0.3rem; }
@@ -309,6 +309,7 @@
 .resume-timeline-item.is-collapsed { padding-bottom: 1.1rem; border-bottom: 1px solid #eef2f7; }
 .resume-timeline-item.is-collapsed:last-child { border-bottom: 0; padding-bottom: 0; }
 .resume-timeline-item.is-collapsed .resume-timeline-left { flex: 1; }
+.resume-timeline-item.is-company-only .resume-timeline-left { flex: 1; }
 
 .portfolio-detail-meta { font-size: 0.95rem; color: #64748b; margin-bottom: 0.35rem; }
 .portfolio-detail-summary { margin: 0 0 0.75rem; font-size: 1.02rem; line-height: 1.62; color: #334155; }

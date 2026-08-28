@@ -59,12 +59,15 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
 
   return (
     <div className="resume-timeline">
-      {items.map((item, index) => (
+      {items.map((item, index) => {
+        const hasProjects = item.projects.length > 0;
+
+        return (
         <div
           key={item.company}
           className={`resume-timeline-item${index === items.length - 1 ? ' is-last' : ''}${
             showProjects ? '' : ' is-collapsed'
-          }`}
+          }${hasProjects ? '' : ' is-company-only'}`}
         >
           {showHeader ? (
             <div className="resume-timeline-left">
@@ -79,10 +82,12 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
                   {item.company}
                 </div>
                 {item.period ? <div className="resume-timeline-period">{item.period}</div> : null}
+                {item.role ? <div className="resume-timeline-role">{item.role}</div> : null}
+                {item.summary ? <div className="resume-timeline-project-summary">{item.summary}</div> : null}
               </div>
             </div>
           ) : null}
-          {showProjects ? (
+          {showProjects && hasProjects ? (
             <div className="resume-timeline-right">
               <div className="resume-timeline-project-group">
                 {item.projects.map((project, projectIndex) => {
@@ -137,7 +142,8 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
             </div>
           ) : null}
         </div>
-      ))}
+      );
+      })}
     </div>
   );
 }
