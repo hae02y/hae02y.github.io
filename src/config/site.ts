@@ -2,7 +2,7 @@ export const siteConfig = {
   title: 'Hae02y Devlog',
   tagline: '개발자 정해영(hae02y)의 Backend & Infra Devlog',
   url: 'https://blog.hae02y.me',
-  description: '정해영(hae02y) 백엔드 개발자의 이력서, 포트폴리오, 백엔드·인프라·DevOps 기술 블로그',
+  description: '정해영(hae02y) 백엔드 개발자의 ABOUT, Works, 백엔드·인프라·DevOps 기술 블로그',
   author: {
     name: '정해영',
     handle: 'hae02y',
@@ -109,6 +109,7 @@ export const siteConfig = {
       blog: '/blog/',
       insight: '/Insight/',
       home: '/',
+      about: '/about/',
       me: '/about/',
     },
     helpGroups: [
@@ -122,7 +123,7 @@ export const siteConfig = {
       { name: 'skills', usage: 'skills', description: '기술 스택' },
       { name: 'experience', usage: 'experience', description: '경력 사항' },
       { name: 'projects', usage: 'projects', description: '프로젝트 목록' },
-      { name: 'cd', usage: 'cd <path>', description: '페이지 이동 (blog, insight, home, me)' },
+      { name: 'cd', usage: 'cd <path>', description: '페이지 이동 (blog, insight, home, about)' },
       { name: 'open', usage: 'open <url>', description: '외부 URL 열기' },
       { name: 'git', usage: 'git', description: 'GitHub 링크' },
       { name: 'blog', usage: 'blog', description: 'TECH 링크' },

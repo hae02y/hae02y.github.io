@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, type ComponentProps } from 'react';
 import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { PortfolioData } from '@/lib/portfolio';
@@ -12,6 +12,7 @@ type MePageClientProps = {
   portfolioData: PortfolioData;
   aboutContent?: string;
   basePath?: string;
+  lang?: string;
   languageSwitch?: {
     href: string;
     label: string;
@@ -22,14 +23,15 @@ type MePageClientProps = {
     companyWorks: string;
     soloWorks: string;
     soloToc: string;
-    resumeHeadings?: React.ComponentProps<typeof ResumePage>['labels'];
+    resumeHeadings?: ComponentProps<typeof ResumePage>['labels'];
   };
 };
 
 function MeContent({
   portfolioData,
   aboutContent,
-  basePath = '/me/',
+  basePath = '/about/',
+  lang = 'ko',
   languageSwitch,
   labels = {
     resume: 'Resume',
@@ -44,7 +46,7 @@ function MeContent({
   const activeTab = tab === 'works' || tab === 'portfolio' ? 'works' : 'resume';
 
   return (
-    <div className="resume-page">
+    <div className="resume-page" lang={lang}>
       <div className="resume-container">
         {languageSwitch ? (
           <div className="about-topbar">

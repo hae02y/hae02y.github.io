@@ -119,6 +119,7 @@ export default function MePage() {
         portfolioData={portfolioData}
         aboutContent={aboutContent.content}
         basePath="/about/"
+        lang="ko"
         languageSwitch={{ href: '/en/about/', label: 'EN' }}
       />
     </>

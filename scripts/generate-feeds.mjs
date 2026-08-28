@@ -50,10 +50,11 @@ function getAllPosts() {
 function getPriority(url) {
   if (url === '/') return '1.0';
   if (url === '/blog/') return '0.9';
-  if (url === '/me/') return '0.8';
+  if (url === '/about/') return '0.8';
+  if (url === '/en/about/') return '0.7';
   if (url.startsWith('/blog/') && !url.startsWith('/blog/tags/') && !url.startsWith('/blog/page/')) return '0.8';
   if (url === '/Insight/') return '0.7';
-  if (url.startsWith('/Insight/') || url.startsWith('/me/')) return '0.6';
+  if (url.startsWith('/Insight/') || url.startsWith('/about/')) return '0.6';
   return '0.5';
 }
 
@@ -66,7 +67,19 @@ function getChangeFrequency(url) {
 function shouldIndexRoute(url) {
   if (url === '/') return true;
   if (url === '/blog/page/1/' || url === '/Insight/page/1/') return false;
-  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/me/');
+  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/about/') || url === '/en/about/';
+}
+
+function getLanguageAlternates(url) {
+  if (url === '/about/' || url === '/en/about/') {
+    return [
+      { hreflang: 'ko', href: `${SITE_URL}/about/` },
+      { hreflang: 'en', href: `${SITE_URL}/en/about/` },
+      { hreflang: 'x-default', href: `${SITE_URL}/about/` },
+    ];
+  }
+
+  return [];
 }
 
 function collectHtmlPages(dir, routes = []) {
@@ -93,6 +106,7 @@ function collectHtmlPages(dir, routes = []) {
       lastmod: fs.statSync(entryPath).mtime.toISOString(),
       priority: getPriority(url),
       freq: getChangeFrequency(url),
+      alternates: getLanguageAlternates(url),
     });
   }
 
@@ -105,7 +119,8 @@ function getFallbackSitemapEntries(posts) {
     { url: '/', priority: '1.0', freq: 'daily' },
     { url: '/blog/', priority: '0.9', freq: 'daily' },
     { url: '/blog/tags/', priority: '0.6', freq: 'weekly' },
-    { url: '/me/', priority: '0.8', freq: 'monthly' },
+    { url: '/about/', priority: '0.8', freq: 'monthly' },
+    { url: '/en/about/', priority: '0.7', freq: 'monthly' },
     { url: '/Insight/', priority: '0.7', freq: 'weekly' },
   ];
 
@@ -118,9 +133,15 @@ function getFallbackSitemapEntries(posts) {
 function generateSitemap(entries) {
   const urls = entries
     .sort((a, b) => a.url.localeCompare(b.url))
-    .map(p => `  <url>\n    <loc>${escapeXml(`${SITE_URL}${p.url}`)}</loc>\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`);
+    .map(p => {
+      const alternates = (p.alternates || [])
+        .map(alternate => `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${escapeXml(alternate.href)}"/>`)
+        .join('\n');
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>`;
+      return `  <url>\n    <loc>${escapeXml(`${SITE_URL}${p.url}`)}</loc>${alternates ? `\n${alternates}` : ''}\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`;
+    });
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>`;
 }
 
 // RSS

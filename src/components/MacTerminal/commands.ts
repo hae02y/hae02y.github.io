@@ -186,7 +186,7 @@ const skillsCmd: CommandDef = {
     return {
       lines: [
         '',
-        gray('  ┌─ skills from /me resume'),
+        gray('  ┌─ skills from /about resume'),
         ...categories.map(([label, items]) => `  │ ${yellow(label.padEnd(8))} ${items.join(', ')}`),
         gray('  └─ source: src/config/me.ts'),
         '',

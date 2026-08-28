@@ -99,6 +99,7 @@ export default function EnglishAboutPage() {
         portfolioData={portfolioData}
         aboutContent={aboutContent.content}
         basePath="/en/about/"
+        lang="en"
         languageSwitch={{ href: '/about/', label: 'KO' }}
         labels={{
           resume: 'Resume',
