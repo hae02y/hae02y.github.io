@@ -82,8 +82,8 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
                   {item.company}
                 </div>
                 {item.period ? <div className="resume-timeline-period">{item.period}</div> : null}
-                {item.role ? <div className="resume-timeline-role">{item.role}</div> : null}
-                {item.summary ? <div className="resume-timeline-project-summary">{item.summary}</div> : null}
+                {!hasProjects && item.role ? <div className="resume-timeline-role">{item.role}</div> : null}
+                {!hasProjects && item.summary ? <div className="resume-timeline-project-summary">{item.summary}</div> : null}
               </div>
             </div>
           ) : null}
