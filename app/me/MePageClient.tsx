@@ -81,6 +81,7 @@ function MeContent({
             <PortfolioList
               companyTimelineItems={portfolioData.companyTimelineItems}
               soloItems={portfolioData.soloItems}
+              soloCategories={portfolioData.soloCategories}
               labels={{
                 professional: labels.professional,
                 independent: labels.independent,

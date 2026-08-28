@@ -22,13 +22,21 @@ export type CompanyTimelineData = {
   period: string;
   role?: string;
   summary?: string;
+  alwaysShowSummary?: boolean;
   projects: PortfolioItemData[];
   order?: number;
+};
+
+export type PortfolioCategoryData = {
+  category: string;
+  summary: string;
+  order: number;
 };
 
 export type PortfolioData = {
   companyTimelineItems: CompanyTimelineData[];
   soloItems: PortfolioItemData[];
+  soloCategories: PortfolioCategoryData[];
 };
 
 const PRESENT_VALUE = Number.POSITIVE_INFINITY;
@@ -87,6 +95,8 @@ const koCategoryLabels: Record<string, string> = {
   'Security / Operations': '보안/운영',
   'Data / Service': '데이터/서비스',
   'Automation / Internal Tool': '자동화/내부 도구',
+  'Business / Product': '개인 사업',
+  'Freelance / Client Work': '외주 개발',
   'Side Project': '사이드 프로젝트',
 };
 
@@ -155,5 +165,13 @@ export function getPortfolioData(locale: Locale = 'ko'): PortfolioData {
     .sort(compareProjects)
     .map(project => ({ ...mapProject(project, locale, getSoloCompanyName(locale)), id: toDomId(`solo-${project.slug}`) }));
 
-  return { companyTimelineItems, soloItems };
+  const soloCategories = [...(config.portfolio.independentCategories ?? [])]
+    .sort((a, b) => a.order - b.order)
+    .map(category => ({
+      category: localizeCategory(category.category, locale),
+      summary: category.summary,
+      order: category.order,
+    }));
+
+  return { companyTimelineItems, soloItems, soloCategories };
 }

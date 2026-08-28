@@ -70,6 +70,12 @@ export type PortfolioCompanyConfig = {
   projects: PortfolioProjectConfig[];
 };
 
+export type PortfolioCategoryConfig = {
+  category: string;
+  summary: string;
+  order: number;
+};
+
 export const meConfig = {
   profile: {
     name: '정해영',
@@ -512,6 +518,28 @@ export const meConfig = {
         ],
       },
     ] satisfies PortfolioCompanyConfig[],
+    independentCategories: [
+      {
+        category: 'Business / Product',
+        summary: '서비스 운영 / 자동화 / 고객 대응 / 결제 / 데이터 분석',
+        order: 1,
+      },
+      {
+        category: 'Freelance / Client Work',
+        summary: '클라이언트 요구사항 분석 / 백엔드 개발 / 배포 / 운영 대응',
+        order: 2,
+      },
+      {
+        category: 'Side Project',
+        summary: '제품 아이디어 검증 / MVP 개발 / 기능 구현',
+        order: 3,
+      },
+      {
+        category: 'Automation / Internal Tool',
+        summary: '반복 업무 자동화 / 데이터 처리 / 운영 도구 개발',
+        order: 4,
+      },
+    ] satisfies PortfolioCategoryConfig[],
     solo: [
       {
         slug: 'yeosu-bike-trip',
@@ -519,7 +547,7 @@ export const meConfig = {
         summary: '여수 여행 추천 서비스를 개발하며 핵심 백엔드 로직과 성능 개선을 수행했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, PostgreSQL, Docker, AWS',
-        category: 'Product / Service',
+        category: 'Side Project',
         start: '2024-03',
         end: '2024-07',
         details: [
@@ -539,7 +567,7 @@ export const meConfig = {
         summary: 'SSR 기반 커뮤니티 서비스 MVP를 구축하고 Kotlin 전환과 데이터 마이그레이션을 진행했습니다.',
         role: 'Side Project',
         techStack: 'Kotlin, Java, Spring Boot, Spring Security, JPA, MySQL, Thymeleaf',
-        category: 'Product / Service',
+        category: 'Side Project',
         start: '2025-03',
         end: 'present',
         details: [
@@ -559,7 +587,7 @@ export const meConfig = {
         summary: '공공 API 기반 자격증 정보와 커뮤니티를 결합한 서비스의 데이터 파이프라인을 구축했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, Spring Batch, MySQL, AWS',
-        category: 'Data / Service',
+        category: 'Side Project',
         start: '2023-09',
         end: '2023-10',
         details: [
@@ -579,7 +607,7 @@ export const meConfig = {
         summary: '반려동물 SNS 서비스의 인증/회원 도메인과 배포 구조를 설계했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, MySQL, Redis, Docker, AWS',
-        category: 'Product / Service',
+        category: 'Side Project',
         start: '2023-10',
         end: '2023-12',
         details: [

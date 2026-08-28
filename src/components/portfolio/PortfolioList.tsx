@@ -2,7 +2,7 @@
 
 import React from 'react';
 import CompanyTimeline from '@/components/portfolio/CompanyTimeline';
-import type { CompanyTimelineData, PortfolioItemData } from '@/lib/portfolio';
+import type { CompanyTimelineData, PortfolioCategoryData, PortfolioItemData } from '@/lib/portfolio';
 
 type TocItem = {
   id: string;
@@ -14,6 +14,7 @@ type TocItem = {
 type PortfolioListProps = {
   companyTimelineItems?: CompanyTimelineData[];
   soloItems?: PortfolioItemData[];
+  soloCategories?: PortfolioCategoryData[];
   labels?: {
     professional: string;
     independent: string;
@@ -27,6 +28,7 @@ type PortfolioListProps = {
 export default function PortfolioList({
   companyTimelineItems = [],
   soloItems = [],
+  soloCategories = [],
   labels = {
     professional: 'Professional',
     independent: 'Independent',
@@ -40,18 +42,31 @@ export default function PortfolioList({
   const [isSoloExpanded, setIsSoloExpanded] = React.useState(true);
   const [activeTocId, setActiveTocId] = React.useState<string | null>(null);
 
-  const soloTimelineItems = Array.from(
-    soloItems.reduce((groups, item) => {
-      const category = item.category || 'Independent';
-      groups.set(category, [...(groups.get(category) ?? []), item]);
-      return groups;
-    }, new Map<string, PortfolioItemData[]>()),
-  ).map(([category, projects]) => ({
-    company: category,
-    companyId: `id-independent-${encodeURIComponent(category).replace(/%/g, '-')}`,
-    period: '',
-    projects,
-  }));
+  const soloProjectGroups = soloItems.reduce((groups, item) => {
+    const category = item.category || 'Independent';
+    groups.set(category, [...(groups.get(category) ?? []), item]);
+    return groups;
+  }, new Map<string, PortfolioItemData[]>());
+
+  const soloTimelineItems: CompanyTimelineData[] = [
+    ...soloCategories.map(category => ({
+      company: category.category,
+      companyId: `id-independent-${encodeURIComponent(category.category).replace(/%/g, '-')}`,
+      period: '',
+      summary: category.summary,
+      alwaysShowSummary: true,
+      projects: soloProjectGroups.get(category.category) ?? [],
+      order: category.order,
+    })),
+    ...Array.from(soloProjectGroups.entries())
+      .filter(([category]) => !soloCategories.some(item => item.category === category))
+      .map(([category, projects]) => ({
+        company: category,
+        companyId: `id-independent-${encodeURIComponent(category).replace(/%/g, '-')}`,
+        period: '',
+        projects,
+      })),
+  ];
 
   const tocItems: TocItem[] = [
     ...(companyTimelineItems.length
