@@ -17,7 +17,7 @@ export function getAboutContent(locale: AboutLocale): AboutContent {
   if (!fs.existsSync(filePath)) {
     return {
       title: locale === 'en' ? 'About Hae02y' : '정해영 소개',
-      description: locale === 'en' ? 'Backend developer profile and works.' : '정해영 백엔드 개발자 소개와 작업 기록.',
+      description: locale === 'en' ? 'Backend developer profile and portfolio.' : '정해영 백엔드 개발자 소개와 포트폴리오 기록.',
       content: '',
     };
   }
@@ -27,7 +27,7 @@ export function getAboutContent(locale: AboutLocale): AboutContent {
 
   return {
     title: String(data.title || (locale === 'en' ? 'About Hae02y' : '정해영 소개')),
-    description: String(data.description || (locale === 'en' ? 'Backend developer profile and works.' : '정해영 백엔드 개발자 소개와 작업 기록.')),
+    description: String(data.description || (locale === 'en' ? 'Backend developer profile and portfolio.' : '정해영 백엔드 개발자 소개와 포트폴리오 기록.')),
     content,
   };
 }

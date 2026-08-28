@@ -41,7 +41,7 @@ export default function LoginPage() {
         </form>
         {error && <p className="mt-2 text-sm text-red-300">{error}</p>}
         <p className="mt-4 text-white text-sm opacity-80">
-          <span className="font-semibold">Works</span>를 활성화하려면 사용자 암호가 필요합니다.
+          <span className="font-semibold">Portfolio</span>를 활성화하려면 사용자 암호가 필요합니다.
         </p>
         <p onClick={() => router.push('/')} className="cursor-pointer mt-4 text-white text-sm opacity-80">
           <span className="font-semibold">뒤로가기</span>

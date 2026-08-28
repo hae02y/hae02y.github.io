@@ -218,7 +218,7 @@ const projectsCmd: CommandDef = {
   name: 'projects',
   description: commandDescription('projects'),
   handler: () => {
-    const lines = ['', gray('  ┌─ selected works from /about')];
+    const lines = ['', gray('  ┌─ selected portfolio from /about')];
 
     allResumeProjects.slice(0, 6).forEach((project, index) => {
       const firstBullet = getProjectBullets(project)[0];

@@ -1,7 +1,7 @@
 import { getAboutContent, type AboutLocale } from '@/lib/about';
 import { getPortfolioData } from '@/lib/portfolio';
-import MePageClient from '@/app/me/MePageClient';
 import { aboutI18n, createAboutJsonLd } from '@/i18n/about';
+import MePageClient from '../../../app/me/MePageClient';
 
 type AboutPageClientProps = {
   locale: AboutLocale;

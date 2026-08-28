@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   if (!project) return {};
 
   return {
-    title: `${project.title} | Works`,
+    title: `${project.title} | Portfolio`,
     description: project.summary,
     robots: {
       index: false,

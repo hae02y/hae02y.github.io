@@ -67,7 +67,7 @@ export default function PortfolioList({
         </section>
       ) : null}
       {tocItems.length ? (
-        <div className="portfolio-toc-wrapper" aria-label="Works navigation">
+        <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
           <div className="portfolio-toc-handle" />
           <aside className="portfolio-toc">
             <nav>

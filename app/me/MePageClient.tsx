@@ -3,18 +3,11 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import ResumePage, { type ResumePageLabels } from '@/components/ResumePage';
+import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
+import type { AboutPageLabels } from '@/components/about/types';
 import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
-
-export type AboutPageLabels = {
-  resume: string;
-  portfolio: string;
-  professional: string;
-  independent: string;
-  resumeHeadings?: ResumePageLabels;
-};
 
 type MePageClientProps = {
   portfolioData: PortfolioData;

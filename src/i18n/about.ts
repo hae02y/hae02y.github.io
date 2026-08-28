@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { aboutPaths, aboutUrls, getAlternateLocale, type Locale } from './config';
-import type { AboutPageLabels } from '@/app/me/MePageClient';
+import type { AboutPageLabels } from '@/components/about/types';
 
 type AboutI18nConfig = {
   lang: Locale;
