@@ -43,7 +43,11 @@ function MeContent({
       <div className="resume-container">
         {languageSwitch ? (
           <div className="about-topbar">
-            <Link className="about-language-switch" href={languageSwitch.href} hrefLang={languageSwitch.label.toLowerCase()}>
+            <Link
+              className="about-language-switch"
+              href={activeTab === 'portfolio' ? `${languageSwitch.href}?tab=portfolio` : languageSwitch.href}
+              hrefLang={languageSwitch.label.toLowerCase()}
+            >
               {languageSwitch.label}
             </Link>
           </div>
