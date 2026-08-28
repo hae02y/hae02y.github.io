@@ -42,6 +42,28 @@ export default function PortfolioList({
     ...soloTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
   ].filter(item => item.label && item.id);
 
+  React.useEffect(() => {
+    if (!tocItems.length) return undefined;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        const visibleEntry = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visibleEntry) setActiveTocId(visibleEntry.target.id);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: [0, 0.25, 0.5, 1] },
+    );
+
+    tocItems.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [tocItems]);
+
   return (
     <div>
       {companyTimelineItems.length ? (
@@ -68,17 +90,19 @@ export default function PortfolioList({
       ) : null}
       {tocItems.length ? (
         <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
-          <div className="portfolio-toc-handle" />
           <aside className="portfolio-toc">
+            <div className="portfolio-toc-kicker">Profile Map</div>
+            <div className="portfolio-toc-title">On this page</div>
             <nav>
               <ul>
-                {tocItems.map(item => (
+                {tocItems.map((item, index) => (
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
                       className={activeTocId === item.id ? 'is-active' : undefined}
                       onClick={() => setActiveTocId(item.id)}
                     >
+                      <span className="portfolio-toc-index">{String(index + 1).padStart(2, '0')}</span>
                       {item.label}
                     </a>
                   </li>
