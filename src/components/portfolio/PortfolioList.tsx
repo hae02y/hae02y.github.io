@@ -94,6 +94,9 @@ export default function PortfolioList({
       ) : null}
       {tocItems.length ? (
         <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
+          <div className="portfolio-toc-tab" aria-hidden="true">
+            {labels.tocTitle}
+          </div>
           <aside className="portfolio-toc">
             <div className="portfolio-toc-kicker">{labels.tocKicker}</div>
             <div className="portfolio-toc-title">{labels.tocTitle}</div>
@@ -107,7 +110,7 @@ export default function PortfolioList({
                       onClick={() => setActiveTocId(item.id)}
                     >
                       <span className="portfolio-toc-index">{String(index + 1).padStart(2, '0')}</span>
-                      {item.label}
+                      <span className="portfolio-toc-label">{item.label}</span>
                     </a>
                   </li>
                 ))}
