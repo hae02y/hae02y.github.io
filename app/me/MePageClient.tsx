@@ -6,11 +6,13 @@ import { Suspense } from 'react';
 import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { AboutPageLabels } from '@/components/about/types';
+import type { meConfig } from '@/config/me';
 import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
 
 type MePageClientProps = {
   portfolioData: PortfolioData;
+  resumeData?: typeof meConfig;
   aboutContent?: string;
   basePath?: string;
   lang?: string;
@@ -23,6 +25,7 @@ type MePageClientProps = {
 
 function MeContent({
   portfolioData,
+  resumeData,
   aboutContent,
   basePath = '/about/',
   lang = 'ko',
@@ -79,7 +82,7 @@ function MeContent({
               }}
             />
           ) : (
-            <ResumePage aboutContent={aboutContent} labels={labels.resumeHeadings} />
+            <ResumePage aboutContent={aboutContent} data={resumeData} labels={labels.resumeHeadings} />
           )}
         </div>
       </div>

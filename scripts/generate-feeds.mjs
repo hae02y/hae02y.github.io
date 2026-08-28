@@ -67,7 +67,7 @@ function getChangeFrequency(url) {
 function shouldIndexRoute(url) {
   if (url === '/') return true;
   if (url === '/blog/page/1/' || url === '/Insight/page/1/') return false;
-  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/about/') || url === '/en/about/';
+  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/about/') || url.startsWith('/en/about/');
 }
 
 function getLanguageAlternates(url) {
@@ -77,6 +77,28 @@ function getLanguageAlternates(url) {
       { hreflang: 'en', href: `${SITE_URL}/en/about/` },
       { hreflang: 'x-default', href: `${SITE_URL}/about/` },
     ];
+  }
+
+  if (url.startsWith('/about/')) {
+    const slug = url.slice('/about/'.length);
+    if (slug) {
+      return [
+        { hreflang: 'ko', href: `${SITE_URL}/about/${slug}` },
+        { hreflang: 'en', href: `${SITE_URL}/en/about/${slug}` },
+        { hreflang: 'x-default', href: `${SITE_URL}/about/${slug}` },
+      ];
+    }
+  }
+
+  if (url.startsWith('/en/about/')) {
+    const slug = url.slice('/en/about/'.length);
+    if (slug) {
+      return [
+        { hreflang: 'ko', href: `${SITE_URL}/about/${slug}` },
+        { hreflang: 'en', href: `${SITE_URL}/en/about/${slug}` },
+        { hreflang: 'x-default', href: `${SITE_URL}/about/${slug}` },
+      ];
+    }
   }
 
   return [];

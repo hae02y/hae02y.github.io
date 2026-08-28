@@ -23,10 +23,12 @@ export type ResumePageLabels = {
 type ResumePageProps = {
   aboutContent?: string;
   labels?: ResumePageLabels;
+  data?: typeof meConfig;
 };
 
 export default function ResumePage({
   aboutContent,
+  data = meConfig,
   labels = {
     experience: '경력',
     keyWork: '주요 업무',
@@ -37,7 +39,7 @@ export default function ResumePage({
     links: '링크',
   },
 }: ResumePageProps) {
-  const { profile, resume } = meConfig;
+  const { profile, resume } = data;
 
   return (
     <div>

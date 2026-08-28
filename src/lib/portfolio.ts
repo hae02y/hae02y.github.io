@@ -1,4 +1,6 @@
-import { meConfig, type PortfolioProjectConfig } from '@/config/me';
+import type { PortfolioProjectConfig } from '@/config/me';
+import { getLocalizedMeConfig } from '@/i18n/me';
+import type { Locale } from '@/i18n/config';
 
 export type PortfolioItemData = {
   id: string;
@@ -42,10 +44,11 @@ const normalizePeriodValue = (value?: string) => {
   return year * 12 + month;
 };
 
-const formatPeriod = (start?: string, end?: string) => {
+const formatPeriod = (start?: string, end?: string, locale: Locale = 'ko') => {
   if (!start && !end) return '';
   const normalizedEnd = end?.trim();
-  const endLabel = normalizedEnd && normalizePeriodValue(normalizedEnd) === PRESENT_VALUE ? '현재' : normalizedEnd;
+  const presentLabel = locale === 'en' ? 'Present' : '현재';
+  const endLabel = normalizedEnd && normalizePeriodValue(normalizedEnd) === PRESENT_VALUE ? presentLabel : normalizedEnd;
   if (start && endLabel) return `${start} ~ ${endLabel}`;
   if (start) return start;
   return endLabel ?? '';
@@ -65,7 +68,11 @@ const compareProjects = (a: PortfolioProjectConfig, b: PortfolioProjectConfig) =
   return a.title.localeCompare(b.title, 'ko');
 };
 
-const mapProject = (project: PortfolioProjectConfig, company?: string): PortfolioItemData => ({
+const getProjectBasePath = (locale: Locale) => locale === 'en' ? '/en/about' : '/about';
+
+const getSoloCompanyName = (locale: Locale) => locale === 'en' ? 'Independent' : '개인 프로젝트';
+
+const mapProject = (project: PortfolioProjectConfig, locale: Locale = 'ko', company?: string): PortfolioItemData => ({
   id: toDomId(project.slug),
   slug: project.slug,
   title: project.title,
@@ -73,40 +80,42 @@ const mapProject = (project: PortfolioProjectConfig, company?: string): Portfoli
   role: project.role,
   techStack: project.techStack,
   category: project.category ?? (company ? 'Backend / Infra' : 'Side Project'),
-  period: formatPeriod(project.start, project.end),
-  href: project.href ?? `/about/${project.slug}/`,
+  period: formatPeriod(project.start, project.end, locale),
+  href: project.href ?? `${getProjectBasePath(locale)}/${project.slug}/`,
   ...(project.details ? { details: project.details } : {}),
   ...(company ? { company } : {}),
 });
 
-export function getAllPortfolioProjects(): PortfolioItemData[] {
-  const companyProjects = meConfig.portfolio.companies.flatMap(company =>
-    company.projects.map(project => mapProject(project, company.company))
+export function getAllPortfolioProjects(locale: Locale = 'ko'): PortfolioItemData[] {
+  const config = getLocalizedMeConfig(locale);
+  const companyProjects = config.portfolio.companies.flatMap(company =>
+    company.projects.map(project => mapProject(project, locale, company.company))
   );
-  const soloProjects = meConfig.portfolio.solo.map(project => mapProject(project, '개인 프로젝트'));
+  const soloProjects = config.portfolio.solo.map(project => mapProject(project, locale, getSoloCompanyName(locale)));
   return [...companyProjects, ...soloProjects];
 }
 
-export function getPortfolioProjectBySlug(slug: string): PortfolioItemData | undefined {
-  return getAllPortfolioProjects().find(project => project.slug === slug);
+export function getPortfolioProjectBySlug(slug: string, locale: Locale = 'ko'): PortfolioItemData | undefined {
+  return getAllPortfolioProjects(locale).find(project => project.slug === slug);
 }
 
-export function getPortfolioData(): PortfolioData {
-  const companyTimelineItems = meConfig.portfolio.companies
+export function getPortfolioData(locale: Locale = 'ko'): PortfolioData {
+  const config = getLocalizedMeConfig(locale);
+  const companyTimelineItems = config.portfolio.companies
     .map(company => ({
       companyId: toDomId(`company-${company.id}`),
       company: company.company,
       period: company.period,
       ...(company.role ? { role: company.role } : {}),
       ...(company.summary ? { summary: company.summary } : {}),
-      projects: [...company.projects].sort(compareProjects).map(project => mapProject(project, company.company)),
+      projects: [...company.projects].sort(compareProjects).map(project => mapProject(project, locale, company.company)),
       order: company.order,
     }))
     .sort((a, b) => (a.order ?? Number.MAX_SAFE_INTEGER) - (b.order ?? Number.MAX_SAFE_INTEGER));
 
-  const soloItems = [...meConfig.portfolio.solo]
+  const soloItems = [...config.portfolio.solo]
     .sort(compareProjects)
-    .map(project => ({ ...mapProject(project, '개인 프로젝트'), id: toDomId(`solo-${project.slug}`) }));
+    .map(project => ({ ...mapProject(project, locale, getSoloCompanyName(locale)), id: toDomId(`solo-${project.slug}`) }));
 
   return { companyTimelineItems, soloItems };
 }
