@@ -30,6 +30,7 @@ export default function PortfolioList({
   },
 }: PortfolioListProps) {
   const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isSoloExpanded, setIsSoloExpanded] = React.useState(true);
   const [activeTocId, setActiveTocId] = React.useState<string | null>(null);
 
   const soloTimelineItems = Array.from(
@@ -83,9 +84,9 @@ export default function PortfolioList({
               type="button"
               onClick={() => setIsExpanded(prev => !prev)}
               aria-pressed={isExpanded}
+              aria-label={isExpanded ? labels.collapse : labels.expand}
             >
               <span className="portfolio-toggle-dot" aria-hidden="true" />
-              <span>{isExpanded ? labels.collapse : labels.expand}</span>
               <span className={`portfolio-toggle-icon${isExpanded ? ' is-expanded' : ''}`} aria-hidden="true" />
             </button>
           </div>
@@ -94,8 +95,20 @@ export default function PortfolioList({
       ) : null}
       {soloTimelineItems.length ? (
         <section className="portfolio-section" id="portfolio-solo">
-          <h2>{labels.independent}</h2>
-          <CompanyTimeline items={soloTimelineItems} />
+          <div className="portfolio-section-header">
+            <h2>{labels.independent}</h2>
+            <button
+              className="portfolio-toggle"
+              type="button"
+              onClick={() => setIsSoloExpanded(prev => !prev)}
+              aria-pressed={isSoloExpanded}
+              aria-label={isSoloExpanded ? labels.collapse : labels.expand}
+            >
+              <span className="portfolio-toggle-dot" aria-hidden="true" />
+              <span className={`portfolio-toggle-icon${isSoloExpanded ? ' is-expanded' : ''}`} aria-hidden="true" />
+            </button>
+          </div>
+          <CompanyTimeline items={soloTimelineItems} showProjects={isSoloExpanded} />
         </section>
       ) : null}
       {tocItems.length ? (
