@@ -7,6 +7,7 @@ import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { AboutPageLabels } from '@/components/about/types';
 import type { meConfig } from '@/config/me';
+import type { Locale } from '@/i18n/config';
 import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
 
@@ -15,7 +16,7 @@ type MePageClientProps = {
   resumeData?: typeof meConfig;
   aboutContent?: string;
   basePath?: string;
-  lang?: string;
+  lang?: Locale;
   languageSwitch?: {
     href: string;
     label: string;
@@ -82,7 +83,7 @@ function MeContent({
               }}
             />
           ) : (
-            <ResumePage aboutContent={aboutContent} data={resumeData} labels={labels.resumeHeadings} />
+            <ResumePage aboutContent={aboutContent} data={resumeData} locale={lang} labels={labels.resumeHeadings} />
           )}
         </div>
       </div>

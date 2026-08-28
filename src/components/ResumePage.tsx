@@ -8,6 +8,7 @@ import ResumeLinks from '@/components/Resume/ResumeLinks';
 import EducationSection from '@/components/Resume/EducationSection';
 import CertificationSection from '@/components/Resume/CertificationSection';
 import { meConfig } from '@/config/me';
+import type { Locale } from '@/i18n/config';
 import { MarkdownRenderer } from '@/lib/markdown-renderer';
 
 export type ResumePageLabels = {
@@ -24,11 +25,13 @@ type ResumePageProps = {
   aboutContent?: string;
   labels?: ResumePageLabels;
   data?: typeof meConfig;
+  locale?: Locale;
 };
 
 export default function ResumePage({
   aboutContent,
   data = meConfig,
+  locale = 'ko',
   labels = {
     experience: '경력',
     keyWork: '주요 업무',
@@ -53,7 +56,7 @@ export default function ResumePage({
         ))
       )}
 
-      <h2>{labels.experience} <ExperienceSummary items={resume.experiences} /></h2>
+      <h2>{labels.experience} <ExperienceSummary items={resume.experiences} locale={locale} /></h2>
       <ExperienceTimeline items={resume.experiences} />
 
       <h2>{labels.keyWork}</h2>

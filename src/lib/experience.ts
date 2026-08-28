@@ -1,7 +1,8 @@
 import type { ExperienceItem } from '@/config/me';
+import type { Locale } from '@/i18n/config';
 
 const PERIOD_RANGE_REGEX = /(\d{4})\.(\d{2})\s*-\s*(\d{4})\.(\d{2})/;
-const PERIOD_CURRENT_REGEX = /(\d{4})\.(\d{2})\s*-\s*재직중/;
+const PERIOD_CURRENT_REGEX = /(\d{4})\.(\d{2})\s*-\s*(재직중|Present)/i;
 
 const toMonthIndex = (year: number, month: number) => year * 12 + (month - 1);
 
@@ -51,20 +52,28 @@ const mergeRanges = (ranges: Array<{ start: number; end: number }>) => {
   return merged;
 };
 
-const formatTotalExperience = (totalMonths: number) => {
+const formatTotalExperience = (totalMonths: number, locale: Locale = 'ko') => {
   if (totalMonths <= 0) return null;
   const years = Math.floor(totalMonths / 12);
   const months = totalMonths % 12;
+  if (locale === 'en') {
+    const yearLabel = years === 1 ? 'year' : 'years';
+    const monthLabel = months === 1 ? 'month' : 'months';
+    if (years > 0 && months > 0) return `${years} ${yearLabel} ${months} ${monthLabel}`;
+    if (years > 0) return `${years} ${yearLabel}`;
+    return `${months} ${monthLabel}`;
+  }
+
   if (years > 0 && months > 0) return `${years}년 ${months}개월`;
   if (years > 0) return `${years}년`;
   return `${months}개월`;
 };
 
-export const getTotalExperienceLabel = (items: ExperienceItem[]) => {
+export const getTotalExperienceLabel = (items: ExperienceItem[], locale: Locale = 'ko') => {
   const ranges = items
     .map(item => (item.period ? parsePeriodRange(item.period) : null))
     .filter((range): range is { start: number; end: number } => Boolean(range));
   const mergedRanges = mergeRanges(ranges);
   const totalMonths = mergedRanges.reduce((sum, range) => sum + (range.end - range.start + 1), 0);
-  return formatTotalExperience(totalMonths);
+  return formatTotalExperience(totalMonths, locale);
 };
