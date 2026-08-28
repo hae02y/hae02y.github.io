@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 const NAV_ITEMS = [
   { href: '/blog/', label: 'TECH' },
   { href: '/Insight/', label: 'ESSAY' },
-  { href: '/me/', label: 'ABOUT', newTab: true },
+  { href: '/about/', label: 'ABOUT', newTab: true },
 ];
 
 export default function Navbar() {
@@ -32,8 +32,8 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [lastY]);
 
-  // Hide navbar on /me routes — AFTER all hooks
-  if (pathname.startsWith('/me')) return null;
+  // Hide navbar on ABOUT routes — AFTER all hooks
+  if (pathname.startsWith('/about') || pathname.startsWith('/me') || pathname.startsWith('/en/about')) return null;
 
   return (
     <nav

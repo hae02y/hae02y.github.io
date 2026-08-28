@@ -123,7 +123,7 @@ const blogCmd: CommandDef = {
   name: 'blog',
   description: commandDescription('blog'),
   handler: () => ({
-    lines: [magenta(`📝 Blog: ${link('https://blog.hae02y.me/blog')}`)],
+    lines: [magenta(`TECH: ${link('https://blog.hae02y.me/blog/', '/blog/')}`)],
   }),
 };
 
@@ -131,7 +131,7 @@ const insightCmd: CommandDef = {
   name: 'insight',
   description: commandDescription('insight'),
   handler: () => ({
-    lines: [yellow(`🔍 Insight: ${link('https://blog.hae02y.me/Insight')}`)],
+    lines: [yellow(`ESSAY: ${link('https://blog.hae02y.me/Insight/', '/Insight/')}`)],
   }),
 };
 
@@ -161,7 +161,7 @@ const whoamiCmd: CommandDef = {
       `  │ ${gray('focus')}   backend systems · infra · practical AI`,
       `  │ ${gray('mail')}    ${cyan(meConfig.profile.email)}`,
       `  │ ${gray('github')}  ${cyan(link(github?.url ?? 'https://github.com/hae02y', 'github.com/hae02y'))}`,
-      `  │ ${gray('blog')}    ${cyan(link(blog?.url ?? 'https://blog.hae02y.me', 'blog.hae02y.me'))}`,
+      `  │ ${gray('site')}    ${cyan(link(blog?.url ?? 'https://blog.hae02y.me', 'blog.hae02y.me'))}`,
       `  │ ${gray('brunch')}  ${brunchGreen(link(siteConfig.links.brunch, 'brunch.co.kr/@hae02y'))}`,
       gray('  └─ ' + meConfig.profile.summary[0]),
       gray('     ' + meConfig.profile.summary[1]),
@@ -200,7 +200,7 @@ const experienceCmd: CommandDef = {
   name: 'experience',
   description: commandDescription('experience'),
   handler: () => {
-    const lines = ['', gray('  ┌─ experience from /me')];
+    const lines = ['', gray('  ┌─ experience from /about')];
 
     resume.experiences.forEach((exp, index) => {
       if (index > 0) lines.push(gray('  │'));
@@ -218,7 +218,7 @@ const projectsCmd: CommandDef = {
   name: 'projects',
   description: commandDescription('projects'),
   handler: () => {
-    const lines = ['', gray('  ┌─ selected projects from /me')];
+    const lines = ['', gray('  ┌─ selected works from /about')];
 
     allResumeProjects.slice(0, 6).forEach((project, index) => {
       const firstBullet = getProjectBullets(project)[0];
@@ -229,7 +229,7 @@ const projectsCmd: CommandDef = {
       if (firstBullet) lines.push(`  │   ${firstBullet}`);
     });
 
-    lines.push(gray('  └─ More at ') + cyan(link('https://blog.hae02y.me/me', '/me')), '');
+    lines.push(gray('  └─ More at ') + cyan(link('https://blog.hae02y.me/about/', '/about/')), '');
     return { lines, animate: true };
   },
 };

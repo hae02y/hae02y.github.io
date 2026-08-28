@@ -8,37 +8,66 @@ import ResumeLinks from '@/components/Resume/ResumeLinks';
 import EducationSection from '@/components/Resume/EducationSection';
 import CertificationSection from '@/components/Resume/CertificationSection';
 import { meConfig } from '@/config/me';
+import { MarkdownRenderer } from '@/lib/markdown-renderer';
 
-export default function ResumePage() {
+type ResumePageProps = {
+  aboutContent?: string;
+  labels?: {
+    experience: string;
+    keyWork: string;
+    automation: string;
+    activities: string;
+    education: string;
+    certifications: string;
+    links: string;
+  };
+};
+
+export default function ResumePage({
+  aboutContent,
+  labels = {
+    experience: '경력',
+    keyWork: '주요 업무',
+    automation: '개발 생산성 · 업무 자동화',
+    activities: '활동',
+    education: '교육',
+    certifications: '자격증',
+    links: '링크',
+  },
+}: ResumePageProps) {
   const { profile, resume } = meConfig;
 
   return (
     <div>
       <h1>{profile.name}</h1>
       <p>{profile.email}</p>
-      {profile.summary.map(paragraph => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
+      {aboutContent ? (
+        <MarkdownRenderer content={aboutContent} />
+      ) : (
+        profile.summary.map(paragraph => (
+          <p key={paragraph}>{paragraph}</p>
+        ))
+      )}
 
-      <h2>경력 <ExperienceSummary items={resume.experiences} /></h2>
+      <h2>{labels.experience} <ExperienceSummary items={resume.experiences} /></h2>
       <ExperienceTimeline items={resume.experiences} />
 
-      <h2>주요 업무</h2>
+      <h2>{labels.keyWork}</h2>
       <ProjectTimeline projects={resume.projects} />
 
-      <h3>개발 생산성 · 업무 자동화</h3>
+      <h3>{labels.automation}</h3>
       <ProjectTimeline projects={resume.automation} />
 
-      <h2>활동</h2>
+      <h2>{labels.activities}</h2>
       <ActivitySection items={resume.activities} />
 
-      <h2>교육</h2>
+      <h2>{labels.education}</h2>
       <EducationSection items={resume.education} />
 
-      <h2>자격증</h2>
+      <h2>{labels.certifications}</h2>
       <CertificationSection items={resume.certifications} />
 
-      <h2>링크</h2>
+      <h2>{labels.links}</h2>
       <ResumeLinks links={resume.links} />
     </div>
   );

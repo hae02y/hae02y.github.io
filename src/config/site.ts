@@ -109,7 +109,7 @@ export const siteConfig = {
       blog: '/blog/',
       insight: '/Insight/',
       home: '/',
-      me: '/me/',
+      me: '/about/',
     },
     helpGroups: [
       ['whoami', 'skills', 'experience', 'projects'],

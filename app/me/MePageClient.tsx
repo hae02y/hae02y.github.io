@@ -8,37 +8,80 @@ import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
 
-function MeContent({ portfolioData }: { portfolioData: PortfolioData }) {
+type MePageClientProps = {
+  portfolioData: PortfolioData;
+  aboutContent?: string;
+  basePath?: string;
+  languageSwitch?: {
+    href: string;
+    label: string;
+  };
+  labels?: {
+    resume: string;
+    works: string;
+    companyWorks: string;
+    soloWorks: string;
+    soloToc: string;
+    resumeHeadings?: React.ComponentProps<typeof ResumePage>['labels'];
+  };
+};
+
+function MeContent({
+  portfolioData,
+  aboutContent,
+  basePath = '/me/',
+  languageSwitch,
+  labels = {
+    resume: 'Resume',
+    works: 'Works',
+    companyWorks: '회사 작업',
+    soloWorks: '개인 작업',
+    soloToc: '개인 작업',
+  },
+}: MePageClientProps) {
   const searchParams = useSearchParams();
-  const activeTab = searchParams.get('tab') === 'portfolio' ? 'portfolio' : 'resume';
+  const tab = searchParams.get('tab');
+  const activeTab = tab === 'works' || tab === 'portfolio' ? 'works' : 'resume';
 
   return (
     <div className="resume-page">
       <div className="resume-container">
+        {languageSwitch ? (
+          <div className="about-topbar">
+            <Link className="about-language-switch" href={languageSwitch.href} hrefLang={languageSwitch.label.toLowerCase()}>
+              {languageSwitch.label}
+            </Link>
+          </div>
+        ) : null}
         <div className="me-tabs">
           <Link
             className={`me-tab${activeTab === 'resume' ? ' is-active' : ''}`}
-            href="/me/?tab=resume"
+            href={`${basePath}?tab=resume`}
             aria-current={activeTab === 'resume' ? 'page' : undefined}
           >
-            Resume
+            {labels.resume}
           </Link>
           <Link
-            className={`me-tab${activeTab === 'portfolio' ? ' is-active' : ''}`}
-            href="/me/?tab=portfolio"
-            aria-current={activeTab === 'portfolio' ? 'page' : undefined}
+            className={`me-tab${activeTab === 'works' ? ' is-active' : ''}`}
+            href={`${basePath}?tab=works`}
+            aria-current={activeTab === 'works' ? 'page' : undefined}
           >
-            Portfolio
+            {labels.works}
           </Link>
         </div>
         <div>
-          {activeTab === 'portfolio' ? (
+          {activeTab === 'works' ? (
             <PortfolioList
               companyTimelineItems={portfolioData.companyTimelineItems}
               soloItems={portfolioData.soloItems}
+              labels={{
+                companyWorks: labels.companyWorks,
+                soloWorks: labels.soloWorks,
+                soloToc: labels.soloToc,
+              }}
             />
           ) : (
-            <ResumePage />
+            <ResumePage aboutContent={aboutContent} labels={labels.resumeHeadings} />
           )}
         </div>
       </div>
@@ -46,10 +89,10 @@ function MeContent({ portfolioData }: { portfolioData: PortfolioData }) {
   );
 }
 
-export default function MePageClient({ portfolioData }: { portfolioData: PortfolioData }) {
+export default function MePageClient(props: MePageClientProps) {
   return (
     <Suspense fallback={<div className="min-h-screen" />}>
-      <MeContent portfolioData={portfolioData} />
+      <MeContent {...props} />
     </Suspense>
   );
 }

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getAllPortfolioProjects, getPortfolioProjectBySlug } from '@/lib/portfolio';
 import { siteConfig } from '@/config/site';
-import '../me-styles.css';
+import '../../me/me-styles.css';
 
 export function generateStaticParams() {
   return getAllPortfolioProjects().map(project => ({ slug: project.slug }));
@@ -16,10 +16,6 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${project.title} | Works`,
     description: project.summary,
-    robots: {
-      index: false,
-      follow: true,
-    },
     openGraph: {
       title: project.title,
       description: project.summary,
@@ -31,7 +27,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function PortfolioDetailPage({ params }: { params: { slug: string } }) {
+export default function WorkDetailPage({ params }: { params: { slug: string } }) {
   const project = getPortfolioProjectBySlug(decodeURIComponent(params.slug));
   if (!project) notFound();
 

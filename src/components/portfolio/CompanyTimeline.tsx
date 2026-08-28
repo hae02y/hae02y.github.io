@@ -9,6 +9,7 @@ type CompanyTimelineProject = {
   role?: string;
   period?: string;
   techStack?: string;
+  category?: string;
   href?: string;
 };
 
@@ -85,7 +86,7 @@ export default function CompanyTimeline({items, showHeader = true, showProjects 
             <div className="resume-timeline-right">
               <div className="resume-timeline-project-group">
                 {item.projects.map((project, projectIndex) => {
-                  const metaParts = [project.period, project.role].filter(Boolean).join(' · ');
+                  const metaParts = [project.period, project.role, project.category].filter(Boolean).join(' · ');
 
                   const content = (
                     <>

@@ -53,6 +53,7 @@ export type PortfolioProjectConfig = {
   summary: string;
   role: string;
   techStack: string;
+  category?: string;
   start?: string;
   end?: string;
   href?: string;
@@ -308,6 +309,7 @@ export const meConfig = {
             summary: '클린 아키텍처 기반 멀티모듈 전환과 비동기 처리 구조를 도입해 확장성과 운영 안정성을 강화했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, MyBatis, MySQL, Thymeleaf, NCP, Kubernetes, GitHub Actions',
+            category: 'AI / MLOps',
             start: '2025-10',
             end: 'present',
             details: [
@@ -338,6 +340,7 @@ export const meConfig = {
             summary: '온프레미스/PHP 레거시를 AWS 기반 클라우드 아키텍처로 마이그레이션하며 표준 API와 운영 대시보드를 구축했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, MyBatis, MySQL, Thymeleaf, Python, FastAPI, AWS',
+            category: 'Backend / Infra',
             start: '2024-06',
             end: 'present',
             details: [
@@ -361,6 +364,7 @@ export const meConfig = {
             summary: '실시간 퀴즈와 계정 관리 기능을 갖춘 디지털 교과서 백엔드/프론트 구조를 설계했습니다.',
             role: 'Backend 설계 및 개발',
             techStack: 'Java, Spring Boot, Spring Security, JPA, MySQL, MyBatis, TypeScript, React, Zustand, TanStack Query, Docker, NCP',
+            category: 'Product / Service',
             start: '2024-09',
             end: '2025-01',
             details: [
@@ -384,6 +388,7 @@ export const meConfig = {
             summary: 'LPR/스트리밍 데이터를 결합한 주차 관제 대시보드를 구축해 실시간 운영 시나리오를 검증했습니다.',
             role: 'Backend 설계 및 개발 · Web Frontend 개발',
             techStack: 'Java, Spring Boot, MySQL, JavaScript, jQuery, Bootstrap, Hls.js, Nginx, FFmpeg',
+            category: 'Operations / Process',
             start: '2024-02',
             end: '2024-06',
             details: [
@@ -407,6 +412,7 @@ export const meConfig = {
             summary: 'SVG 기반 도면과 다국어 전환을 지원하는 관제 대시보드를 구축해 사용자 경험을 고도화했습니다.',
             role: 'Web Frontend 설계 및 개발',
             techStack: 'React, TypeScript, Axios, TailwindCSS, Redux, Nginx, MySQL, Directus',
+            category: 'Product / Frontend',
             start: '2024-04',
             end: '2024-10',
             details: [
@@ -440,6 +446,7 @@ export const meConfig = {
             summary: '지자체 관제센터의 서버/네트워크 인프라를 구축하고 안정적인 운영 환경을 마련했습니다.',
             role: 'Network Engineer',
             techStack: 'Linux, Cisco Switch, Firewall, VPN, Storage, Hyper-V',
+            category: 'Infrastructure / Operations',
             start: '2020-08',
             end: '2023-04',
             details: [
@@ -459,6 +466,7 @@ export const meConfig = {
             summary: '1Gbps 폐쇄망을 10Gbps로 업그레이드하여 스트리밍 품질과 응답성을 크게 개선했습니다.',
             role: 'Network Engineer',
             techStack: 'Cisco L3/L2 Switch, VPN, Firewall',
+            category: 'Infrastructure / Operations',
             start: '2022-01',
             end: '2022-06',
             details: [
@@ -478,6 +486,7 @@ export const meConfig = {
             summary: '방화벽 정책과 트래픽 관리 표준을 수립해 보안 운영 품질을 높였습니다.',
             role: 'Network Engineer',
             techStack: 'Firewall, VPN, Cisco, Linux',
+            category: 'Security / Operations',
             start: '2021-01',
             end: '2023-04',
             details: [
@@ -501,6 +510,7 @@ export const meConfig = {
         summary: '여수 여행 추천 서비스를 개발하며 핵심 백엔드 로직과 성능 개선을 수행했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, PostgreSQL, Docker, AWS',
+        category: 'Product / Service',
         start: '2024-03',
         end: '2024-07',
         details: [
@@ -520,6 +530,7 @@ export const meConfig = {
         summary: 'SSR 기반 커뮤니티 서비스 MVP를 구축하고 Kotlin 전환과 데이터 마이그레이션을 진행했습니다.',
         role: 'Side Project',
         techStack: 'Kotlin, Java, Spring Boot, Spring Security, JPA, MySQL, Thymeleaf',
+        category: 'Product / Service',
         start: '2025-03',
         end: 'present',
         details: [
@@ -539,6 +550,7 @@ export const meConfig = {
         summary: '공공 API 기반 자격증 정보와 커뮤니티를 결합한 서비스의 데이터 파이프라인을 구축했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, Spring Batch, MySQL, AWS',
+        category: 'Data / Service',
         start: '2023-09',
         end: '2023-10',
         details: [
@@ -558,6 +570,7 @@ export const meConfig = {
         summary: '반려동물 SNS 서비스의 인증/회원 도메인과 배포 구조를 설계했습니다.',
         role: 'Side Project',
         techStack: 'Java, Spring Boot, Spring Security, JPA, MySQL, Redis, Docker, AWS',
+        category: 'Product / Service',
         start: '2023-10',
         end: '2023-12',
         details: [
@@ -577,6 +590,7 @@ export const meConfig = {
         summary: '주차장 도면과 요소를 실시간 시각화하는 내부 도구를 단독 개발했습니다.',
         role: 'Side Project',
         techStack: 'JavaScript, Thymeleaf, jQuery, Java, Spring Boot',
+        category: 'Automation / Internal Tool',
         start: '2025-01',
         end: '2025-03',
         details: [

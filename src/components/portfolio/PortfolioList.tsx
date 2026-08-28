@@ -7,9 +7,22 @@ import type { CompanyTimelineData, PortfolioItemData } from '@/lib/portfolio';
 type PortfolioListProps = {
   companyTimelineItems?: CompanyTimelineData[];
   soloItems?: PortfolioItemData[];
+  labels?: {
+    companyWorks: string;
+    soloWorks: string;
+    soloToc: string;
+  };
 };
 
-export default function PortfolioList({ companyTimelineItems = [], soloItems = [] }: PortfolioListProps) {
+export default function PortfolioList({
+  companyTimelineItems = [],
+  soloItems = [],
+  labels = {
+    companyWorks: '회사 작업',
+    soloWorks: '개인 작업',
+    soloToc: '개인 작업',
+  },
+}: PortfolioListProps) {
   const [isExpanded, setIsExpanded] = React.useState(true);
   const [activeTocId, setActiveTocId] = React.useState<string | null>(null);
 
@@ -24,7 +37,7 @@ export default function PortfolioList({ companyTimelineItems = [], soloItems = [
 
   const tocItems = [
     ...companyTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
-    { id: 'portfolio-solo', label: '개인 프로젝트' },
+    { id: 'portfolio-solo', label: labels.soloToc },
   ].filter(item => item.label && item.id);
 
   return (
@@ -32,7 +45,7 @@ export default function PortfolioList({ companyTimelineItems = [], soloItems = [
       {companyTimelineItems.length ? (
         <section className="portfolio-section" id="portfolio-company">
           <div className="portfolio-section-header">
-            <h2>회사 프로젝트</h2>
+            <h2>{labels.companyWorks}</h2>
             <button
               className="portfolio-toggle"
               type="button"
@@ -47,12 +60,12 @@ export default function PortfolioList({ companyTimelineItems = [], soloItems = [
       ) : null}
       {soloTimelineItems.length ? (
         <section className="portfolio-section" id="portfolio-solo">
-          <h2>개인 프로젝트</h2>
+          <h2>{labels.soloWorks}</h2>
           <CompanyTimeline items={soloTimelineItems} showHeader={false} />
         </section>
       ) : null}
       {tocItems.length ? (
-        <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
+        <div className="portfolio-toc-wrapper" aria-label="Works navigation">
           <div className="portfolio-toc-handle" />
           <aside className="portfolio-toc">
             <nav>

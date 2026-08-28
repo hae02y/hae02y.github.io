@@ -7,6 +7,7 @@ export type PortfolioItemData = {
   summary: string;
   role: string;
   techStack: string;
+  category: string;
   period: string;
   href: string;
   details?: PortfolioProjectConfig['details'];
@@ -71,8 +72,9 @@ const mapProject = (project: PortfolioProjectConfig, company?: string): Portfoli
   summary: project.summary,
   role: project.role,
   techStack: project.techStack,
+  category: project.category ?? (company ? 'Backend / Infra' : 'Side Project'),
   period: formatPeriod(project.start, project.end),
-  href: project.href ?? `/me/${project.slug}`,
+  href: project.href ?? `/about/${project.slug}/`,
   ...(project.details ? { details: project.details } : {}),
   ...(company ? { company } : {}),
 });

@@ -1,24 +1,20 @@
 import type { Metadata } from 'next';
 import { getAboutContent } from '@/lib/about';
 import { getPortfolioData } from '@/lib/portfolio';
-import MePageClient from './MePageClient';
+import MePageClient from '../me/MePageClient';
 
 const siteUrl = 'https://blog.hae02y.me';
 const aboutPageUrl = `${siteUrl}/about/`;
-const mePageTitle = '개발자 정해영 | 백엔드 개발자 ABOUT - hae02y';
-const mePageDescription = '정해영(hae02y)은 Java/Spring Boot 기반 백엔드 개발자입니다. AWS, Kubernetes, AI/인프라, DevOps 환경에서 시스템 설계, 운영 자동화, Works를 정리했습니다.';
+const aboutPageTitle = '개발자 정해영 | 백엔드 개발자 ABOUT - hae02y';
+const aboutPageDescription = '정해영(hae02y)은 Java/Spring Boot 기반 백엔드 개발자입니다. AWS, Kubernetes, AI/인프라, DevOps 환경에서 시스템 설계, 운영 자동화, Works를 정리했습니다.';
 
 export const metadata: Metadata = {
-  title: mePageTitle,
-  description: mePageDescription,
+  title: aboutPageTitle,
+  description: aboutPageDescription,
   authors: [{ name: '정해영', url: aboutPageUrl }],
   creator: '정해영',
   publisher: '정해영',
   category: 'Developer Profile',
-  robots: {
-    index: false,
-    follow: true,
-  },
   keywords: [
     '정해영',
     '개발자 정해영',
@@ -26,37 +22,27 @@ export const metadata: Metadata = {
     '정해영 백엔드',
     '백엔드 정해영',
     '정해영 백엔드 개발자',
-    '백엔드 개발자 정해영',
     '정해영 포트폴리오',
     '정해영 작업',
     '정해영 이력서',
-    '정해영 기술블로그',
     'hae02y',
     'hae02y 개발자',
-    'hae02y portfolio',
-    'hae02y backend developer',
+    'hae02y works',
     'Haeyoung Jeong',
-    'Haeyoung Jeong developer',
-    '백엔드 개발자',
-    '백엔드 포트폴리오',
-    '개발자 포트폴리오',
     'Backend Developer',
     'Backend Engineer',
-    'Software Engineer',
     'Spring Boot',
     'Java',
     'AWS',
     'Kubernetes',
     'DevOps',
-    '인프라 개발자',
-    'AI 백엔드 개발자',
   ],
   openGraph: {
     type: 'profile',
     locale: 'ko_KR',
     siteName: 'Hae02y Devlog',
-    title: mePageTitle,
-    description: mePageDescription,
+    title: aboutPageTitle,
+    description: aboutPageDescription,
     url: aboutPageUrl,
     firstName: '해영',
     lastName: '정',
@@ -65,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: mePageTitle,
-    description: mePageDescription,
+    title: aboutPageTitle,
+    description: aboutPageDescription,
     images: [`${siteUrl}/img/me.jpg`],
   },
   alternates: {
@@ -83,9 +69,9 @@ const profilePageJsonLd = {
   '@type': 'ProfilePage',
   '@id': `${aboutPageUrl}#profilepage`,
   url: aboutPageUrl,
-  name: mePageTitle,
+  name: aboutPageTitle,
   alternateName: ['개발자 정해영', '정해영 개발자', '백엔드 정해영', '정해영 백엔드 개발자', 'hae02y 개발자', 'Haeyoung Jeong developer'],
-  description: mePageDescription,
+  description: aboutPageDescription,
   inLanguage: 'ko',
   mainEntity: {
     '@type': 'Person',
@@ -105,7 +91,7 @@ const profilePageJsonLd = {
   },
 };
 
-export default function MePage() {
+export default function AboutPage() {
   const portfolioData = getPortfolioData();
   const aboutContent = getAboutContent('ko');
 
