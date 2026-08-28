@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 const NAV_ITEMS = [
   { href: '/blog/', label: 'TECH' },
   { href: '/Insight/', label: 'ESSAY' },
-  { href: '/me/', label: 'Me', newTab: true },
+  { href: '/me/', label: 'ABOUT', newTab: true },
 ];
 
 export default function Navbar() {

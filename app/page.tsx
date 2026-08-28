@@ -19,7 +19,7 @@ export default function Home() {
         <nav aria-label="주요 페이지">
           <a href="/blog/">TECH</a>
           <a href="/Insight/">ESSAY</a>
-          <a href="/me/">이력서와 포트폴리오</a>
+          <a href="/me/">ABOUT</a>
         </nav>
       </section>
       <HomeClient />
