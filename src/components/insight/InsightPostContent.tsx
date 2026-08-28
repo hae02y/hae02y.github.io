@@ -68,7 +68,7 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
             <img src={siteConfig.author.image} alt={siteConfig.author.name} className="brunch-author-img" />
             <div>
               <p className="brunch-author-name">{siteConfig.author.name}</p>
-              <p className="brunch-author-desc">{siteConfig.author.bio} @{siteConfig.author.company}</p>
+              <p className="brunch-author-desc">{siteConfig.author.bio}</p>
             </div>
           </div>
           <button onClick={() => router.push('/Insight/')} className="brunch-back">

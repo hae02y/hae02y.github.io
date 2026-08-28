@@ -7,10 +7,10 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: '정해영 | 백엔드 개발자 기술블로그 — Hae02y Devlog',
+    default: '정해영 | Software Builder 기술블로그 — Hae02y Devlog',
     template: `%s | ${siteConfig.title}`,
   },
-  description: '정해영 개발자 블로그. Backend, AI, Infra, DevOps, Cloud.',
+  description: '정해영 Software Builder 블로그. Software, Backend, AI, Infra, DevOps, Cloud.',
   keywords: [
     '정해영', '개발자 정해영', '정해영 개발자', '정해영 백엔드', '백엔드 정해영', '정해영 백엔드 개발자', '정해영 이력서', '정해영 포트폴리오',
     'hae02y', 'hae02y 개발자', 'hae02y blog', 'hae02y developer', 'hae02y portfolio',
@@ -22,7 +22,6 @@ export const metadata: Metadata = {
     'AI', 'MLOps', 'FastAPI', 'Python',
     'React', 'Next.js', 'TypeScript', 'TailwindCSS',
     'MSA', '마이크로서비스', '시스템 설계', '코드 리뷰',
-    'Meninblox',
   ],
   authors: [{ name: '정해영', url: siteConfig.url }],
   creator: '정해영',
@@ -38,8 +37,8 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: `${siteConfig.url}/`,
     siteName: siteConfig.title,
-    title: '정해영 | 백엔드 개발자 기술블로그',
-    description: '정해영 개발자 블로그. Backend, AI, Infra, DevOps, Cloud.',
+    title: '정해영 | Software Builder 기술블로그',
+    description: '정해영 개발자 블로그. Software, Backend, AI, Infra, DevOps, Cloud.',
     images: [
       {
         url: `${siteConfig.url}/img/me.jpg`,
@@ -51,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '정해영 | 백엔드 개발자 기술블로그',
-    description: '정해영(hae02y) 백엔드 개발자의 기술 블로그.',
+    title: '정해영 | Software Builder 기술블로그',
+    description: '정해영(hae02y)의 Software Builder 기술 블로그.',
     images: [`${siteConfig.url}/img/me.jpg`],
   },
   robots: {
@@ -80,7 +79,7 @@ const jsonLd = {
       url: `${siteConfig.url}/`,
       name: '정해영 기술블로그 | Hae02y Devlog',
       alternateName: ['정해영 블로그', '개발자 정해영', '정해영 개발자', 'hae02y', 'Hae02y Devlog'],
-      description: '정해영(hae02y) 백엔드 개발자의 기술 블로그와 ABOUT, Portfolio',
+      description: '정해영(hae02y)의 Software Builder 기술 블로그와 ABOUT, Portfolio',
       inLanguage: 'ko',
       publisher: { '@id': `${siteConfig.url}#person` },
     },
@@ -91,8 +90,8 @@ const jsonLd = {
       givenName: '해영',
       familyName: '정',
       alternateName: ['hae02y', 'Haeyoung Jeong', '개발자 정해영', '정해영 개발자', '백엔드 정해영'],
-      jobTitle: 'Backend Developer',
-      description: 'Java, Spring Boot, AWS, Kubernetes, AI/인프라 기반 시스템을 설계하고 운영하는 백엔드 개발자',
+      jobTitle: 'Software Builder',
+      description: 'Java, Spring Boot, AWS, Kubernetes, AI/인프라 기반 시스템을 설계하고 운영하는 Software Builder',
       url: `${siteConfig.url}/about/`,
       image: {
         '@type': 'ImageObject',
@@ -106,10 +105,6 @@ const jsonLd = {
         siteConfig.links.linkedin,
         `mailto:${siteConfig.author.email}`,
       ],
-      worksFor: {
-        '@type': 'Organization',
-        name: 'Meninblox',
-      },
       knowsAbout: [
         'Java', 'Spring Boot', 'Spring Security', 'JPA', 'MyBatis',
         'AWS', 'NCP', 'Docker', 'Kubernetes', 'MySQL', 'Redis',

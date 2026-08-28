@@ -102,7 +102,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
             <img src={siteConfig.author.image} alt={siteConfig.author.name} className="brunch-author-img" />
             <div>
               <p className="brunch-author-name">{siteConfig.author.name}</p>
-              <p className="brunch-author-desc">{siteConfig.author.bio} @{siteConfig.author.company}</p>
+              <p className="brunch-author-desc">{siteConfig.author.bio}</p>
             </div>
           </div>
           <div className="brunch-tags" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
