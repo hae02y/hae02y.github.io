@@ -44,13 +44,18 @@ const normalizePeriodValue = (value?: string) => {
   return year * 12 + month;
 };
 
+const formatDateLabel = (value?: string) => value?.replace(/^(\d{4})-(\d{2})$/, '$1.$2');
+
+const formatPeriodText = (value: string) => value.replace(/(\d{4})-(\d{2})/g, '$1.$2');
+
 const formatPeriod = (start?: string, end?: string, locale: Locale = 'ko') => {
   if (!start && !end) return '';
   const normalizedEnd = end?.trim();
   const presentLabel = locale === 'en' ? 'Present' : '현재';
-  const endLabel = normalizedEnd && normalizePeriodValue(normalizedEnd) === PRESENT_VALUE ? presentLabel : normalizedEnd;
-  if (start && endLabel) return `${start} ~ ${endLabel}`;
-  if (start) return start;
+  const endLabel = normalizedEnd && normalizePeriodValue(normalizedEnd) === PRESENT_VALUE ? presentLabel : formatDateLabel(normalizedEnd);
+  const startLabel = formatDateLabel(start);
+  if (startLabel && endLabel) return `${startLabel} ~ ${endLabel}`;
+  if (startLabel) return startLabel;
   return endLabel ?? '';
 };
 
@@ -138,7 +143,7 @@ export function getPortfolioData(locale: Locale = 'ko'): PortfolioData {
     .map(company => ({
       companyId: toDomId(`company-${company.id}`),
       company: company.company,
-      period: company.period,
+      period: formatPeriodText(company.period),
       ...(company.role ? { role: company.role } : {}),
       ...(company.summary ? { summary: company.summary } : {}),
       projects: [...company.projects].sort(compareProjects).map(project => mapProject(project, locale, company.company)),
