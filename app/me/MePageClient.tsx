@@ -2,11 +2,19 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, type ComponentProps } from 'react';
-import ResumePage from '@/components/ResumePage';
+import { Suspense } from 'react';
+import ResumePage, { type ResumePageLabels } from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { PortfolioData } from '@/lib/portfolio';
 import './me-styles.css';
+
+export type AboutPageLabels = {
+  resume: string;
+  portfolio: string;
+  professional: string;
+  independent: string;
+  resumeHeadings?: ResumePageLabels;
+};
 
 type MePageClientProps = {
   portfolioData: PortfolioData;
@@ -17,14 +25,7 @@ type MePageClientProps = {
     href: string;
     label: string;
   };
-  labels?: {
-    resume: string;
-    works: string;
-    companyWorks: string;
-    soloWorks: string;
-    soloToc: string;
-    resumeHeadings?: ComponentProps<typeof ResumePage>['labels'];
-  };
+  labels?: AboutPageLabels;
 };
 
 function MeContent({
@@ -35,15 +36,14 @@ function MeContent({
   languageSwitch,
   labels = {
     resume: 'Resume',
-    works: 'Works',
-    companyWorks: '회사 작업',
-    soloWorks: '개인 작업',
-    soloToc: '개인 작업',
+    portfolio: 'Portfolio',
+    professional: 'Professional',
+    independent: 'Independent',
   },
 }: MePageClientProps) {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab');
-  const activeTab = tab === 'works' || tab === 'portfolio' ? 'works' : 'resume';
+  const activeTab = tab === 'works' || tab === 'portfolio' ? 'portfolio' : 'resume';
 
   return (
     <div className="resume-page" lang={lang}>
@@ -64,22 +64,21 @@ function MeContent({
             {labels.resume}
           </Link>
           <Link
-            className={`me-tab${activeTab === 'works' ? ' is-active' : ''}`}
-            href={`${basePath}?tab=works`}
-            aria-current={activeTab === 'works' ? 'page' : undefined}
+            className={`me-tab${activeTab === 'portfolio' ? ' is-active' : ''}`}
+            href={`${basePath}?tab=portfolio`}
+            aria-current={activeTab === 'portfolio' ? 'page' : undefined}
           >
-            {labels.works}
+            {labels.portfolio}
           </Link>
         </div>
         <div>
-          {activeTab === 'works' ? (
+          {activeTab === 'portfolio' ? (
             <PortfolioList
               companyTimelineItems={portfolioData.companyTimelineItems}
               soloItems={portfolioData.soloItems}
               labels={{
-                companyWorks: labels.companyWorks,
-                soloWorks: labels.soloWorks,
-                soloToc: labels.soloToc,
+                professional: labels.professional,
+                independent: labels.independent,
               }}
             />
           ) : (

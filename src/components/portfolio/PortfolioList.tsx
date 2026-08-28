@@ -8,9 +8,8 @@ type PortfolioListProps = {
   companyTimelineItems?: CompanyTimelineData[];
   soloItems?: PortfolioItemData[];
   labels?: {
-    companyWorks: string;
-    soloWorks: string;
-    soloToc: string;
+    professional: string;
+    independent: string;
   };
 };
 
@@ -18,26 +17,29 @@ export default function PortfolioList({
   companyTimelineItems = [],
   soloItems = [],
   labels = {
-    companyWorks: '회사 작업',
-    soloWorks: '개인 작업',
-    soloToc: '개인 작업',
+    professional: 'Professional',
+    independent: 'Independent',
   },
 }: PortfolioListProps) {
   const [isExpanded, setIsExpanded] = React.useState(true);
   const [activeTocId, setActiveTocId] = React.useState<string | null>(null);
 
-  const soloTimelineItems = soloItems.length
-    ? [{
-        company: '',
-        companyId: 'id-solo-projects',
-        period: '',
-        projects: soloItems,
-      }]
-    : [];
+  const soloTimelineItems = Array.from(
+    soloItems.reduce((groups, item) => {
+      const category = item.category || 'Independent';
+      groups.set(category, [...(groups.get(category) ?? []), item]);
+      return groups;
+    }, new Map<string, PortfolioItemData[]>()),
+  ).map(([category, projects]) => ({
+    company: category,
+    companyId: `id-independent-${encodeURIComponent(category).replace(/%/g, '-')}`,
+    period: '',
+    projects,
+  }));
 
   const tocItems = [
     ...companyTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
-    { id: 'portfolio-solo', label: labels.soloToc },
+    ...soloTimelineItems.map(item => ({ id: item.companyId, label: item.company })),
   ].filter(item => item.label && item.id);
 
   return (
@@ -45,7 +47,7 @@ export default function PortfolioList({
       {companyTimelineItems.length ? (
         <section className="portfolio-section" id="portfolio-company">
           <div className="portfolio-section-header">
-            <h2>{labels.companyWorks}</h2>
+            <h2>{labels.professional}</h2>
             <button
               className="portfolio-toggle"
               type="button"
@@ -60,8 +62,8 @@ export default function PortfolioList({
       ) : null}
       {soloTimelineItems.length ? (
         <section className="portfolio-section" id="portfolio-solo">
-          <h2>{labels.soloWorks}</h2>
-          <CompanyTimeline items={soloTimelineItems} showHeader={false} />
+          <h2>{labels.independent}</h2>
+          <CompanyTimeline items={soloTimelineItems} />
         </section>
       ) : null}
       {tocItems.length ? (

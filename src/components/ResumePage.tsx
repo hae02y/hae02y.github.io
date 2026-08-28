@@ -10,17 +10,19 @@ import CertificationSection from '@/components/Resume/CertificationSection';
 import { meConfig } from '@/config/me';
 import { MarkdownRenderer } from '@/lib/markdown-renderer';
 
+export type ResumePageLabels = {
+  experience: string;
+  keyWork: string;
+  automation: string;
+  activities: string;
+  education: string;
+  certifications: string;
+  links: string;
+};
+
 type ResumePageProps = {
   aboutContent?: string;
-  labels?: {
-    experience: string;
-    keyWork: string;
-    automation: string;
-    activities: string;
-    education: string;
-    certifications: string;
-    links: string;
-  };
+  labels?: ResumePageLabels;
 };
 
 export default function ResumePage({

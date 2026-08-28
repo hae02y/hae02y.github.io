@@ -34,8 +34,8 @@ export default function WorkDetailPage({ params }: { params: { slug: string } })
   return (
     <div className="resume-page">
       <main className="resume-container">
-        <Link href="/about/?tab=works" className="resume-project-link">
-          ← Works로 돌아가기
+        <Link href="/about/?tab=portfolio" className="resume-project-link">
+          ← Portfolio로 돌아가기
         </Link>
 
         <article className="portfolio-detail">
