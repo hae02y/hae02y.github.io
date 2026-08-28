@@ -10,6 +10,8 @@ type PortfolioListProps = {
   labels?: {
     professional: string;
     independent: string;
+    tocKicker: string;
+    tocTitle: string;
   };
 };
 
@@ -19,6 +21,8 @@ export default function PortfolioList({
   labels = {
     professional: 'Professional',
     independent: 'Independent',
+    tocKicker: 'Profile Map',
+    tocTitle: 'On this page',
   },
 }: PortfolioListProps) {
   const [isExpanded, setIsExpanded] = React.useState(true);
@@ -91,8 +95,8 @@ export default function PortfolioList({
       {tocItems.length ? (
         <div className="portfolio-toc-wrapper" aria-label="Portfolio navigation">
           <aside className="portfolio-toc">
-            <div className="portfolio-toc-kicker">Profile Map</div>
-            <div className="portfolio-toc-title">On this page</div>
+            <div className="portfolio-toc-kicker">{labels.tocKicker}</div>
+            <div className="portfolio-toc-title">{labels.tocTitle}</div>
             <nav>
               <ul>
                 {tocItems.map((item, index) => (

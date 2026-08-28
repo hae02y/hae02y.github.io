@@ -76,8 +76,10 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
     labels: {
       resume: 'Resume',
       portfolio: 'Portfolio',
-      professional: 'Professional',
-      independent: 'Independent',
+      professional: '회사 프로젝트',
+      independent: '개인 활동',
+      tocKicker: '프로필 지도',
+      tocTitle: '목차',
       resumeHeadings: {
         experience: '경력',
         keyWork: '주요 업무',
@@ -131,6 +133,8 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
       portfolio: 'Portfolio',
       professional: 'Professional',
       independent: 'Independent',
+      tocKicker: 'Profile Map',
+      tocTitle: 'On this page',
       resumeHeadings: {
         experience: 'Experience',
         keyWork: 'Key Work',

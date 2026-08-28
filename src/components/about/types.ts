@@ -5,5 +5,7 @@ export type AboutPageLabels = {
   portfolio: string;
   professional: string;
   independent: string;
+  tocKicker: string;
+  tocTitle: string;
   resumeHeadings?: ResumePageLabels;
 };

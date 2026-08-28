@@ -36,6 +36,8 @@ function MeContent({
     portfolio: 'Portfolio',
     professional: 'Professional',
     independent: 'Independent',
+    tocKicker: 'Profile Map',
+    tocTitle: 'On this page',
   },
 }: MePageClientProps) {
   const searchParams = useSearchParams();
@@ -80,6 +82,8 @@ function MeContent({
               labels={{
                 professional: labels.professional,
                 independent: labels.independent,
+                tocKicker: labels.tocKicker,
+                tocTitle: labels.tocTitle,
               }}
             />
           ) : (

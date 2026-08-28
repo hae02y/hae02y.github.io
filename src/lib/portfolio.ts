@@ -72,14 +72,47 @@ const getProjectBasePath = (locale: Locale) => locale === 'en' ? '/en/about' : '
 
 const getSoloCompanyName = (locale: Locale) => locale === 'en' ? 'Independent' : '개인 프로젝트';
 
+const koCategoryLabels: Record<string, string> = {
+  'AI / MLOps': 'AI/MLOps',
+  'Backend / Infra': '백엔드/인프라',
+  'Product / Service': '제품/서비스',
+  'Product / Frontend': '제품/프론트엔드',
+  'Operations / Process': '운영/프로세스',
+  'Infrastructure / Operations': '인프라/운영',
+  'Security / Operations': '보안/운영',
+  'Data / Service': '데이터/서비스',
+  'Automation / Internal Tool': '자동화/내부 도구',
+  'Side Project': '사이드 프로젝트',
+};
+
+const koRoleLabels: Record<string, string> = {
+  'Backend 설계 및 개발': '백엔드 설계 및 개발',
+  'Backend 개발': '백엔드 개발',
+  'Backend 설계 및 개발 · Web Frontend 개발': '백엔드 설계 및 개발 · 웹 프론트엔드 개발',
+  'Web Frontend 개발': '웹 프론트엔드 개발',
+  'Web Frontend 설계 및 개발': '웹 프론트엔드 설계 및 개발',
+  'Network Engineer': '네트워크 엔지니어',
+  'Side Project': '사이드 프로젝트',
+};
+
+const localizeCategory = (category: string, locale: Locale) => {
+  if (locale !== 'ko') return category;
+  return koCategoryLabels[category] ?? category;
+};
+
+const localizeRole = (role: string, locale: Locale) => {
+  if (locale !== 'ko') return role;
+  return koRoleLabels[role] ?? role;
+};
+
 const mapProject = (project: PortfolioProjectConfig, locale: Locale = 'ko', company?: string): PortfolioItemData => ({
   id: toDomId(project.slug),
   slug: project.slug,
   title: project.title,
   summary: project.summary,
-  role: project.role,
+  role: localizeRole(project.role, locale),
   techStack: project.techStack,
-  category: project.category ?? (company ? 'Backend / Infra' : 'Side Project'),
+  category: localizeCategory(project.category ?? (company ? 'Backend / Infra' : 'Side Project'), locale),
   period: formatPeriod(project.start, project.end, locale),
   href: project.href ?? `${getProjectBasePath(locale)}/${project.slug}/`,
   ...(project.details ? { details: project.details } : {}),
