@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 
 const NAV_ITEMS = [
-  { href: '/blog/', label: 'Blog' },
-  { href: '/Insight/', label: 'Insight' },
+  { href: '/blog/', label: 'TECH' },
+  { href: '/Insight/', label: 'ESSAY' },
   { href: '/me/', label: 'Me', newTab: true },
 ];
 

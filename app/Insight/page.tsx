@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 const POSTS_PER_PAGE = 6;
 
 export const metadata: Metadata = {
-  title: 'Insight',
+  title: 'ESSAY',
   description: '코드 바깥의 기록들.',
   alternates: {
     canonical: `${siteConfig.url}/Insight/`,
@@ -30,7 +30,7 @@ export default function InsightPage() {
       <main className="mx-auto w-full max-w-[860px]">
         <section className="pb-7 text-center md:pb-9">
           <h1 className="text-4xl font-semibold tracking-[-0.06em] text-black dark:text-white md:text-6xl">
-            Insight
+            ESSAY
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-sm leading-7 text-black/55 break-keep dark:text-white/55 md:mt-5 md:max-w-[560px] md:text-lg md:leading-8">
             코드 바깥의 기록들.
@@ -73,7 +73,7 @@ export default function InsightPage() {
                     )}
                   </div>
                   <div className="mt-6 inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black/45 transition group-hover:translate-x-1 dark:text-white/45 md:mt-8 md:text-[11px] md:tracking-[0.24em]">
-                    Read Essay <span>→</span>
+                    Read ESSAY <span>→</span>
                   </div>
                 </div>
               </article>
@@ -117,7 +117,7 @@ export default function InsightPage() {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
               <Link
                 key={page}
-                href={page === 1 ? '/Insight' : `/Insight/page/${page}`}
+                href={page === 1 ? '/Insight/' : `/Insight/page/${page}/`}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   page === 1
                     ? 'bg-black text-white dark:bg-white dark:text-black'

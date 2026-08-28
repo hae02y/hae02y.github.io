@@ -34,7 +34,7 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
           )}
           <div className="brunch-header-inner">
             <div className="brunch-meta">
-              <span>Insight</span>
+              <span>ESSAY</span>
               {page.date && (
                 <>
                   <span className="brunch-meta-dot" />
@@ -72,7 +72,7 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
             </div>
           </div>
           <button onClick={() => router.push('/Insight/')} className="brunch-back">
-            ← 인사이트 목록으로 돌아가기
+            ← ESSAY 목록으로 돌아가기
           </button>
         </footer>
       </article>

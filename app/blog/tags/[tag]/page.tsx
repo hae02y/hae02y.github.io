@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { tag: string } }): Metadata {
   const tag = decodeURIComponent(params.tag);
   return {
-    title: `${tag} 태그 포스트`,
+      title: `${tag} TECH 포스트`,
     alternates: {
       canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}/`,
     },
@@ -60,7 +60,7 @@ export default function BlogTagPostsPage({ params }: { params: { tag: string } }
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
                   href="/blog/"
                 >
-                  Blog <span className="text-base">↗</span>
+                  TECH <span className="text-base">↗</span>
                 </Link>
                 <Link
                   className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
@@ -88,7 +88,7 @@ export default function BlogTagPostsPage({ params }: { params: { tag: string } }
                     <span>{post.readingTime} min</span>
                   </div>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="mt-3 block text-2xl md:text-3xl font-bold text-black dark:text-white group-hover:underline"
                   >
                     {post.title}

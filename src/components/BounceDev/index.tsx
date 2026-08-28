@@ -17,7 +17,7 @@ export default function BounceDev() {
                 href="/blog/"
                 className="text-blue-600 underline hover:text-black transition-colors"
             >
-                → 블로그 보러가기
+                → TECH 보러가기
             </a>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12">

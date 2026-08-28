@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
   const pageNum = Number(params.page);
   return {
-    title: `블로그 - 페이지 ${params.page}`,
+    title: `TECH - 페이지 ${params.page}`,
     alternates: {
       canonical: pageNum === 1 ? `${siteConfig.url}/blog/` : `${siteConfig.url}/blog/page/${params.page}/`,
     },
@@ -49,14 +49,14 @@ export default function BlogPageN({ params }: { params: { page: string } }) {
               <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black px-3 py-2 font-mono text-[11px] uppercase tracking-[0.25em]">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 border border-current" />
-                  <span>Blog Index</span>
+                  <span>TECH Index</span>
                 </div>
                 <span className="text-[10px]">Page {currentPage}</span>
               </div>
               <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black dark:text-white">
-                    Blog.
+                    TECH.
                   </h1>
                 </div>
                 <Link
@@ -85,7 +85,7 @@ export default function BlogPageN({ params }: { params: { page: string } }) {
                     </span>
                   </div>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="mt-3 block text-2xl md:text-3xl font-bold text-black dark:text-white group-hover:underline"
                   >
                     {post.title}
@@ -98,7 +98,7 @@ export default function BlogPageN({ params }: { params: { page: string } }) {
                       <Link
                         key={tag}
                         className="border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black dark:text-white transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                        href={`/blog/tags/${encodeURIComponent(tag)}`}
+                        href={`/blog/tags/${encodeURIComponent(tag)}/`}
                       >
                         {tag}
                       </Link>
@@ -107,7 +107,7 @@ export default function BlogPageN({ params }: { params: { page: string } }) {
                 </div>
                 <div className="flex items-center justify-between md:flex-col md:items-end gap-4">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="border-2 border-black dark:border-white px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-black dark:text-white transition-transform group-hover:-translate-y-1"
                   >
                     Read

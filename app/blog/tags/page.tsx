@@ -4,8 +4,8 @@ import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tags',
-  description: '블로그 태그 목록',
+  title: 'TECH Tags',
+  description: 'TECH 태그 목록',
   alternates: {
     canonical: `${siteConfig.url}/blog/tags/`,
   },
@@ -44,7 +44,7 @@ export default function BlogTagsListPage() {
                     className="inline-flex items-center gap-2 border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-black dark:text-white brutal-shadow hover:-translate-y-1 transition-transform"
                     href="/blog/"
                   >
-                    Blog <span className="text-base">↗</span>
+                    TECH <span className="text-base">↗</span>
                   </Link>
                   <div className="border-2 border-black dark:border-white bg-white dark:bg-black px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-black dark:text-white brutal-shadow">
                     Total {tags.length} / Posts {totalPosts}

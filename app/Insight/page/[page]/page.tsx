@@ -17,7 +17,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
   const pageNum = Number(params.page);
   return {
-    title: `Insight — 페이지 ${params.page}`,
+    title: `ESSAY - 페이지 ${params.page}`,
     alternates: {
       canonical: pageNum === 1 ? `${siteConfig.url}/Insight/` : `${siteConfig.url}/Insight/page/${params.page}/`,
     },
@@ -48,7 +48,7 @@ export default function InsightPageN({ params }: { params: { page: string } }) {
       <main className="mx-auto w-full max-w-[860px]">
         <section className="pb-7 text-center md:pb-9">
           <h1 className="text-4xl font-semibold tracking-[-0.06em] text-black dark:text-white md:text-6xl">
-            Insight
+            ESSAY
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-sm leading-7 text-black/55 break-keep dark:text-white/55 md:mt-5 md:max-w-[560px] md:text-lg md:leading-8">
             코드 바깥의 기록들.
@@ -90,7 +90,7 @@ export default function InsightPageN({ params }: { params: { page: string } }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
               <Link
                 key={page}
-                href={page === 1 ? '/Insight' : `/Insight/page/${page}`}
+                href={page === 1 ? '/Insight/' : `/Insight/page/${page}/`}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   page === pageNum
                     ? 'bg-black text-white dark:bg-white dark:text-black'

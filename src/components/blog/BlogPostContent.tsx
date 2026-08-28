@@ -113,7 +113,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
             ))}
           </div>
           <button onClick={() => router.push('/blog/')} className="brunch-back">
-            ← 목록으로 돌아가기
+            ← TECH 목록으로 돌아가기
           </button>
           {post.comments && (
             <div className="brunch-comments">

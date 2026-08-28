@@ -5,8 +5,8 @@ import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '블로그',
-  description: '정해영 기술블로그 - 모든 포스트',
+  title: 'TECH',
+  description: '정해영 TECH 아카이브 - 모든 포스트',
   alternates: {
     canonical: `${siteConfig.url}/blog/`,
   },
@@ -32,14 +32,14 @@ export default function BlogListPage() {
               <div className="flex flex-wrap items-center justify-between gap-3 border-2 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black px-3 py-2 font-mono text-[11px] uppercase tracking-[0.25em]">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 border border-current" />
-                  <span>Blog Index</span>
+                  <span>TECH Index</span>
                 </div>
                 <span className="text-[10px]">Hae02y System Log</span>
               </div>
               <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
                 <div>
                   <h1 className="text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black dark:text-white">
-                    Blog.
+                    TECH.
                   </h1>
                 </div>
                 <Link
@@ -70,7 +70,7 @@ export default function BlogListPage() {
                     </span>
                   </div>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="mt-3 block text-2xl md:text-3xl font-bold text-black dark:text-white group-hover:underline"
                   >
                     {post.title}
@@ -83,7 +83,7 @@ export default function BlogListPage() {
                       <Link
                         key={tag}
                         className="border-2 border-black dark:border-white bg-white dark:bg-black px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black dark:text-white transition-colors hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                        href={`/blog/tags/${encodeURIComponent(tag)}`}
+                        href={`/blog/tags/${encodeURIComponent(tag)}/`}
                       >
                         {tag}
                       </Link>
@@ -92,13 +92,13 @@ export default function BlogListPage() {
                 </div>
                 <div className="flex items-center justify-between md:flex-col md:items-end gap-4">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="border-2 border-black dark:border-white px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-black dark:text-white transition-transform group-hover:-translate-y-1"
                   >
                     Read
                   </Link>
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="h-12 w-12 border-2 border-black dark:border-white flex items-center justify-center text-xl text-black dark:text-white transition-transform group-hover:-translate-y-1"
                     aria-label={`${post.title} 읽기`}
                   >
