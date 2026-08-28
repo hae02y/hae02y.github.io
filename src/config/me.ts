@@ -308,7 +308,28 @@ export const meConfig = {
         period: '2026-03 ~ 현재',
         role: '선임연구원 · 백엔드/AI 개발',
         summary: 'MENINBLOX는 의료 특화 LLM MediKoGPT와 초개인화 운동 관리 플랫폼 Ailix를 기반으로 의료 행정 자동화와 글로벌 헬스케어 서비스를 확장하는 의료 AI 스타트업입니다.',
-        projects: [],
+        projects: [
+          {
+            slug: 'meninblox-medical-ai-backend',
+            title: '의료 AI 서비스 백엔드 개발',
+            summary: '의료 특화 LLM과 헬스케어 플랫폼 확장을 위한 백엔드/API 구조를 설계하고 개발하고 있습니다.',
+            role: 'Backend/AI 설계 및 개발',
+            techStack: 'Java, Spring Boot, Python, FastAPI, LLM, AWS, Docker',
+            category: 'AI / Healthcare',
+            start: '2026-03',
+            end: 'present',
+            details: [
+              {
+                title: 'Summary',
+                bullets: ['의료 AI 서비스의 도메인 요구사항을 백엔드 API와 데이터 처리 흐름으로 연결하는 구조를 설계하고 있습니다.'],
+              },
+              {
+                title: 'Highlights',
+                bullets: ['의료 특화 LLM 연동을 고려한 API 설계', '서비스 확장을 위한 백엔드 모듈 구조 검토', '헬스케어 플랫폼 운영에 필요한 데이터 흐름 정리'],
+              },
+            ],
+          },
+        ],
       },
       {
         id: 'vestellalab',
@@ -521,26 +542,66 @@ export const meConfig = {
     independentCategories: [
       {
         category: 'Business / Product',
-        summary: '서비스 운영 / 자동화 / 고객 대응 / 결제 / 데이터 분석',
+        summary: '서비스 운영 과정에서 자동화, 고객 대응, 결제 흐름, 데이터 분석까지 직접 다루며 제품이 실제로 굴러가는 과정을 경험했습니다.',
         order: 1,
       },
       {
         category: 'Freelance / Client Work',
-        summary: '클라이언트 요구사항 분석 / 백엔드 개발 / 배포 / 운영 대응',
+        summary: '클라이언트의 요구사항을 기능 단위로 정리하고 백엔드 개발, 배포, 운영 대응까지 이어지는 실무형 개발 경험을 쌓았습니다.',
         order: 2,
       },
       {
         category: 'Side Project',
-        summary: '제품 아이디어 검증 / MVP 개발 / 기능 구현',
+        summary: '제품 아이디어를 빠르게 검증하고 MVP를 구현하며 실제 서비스로 이어질 수 있는 기능을 실험했습니다.',
         order: 3,
       },
       {
         category: 'Automation / Internal Tool',
-        summary: '반복 업무 자동화 / 데이터 처리 / 운영 도구 개발',
+        summary: '반복 업무를 줄이기 위한 자동화, 데이터 처리, 운영 도구를 직접 설계하고 구현했습니다.',
         order: 4,
       },
     ] satisfies PortfolioCategoryConfig[],
     solo: [
+      {
+        slug: 'independent-business-ops',
+        title: '개인 서비스 운영 및 자동화',
+        summary: '개인 서비스 운영 과정에서 고객 대응, 결제 흐름, 데이터 분석, 반복 업무 자동화를 함께 다뤘습니다.',
+        role: '개인 사업 · 제품 운영 · 자동화',
+        techStack: 'Next.js, TypeScript, Supabase, Stripe, Google Analytics',
+        category: 'Business / Product',
+        start: '2025-08',
+        end: 'present',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['개인 사업 관점에서 서비스 운영, 고객 대응, 결제 흐름, 데이터 확인 과정을 직접 다루는 경험을 정리했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['운영 반복 업무를 줄이기 위한 자동화 흐름 설계', '고객 문의와 사용 흐름을 바탕으로 개선 항목 정리', '서비스 운영에 필요한 지표와 데이터 확인 방식 구성'],
+          },
+        ],
+      },
+      {
+        slug: 'client-backend-automation',
+        title: '클라이언트 백엔드/자동화 외주 개발',
+        summary: '클라이언트 요구사항을 기능 단위로 정리하고 백엔드 개발, 배포, 운영 대응까지 이어지는 작업을 수행했습니다.',
+        role: '외주 개발 · 백엔드 개발 · 운영 대응',
+        techStack: 'Java, Spring Boot, MySQL, AWS, Docker',
+        category: 'Freelance / Client Work',
+        start: '2025-08',
+        end: '2025-10',
+        details: [
+          {
+            title: 'Summary',
+            bullets: ['클라이언트가 요청한 업무 흐름을 기능 요구사항으로 정리하고 백엔드 구현과 배포까지 연결했습니다.'],
+          },
+          {
+            title: 'Highlights',
+            bullets: ['요구사항을 API와 데이터 모델로 구체화', '배포 환경과 운영 대응 흐름 정리', '반복 처리되는 업무를 자동화할 수 있는 구조 검토'],
+          },
+        ],
+      },
       {
         slug: 'yeosu-bike-trip',
         title: '여수로 - 자전거와 함께 떠나는 여수 여행',

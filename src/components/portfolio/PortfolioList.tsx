@@ -54,7 +54,6 @@ export default function PortfolioList({
       companyId: `id-independent-${encodeURIComponent(category.category).replace(/%/g, '-')}`,
       period: '',
       summary: category.summary,
-      alwaysShowSummary: true,
       projects: soloProjectGroups.get(category.category) ?? [],
       order: category.order,
     })),

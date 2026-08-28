@@ -22,7 +22,6 @@ export type CompanyTimelineData = {
   period: string;
   role?: string;
   summary?: string;
-  alwaysShowSummary?: boolean;
   projects: PortfolioItemData[];
   order?: number;
 };
@@ -87,6 +86,7 @@ const getSoloCompanyName = (locale: Locale) => locale === 'en' ? 'Independent' :
 
 const koCategoryLabels: Record<string, string> = {
   'AI / MLOps': 'AI/MLOps',
+  'AI / Healthcare': 'AI/헬스케어',
   'Backend / Infra': '백엔드/인프라',
   'Product / Service': '제품/서비스',
   'Product / Frontend': '제품/프론트엔드',
@@ -103,6 +103,7 @@ const koCategoryLabels: Record<string, string> = {
 const koRoleLabels: Record<string, string> = {
   'Backend 설계 및 개발': '백엔드 설계 및 개발',
   'Backend 개발': '백엔드 개발',
+  'Backend/AI 설계 및 개발': '백엔드/AI 설계 및 개발',
   'Backend 설계 및 개발 · Web Frontend 개발': '백엔드 설계 및 개발 · 웹 프론트엔드 개발',
   'Web Frontend 개발': '웹 프론트엔드 개발',
   'Web Frontend 설계 및 개발': '웹 프론트엔드 설계 및 개발',
