@@ -19,10 +19,22 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     authors: [{ name: 'Haeyoung Jeong', url: `${siteConfig.url}/en/about/` }],
     creator: 'Haeyoung Jeong',
     publisher: 'Haeyoung Jeong',
+    keywords: [
+      'Haeyoung Jeong',
+      'hae02y',
+      'hae02y portfolio',
+      'backend developer',
+      'backend engineer',
+      project.title,
+      project.category,
+      project.role,
+      ...project.techStack.split(',').map(tech => tech.trim()),
+    ],
     openGraph: {
       title: project.title,
       description: project.summary,
       url: `${siteConfig.url}/en/about/${project.slug}/`,
+      locale: 'en_US',
     },
     alternates: {
       canonical: `${siteConfig.url}/en/about/${project.slug}/`,
