@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { useEffect, useState } from 'react';
 import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { AboutPageLabels } from '@/components/about/types';
@@ -42,8 +41,19 @@ function MeContent({
     expand: 'Expand',
   },
 }: MePageClientProps) {
-  const searchParams = useSearchParams();
-  const tab = searchParams.get('tab');
+  const [tab, setTab] = useState<string | null>(null);
+
+  useEffect(() => {
+    const syncTab = () => {
+      const params = new URLSearchParams(window.location.search);
+      setTab(params.get('tab'));
+    };
+
+    syncTab();
+    window.addEventListener('popstate', syncTab);
+    return () => window.removeEventListener('popstate', syncTab);
+  }, []);
+
   const activeTab = tab === 'works' || tab === 'portfolio' ? 'portfolio' : 'resume';
 
   return (
@@ -64,6 +74,7 @@ function MeContent({
           <Link
             className={`me-tab${activeTab === 'resume' ? ' is-active' : ''}`}
             href={`${basePath}?tab=resume`}
+            onClick={() => setTab('resume')}
             aria-current={activeTab === 'resume' ? 'page' : undefined}
           >
             {labels.resume}
@@ -71,6 +82,7 @@ function MeContent({
           <Link
             className={`me-tab${activeTab === 'portfolio' ? ' is-active' : ''}`}
             href={`${basePath}?tab=portfolio`}
+            onClick={() => setTab('portfolio')}
             aria-current={activeTab === 'portfolio' ? 'page' : undefined}
           >
             {labels.portfolio}
@@ -101,9 +113,5 @@ function MeContent({
 }
 
 export default function MePageClient(props: MePageClientProps) {
-  return (
-    <Suspense fallback={<div className="min-h-screen" />}>
-      <MeContent {...props} />
-    </Suspense>
-  );
+  return <MeContent {...props} />;
 }
