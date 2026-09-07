@@ -6,6 +6,10 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'TECH Tags',
   description: 'TECH 태그 목록',
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: `${siteConfig.url}/blog/tags/`,
   },

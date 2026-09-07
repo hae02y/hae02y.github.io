@@ -4,6 +4,7 @@
  */
 import fs from 'fs';
 import path from 'path';
+import { execFileSync } from 'child_process';
 import matter from 'gray-matter';
 
 const SITE_URL = 'https://blog.hae02y.me';
@@ -12,6 +13,13 @@ const OUT_DIR = path.join(process.cwd(), 'out');
 const SITE_TITLE = 'Hae02y Devlog';
 const SITE_DESC = '정해영(hae02y)의 백엔드, 인프라, DevOps 기술 블로그';
 const AUTHOR = '정해영';
+const INSIGHT_DIR = path.join(process.cwd(), 'Insight');
+const ABOUT_CONTENT_DIR = path.join(process.cwd(), 'content', 'about');
+const PORTFOLIO_SOURCE_FILES = [
+  path.join(process.cwd(), 'src', 'config', 'me.ts'),
+  path.join(process.cwd(), 'src', 'i18n', 'me.ts'),
+  path.join(process.cwd(), 'src', 'lib', 'portfolio.ts'),
+];
 
 function escapeXml(value) {
   return value
@@ -41,33 +49,11 @@ function getAllPosts() {
       slug: data.slug || match[2],
       title: data.title || match[2],
       date: match[1],
+      filePath,
       description: data.description || content.slice(0, 200).replace(/[#*\n]/g, '').trim(),
       tags: data.tags || [],
     };
   }).filter(Boolean);
-}
-
-function getPriority(url) {
-  if (url === '/') return '1.0';
-  if (url === '/blog/') return '0.9';
-  if (url === '/about/') return '0.8';
-  if (url === '/en/about/') return '0.7';
-  if (url.startsWith('/blog/') && !url.startsWith('/blog/tags/') && !url.startsWith('/blog/page/')) return '0.8';
-  if (url === '/Insight/') return '0.7';
-  if (url.startsWith('/Insight/') || url.startsWith('/about/')) return '0.6';
-  return '0.5';
-}
-
-function getChangeFrequency(url) {
-  if (url === '/' || url === '/blog/') return 'daily';
-  if (url === '/blog/tags/' || url.startsWith('/blog/page/') || url.startsWith('/Insight/page/')) return 'weekly';
-  return 'monthly';
-}
-
-function shouldIndexRoute(url) {
-  if (url === '/') return true;
-  if (url === '/blog/page/1/' || url === '/Insight/page/1/') return false;
-  return url.startsWith('/blog/') || url.startsWith('/Insight/') || url.startsWith('/about/') || url.startsWith('/en/about/');
 }
 
 function getLanguageAlternates(url) {
@@ -104,63 +90,136 @@ function getLanguageAlternates(url) {
   return [];
 }
 
-function collectHtmlPages(dir, routes = []) {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (entry.name.startsWith('.') || entry.name === '_next' || entry.name === 'static') continue;
+function toSitemapDate(value) {
+  return new Date(value).toISOString().slice(0, 10);
+}
 
-    const entryPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      collectHtmlPages(entryPath, routes);
-      continue;
+function getGitLastModified(filePath) {
+  try {
+    return execFileSync('git', ['log', '-1', '--format=%cI', '--', filePath], {
+      cwd: process.cwd(),
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch {
+    return '';
+  }
+}
+
+function getFileLastModified(filePath, fallback) {
+  if (filePath && fs.existsSync(filePath)) {
+    const gitDate = getGitLastModified(filePath);
+    if (gitDate) return toSitemapDate(gitDate);
+    return toSitemapDate(fs.statSync(filePath).mtime);
+  }
+  return toSitemapDate(fallback || new Date());
+}
+
+function getLatestFileLastModified(filePaths, fallback) {
+  const dates = filePaths
+    .filter(filePath => fs.existsSync(filePath))
+    .map(filePath => getFileLastModified(filePath))
+    .sort()
+    .reverse();
+
+  return dates[0] || toSitemapDate(fallback || new Date());
+}
+
+function getDocEntries(baseDir, publicBasePath) {
+  if (!fs.existsSync(baseDir)) return [];
+
+  const entries = [];
+
+  function scan(currentDir, slugParts = []) {
+    for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || entry.name === '_category_.json') continue;
+
+      const entryPath = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        const indexPath = path.join(entryPath, 'index.md');
+        if (fs.existsSync(indexPath)) {
+          const raw = fs.readFileSync(indexPath, 'utf-8');
+          const { data } = matter(raw);
+          entries.push({
+            url: `${publicBasePath}/${[...slugParts, entry.name].map(encodeURIComponent).join('/')}/`,
+            lastmod: data.date ? toSitemapDate(data.date) : getFileLastModified(indexPath),
+          });
+        }
+        scan(entryPath, [...slugParts, entry.name]);
+        continue;
+      }
+
+      if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'index.md') {
+        const raw = fs.readFileSync(entryPath, 'utf-8');
+        const { data } = matter(raw);
+        const slug = entry.name.replace(/\.md$/, '');
+        entries.push({
+          url: `${publicBasePath}/${[...slugParts, slug].map(encodeURIComponent).join('/')}/`,
+          lastmod: data.date ? toSitemapDate(data.date) : getFileLastModified(entryPath),
+        });
+      }
     }
-
-    if (entry.name !== 'index.html') continue;
-
-    const html = fs.readFileSync(entryPath, 'utf-8');
-    if (html.includes('id="__next_error__"') || html.includes('name="robots" content="noindex"')) continue;
-
-    const relativeDir = path.relative(OUT_DIR, path.dirname(entryPath));
-    const url = relativeDir === '' ? '/' : `/${relativeDir.split(path.sep).join('/')}/`;
-    if (!shouldIndexRoute(url)) continue;
-
-    routes.push({
-      url: encodeURI(url),
-      lastmod: fs.statSync(entryPath).mtime.toISOString(),
-      priority: getPriority(url),
-      freq: getChangeFrequency(url),
-      alternates: getLanguageAlternates(url),
-    });
   }
 
-  return routes;
+  scan(baseDir);
+  return entries;
+}
+
+function getPortfolioSlugs() {
+  const sourcePath = path.join(process.cwd(), 'src', 'i18n', 'me.ts');
+  if (!fs.existsSync(sourcePath)) return [];
+
+  const raw = fs.readFileSync(sourcePath, 'utf-8');
+  return Array.from(new Set([...raw.matchAll(/slug:\s*['"`]([^'"`]+)['"`]/g)].map(match => match[1]))).sort();
 }
 
 function getFallbackSitemapEntries(posts) {
-  const now = new Date().toISOString();
+  const insightEntries = getDocEntries(INSIGHT_DIR, '/Insight');
+  const aboutLastmod = getLatestFileLastModified([
+    path.join(ABOUT_CONTENT_DIR, 'ko.md'),
+    path.join(process.cwd(), 'src', 'i18n', 'about.ts'),
+  ]);
+  const enAboutLastmod = getLatestFileLastModified([
+    path.join(ABOUT_CONTENT_DIR, 'en.md'),
+    path.join(process.cwd(), 'src', 'i18n', 'about.ts'),
+  ]);
+  const portfolioLastmod = getLatestFileLastModified(PORTFOLIO_SOURCE_FILES);
   const statics = [
-    { url: '/', priority: '1.0', freq: 'daily' },
-    { url: '/blog/', priority: '0.9', freq: 'daily' },
-    { url: '/blog/tags/', priority: '0.6', freq: 'weekly' },
-    { url: '/about/', priority: '0.8', freq: 'monthly' },
-    { url: '/en/about/', priority: '0.7', freq: 'monthly' },
-    { url: '/Insight/', priority: '0.7', freq: 'weekly' },
+    { url: '/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'page.tsx'), path.join(process.cwd(), 'app', 'HomeClient.tsx')]) },
+    { url: '/blog/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'blog', 'page.tsx'), ...posts.map(post => post.filePath)]) },
+    { url: '/about/', lastmod: aboutLastmod, alternates: getLanguageAlternates('/about/') },
+    { url: '/en/about/', lastmod: enAboutLastmod, alternates: getLanguageAlternates('/en/about/') },
+    { url: '/Insight/', lastmod: [getFileLastModified(path.join(process.cwd(), 'app', 'Insight', 'page.tsx')), ...insightEntries.map(entry => entry.lastmod)].sort().reverse()[0] },
   ];
+  const portfolioEntries = getPortfolioSlugs().flatMap(slug => [
+    { url: `/about/${slug}/`, lastmod: portfolioLastmod, alternates: getLanguageAlternates(`/about/${slug}/`) },
+    { url: `/en/about/${slug}/`, lastmod: portfolioLastmod, alternates: getLanguageAlternates(`/en/about/${slug}/`) },
+  ]);
 
   return [
-    ...statics.map(p => ({ ...p, lastmod: now })),
-    ...posts.map(p => ({ url: `/blog/${p.slug}/`, lastmod: new Date(p.date).toISOString(), freq: 'monthly', priority: '0.8' })),
+    ...statics,
+    ...posts.map(p => ({ url: `/blog/${p.slug}/`, lastmod: getFileLastModified(p.filePath, p.date) })),
+    ...insightEntries,
+    ...portfolioEntries,
   ];
 }
 
 function generateSitemap(entries) {
+  const seen = new Set();
   const urls = entries
+    .filter(entry => {
+      if (entry.url.startsWith('/blog/tags/') || entry.url.startsWith('/blog/page/') || entry.url.startsWith('/Insight/page/')) return false;
+      if (seen.has(entry.url)) return false;
+      seen.add(entry.url);
+      return true;
+    })
     .sort((a, b) => a.url.localeCompare(b.url))
     .map(p => {
       const alternates = (p.alternates || [])
         .map(alternate => `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${escapeXml(alternate.href)}"/>`)
         .join('\n');
 
-      return `  <url>\n    <loc>${escapeXml(`${SITE_URL}${p.url}`)}</loc>${alternates ? `\n${alternates}` : ''}\n    <lastmod>${p.lastmod}</lastmod>\n    <changefreq>${p.freq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`;
+      return `  <url>\n    <loc>${escapeXml(`${SITE_URL}${p.url}`)}</loc>${alternates ? `\n${alternates}` : ''}\n    <lastmod>${p.lastmod}</lastmod>\n  </url>`;
     });
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>`;
@@ -226,7 +285,7 @@ if (!fs.existsSync(OUT_DIR)) {
   fs.writeFileSync(path.join('public', 'rss.xml'), generateRss(posts));
   fs.writeFileSync(path.join('public', 'atom.xml'), generateAtom(posts));
 } else {
-  const sitemapEntries = collectHtmlPages(OUT_DIR);
+  const sitemapEntries = getFallbackSitemapEntries(posts);
   console.log(`Found ${sitemapEntries.length} public pages`);
   fs.writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), generateSitemap(sitemapEntries));
   fs.writeFileSync(path.join(OUT_DIR, 'rss.xml'), generateRss(posts));

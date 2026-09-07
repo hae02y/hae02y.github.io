@@ -14,7 +14,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { tag: string } }): Metadata {
   const tag = decodeURIComponent(params.tag);
   return {
-      title: `${tag} TECH 포스트`,
+    title: `${tag} TECH 포스트`,
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}/`,
     },

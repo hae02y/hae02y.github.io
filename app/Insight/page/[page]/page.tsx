@@ -18,6 +18,10 @@ export function generateMetadata({ params }: { params: { page: string } }): Meta
   const pageNum = Number(params.page);
   return {
     title: `ESSAY - 페이지 ${params.page}`,
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: {
       canonical: pageNum === 1 ? `${siteConfig.url}/Insight/` : `${siteConfig.url}/Insight/page/${params.page}/`,
     },

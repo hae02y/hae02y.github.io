@@ -187,6 +187,7 @@ export function createAboutMetadata(locale: Locale, options: { noindex?: boolean
       languages: {
         ko: aboutUrls.ko,
         en: aboutUrls.en,
+        'x-default': aboutUrls.ko,
       },
     },
   };

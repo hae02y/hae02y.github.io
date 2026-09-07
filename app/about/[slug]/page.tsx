@@ -26,6 +26,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       languages: {
         ko: `${siteConfig.url}/about/${project.slug}/`,
         en: `${siteConfig.url}/en/about/${project.slug}/`,
+        'x-default': `${siteConfig.url}/about/${project.slug}/`,
       },
     },
   };
