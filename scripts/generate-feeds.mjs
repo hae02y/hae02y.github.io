@@ -166,7 +166,7 @@ function getDocEntries(baseDir, publicBasePath) {
 }
 
 function getPortfolioSlugs() {
-  const sourcePath = path.join(process.cwd(), 'src', 'i18n', 'me.ts');
+  const sourcePath = path.join(process.cwd(), 'src', 'config', 'me.ts');
   if (!fs.existsSync(sourcePath)) return [];
 
   const raw = fs.readFileSync(sourcePath, 'utf-8');
