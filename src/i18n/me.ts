@@ -92,7 +92,7 @@ const en = new Map<string, string>([
   ['Google A2A(a2a-java) listTasks status wire string 처리 버그 수정 기여 [PR #578](https://github.com/a2aproject/a2a-java/pull/578)', 'Contributed a bug fix to Google A2A(a2a-java) for listTasks status wire string handling: [PR #578](https://github.com/a2aproject/a2a-java/pull/578).'],
   ['스터디 활동', 'Study Activities'],
   ['스터디 참여', 'Study Participation'],
-  ['[베스텔라랩 개발자 스터디 참여](https://blog.hae02y.me/blog/makeblog2) | 베스텔라랩 사내 개발자들 참여 인사이트 공유 및 주 1회 블로깅 피드백 진행', 'Participated in the [VEStellaLab developer study](https://blog.hae02y.me/blog/makeblog2), sharing engineering insights and weekly blogging feedback with internal developers.'],
+  ['[베스텔라랩 개발자 스터디 참여](https://blog.hae02y.me/blog/makeblog2/) | 베스텔라랩 사내 개발자들 참여 인사이트 공유 및 주 1회 블로깅 피드백 진행', 'Participated in the [VEStellaLab developer study](https://blog.hae02y.me/blog/makeblog2/), sharing engineering insights and weekly blogging feedback with internal developers.'],
   ['[Java Algorithm 스터디 운영](https://github.com/hae02y/CS_Studdiinngg) | 백준, 프로그래머스 Java 언어 기반 알고리즘 문제 풀이 및 피드백 진행', 'Ran a [Java algorithm study](https://github.com/hae02y/CS_Studdiinngg), solving Baekjoon and Programmers problems in Java and providing feedback.'],
   ['[Computer Science 스터디 참여](https://github.com/hae02y/CS_Studdiinngg) | CS 기초 지식 및 개발 지식 향상을 위한 스터디 참여', 'Participated in a [Computer Science study](https://github.com/hae02y/CS_Studdiinngg) to strengthen CS fundamentals and engineering knowledge.'],
   ['블로그 활동', 'Blogging and Writing'],

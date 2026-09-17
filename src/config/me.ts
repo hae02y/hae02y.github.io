@@ -248,7 +248,7 @@ export const meConfig = {
           {
             title: '스터디 참여',
             bullets: [
-              '[베스텔라랩 개발자 스터디 참여](https://blog.hae02y.me/blog/makeblog2) | 베스텔라랩 사내 개발자들 참여 인사이트 공유 및 주 1회 블로깅 피드백 진행',
+              '[베스텔라랩 개발자 스터디 참여](https://blog.hae02y.me/blog/makeblog2/) | 베스텔라랩 사내 개발자들 참여 인사이트 공유 및 주 1회 블로깅 피드백 진행',
               '[Java Algorithm 스터디 운영](https://github.com/hae02y/CS_Studdiinngg) | 백준, 프로그래머스 Java 언어 기반 알고리즘 문제 풀이 및 피드백 진행',
               '[Computer Science 스터디 참여](https://github.com/hae02y/CS_Studdiinngg) | CS 기초 지식 및 개발 지식 향상을 위한 스터디 참여',
             ],

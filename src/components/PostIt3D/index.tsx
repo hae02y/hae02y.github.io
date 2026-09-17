@@ -39,13 +39,22 @@ export default function PostIt3D({ onClick }: PostIt3DProps) {
     >
       <div
         ref={cardRef}
+        role="button"
+        tabIndex={0}
+        aria-label="터미널 열기"
+        onKeyDown={event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            onClick();
+          }
+        }}
         onClick={onClick}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={handleMouseLeave}
         style={{
           position: 'relative',
-          width: 340,
+          width: 'min(340px, calc(100vw - 3rem))',
           minHeight: 260,
           background: 'linear-gradient(165deg, #f7e87d 0%, #f0d94e 40%, #e8cf3a 100%)',
           borderRadius: '2px 2px 2px 24px',

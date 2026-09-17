@@ -185,7 +185,7 @@ function getFallbackSitemapEntries(posts) {
   ]);
   const portfolioLastmod = getLatestFileLastModified(PORTFOLIO_SOURCE_FILES);
   const statics = [
-    { url: '/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'page.tsx'), path.join(process.cwd(), 'app', 'HomeClient.tsx')]) },
+    { url: '/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'page.tsx'), path.join(process.cwd(), 'app', 'HomeClient.tsx'), ...posts.slice(0, 6).map(post => post.filePath)]) },
     { url: '/blog/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'blog', 'page.tsx'), ...posts.map(post => post.filePath)]) },
     { url: '/about/', lastmod: aboutLastmod, alternates: getLanguageAlternates('/about/') },
     { url: '/en/about/', lastmod: enAboutLastmod, alternates: getLanguageAlternates('/en/about/') },

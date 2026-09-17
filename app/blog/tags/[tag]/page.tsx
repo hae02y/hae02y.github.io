@@ -103,7 +103,7 @@ export default function BlogTagPostsPage({ params }: { params: { tag: string } }
                 </div>
                 <div className="flex items-center justify-between md:flex-col md:items-end gap-4">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="border-2 border-black dark:border-white px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-black dark:text-white transition-transform group-hover:-translate-y-1"
                   >
                     Read
