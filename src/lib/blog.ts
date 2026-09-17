@@ -67,8 +67,8 @@ function extractDescription(content: string): string {
   return content
     // Remove code blocks (```...```)
     .replace(/```[\s\S]*?```/g, '')
-    // Remove inline code (`...`)
-    .replace(/`[^`]+`/g, '')
+    // Keep technical terms in summaries; only remove inline-code formatting.
+    .replace(/`([^`]+)`/g, '$1')
     // Remove images ![alt](url)
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
     // Remove links but keep text [text](url) → text
