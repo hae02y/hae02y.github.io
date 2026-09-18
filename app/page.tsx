@@ -20,7 +20,7 @@ export default function Home() {
           <p className="mb-4 font-mono text-sm text-[var(--secondary)]">HAE02Y / SOFTWARE WEAVER</p>
           <h1 id="home-title" className="text-3xl leading-tight md:text-4xl">정해영 기술블로그</h1>
           <p className="max-w-xl leading-relaxed text-[var(--secondary)]">
-            개발자 정해영(hae02y)의 기술 블로그입니다. 제품을 만들고 운영하며 Java, Spring Boot, AWS, Kubernetes, DevOps, 인프라, AI 개발 경험과 ABOUT, Portfolio를 기록합니다.
+            코드와 인프라, 사람과 제품 사이를 엮습니다. 정해영(hae02y)이 Java, Spring Boot, AWS, Kubernetes, DevOps, AI로 제품을 만들고 운영하며 얻은 경험과 프로젝트를 기록합니다.
           </p>
           <nav aria-label="주요 페이지" className="mt-6 flex flex-wrap gap-6 text-sm underline underline-offset-4">
             <Link href="/blog/">기술 글</Link>
