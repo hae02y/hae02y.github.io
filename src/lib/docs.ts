@@ -243,7 +243,7 @@ export const getAllInsightPosts = (): InsightPostMeta[] => {
     };
 
     if (page.date) post.date = page.date;
-    post.heroImage = bodyImage || fallbackImage || page.heroImage;
+    post.heroImage = page.heroImage || bodyImage || fallbackImage;
     posts.push(post);
   }
 

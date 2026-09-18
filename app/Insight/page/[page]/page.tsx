@@ -55,7 +55,7 @@ export default function InsightPageN({ params }: { params: { page: string } }) {
             ESSAY
           </h1>
           <p className="mx-auto mt-4 max-w-[520px] text-sm leading-7 text-black/55 break-keep dark:text-white/55 md:mt-5 md:max-w-[560px] md:text-lg md:leading-8">
-            코드 바깥의 기록들.
+            생각과 책, 여행을 오래 기억하기 위한 기록.
           </p>
         </section>
 
@@ -65,7 +65,7 @@ export default function InsightPageN({ params }: { params: { page: string } }) {
               <Link href={post.href} className="grid h-full grid-cols-[112px_1fr] gap-4 p-4 md:grid-cols-1 md:gap-0 md:p-0">
                 {post.heroImage && (
                   <div className="h-full min-h-[112px] overflow-hidden rounded-2xl bg-black/5 dark:bg-white/10 md:h-40 md:rounded-none">
-                    <img src={post.heroImage} alt="" className="h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100" />
+                    <img src={post.heroImage} alt={`${post.title} 표지`} className="h-full w-full object-cover opacity-85 transition duration-500 group-hover:scale-105 group-hover:opacity-100" />
                   </div>
                 )}
                 <div className="flex min-w-0 flex-col p-0 md:p-5">
