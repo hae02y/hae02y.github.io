@@ -82,6 +82,7 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
       tocTitle: '목차',
       collapse: '접기',
       expand: '펼치기',
+      exportPdf: 'PDF로 내보내기',
       resumeHeadings: {
         experience: '경력',
         keyWork: '주요 업무',
@@ -139,6 +140,7 @@ export const aboutI18n: Record<Locale, AboutI18nConfig> = {
       tocTitle: 'On this page',
       collapse: 'Collapse',
       expand: 'Expand',
+      exportPdf: 'Export PDF',
       resumeHeadings: {
         experience: 'Experience',
         keyWork: 'Key Work',

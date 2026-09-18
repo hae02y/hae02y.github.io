@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { FileDown } from 'lucide-react';
 import ResumePage from '@/components/ResumePage';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import type { AboutPageLabels } from '@/components/about/types';
@@ -39,6 +40,7 @@ function MeContent({
     tocTitle: 'On this page',
     collapse: 'Collapse',
     expand: 'Expand',
+    exportPdf: 'Export PDF',
   },
 }: MePageClientProps) {
   const [tab, setTab] = useState<string | null>(null);
@@ -61,6 +63,16 @@ function MeContent({
       <div className="resume-container">
         {languageSwitch ? (
           <div className="about-topbar">
+            {activeTab === 'resume' ? (
+              <button
+                type="button"
+                className="about-export-button"
+                onClick={() => window.print()}
+              >
+                <FileDown size={15} aria-hidden="true" />
+                {labels.exportPdf}
+              </button>
+            ) : null}
             <Link
               className="about-language-switch"
               href={activeTab === 'portfolio' ? `${languageSwitch.href}?tab=portfolio` : languageSwitch.href}

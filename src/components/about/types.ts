@@ -9,5 +9,6 @@ export type AboutPageLabels = {
   tocTitle: string;
   collapse: string;
   expand: string;
+  exportPdf: string;
   resumeHeadings?: ResumePageLabels;
 };

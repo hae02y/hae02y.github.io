@@ -43,7 +43,17 @@
 
 .resume-container { width: 100%; max-width: 50rem; margin: 0 auto; padding: 2rem 2rem 0; }
 
-.about-topbar { display: flex; justify-content: flex-end; margin-bottom: 0.9rem; }
+.about-topbar { display: flex; justify-content: flex-end; align-items: center; gap: 0.55rem; margin-bottom: 0.9rem; }
+.about-export-button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  border-radius: 999px; border: 1px solid #0f172a;
+  padding: 0.35rem 0.75rem;
+  font: inherit; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+  color: #fff; background: #0f172a; cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+.about-export-button:hover { border-color: #334155; background: #334155; transform: translateY(-1px); }
+.about-export-button:focus-visible { outline: 3px solid #bfdbfe; outline-offset: 2px; }
 .about-language-switch {
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 999px; border: 1px solid #e2e8f0;
@@ -336,4 +346,200 @@
 
 @media (max-width: 1280px) {
   .portfolio-toc-wrapper { display: none; }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 12mm 14mm 14mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #172033 !important;
+    background: #fff !important;
+    font-size: 9pt !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .main-wrapper:has(.resume-page) {
+    padding: 0 !important;
+  }
+
+  .resume-page {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    overflow: visible;
+    color: #172033 !important;
+    background: #fff !important;
+  }
+
+  .resume-container {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .about-topbar,
+  .me-tabs,
+  .portfolio-toc-wrapper,
+  .portfolio-toggle {
+    display: none !important;
+  }
+
+  .resume-page h1 {
+    margin: 0 0 3mm;
+    font-size: 24pt;
+    line-height: 1.12;
+  }
+
+  .resume-page h2 {
+    margin: 7mm 0 3mm;
+    font-size: 15pt;
+    line-height: 1.22;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  .resume-page h3,
+  .resume-page h4 {
+    margin: 5mm 0 2mm;
+    font-size: 11.5pt;
+    line-height: 1.25;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  .resume-page h5 {
+    font-size: 10pt;
+  }
+
+  .resume-page p,
+  .resume-page ul,
+  .resume-project-list,
+  .resume-activity-list,
+  .resume-timeline-summary {
+    font-size: 8.6pt;
+    line-height: 1.42;
+  }
+
+  .resume-page p {
+    margin-bottom: 2mm;
+  }
+
+  .resume-page a {
+    color: #245da8 !important;
+    text-decoration: none !important;
+  }
+
+  .resume-experience-total {
+    font-size: 8pt;
+  }
+
+  .resume-timeline,
+  .resume-projects,
+  .resume-activities {
+    gap: 3mm;
+  }
+
+  .resume-experience-timeline .resume-timeline-item {
+    padding-bottom: 3mm;
+  }
+
+  .resume-timeline-company,
+  .resume-project-title,
+  .resume-activity-title,
+  .resume-education-school,
+  .resume-certification-name {
+    font-size: 9.2pt;
+  }
+
+  .resume-timeline-role,
+  .resume-timeline-period,
+  .resume-project-org,
+  .resume-project-period,
+  .resume-project-techstack,
+  .resume-project-group-title,
+  .resume-activity-subtitle,
+  .resume-activity-group-title,
+  .resume-education-program,
+  .resume-education-period,
+  .resume-certification-meta,
+  .resume-link-item {
+    font-size: 8pt;
+  }
+
+  .resume-project-card {
+    gap: 2mm;
+    border-radius: 2.5mm;
+    padding: 3mm 3.5mm;
+  }
+
+  .resume-project-group-list,
+  .resume-activity-group-list {
+    gap: 2mm;
+  }
+
+  .resume-activity-item {
+    gap: 1mm;
+  }
+
+  .resume-activity-tags {
+    gap: 1mm;
+  }
+
+  .resume-activity-tag {
+    padding: 0.5mm 1.5mm;
+    font-size: 7pt;
+  }
+
+  .resume-page .resume-activity-list li {
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .resume-education,
+  .resume-certifications {
+    gap: 2.5mm 4mm;
+  }
+
+  .resume-certifications {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resume-education-item,
+  .resume-certification-item {
+    border-radius: 2.5mm;
+    padding: 2.5mm 3mm;
+  }
+
+  .resume-links {
+    gap: 2.5mm 5mm;
+  }
+
+  .resume-project-card,
+  .resume-timeline-item,
+  .resume-activity-item,
+  .resume-education-item,
+  .resume-certification-item,
+  .resume-link-item,
+  .resume-project-group,
+  .resume-activity-group {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  .resume-inline-icon,
+  .resume-timeline-icon,
+  .resume-link-icon {
+    color: #245da8 !important;
+  }
 }
