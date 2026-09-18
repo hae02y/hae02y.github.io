@@ -1,13 +1,13 @@
 export const siteConfig = {
   title: 'Hae02y Devlog',
-  tagline: '개발자 정해영(hae02y)의 Software Builder Devlog',
+  tagline: '개발자 정해영(hae02y)의 Software Weaver Devlog',
   url: 'https://blog.hae02y.me',
   description: '정해영(hae02y)의 ABOUT, Portfolio, 소프트웨어·백엔드·인프라·DevOps 기술 블로그',
   author: {
     name: '정해영',
     handle: 'hae02y',
-    jobTitle: 'Software Builder',
-    bio: 'Software Builder',
+    jobTitle: 'Software Weaver',
+    bio: 'Software Weaver',
     email: 'godud1118@gmail.com',
     image: '/img/me.jpg',
   },
@@ -23,7 +23,7 @@ export const siteConfig = {
   },
   profile: {
     name: 'Haeyoung,Jeong',
-    title: 'Software Builder.',
+    title: 'Software Weaver.',
     description: '',
     image: '/img/me.jpg',
     email: 'godud1118@gmail.com',

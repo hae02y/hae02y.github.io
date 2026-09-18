@@ -141,7 +141,7 @@ export default function PostIt3D({ onClick }: PostIt3DProps) {
             letterSpacing: '-0.1px',
           }}
         >
-          software builder.
+          software weaver.
         </div>
 
         {/* Body */}
