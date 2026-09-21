@@ -24,9 +24,14 @@ export type BlogPost = {
   content: string;
   readingTime: number;
   comments?: boolean;
+  image?: string;
 };
 
 export type BlogPostMeta = Omit<BlogPost, 'content'>;
+
+export type BlogSearchDocument = Pick<BlogPost, 'slug' | 'title' | 'date' | 'description' | 'tags'> & {
+  searchText: string;
+};
 
 export type BlogPostNavigation = {
   previous?: BlogPostMeta;
@@ -93,6 +98,20 @@ function parseBlogDir(dirName: string): { date: string; dirSlug: string } | null
   return { date: match[1], dirSlug: match[2] };
 }
 
+function resolvePostImage(src: unknown, dirName: string): string | undefined {
+  if (typeof src !== 'string' || !src.trim()) return undefined;
+
+  const value = src.trim();
+  if (/^https?:\/\//i.test(value) || value.startsWith('/')) return value;
+  if (value.startsWith('blog/')) return `/${value}`;
+  return `/blog/${dirName}/${value}`;
+}
+
+function extractFirstImage(content: string, dirName: string): string | undefined {
+  const match = content.match(/!\[[^\]]*\]\(([^)\s]+)(?:\s+["'][^"']*["'])?\)/);
+  return resolvePostImage(match?.[1], dirName);
+}
+
 export function getAllPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
 
@@ -125,6 +144,7 @@ export function getAllPosts(): BlogPost[] {
       content,
       readingTime: Math.ceil(rt.minutes),
       comments: data.comments !== false,
+      image: resolvePostImage(data.heroImage || data.image, dir) || extractFirstImage(content, dir),
     });
   }
 
@@ -133,6 +153,30 @@ export function getAllPosts(): BlogPost[] {
 
 export function getAllPostsMeta(): BlogPostMeta[] {
   return getAllPosts().map(({ content, ...meta }) => meta);
+}
+
+function markdownToSearchText(content: string): string {
+  return content
+    .replace(/^```[^\n]*$/gm, ' ')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/[>*_~|]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export function getBlogSearchDocuments(): BlogSearchDocument[] {
+  return getAllPosts().map(post => ({
+    slug: post.slug,
+    title: post.title,
+    date: post.date,
+    description: post.description,
+    tags: post.tags,
+    searchText: markdownToSearchText(post.content),
+  }));
 }
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

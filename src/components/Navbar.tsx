@@ -66,6 +66,26 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <form action="/search/" method="get" role="search" className="ml-1 hidden items-center md:flex">
+            <label htmlFor="navbar-blog-search" className="sr-only">블로그 글 검색</label>
+            <input
+              id="navbar-blog-search"
+              name="q"
+              type="search"
+              placeholder="SEARCH"
+              className="h-8 w-24 border-b border-[var(--primary)] bg-transparent px-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--primary)] outline-none placeholder:opacity-45 focus:w-36 focus:border-b-2 lg:w-28"
+            />
+          </form>
+          <Link
+            href="/search/"
+            aria-label="블로그 글 검색"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[var(--primary)] opacity-60 transition-colors hover:bg-gray-100 hover:opacity-80 dark:hover:bg-gray-800 md:hidden"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[18px] w-[18px] fill-none stroke-current" strokeWidth="2" strokeLinecap="round">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-4-4" />
+            </svg>
+          </Link>
           <a
             href="https://github.com/hae02y"
             target="_blank"

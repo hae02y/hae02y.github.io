@@ -32,7 +32,7 @@ export default function BlogPostContent({ post, dirName, navigation, relatedPost
         <header className="brunch-header">
           <div className="brunch-header-inner">
             <div className="brunch-meta">
-              <span>{dateFormatter.format(new Date(post.date))}</span>
+              <time dateTime={post.date}>{dateFormatter.format(new Date(post.date))}</time>
               <span className="brunch-meta-dot" />
               <span>{post.readingTime}분 분량</span>
             </div>

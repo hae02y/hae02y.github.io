@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllPostsMeta, getPaginatedPosts } from '@/lib/blog';
 import BlogPaginator from '@/components/blog/BlogPaginator';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 10;
@@ -18,14 +18,17 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
   const pageNum = Number(params.page);
+  const path = pageNum === 1 ? '/blog/' : `/blog/page/${params.page}/`;
+
   return {
-    title: `TECH - 페이지 ${params.page}`,
+    ...createPageMetadata({
+      title: `TECH - 페이지 ${params.page}`,
+      description: `정해영(hae02y)의 기술 글 아카이브 ${params.page}페이지.`,
+      path,
+    }),
     robots: {
       index: false,
       follow: true,
-    },
-    alternates: {
-      canonical: pageNum === 1 ? `${siteConfig.url}/blog/` : `${siteConfig.url}/blog/page/${params.page}/`,
     },
   };
 }

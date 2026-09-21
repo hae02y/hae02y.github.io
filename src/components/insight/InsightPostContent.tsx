@@ -38,7 +38,7 @@ export default function InsightPostContent({ page, readingTime }: InsightPostCon
               {page.date && (
                 <>
                   <span className="brunch-meta-dot" />
-                  <span>{dateFormatter.format(new Date(page.date))}</span>
+                  <time dateTime={page.date}>{dateFormatter.format(new Date(page.date))}</time>
                 </>
               )}
               <span className="brunch-meta-dot" />

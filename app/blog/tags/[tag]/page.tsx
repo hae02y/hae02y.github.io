@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 
@@ -14,13 +14,14 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { tag: string } }): Metadata {
   const tag = decodeURIComponent(params.tag);
   return {
-    title: `${tag} TECH 포스트`,
+    ...createPageMetadata({
+      title: `${tag} TECH 포스트`,
+      description: `${tag} 주제를 다룬 정해영(hae02y)의 기술 글 모음.`,
+      path: `/blog/tags/${encodeURIComponent(tag)}/`,
+    }),
     robots: {
       index: false,
       follow: true,
-    },
-    alternates: {
-      canonical: `${siteConfig.url}/blog/tags/${encodeURIComponent(tag)}/`,
     },
   };
 }

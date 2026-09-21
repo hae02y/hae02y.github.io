@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { getAllTags } from '@/lib/blog';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'TECH Tags',
-  description: 'TECH 태그 목록',
+  ...createPageMetadata({
+    title: 'TECH Tags',
+    description: '정해영(hae02y)의 기술 글을 주제별로 탐색하는 태그 목록.',
+    path: '/blog/tags/',
+  }),
   robots: {
     index: false,
     follow: true,
-  },
-  alternates: {
-    canonical: `${siteConfig.url}/blog/tags/`,
   },
 };
 

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getAllPortfolioProjects, getPortfolioProjectBySlug } from '@/lib/portfolio';
 import { siteConfig } from '@/config/site';
+import { createPortfolioJsonLd, defaultSocialImage, serializeJsonLd } from '@/lib/seo';
 import '../../../me/me-styles.css';
 
 export function generateStaticParams() {
@@ -31,10 +32,19 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       ...project.techStack.split(',').map(tech => tech.trim()),
     ],
     openGraph: {
+      type: 'website',
       title: project.title,
       description: project.summary,
       url: `${siteConfig.url}/en/about/${project.slug}/`,
       locale: 'en_US',
+      siteName: siteConfig.title,
+      images: [defaultSocialImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: project.summary,
+      images: [defaultSocialImage.url],
     },
     alternates: {
       canonical: `${siteConfig.url}/en/about/${project.slug}/`,
@@ -52,8 +62,13 @@ export default function EnglishPortfolioDetailPage({ params }: { params: { slug:
   if (!project) notFound();
 
   return (
-    <div className="resume-page" lang="en">
-      <main className="resume-container">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(createPortfolioJsonLd(project, 'en')) }}
+      />
+      <div className="resume-page" lang="en">
+        <main className="resume-container">
         <Link href="/en/about/?tab=portfolio" className="resume-project-link">
           ← Back to Portfolio
         </Link>
@@ -81,7 +96,8 @@ export default function EnglishPortfolioDetailPage({ params }: { params: { slug:
             </div>
           ) : null}
         </article>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAllInsightPosts } from '@/lib/docs';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 6;
@@ -16,14 +16,17 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { page: string } }): Metadata {
   const pageNum = Number(params.page);
+  const path = pageNum === 1 ? '/Insight/' : `/Insight/page/${params.page}/`;
+
   return {
-    title: `ESSAY - 페이지 ${params.page}`,
+    ...createPageMetadata({
+      title: `ESSAY - 페이지 ${params.page}`,
+      description: `생각과 책, 여행을 오래 기억하기 위한 에세이 ${params.page}페이지.`,
+      path,
+    }),
     robots: {
       index: false,
       follow: true,
-    },
-    alternates: {
-      canonical: pageNum === 1 ? `${siteConfig.url}/Insight/` : `${siteConfig.url}/Insight/page/${params.page}/`,
     },
   };
 }

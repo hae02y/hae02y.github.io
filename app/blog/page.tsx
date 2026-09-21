@@ -1,16 +1,15 @@
 import Link from 'next/link';
 import { getPaginatedPosts } from '@/lib/blog';
 import BlogPaginator from '@/components/blog/BlogPaginator';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'TECH',
-  description: '정해영 TECH 아카이브 - 모든 포스트',
-  alternates: {
-    canonical: `${siteConfig.url}/blog/`,
-  },
-};
+  socialTitle: 'TECH | Hae02y Devlog',
+  description: 'Java, Spring Boot, AWS, Kubernetes, DevOps, AI를 다루는 정해영(hae02y)의 기술 글 아카이브.',
+  path: '/blog/',
+});
 
 export default function BlogListPage() {
   const { posts, totalPages, currentPage } = getPaginatedPosts(1);

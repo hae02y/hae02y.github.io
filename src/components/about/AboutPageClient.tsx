@@ -2,6 +2,7 @@ import { getAboutContent, type AboutLocale } from '@/lib/about';
 import { getPortfolioData } from '@/lib/portfolio';
 import { aboutI18n, createAboutJsonLd } from '@/i18n/about';
 import { getLocalizedMeConfig } from '@/i18n/me';
+import { serializeJsonLd } from '@/lib/seo';
 import MePageClient from '../../../app/me/MePageClient';
 
 type AboutPageClientProps = {
@@ -18,7 +19,7 @@ export default function AboutPageClient({ locale }: AboutPageClientProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(createAboutJsonLd(locale)) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(createAboutJsonLd(locale)) }}
       />
       <MePageClient
         portfolioData={portfolioData}

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getAllPortfolioProjects, getPortfolioProjectBySlug } from '@/lib/portfolio';
 import { siteConfig } from '@/config/site';
+import { createPortfolioJsonLd, defaultSocialImage, serializeJsonLd } from '@/lib/seo';
 import '../../me/me-styles.css';
 
 export function generateStaticParams() {
@@ -16,10 +17,32 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${project.title} | Portfolio`,
     description: project.summary,
+    authors: [{ name: siteConfig.author.name, url: `${siteConfig.url}/about/` }],
+    creator: siteConfig.author.name,
+    publisher: siteConfig.author.name,
+    keywords: [
+      '정해영',
+      'hae02y',
+      '개발자 포트폴리오',
+      project.title,
+      project.category,
+      project.role,
+      ...project.techStack.split(',').map(tech => tech.trim()),
+    ],
     openGraph: {
+      type: 'website',
       title: project.title,
       description: project.summary,
       url: `${siteConfig.url}/about/${project.slug}/`,
+      locale: 'ko_KR',
+      siteName: siteConfig.title,
+      images: [defaultSocialImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: project.summary,
+      images: [defaultSocialImage.url],
     },
     alternates: {
       canonical: `${siteConfig.url}/about/${project.slug}/`,
@@ -37,8 +60,13 @@ export default function WorkDetailPage({ params }: { params: { slug: string } })
   if (!project) notFound();
 
   return (
-    <div className="resume-page">
-      <main className="resume-container">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(createPortfolioJsonLd(project)) }}
+      />
+      <div className="resume-page">
+        <main className="resume-container">
         <Link href="/about/?tab=portfolio" className="resume-project-link">
           ← Portfolio로 돌아가기
         </Link>
@@ -66,7 +94,8 @@ export default function WorkDetailPage({ params }: { params: { slug: string } })
             </div>
           ) : null}
         </article>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

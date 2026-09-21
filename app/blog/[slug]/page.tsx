@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import { getAdjacentPosts, getAllPosts, getPostBySlug, getPostDirName, getRelatedPosts } from '@/lib/blog';
 import BlogPostContent from '@/components/blog/BlogPostContent';
+import { siteConfig } from '@/config/site';
+import { absoluteUrl, serializeJsonLd, socialImages } from '@/lib/seo';
 import type { Metadata } from 'next';
 import './brunch.css';
 
@@ -12,7 +14,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const slug = decodeURIComponent(params.slug);
   const post = getPostBySlug(slug);
   if (!post) return {};
-  const siteUrl = 'https://blog.hae02y.me';
+  const url = absoluteUrl(`/blog/${post.slug}/`);
+  const images = socialImages(post.image, `${post.title} 대표 이미지`);
+
   return {
     title: post.title,
     description: post.description,
@@ -24,10 +28,19 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       publishedTime: new Date(post.date).toISOString(),
       authors: ['정해영'],
       tags: post.tags,
-      url: `${siteUrl}/blog/${post.slug}/`,
+      url,
+      siteName: siteConfig.title,
+      locale: 'ko_KR',
+      images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: images.map(({ url: imageUrl }) => imageUrl),
     },
     alternates: {
-      canonical: `${siteUrl}/blog/${post.slug}/`,
+      canonical: url,
     },
   };
 }
@@ -40,6 +53,42 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const dirName = getPostDirName(slug);
   const navigation = getAdjacentPosts(slug);
   const relatedPosts = getRelatedPosts(slug);
+  const url = absoluteUrl(`/blog/${post.slug}/`);
+  const image = socialImages(post.image, `${post.title} 대표 이미지`)[0].url;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    mainEntityOfPage: url,
+    headline: post.title,
+    description: post.description,
+    image: [image],
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    inLanguage: 'ko-KR',
+    keywords: post.tags,
+    author: {
+      '@type': 'Person',
+      '@id': `${siteConfig.url}#person`,
+      name: siteConfig.author.name,
+      url: `${siteConfig.url}/about/`,
+    },
+    publisher: {
+      '@type': 'Person',
+      '@id': `${siteConfig.url}#person`,
+      name: siteConfig.author.name,
+      url: `${siteConfig.url}/about/`,
+    },
+    isPartOf: { '@id': `${siteConfig.url}#blog` },
+  };
 
-  return <BlogPostContent post={post} dirName={dirName} navigation={navigation} relatedPosts={relatedPosts} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
+      <BlogPostContent post={post} dirName={dirName} navigation={navigation} relatedPosts={relatedPosts} />
+    </>
+  );
 }

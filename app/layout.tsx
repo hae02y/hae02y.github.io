@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ThemeProvider from '@/components/ThemeProvider';
 import Navbar from '@/components/Navbar';
 import { siteConfig } from '@/config/site';
+import { defaultSocialImage, serializeJsonLd } from '@/lib/seo';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -39,20 +40,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.title,
     title: '정해영 | Software Weaver 기술블로그',
     description: '정해영 개발자 블로그. Software, Backend, AI, Infra, DevOps, Cloud.',
-    images: [
-      {
-        url: `${siteConfig.url}/img/me.jpg`,
-        width: 800,
-        height: 800,
-        alt: '정해영 프로필',
-      },
-    ],
+    images: [defaultSocialImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: '정해영 | Software Weaver 기술블로그',
     description: '정해영(hae02y)의 Software Weaver 기술 블로그.',
-    images: [`${siteConfig.url}/img/me.jpg`],
+    images: [defaultSocialImage.url],
   },
   robots: {
     index: true,
@@ -82,6 +76,11 @@ const jsonLd = {
       description: '정해영(hae02y)의 Software Weaver 기술 블로그와 ABOUT, Portfolio',
       inLanguage: 'ko',
       publisher: { '@id': `${siteConfig.url}#person` },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteConfig.url}/search/?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
     },
     {
       '@type': 'Person',
@@ -125,15 +124,6 @@ const jsonLd = {
         logo: { '@type': 'ImageObject', url: `${siteConfig.url}/img/me.jpg` },
       },
     },
-    {
-      '@type': 'ProfilePage',
-      '@id': `${siteConfig.url}/about/#profilepage`,
-      url: `${siteConfig.url}/about/`,
-      name: '개발자 정해영 | 백엔드 개발자 ABOUT',
-      alternateName: ['정해영 개발자', '백엔드 정해영', 'hae02y 개발자'],
-      description: '정해영(hae02y) 백엔드 개발자의 이력서와 Portfolio',
-      mainEntity: { '@id': `${siteConfig.url}#person` },
-    },
   ],
 };
 
@@ -148,7 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="naver-site-verification" content="b0b393149cbaa4e924b020c1ae71ea17d4b94db1" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       </head>
       <body>

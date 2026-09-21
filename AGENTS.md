@@ -1,123 +1,117 @@
-AGENTS GUIDE
+# Repository agent guide
 
-Purpose: give agents a fast, opinionated playbook to work safely in this repo. Keep answers concise and leave user content unchanged unless asked.
+Use this file as the shared source of truth for coding agents in this repository. Keep responses concise, preserve user-authored content unless the user asks to change it, and do not broaden the requested scope.
 
-Stack Snapshot
-- Framework: Docusaurus 3 (TypeScript, React 18)
-- Styling: TailwindCSS + custom global CSS (`src/css/custom.css`), shadcn/ui components
-- Package manager: yarn@1.22 (Node >=18)
-- Paths/aliases (`tsconfig.json`): `@/*`, `@site/*`, `@/components/*`, `@/ui/*`, `@/lib/*`
-- i18n: defaultLocale en; theme expects dark-mode via `class`/`data-theme="dark"`
-- Comments: Giscus wired in `src/components/Comments`
+## Project snapshot
 
-Install & Tooling
-- Install: `yarn`
-- Start dev: `yarn start`
-- Build (prod): `yarn build`
-- Serve built output: `yarn serve`
-- Deploy (GitHub Pages): `yarn deploy` (requires `GIT_USER` or `USE_SSH=true`)
-- Clear cache: `yarn clear`
-- Type check: `yarn typecheck`
-- Transl. helpers: `yarn write-translations`, `yarn write-heading-ids`
-- Swizzle components: `yarn swizzle`
-- Tests/Lint: none configured. Do not invent commands. To run a “single test,” none exists; suggest adding test tooling only if requested.
+- Personal technical blog, essays, résumé, and portfolio for hae02y.
+- Framework: Next.js 14 App Router, React 18, TypeScript 5.5.
+- Production builds are static exports. `next.config.mjs` enables `output: 'export'` when `NODE_ENV=production`.
+- Hosting: GitHub Pages through `.github/workflows/ci.yml` on pushes to `main`.
+- Styling: Tailwind CSS 3, global styles in `app/globals.css`, shadcn/ui-style Radix components.
+- Package manager: Yarn 1.22.22. Use Yarn only.
+- Runtime: Node.js 18 or newer; CI uses Node.js 20.
+- Primary language is Korean. `/en/about` provides English About content.
+- Site URL: `https://blog.hae02y.me`.
 
-Running a Single Check (current state)
-- TypeScript: no per-file mode; use `yarn typecheck` (whole project). Optionally scope by editing `tsconfig` includes, but avoid unless user asks.
-- No Jest/Vitest/ESLint/Prettier set up.
+## Commands
 
-Repo Layout Highlights
-- `src/pages` and `src/theme`: Docusaurus overrides and pages
-- `src/components`: shared UI (Tailwind + shadcn patterns)
-- `src/lib/utils.ts`: `cn` helper (clsx + tailwind-merge); use for className merges
-- `blog/`: MD/MDX posts in dated folders; frontmatter with `slug`, `title`, `authors`, `tags`
-- `docs/`: docs content; sidebar auto-generated via `sidebars.ts`
-- `static/`: assets and fonts (do not move font files referenced in CSS)
+```bash
+yarn             # install dependencies
+yarn dev         # copy content images, then start the Next.js dev server
+yarn build       # copy images, create the static export, then generate feeds/sitemap
+yarn start       # run next start; no dedicated static-export preview script exists
+yarn typecheck   # run tsc --noEmit for the whole project
+```
 
-Imports & Module Style
-- Order imports: React/types first → external libs → Docusaurus packages → site aliases (`@site/*`, `@/*`) → relative paths.
-- Prefer named imports; keep default React import only when JSX runtime requires.
-- Use existing aliases; avoid deep relative paths when an alias fits.
-- Use `cn` for Tailwind class merging; avoid manual string concatenation.
+- No lint or test framework is configured. Do not invent lint/test commands or add tooling unless requested.
+- There is no per-file TypeScript check; use `yarn typecheck`.
 
-Components & Hooks
-- Functional components only. Keep hooks at top level; respect React hook rules.
-- Type props with interfaces/types; avoid `any`. For wrappers, reuse Docusaurus types (e.g., `WrapperProps`, `Props` from theme modules).
-- For optional props, provide sensible defaults; guard against `undefined` (e.g., optional metadata).
-- When wrapping theme components, preserve original props spread to maintain behavior.
+## Repository layout
 
-Styling Guidance
-- Tailwind-first. Reuse tokens from `tailwind.config.js` (colors based on CSS variables). Keep dark-mode compatibility; prefer utility classes that work in both themes.
-- Global typography is aggressive in `src/css/custom.css`; avoid fighting it unless necessary. If adjusting global styles, document why.
-- Component styles: keep responsive classes consistent with existing patterns (flex layouts, h-[calc(...)] usage).
-- Do not remove `important: true` Tailwind setting; it is intentional for Docusaurus overrides.
+- `app/`: App Router pages, layouts, route-level client components, and global CSS.
+- `src/components/`: shared React UI, including blog, docs, portfolio, résumé, terminal, and shadcn components.
+- `src/config/site.ts`: site metadata and shared site configuration.
+- `src/config/me.ts`: résumé and portfolio source data.
+- `src/data/resume.ts`: additional résumé data.
+- `src/i18n/`: Korean/English About and portfolio localization.
+- `src/lib/`: filesystem content readers, Markdown rendering, feeds, portfolio mapping, and utilities.
+- `blog/`: dated technical posts stored as `YYYY-MM-DD-slug/index.md` with adjacent assets.
+- `Insight/`: dated essay content with adjacent assets.
+- `docs/`: protected documentation content, including nested `index.md` files and `_category_.json` files.
+- `content/about/`: Korean and English About Markdown.
+- `public/`: committed static assets. `public/blog/` and `public/Insight/` are generated and ignored.
+- `scripts/copy-blog-images.mjs`: copies adjacent Blog/Insight images into `public/` before dev/build.
+- `scripts/generate-feeds.mjs`: writes sitemap, RSS, and Atom output after a production build.
 
-Content & MDX
-- Blog posts: keep assets in the same post folder; use relative paths. Frontmatter supports `comments` (boolean) to toggle Giscus (default true in `src/theme/BlogPostItem/index.tsx`).
-- Docs: sidebar auto via filesystem; keep `_category_.json` when adding sections.
-- Links/images: prefer relative paths; let Docusaurus handle baseUrl.
+## Next.js and static-export constraints
 
-Navbar/Footer Customizations
-- Navbar hidden on `/me` routes via `src/theme/Navbar/index.tsx`; respect that guard.
-- Avoid breaking `useLocation` checks; keep pathname comparisons strict.
+- Components are Server Components by default. Add `'use client'` only for hooks, browser APIs, or interactive state.
+- Static export cannot rely on runtime API routes, middleware, server actions, request-time data, or other server-only behavior.
+- Every dynamic route must remain enumerable at build time with `generateStaticParams()`.
+- Preserve `trailingSlash: true` and `images.unoptimized: true` unless the deployment target changes.
+- Filesystem reads in `src/lib/` run at build time. Guard missing files and optional frontmatter rather than throwing in render paths.
 
-Date/Reading Time Display
-- Date formatting lives in `src/theme/BlogPostItem/Header/Info/index.tsx` using `useDateTimeFormat({year:'numeric', month:'numeric', day:'numeric'})`; renders like `12/10/2025`. Reading time via `usePluralForm`. Adjust formatting there if requested.
+## Imports and TypeScript
 
-Forms/Auth Notes
-- `docusaurus.config.ts` stores `customFields.authid/authpw` for `/login`. Treat as sensitive; never log or expose beyond intended usage. Login page: `src/pages/login.tsx` uses `sessionStorage` token.
+- Prefer strict types and avoid `any`. Reuse existing domain types and guard optional data.
+- Import order: React/types, external packages, Next.js packages, site aliases, then relative imports.
+- Available aliases from `tsconfig.json`:
+  - `@/*` → `src/*`
+  - `@/components/*` → `src/components/*`
+  - `@/ui/*` → `src/components/ui/*`
+  - `@/lib/*` → `src/lib/*`
+  - `@/data/*` → `src/data/*`
+  - `@/config/*` → `src/config/*`
+- Use `cn` from `@/lib/utils` when conditional Tailwind classes need merging.
+- Functional components only. Keep hooks at the top level and preserve existing props when wrapping components.
 
-Error Handling & Edge Cases
-- Prefer graceful fallbacks (null checks on metadata, images, optional config).
-- Avoid throwing in render paths; log to console only when actionable.
-- When fetching config/customFields, default safely to avoid runtime crashes.
+## Styling and UI
 
-Accessibility & Semantics
-- Preserve semantics in theme overrides (headings, time tags). Keep `VisuallyHidden` for dialog titles where present.
-- Ensure interactive elements remain keyboard-usable (`asChild` triggers, buttons with type submit where forms exist).
+- Prefer Tailwind utilities and existing CSS variables. Reuse established monochrome, monospace, and minimal UI patterns.
+- Preserve `important: true` and the accordion animation definitions in `tailwind.config.js`.
+- Dark mode uses `next-themes`, Tailwind `dark:` classes, and `[data-theme="dark"]`. Verify both light and dark themes after color/background changes.
+- Global typography in `app/globals.css` is intentionally strong. Avoid local overrides unless the component needs them.
+- Fonts use Pretendard for body text, JetBrains Mono for code, and IBM Plex Mono for the brutal/terminal style. Do not move referenced font assets without updating their URLs.
+- Keep interactive controls keyboard-accessible, preserve semantic elements, and retain visually hidden labels/titles where present.
+- Keep images appropriately sized and lazy-load noncritical images where practical.
 
-Performance
-- Use React.lazy/Suspense only if already patterned. Avoid heavy work in render; memoize where beneficial but do not overuse.
-- Images: prefer optimized sizes in `static/`; use `loading="lazy"` where possible.
+## Content behavior
 
-When Adding New UI
-- Match existing tone (monospace + minimal chrome). Respect dark/light modes. Use Tailwind utilities; avoid inline styles unless necessary.
-- If introducing new fonts or colors, extend `tailwind.config.js` instead of ad-hoc hex values.
+- Blog post frontmatter commonly includes `slug`, `title`, `authors`, `tags`, and optional `comments`. Comments default to enabled unless `comments: false`.
+- Keep Blog and Insight assets beside their Markdown source and use relative paths. Edit the source asset, not generated files under `public/blog/` or `public/Insight/`.
+- Content loaders accept nested `index.md` files and standalone Markdown files. Preserve `_category_.json` files when editing docs sections.
+- `src/lib/blog.ts` and `src/lib/docs.ts` derive descriptions and metadata when frontmatter is missing; keep graceful fallbacks.
+- About copy lives in `content/about/{ko,en}.md`. Portfolio/résumé facts live mainly in `src/config/me.ts` and their localized mappings in `src/i18n/`.
+- Do not rewrite user-authored posts, essays, résumé claims, or portfolio facts unless explicitly requested.
 
-Tests/Linting Policy
-- None present. If user requests tests/lint, propose appropriate tooling (e.g., Vitest + React Testing Library, ESLint + Prettier) but do not add without instruction.
+## Route-specific behavior
 
-Data & Privacy
-- Do not commit secrets. Review `customFields` and env-like values before logging. `docusaurus.config.ts` contains identifiers; keep them in config only.
+- `src/components/Navbar.tsx` hides the navbar on `/about`, `/me`, and `/en/about` routes. Keep hooks above route-based early returns.
+- `/docs/*` checks `sessionStorage.authToken`; `/login` sets it after comparing the configured client-side password.
+- The docs login is client-side gating in a static site, not server-side access control. Do not present it as protection for secrets.
+- Authentication values may come from `NEXT_PUBLIC_AUTH_ID` and `NEXT_PUBLIC_AUTH_PW`, with source-level fallbacks. Never print, log, or duplicate credential values, and do not change them unless asked.
+- Giscus comments are implemented in `src/components/Comments` and rendered from `src/components/blog/BlogPostContent.tsx`.
 
-Static Assets
-- Fonts loaded from `/font/...` via `custom.css`; do not rename/move without updating URLs.
-- `.nojekyll` exists in `static/`; leave intact for GitHub Pages.
+## Build and deployment
 
-Working with Tailwind Animations
-- Accordion animations defined in `tailwind.config.js` (`accordion-down/up`) used by shadcn components; keep classNames when editing.
+- `.github/workflows/ci.yml` installs with `yarn install --frozen-lockfile`, builds `out/`, adds `out/.nojekyll`, and deploys through GitHub Pages.
+- `static/` contains legacy source assets while active public assets are served from `public/`; do not move or delete either tree casually.
+- Run `yarn typecheck` after TypeScript changes.
+- Run `yarn build` for routing, content pipeline, configuration, dependency, or deployment-impacting changes.
+- For visual changes, preview with `yarn dev` and check responsive layout plus light/dark themes when feasible.
 
-Deployment Notes
-- `yarn build && yarn serve` to verify production output locally.
-- GitHub Pages deploy via `yarn deploy`; requires repo permissions and correct `baseUrl` (currently `/`).
+## Error handling, privacy, and Git
 
-Git Hygiene for Agents
-- Never reset user changes. Stage only intended files. No commits unless explicitly requested. Do not push unless asked.
+- Prefer null checks and usable fallbacks for missing metadata, images, configuration, or content.
+- Avoid console logging unless it is actionable. Never log environment values, credentials, or private content.
+- Preserve unrelated user changes. Never reset or overwrite them.
+- Do not commit, push, deploy, or stage unrelated files unless explicitly requested.
+- Keep `.env*.local`, generated output, caches, and secrets out of version control.
+- If core configuration must change, preserve the current Next.js static-export behavior and Tailwind dark-mode/`important` settings unless the request requires otherwise.
 
-If You Must Tweak Core Config
-- Docusaurus config: keep `plugins`, `themes`, `presets` structure intact; JSON-LD objects near top. Update `siteUrl`/`favicon` only on request.
-- Tailwind config: preserve `important: true`, `darkMode` settings, and font families.
+## Before finishing
 
-Quick Checks Before Finishing Work
-- Run `yarn typecheck` when TS code changes.
-- Run `yarn build` before release/deploy-impacting changes.
-- Verify dark/light rendering if UI changes touch colors or backgrounds.
-- For blog/docs changes, build or at least `yarn start` preview if feasible.
-
-No Cursor/Copilot Rules
-- No `.cursor/rules/` or `.cursorrules`. No `.github/copilot-instructions.md`. Nothing special to import.
-
-Communication Style for Agents
-- Be concise. Mention commands you ran. Point to paths (e.g., `src/theme/BlogPostItem/Header/Info/index.tsx`). Avoid dumping large diffs; summarize.
-
-End of guide.
+- Review the diff for accidental content or generated-file changes.
+- Run the checks appropriate to the files changed; do not claim unavailable tests or linting.
+- Report changed paths and commands run without dumping large diffs.

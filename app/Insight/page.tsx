@@ -1,17 +1,16 @@
 import Link from 'next/link';
 import { getAllInsightPosts } from '@/lib/docs';
-import { siteConfig } from '@/config/site';
+import { createPageMetadata } from '@/lib/seo';
 import type { Metadata } from 'next';
 
 const POSTS_PER_PAGE = 6;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'ESSAY',
+  socialTitle: 'ESSAY | Hae02y Devlog',
   description: '생각과 책, 여행을 오래 기억하기 위한 기록.',
-  alternates: {
-    canonical: `${siteConfig.url}/Insight/`,
-  },
-};
+  path: '/Insight/',
+});
 
 export default function InsightPage() {
   const allPosts = getAllInsightPosts();
