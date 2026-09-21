@@ -921,9 +921,27 @@
     line-height: 1.85;
   }
 
-  .brunch-content .code-block-wrapper {
-    margin: 1.5rem -0.25rem;
+  .brunch-content .code-block-wrapper.code-light,
+  .brunch-content .code-block-wrapper.code-dark {
+    margin: 1.5rem 0;
     border-radius: 6px;
+    max-width: 100%;
+  }
+
+  .code-light .code-block-header,
+  .code-dark .code-block-header {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .code-block-body pre {
+    padding: 0.85rem 0.75rem !important;
+    font-size: 12.5px !important;
+  }
+
+  .code-light .code-line-number,
+  .code-dark .code-line-number {
+    width: 1.75rem;
+    margin-right: 0.75rem;
   }
 
   .brunch-content .brunch-figure {
