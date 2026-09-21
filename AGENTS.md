@@ -106,7 +106,7 @@ yarn typecheck   # run tsc --noEmit for the whole project
 - Prefer null checks and usable fallbacks for missing metadata, images, configuration, or content.
 - Avoid console logging unless it is actionable. Never log environment values, credentials, or private content.
 - Preserve unrelated user changes. Never reset or overwrite them.
-- Do not commit, push, deploy, or stage unrelated files unless explicitly requested.
+- The user has explicitly requested automatic deployment for this repository: after each completed and verified task, commit only the relevant files, push the commit to `main`, and confirm the GitHub Pages workflow succeeds. Do not stage unrelated files.
 - Keep `.env*.local`, generated output, caches, and secrets out of version control.
 - If core configuration must change, preserve the current Next.js static-export behavior and Tailwind dark-mode/`important` settings unless the request requires otherwise.
 

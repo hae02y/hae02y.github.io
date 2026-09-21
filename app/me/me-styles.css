@@ -381,11 +381,10 @@
   }
 
   .resume-container {
-    width: 125%;
+    width: 100%;
     max-width: none;
     margin: 0;
     padding: 0;
-    zoom: 0.8;
   }
 
   .about-topbar,
