@@ -13,13 +13,7 @@ const OUT_DIR = path.join(process.cwd(), 'out');
 const SITE_TITLE = 'Hae02y Devlog';
 const SITE_DESC = '정해영(hae02y)의 백엔드, 인프라, DevOps 기술 블로그';
 const AUTHOR = '정해영';
-const INSIGHT_DIR = path.join(process.cwd(), 'Insight');
 const ABOUT_CONTENT_DIR = path.join(process.cwd(), 'content', 'about');
-const PORTFOLIO_SOURCE_FILES = [
-  path.join(process.cwd(), 'src', 'config', 'me.ts'),
-  path.join(process.cwd(), 'src', 'i18n', 'me.ts'),
-  path.join(process.cwd(), 'src', 'lib', 'portfolio.ts'),
-];
 
 function escapeXml(value) {
   return value
@@ -125,56 +119,7 @@ function getLatestFileLastModified(filePaths, fallback) {
   return dates[0] || toSitemapDate(fallback || new Date());
 }
 
-function getDocEntries(baseDir, publicBasePath) {
-  if (!fs.existsSync(baseDir)) return [];
-
-  const entries = [];
-
-  function scan(currentDir, slugParts = []) {
-    for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
-      if (entry.name.startsWith('.') || entry.name === '_category_.json') continue;
-
-      const entryPath = path.join(currentDir, entry.name);
-      if (entry.isDirectory()) {
-        const indexPath = path.join(entryPath, 'index.md');
-        if (fs.existsSync(indexPath)) {
-          const raw = fs.readFileSync(indexPath, 'utf-8');
-          const { data } = matter(raw);
-          entries.push({
-            url: `${publicBasePath}/${[...slugParts, entry.name].map(encodeURIComponent).join('/')}/`,
-            lastmod: data.date ? toSitemapDate(data.date) : getFileLastModified(indexPath),
-          });
-        }
-        scan(entryPath, [...slugParts, entry.name]);
-        continue;
-      }
-
-      if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'index.md') {
-        const raw = fs.readFileSync(entryPath, 'utf-8');
-        const { data } = matter(raw);
-        const slug = entry.name.replace(/\.md$/, '');
-        entries.push({
-          url: `${publicBasePath}/${[...slugParts, slug].map(encodeURIComponent).join('/')}/`,
-          lastmod: data.date ? toSitemapDate(data.date) : getFileLastModified(entryPath),
-        });
-      }
-    }
-  }
-
-  scan(baseDir);
-  return entries;
-}
-
-function getPortfolioSlugs() {
-  const sourcePath = path.join(process.cwd(), 'src', 'config', 'me.ts');
-  if (!fs.existsSync(sourcePath)) return [];
-
-  const raw = fs.readFileSync(sourcePath, 'utf-8');
-  return Array.from(new Set([...raw.matchAll(/slug:\s*['"`]([^'"`]+)['"`]/g)].map(match => match[1]))).sort();
-}
-
 function getFallbackSitemapEntries(posts) {
-  const insightEntries = getDocEntries(INSIGHT_DIR, '/Insight');
   const aboutLastmod = getLatestFileLastModified([
     path.join(ABOUT_CONTENT_DIR, 'ko.md'),
     path.join(process.cwd(), 'src', 'i18n', 'about.ts'),
@@ -183,24 +128,19 @@ function getFallbackSitemapEntries(posts) {
     path.join(ABOUT_CONTENT_DIR, 'en.md'),
     path.join(process.cwd(), 'src', 'i18n', 'about.ts'),
   ]);
-  const portfolioLastmod = getLatestFileLastModified(PORTFOLIO_SOURCE_FILES);
+  // Keep the sitemap focused on the technical blog and the primary profile pages.
+  // Insight essays and portfolio detail pages remain public and crawlable through
+  // normal links, but should not compete with the blog while crawl signals build.
   const statics = [
     { url: '/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'page.tsx'), path.join(process.cwd(), 'app', 'HomeClient.tsx'), ...posts.slice(0, 6).map(post => post.filePath)]) },
     { url: '/blog/', lastmod: getLatestFileLastModified([path.join(process.cwd(), 'app', 'blog', 'page.tsx'), ...posts.map(post => post.filePath)]) },
     { url: '/about/', lastmod: aboutLastmod, alternates: getLanguageAlternates('/about/') },
     { url: '/en/about/', lastmod: enAboutLastmod, alternates: getLanguageAlternates('/en/about/') },
-    { url: '/Insight/', lastmod: [getFileLastModified(path.join(process.cwd(), 'app', 'Insight', 'page.tsx')), ...insightEntries.map(entry => entry.lastmod)].sort().reverse()[0] },
   ];
-  const portfolioEntries = getPortfolioSlugs().flatMap(slug => [
-    { url: `/about/${slug}/`, lastmod: portfolioLastmod, alternates: getLanguageAlternates(`/about/${slug}/`) },
-    { url: `/en/about/${slug}/`, lastmod: portfolioLastmod, alternates: getLanguageAlternates(`/en/about/${slug}/`) },
-  ]);
 
   return [
     ...statics,
     ...posts.map(p => ({ url: `/blog/${p.slug}/`, lastmod: getFileLastModified(p.filePath, p.date) })),
-    ...insightEntries,
-    ...portfolioEntries,
   ];
 }
 
