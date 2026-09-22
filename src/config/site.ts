@@ -114,7 +114,7 @@ export const siteConfig = {
     helpGroups: [
       ['whoami', 'skills', 'experience', 'projects'],
       ['cd', 'open'],
-      ['git', 'blog', 'insight', 'brunch'],
+      ['git', 'blog', 'insight', 'brunch', 'lab'],
       ['hello', 'clear', 'help'],
     ],
     commands: [
@@ -128,6 +128,7 @@ export const siteConfig = {
       { name: 'blog', usage: 'blog', description: 'TECH 링크' },
       { name: 'insight', usage: 'insight', description: 'ESSAY 링크' },
       { name: 'brunch', usage: 'brunch', description: '브런치스토리 작가 페이지' },
+      { name: 'lab', usage: 'lab', description: '바이브코딩 연구소 링크' },
       { name: 'hello', usage: 'hello', description: '인사' },
       { name: 'clear', usage: 'clear', description: '터미널 초기화' },
       { name: 'help', usage: 'help', description: '이 도움말' },

@@ -143,6 +143,14 @@ const brunchCmd: CommandDef = {
   }),
 };
 
+const labCmd: CommandDef = {
+  name: 'lab',
+  description: commandDescription('lab'),
+  handler: () => ({
+    lines: [green(`🧪 Vibe Coding Lab: ${link('https://ground.hae02y.me/', 'ground.hae02y.me')}`)],
+  }),
+};
+
 // ── New: Info commands ──
 
 const whoamiCmd: CommandDef = {
@@ -286,6 +294,7 @@ const allCommands: CommandDef[] = [
   blogCmd,
   insightCmd,
   brunchCmd,
+  labCmd,
   whoamiCmd,
   skillsCmd,
   experienceCmd,
