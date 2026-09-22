@@ -3,10 +3,12 @@ import { siteConfig } from '@/config/site';
 import type { PortfolioItemData } from '@/lib/portfolio';
 
 export const defaultSocialImage = {
-  url: `${siteConfig.url}/img/me.jpg`,
-  width: 800,
-  height: 800,
-  alt: '정해영(hae02y) 프로필',
+  // Use a blog-specific image for link previews so shared blog URLs are not
+  // mistaken for a personal profile or the GitHub Pages project.
+  url: `${siteConfig.url}/img/sitelogo.png?v=20260922`,
+  width: 250,
+  height: 250,
+  alt: 'Hae02y Devlog 사이트 로고',
 };
 
 export function absoluteUrl(pathOrUrl: string): string {
