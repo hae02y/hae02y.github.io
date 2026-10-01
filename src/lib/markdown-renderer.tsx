@@ -3,6 +3,7 @@
 import { useState, useCallback, memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useTheme } from 'next-themes';
 import ImageViewer from '@/components/blog/ImageViewer';
@@ -16,6 +17,38 @@ function rewriteImageSrc(src: string | undefined, dirName?: string, assetBasePat
 }
 
 const COLLAPSE_THRESHOLD = 5;
+
+const EMBED_HOSTS = new Set([
+  'youtube.com',
+  'www.youtube.com',
+  'youtube-nocookie.com',
+  'www.youtube-nocookie.com',
+  'player.vimeo.com',
+]);
+
+function safeMediaSrc(src: string | undefined, allowRelative = false): string | undefined {
+  if (!src) return undefined;
+  if (allowRelative && src.startsWith('/')) return src;
+
+  try {
+    const url = new URL(src);
+    if (url.protocol !== 'https:') return undefined;
+    return url.toString();
+  } catch {
+    return undefined;
+  }
+}
+
+function safeEmbedSrc(src: string | undefined): string | undefined {
+  const safeSrc = safeMediaSrc(src);
+  if (!safeSrc) return undefined;
+
+  try {
+    return EMBED_HOSTS.has(new URL(safeSrc).hostname) ? safeSrc : undefined;
+  } catch {
+    return undefined;
+  }
+}
 
 const CodeBlock = memo(function CodeBlock({ children, className }: { children: string; className?: string }) {
   const language = className?.replace('language-', '') || 'text';
@@ -86,12 +119,50 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      // Allow authored posts to use figure/figcaption, video and iframe markup.
+      // The components below still validate external media URLs before rendering.
+      rehypePlugins={[rehypeRaw]}
       components={{
         img: ({ src, alt }) => (
           <ImageViewer
             src={rewriteImageSrc(src, dirName, assetBasePath)}
             alt={alt || ''}
           />
+        ),
+        iframe: ({ src, title, ...props }) => {
+          const safeSrc = safeEmbedSrc(src);
+          if (!safeSrc) return null;
+
+          return (
+            <iframe
+              {...props}
+              src={safeSrc}
+              title={title || 'Embedded video'}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="markdown-embed"
+            />
+          );
+        },
+        video: ({ src, children, ...props }) => {
+          const safeSrc = safeMediaSrc(src, true);
+          return (
+            <video {...props} src={safeSrc} controls preload="metadata" className="markdown-video">
+              {children}
+            </video>
+          );
+        },
+        source: ({ src, ...props }) => {
+          const safeSrc = safeMediaSrc(src, true);
+          if (!safeSrc) return null;
+          return <source {...props} src={safeSrc} />;
+        },
+        figure: ({ className, ...props }) => (
+          <figure {...props} className={`markdown-figure ${className || ''}`.trim()} />
+        ),
+        figcaption: ({ children, ...props }) => (
+          <figcaption {...props} className="markdown-figcaption">{children}</figcaption>
         ),
         code: ({ children, className, node, ...props }) => {
           // Block code: has language- class OR is inside <pre> (multi-line)
