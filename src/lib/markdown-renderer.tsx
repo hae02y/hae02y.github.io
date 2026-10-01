@@ -146,7 +146,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
           );
         },
         video: ({ src, children, ...props }) => {
-          const safeSrc = safeMediaSrc(src, true);
+          const safeSrc = safeMediaSrc(rewriteImageSrc(src, dirName, assetBasePath), true);
           return (
             <video {...props} src={safeSrc} controls preload="metadata" className="markdown-video">
               {children}
@@ -154,7 +154,7 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
           );
         },
         source: ({ src, ...props }) => {
-          const safeSrc = safeMediaSrc(src, true);
+          const safeSrc = safeMediaSrc(rewriteImageSrc(src, dirName, assetBasePath), true);
           if (!safeSrc) return null;
           return <source {...props} src={safeSrc} />;
         },

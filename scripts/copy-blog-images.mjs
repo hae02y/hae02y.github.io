@@ -1,5 +1,5 @@
 /**
- * Copies markdown-adjacent images to public/ so Next.js can serve them.
+ * Copies markdown-adjacent media to public/ so Next.js can serve them.
  *
  * blog/2025-07-15-NKS구축/screen1.png → public/blog/2025-07-15-NKS구축/screen1.png
  * Insight/book/year2025/cover.png → public/Insight/book/year2025/cover.png
@@ -7,7 +7,10 @@
 import fs from 'fs';
 import path from 'path';
 
-const IMAGE_EXTS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.bmp', '.avif']);
+const MEDIA_EXTS = new Set([
+  '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.bmp', '.avif',
+  '.mp4', '.webm', '.ogg', '.mov', '.m4v', '.mp3', '.wav', '.m4a',
+]);
 
 const SOURCES = [
   { name: 'blog', sourceDir: path.join(process.cwd(), 'blog'), publicDir: path.join(process.cwd(), 'public', 'blog') },
@@ -31,7 +34,7 @@ function copyImages({ name, sourceDir, publicDir }) {
       }
 
       const ext = path.extname(entry.name).toLowerCase();
-      if (!IMAGE_EXTS.has(ext)) continue;
+      if (!MEDIA_EXTS.has(ext)) continue;
 
       const relativePath = path.relative(sourceDir, sourcePath);
       const destPath = path.join(publicDir, relativePath);
@@ -42,7 +45,7 @@ function copyImages({ name, sourceDir, publicDir }) {
   }
 
   walk(sourceDir);
-  console.log(`Copied ${count} ${name} images to ${path.relative(process.cwd(), publicDir)}/`);
+  console.log(`Copied ${count} ${name} media files to ${path.relative(process.cwd(), publicDir)}/`);
   return count;
 }
 
