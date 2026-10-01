@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">반응형 영상과 캡션 배치</title>
+  <desc id="desc">본문 폭에 맞춰 표시되는 16대 9 영상 플레이어와 아래 캡션</desc>
+  <rect width="1200" height="620" rx="28" fill="#111827"/>
+  <text x="80" y="82" fill="#fff" font-family="Arial, sans-serif" font-size="28" font-weight="700">영상은 본문 폭 안에서 읽힌다</text>
+  <text x="80" y="120" fill="#aeb8ca" font-family="Arial, sans-serif" font-size="17">16:9 비율 · lazy loading · 설명 캡션</text>
+  <rect x="80" y="170" width="1040" height="370" rx="18" fill="#05070b" stroke="#39465d" stroke-width="2"/>
+  <rect x="108" y="198" width="984" height="295" rx="10" fill="#23314a"/>
+  <circle cx="600" cy="345" r="54" fill="#e5a44b"/>
+  <path d="M582 312 640 345 582 378Z" fill="#111827"/>
+  <rect x="108" y="493" width="984" height="20" rx="10" fill="#39465d"/>
+  <rect x="108" y="493" width="350" height="20" rx="10" fill="#e5a44b"/>
+  <text x="80" y="584" fill="#d6dce7" font-family="Arial, sans-serif" font-size="17">캡션: 영상의 핵심 내용과 출처를 재생하지 않아도 알 수 있게 적는다.</text>
+</svg>

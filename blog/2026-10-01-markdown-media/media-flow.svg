@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Markdown 글과 미디어 파일의 연결 흐름</title>
+  <desc id="desc">글 폴더의 index.md와 SVG, PNG, MP4 파일이 빌드 과정을 거쳐 블로그 본문에 표시되는 흐름</desc>
+  <rect width="1200" height="520" rx="28" fill="#f7f3ec"/>
+  <text x="72" y="76" fill="#1b1b1b" font-family="Arial, sans-serif" font-size="28" font-weight="700">한 글 = 본문 + 함께 쓰는 미디어</text>
+  <text x="72" y="112" fill="#6c655d" font-family="Arial, sans-serif" font-size="17">파일을 가까이 두면 작성과 수정의 맥락이 끊기지 않는다</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="72" y="168" width="300" height="250" rx="18" fill="#fff" stroke="#d8cec0" stroke-width="2"/>
+    <text x="104" y="214" fill="#8c5b24" font-size="16" font-weight="700">BLOG POST FOLDER</text>
+    <rect x="104" y="244" width="236" height="43" rx="8" fill="#f5eadb"/>
+    <text x="124" y="272" fill="#28231e" font-family="monospace" font-size="17">index.md</text>
+    <rect x="104" y="300" width="236" height="43" rx="8" fill="#eef4ff"/>
+    <text x="124" y="328" fill="#283d65" font-family="monospace" font-size="17">media-flow.svg</text>
+    <rect x="104" y="356" width="236" height="43" rx="8" fill="#eef7ef"/>
+    <text x="124" y="384" fill="#315a3b" font-family="monospace" font-size="17">demo.mp4</text>
+    <path d="M400 292h112" stroke="#ae8a60" stroke-width="3"/>
+    <path d="m500 278 22 14-22 14" fill="none" stroke="#ae8a60" stroke-width="3"/>
+    <rect x="552" y="168" width="300" height="250" rx="18" fill="#fff" stroke="#d8cec0" stroke-width="2"/>
+    <text x="584" y="214" fill="#8c5b24" font-size="16" font-weight="700">BUILD</text>
+    <circle cx="702" cy="294" r="58" fill="#1e293b"/>
+    <path d="M683 267 738 294 683 321Z" fill="#fff"/>
+    <text x="614" y="381" fill="#6c655d" font-size="16">경로 변환 · 공개 파일 복사</text>
+    <path d="M880 292h112" stroke="#ae8a60" stroke-width="3"/>
+    <path d="m980 278 22 14-22 14" fill="none" stroke="#ae8a60" stroke-width="3"/>
+    <rect x="1032" y="168" width="96" height="250" rx="18" fill="#1b1b1b"/>
+    <rect x="1052" y="204" width="56" height="112" rx="5" fill="#fff"/>
+    <rect x="1059" y="215" width="42" height="8" rx="4" fill="#d8cec0"/>
+    <rect x="1059" y="235" width="32" height="8" rx="4" fill="#e6b36a"/>
+    <rect x="1059" y="255" width="40" height="8" rx="4" fill="#c6d8f5"/>
+    <circle cx="1080" cy="365" r="21" fill="#e6b36a"/>
+    <path d="m1071 365 7 7 13-15" fill="none" stroke="#1b1b1b" stroke-width="4"/>
+  </g>
+</svg>
