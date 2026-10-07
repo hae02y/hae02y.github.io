@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">iOS와 Android 인앱결제 검증 흐름</title>
+  <desc id="desc">각 플랫폼의 결제 결과를 백엔드가 검증하고 권한을 갱신한 뒤 서버 알림으로 상태를 동기화하는 흐름</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#111827"/><stop offset="1" stop-color="#1f2937"/></linearGradient>
+    <linearGradient id="ios" x1="0" x2="1"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#4f46e5"/></linearGradient>
+    <linearGradient id="android" x1="0" x2="1"><stop stop-color="#059669"/><stop offset="1" stop-color="#0f766e"/></linearGradient>
+    <linearGradient id="server" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#d97706"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/></marker>
+    <style>text{font-family:ui-sans-serif,system-ui,sans-serif;fill:#f8fafc}.label{font-size:19px;font-weight:700}.small{font-size:15px;fill:#cbd5e1}.step{font-size:14px;fill:#e2e8f0}</style>
+  </defs>
+  <rect width="1200" height="560" rx="28" fill="url(#bg)"/>
+  <text x="60" y="60" font-size="28" font-weight="800">결제 성공 화면이 권한 부여의 최종 근거가 되지 않도록</text>
+  <text x="60" y="91" class="small">iOS와 Android의 결과를 같은 서버 권한 모델로 수렴시킨다</text>
+  <rect x="70" y="145" width="280" height="115" rx="18" fill="url(#ios)"/>
+  <text x="100" y="185" class="label">iOS 앱</text><text x="100" y="216" class="step">StoreKit 2 · transaction JWS</text><text x="100" y="241" class="step">구매 / 복원 / 보류 상태</text>
+  <rect x="70" y="335" width="280" height="115" rx="18" fill="url(#android)"/>
+  <text x="100" y="375" class="label">Android 앱</text><text x="100" y="406" class="step">Play Billing · purchase token</text><text x="100" y="431" class="step">구매 / 보류 / 소비·확인</text>
+  <rect x="470" y="220" width="280" height="155" rx="18" fill="url(#server)"/>
+  <text x="515" y="264" class="label">백엔드 검증</text><text x="515" y="298" class="step">Apple / Google API 조회</text><text x="515" y="324" class="step">중복 방지 · 상태 전이</text><text x="515" y="350" class="step">권한(entitlement) 갱신</text>
+  <rect x="870" y="220" width="260" height="155" rx="18" fill="#334155" stroke="#64748b" stroke-width="2"/>
+  <text x="918" y="264" class="label">권한 저장소</text><text x="918" y="298" class="step">user × product</text><text x="918" y="324" class="step">active / expired</text><text x="918" y="350" class="step">refund / revoke</text>
+  <path d="M350 202 H470" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/><path d="M350 392 H420 Q470 392 470 350" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/><path d="M750 298 H870" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M1000 220 V145 H610 V220" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <text x="655" y="135" class="small">서버 알림: App Store Notifications / RTDN</text>
+  <path d="M870 375 V475 H210 V450" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+  <text x="420" y="505" class="small">앱 재실행·복원 시 서버 권한을 다시 조회</text>
+</svg>
