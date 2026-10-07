@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useTheme } from 'next-themes';
 import ImageViewer from '@/components/blog/ImageViewer';
+import MermaidDiagram from '@/components/blog/MermaidDiagram';
 
 function rewriteImageSrc(src: string | undefined, dirName?: string, assetBasePath?: string): string {
   if (!src) return '';
@@ -168,6 +169,9 @@ export const MarkdownRenderer = memo(function MarkdownRenderer({ content, dirNam
           // Block code: has language- class OR is inside <pre> (multi-line)
           const isBlock = className?.startsWith('language-') ||
             String(children).includes('\n');
+          if (className === 'language-mermaid') {
+            return <MermaidDiagram chart={String(children).replace(/\n$/, '')} />;
+          }
           if (isBlock) {
             return <CodeBlock className={className}>{String(children)}</CodeBlock>;
           }
