@@ -48,6 +48,37 @@ tags:
 
 이렇게 해두면 iOS와 Android의 SDK가 달라도 서비스 코드가 바라보는 값은 `active`, `expired`, `revoked` 같은 권한 상태로 통일된다.
 
+### 실제 요청 형태를 먼저 고정했다
+
+클라이언트가 플랫폼별 응답 전체를 제각각 보내게 두지 않고, 서버가 받을 입력을 먼저 고정했다. 예를 들어 앱에서 보내는 요청은 다음처럼 구성할 수 있다.
+
+```json
+{
+  "platform": "android",
+  "productId": "pro_monthly_android",
+  "purchaseToken": "token-from-google-play",
+  "appAccountToken": "user-123"
+}
+```
+
+서버는 `platform` 값에 따라 검증기를 선택하고, 클라이언트가 보낸 `productId`와 스토어 응답의 상품 ID가 일치하는지 다시 확인한다. 검증 결과가 유효할 때만 `user-123`의 `pro_monthly` 권한을 갱신한다. iOS라면 `purchaseToken` 대신 StoreKit 거래의 서명된 JWS를 보내는 식으로 같은 API 경계를 유지할 수 있다.
+
+```ts
+const verified = await verifier.verify(command);
+if (!verified.valid || verified.productId !== mapping.storeProductId) {
+  throw new InvalidPurchaseError();
+}
+
+await entitlementService.grantOnce({
+  userId: command.userId,
+  product: mapping.entitlement,
+  transactionKey: `${command.platform}:${verified.transactionId}`,
+  expiresAt: verified.expiresAt,
+});
+```
+
+`grantOnce`는 거래 키에 유니크 제약을 두고 이미 처리한 거래면 같은 결과를 반환하도록 만든다. 앱의 재시도와 스토어 알림 재전송을 정상적인 상황으로 보고 설계하는 부분이다.
+
 ## iOS에서 신경 쓴 부분
 
 StoreKit 2는 Swift 동시성 모델과 함께 상품, 구매, 거래, 권한을 다루고 거래를 서명된 JWS 형태로 제공한다. 클라이언트에서 서명을 확인하는 것도 필요하지만, 서비스 권한을 결정하는 서버에서도 거래의 진위와 상품, 환경, 만료 시점을 확인해야 한다.
@@ -84,6 +115,16 @@ Google Play의 실시간 개발자 알림(RTDN)도 최종 상태 자체라기보
 - **이벤트 기록**: 앱 요청, 스토어 알림, 검증 결과, 오류와 재처리 횟수
 
 권한 갱신의 키는 플랫폼별 거래 식별자로 잡았다. 같은 요청이 여러 번 들어와도 이미 처리한 거래라면 같은 결과를 돌려주는 멱등 처리가 필요하다. 네트워크 재시도와 서버 알림 재전송은 정상적인 흐름이므로 중복을 예외 상황으로만 취급하면 안 된다.
+
+상태 전이는 코드에 흩어놓지 않고 명시적으로 정의했다. 예를 들어 `pending → active`는 구매 완료 확인 뒤에만 허용하고, `active → expired`는 만료 시각 또는 스토어 검증 결과로만 전환한다. `refunded`가 된 거래를 앱에서 다시 성공으로 보냈다고 `active`로 되돌리지 않는 규칙도 필요하다.
+
+| 현재 상태 | 이벤트 | 다음 상태 | 권한 부여 |
+| --- | --- | --- | --- |
+| `pending` | 스토어 구매 완료 확인 | `active` | 가능 |
+| `active` | 갱신 성공 | `active` | 기간 연장 |
+| `active` | 만료·취소 | `expired` | 불가 |
+| `active` | 환불·회수 | `refunded` | 즉시 회수 |
+| `expired` | 복원 요청 | 스토어 재검증 | 검증 결과에 따름 |
 
 ## 복원은 부가 기능이 아니라 기본 흐름이다
 

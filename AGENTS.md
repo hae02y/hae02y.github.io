@@ -115,3 +115,10 @@ yarn typecheck   # run tsc --noEmit for the whole project
 - Review the diff for accidental content or generated-file changes.
 - Run the checks appropriate to the files changed; do not claim unavailable tests or linting.
 - Report changed paths and commands run without dumping large diffs.
+
+## Blog Writing Requirements
+- 기술 블로그 글은 경험을 바탕으로 기술 중심으로 작성한다.
+- 개념 소개만 하지 말고 실제 구현 흐름, 데이터 구조, 상태 전이, API 요청·응답 또는 코드 예시를 포함한다.
+- 플랫폼이나 도구의 차이와 운영 중 발생할 수 있는 실패·재시도·복원·보안 경계를 설명한다.
+- 독자가 바로 적용할 수 있도록 구체적인 예시, 표, 체크리스트, 공식 문서 링크를 함께 제공한다.
+- 사용자의 실제 경험에서 확인되지 않은 프로젝트명·버전·수치·구현 사실은 지어내지 않는다.
